@@ -4,7 +4,7 @@
 
 ## 顺序查找
 
-- O(cols\*rows)
+- O(cols \* rows)
 
 ```cpp
 class Solution {
@@ -40,7 +40,7 @@ public:
 ```   
 ## 二分查找
 
-- O(rows* log_2{cols}
+- O(rows \* log_2{cols})
 
 ```cpp
 class Solution {
