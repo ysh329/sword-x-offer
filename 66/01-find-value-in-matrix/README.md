@@ -8,10 +8,7 @@
 
 ```cpp
 class Solution {
-public:
-    //二刷 2018年8月5日
-    //method1 顺序查找 O(cols*rows)
-    /*    
+public:  
     bool Find(int target, vector<vector<int> > array) {
         
         bool result = false;
@@ -36,8 +33,8 @@ public:
         return result;
         
     }
-    */
 ```   
+
 ## 二分查找
 
 - O(rows \* log_2{cols})
@@ -70,3 +67,4 @@ public:
         return result;
     }
 };
+```
