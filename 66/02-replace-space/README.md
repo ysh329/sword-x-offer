@@ -10,7 +10,7 @@
 ```cpp
 class Solution {
 public:
-	void replaceSpace(char *str,int length) {
+    void replaceSpace(char *str,int length) {
         if(str==NULL || length<=0)
             return;
         
@@ -34,6 +34,6 @@ public:
                 str[sidx] = str[length];
         }
         return;
-	}
+    }
 };
 ```
