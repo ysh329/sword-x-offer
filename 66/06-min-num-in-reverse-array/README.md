@@ -31,3 +31,31 @@ public:
 ## 二分查找
 
 - O(log_2 {N})  
+- 链接：https://www.nowcoder.com/questionTerminal/9f3231a991af4f55b95579b44b7a01ba  
+- 来源：牛客网  
+
+```cpp
+class Solution {
+public:
+    int minNumberInRotateArray(vector<int> rotateArray) {
+        int result = 0;
+        if(rotateArray.size()<=1)
+            return result;
+        
+        int start_idx = 0;
+        int end_idx = rotateArray.size()-1;
+        
+        while(start_idx<end_idx)
+        {
+            int mid_idx = start_idx + (end_idx-start_idx)/2;
+            if(rotateArray[mid_idx] > rotateArray[end_idx])
+                start_idx = mid_idx+1;
+            else if(rotateArray[mid_idx] == rotateArray[end_idx])
+                end_idx -= 1;
+            else // rotateArray[mid_idx] < rotateArray[end_idx]
+                end_idx = mid_idx;
+        }
+        return rotateArray[start_idx];
+    }
+};
+```
