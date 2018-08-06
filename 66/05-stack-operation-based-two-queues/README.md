@@ -26,7 +26,7 @@ public:
         }
         while(!stack1.empty())
         {
-            stack2.push(stack1.pop());
+            stack2.push(stack1.top());
             stack1.pop();
         }
         return pop();
