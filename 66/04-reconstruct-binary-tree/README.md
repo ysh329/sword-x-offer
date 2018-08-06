@@ -66,6 +66,9 @@ public:
 
 ### 递归2  
 
+- 链接：https://www.nowcoder.com/questionTerminal/8a19cbe657394eeaac2f6ea9b0f6fcf6  
+- 来源：牛客网 
+
 ```cpp
 /**
  * Definition for binary tree
@@ -95,6 +98,7 @@ public:
         {
             if(vin[eidx]==pre[pre_start_idx])
             {
+                // 注意边界条件
                 int new_pre_left_end_idx = pre_start_idx + eidx - vin_start_idx;//startPre+i-startIn;
                 int new_pre_right_start_idx = eidx - vin_start_idx + pre_start_idx + 1;//i-startIn+startPre+1;
                 root->left = helper(pre, pre_start_idx+1, new_pre_left_end_idx,
