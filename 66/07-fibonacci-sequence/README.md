@@ -80,8 +80,8 @@ class Solution {
 public:
     int Fibonacci(int n) {
         int f = 0, g = 1;//f:当前n的结果,g:n+1结果
-        while(n-->0) {
-            g += f;
+        while(n-->0) { //确保负数因而>0
+            g += f;
             f = g - f;
         }
         return f;
