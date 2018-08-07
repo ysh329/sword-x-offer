@@ -18,3 +18,35 @@ public:
     }
 };
 ```
+
+## 正序求解
+
+```cpp
+class Solution {
+public:
+    int Fibonacci(int n) {
+        int result = 0;
+        int n0 = 0;
+        int n1 = 1;
+        // f(0) = 0
+        // f(1) = 1
+        // f(n) = f(n-1) + f(n-2)
+        for(int i = 0; i<=n; i++)
+        {
+            if(i==0)
+                result = n0;
+            else if(i==1)
+                result = n1;
+            else
+            {
+                result = n1+n0;
+                n0 = n1;
+                n1 = result;
+            }
+        }
+        return result;
+    }
+};
+```
+
+## 动态规划
