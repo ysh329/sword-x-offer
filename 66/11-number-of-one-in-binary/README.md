@@ -13,3 +13,24 @@
 - -2的取反：1111 1101 取反的反码  
 
 - 补码：正数的补码和原码一样，负数的补码，就是在原来的原码基础上，保持符号位不变，其他位取反，然后再加1
+
+## 逐位比较
+
+- int类型占32位，因而比较32次  
+
+```cpp
+class Solution {
+public:
+     int  NumberOf1(int n) {
+         unsigned int bit = 1;
+         unsigned int count = 0;
+         while(bit)
+         {
+             if(n&bit)
+                 count++;
+             bit <<= 1; // 左移31次
+         }
+         return count;
+     }
+};
+```
