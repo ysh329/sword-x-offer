@@ -25,7 +25,13 @@
 
 详细分析：https://www.nowcoder.com/questionTerminal/22243d016f6b47f2a6928b4313c85387
 
-## 常规解法
+## 递推式
+
+```cpp
+
+```
+
+## 规律
 
 ```cpp
 class Solution {
@@ -35,6 +41,17 @@ public:
         if (number>0)
             result = pow(2,number-1);
         return result;
+    }
+};
+```
+
+位操作
+
+```cpp
+class Solution {
+public:
+    int jumpFloorII(int number) {
+        return 1<<(number-1);
     }
 };
 ```
