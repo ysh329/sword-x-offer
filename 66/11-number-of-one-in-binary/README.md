@@ -21,7 +21,7 @@
 ```cpp
 class Solution {
 public:
-     int  NumberOf1(int n) {
+     int NumberOf1(int n) {
          unsigned int bit = 1;
          unsigned int count = 0;
          while(bit)
