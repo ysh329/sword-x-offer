@@ -5,8 +5,6 @@ n<=39
 
 ## 不能通过的解法
 
-
-
 ```cpp
 class Solution {
 public:
@@ -92,3 +90,10 @@ public:
     }
 };
 ```
+
+## 矩阵快速幂
+
+- 链接：https://www.nowcoder.com/questionTerminal/c6c7742f5ba7442aada113136ddea0c3  
+- 来源：牛客网
+
+略
