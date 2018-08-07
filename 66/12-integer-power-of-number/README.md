@@ -28,3 +28,19 @@ public:
 };
 ```
 
+```cpp
+class Solution {
+public:
+    double Power(double base, int exponent) {
+        double result = 1;
+        for (int i = 1; i <= (exponent>0?exponent:-exponent); i++) // 排除exponent为0得情况
+        {
+            if (exponent>0)
+                result *= base;
+            else
+                result /= base;
+        }
+        return result;
+    }
+};
+```
