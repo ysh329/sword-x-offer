@@ -9,7 +9,9 @@
 - base为负数  
 - base为0  
 
-## 常规解法
+## 累乘
+
+- O(N)
 
 ```cpp
 class Solution {
@@ -42,5 +44,26 @@ public:
         }
         return result;
     }
+};
+```
+
+## 简单快速幂
+
+- `abs(exponent)`的二进制表示中1的个数，即循环执行次数  
+
+```cpp
+class Solution {
+public:
+    double Power(double base, int exponent) {
+        long long pos_exponent = abs((long long)exponent);
+        double res = 1.0;
+        while(pos_exponent)
+        {
+            if(pos_exponent & 1) res *= base; // 最低位一致
+            base *= base; // 相当于base左移
+            pos_exponent >>= 1; //左边的数右移，因而上一步base需要左移
+        }
+        return exponent<0 ? 1/res : res;
+    }
 };
 ```
