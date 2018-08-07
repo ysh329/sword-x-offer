@@ -5,6 +5,8 @@ n<=39
 
 ## 不能通过的解法
 
+
+
 ```cpp
 class Solution {
 public:
@@ -15,6 +17,28 @@ public:
             return n;
         else
             return Fibonacci(n-1)+Fibonacci(n-2);
+    }
+};
+```
+
+## 尾递归
+
+- 链接：https://www.nowcoder.com/questionTerminal/c6c7742f5ba7442aada113136ddea0c3  
+- 来源：牛客网  
+- 不是不能用递归，递归本质上是栈，可能导致栈溢出，只要避免溢出就可以了。
+
+```cpp
+class Solution {
+public:
+
+    int Fibonacci(int n) {
+        return Fibonacci(n,0,1);
+    }
+
+    int Fibonacci(int n,int acc1,int acc2){
+        if(n==0) return 0;
+        if(n==1) return acc2;
+        else     return Fibonacci(n - 1, acc2, acc1 + acc2);
     }
 };
 ```
@@ -50,3 +74,20 @@ public:
 ```
 
 ## 动态规划
+
+- 链接：https://www.nowcoder.com/questionTerminal/c6c7742f5ba7442aada113136ddea0c3  
+- 来源：牛客网
+
+```cpp
+class Solution {
+public:
+    int Fibonacci(int n) {
+        int f = 0, g = 1;//f:当前n的结果,g:n+1结果
+        while(n-->0) {
+            g += f;
+            f = g - f;
+        }
+        return f;
+    }
+};
+```
