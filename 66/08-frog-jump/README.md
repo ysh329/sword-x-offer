@@ -24,5 +24,7 @@ public:
 };
 ```
 
-## 
+## 推荐解法
+
+参考05-fibonacci-sequence，斐波那契数列。
 
