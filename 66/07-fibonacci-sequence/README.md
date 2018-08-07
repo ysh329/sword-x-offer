@@ -29,12 +29,10 @@ public:
 ```cpp
 class Solution {
 public:
-
     int Fibonacci(int n) {
         return Fibonacci(n,0,1);
     }
-
-    int Fibonacci(int n,int acc1,int acc2){
+    int Fibonacci(int n, int acc1, int acc2){
         if(n==0) return 0;
         if(n==1) return acc2;
         else     return Fibonacci(n - 1, acc2, acc1 + acc2);
