@@ -67,3 +67,8 @@ public:
     }
 };
 ```
+
+- `partition`和`stable_partition`这两个方法都用来将指定容器的元素根据指定的`predicate`函数分成两个子序列，其中满足`predicate()`函数的，即返回值为`true`的作为第一个序列`[v.begin(), bound)`, 而`[bound, v.end())`的作为第二个序列。  
+- 两个方法的区别在于，`partition()`对于两个子序列中的元素并不排序，而`stable_partition()`则对两个子序列的元素也进行排序。  
+- BidirectionalIterator partition ( BidirectionalIterator first, BidirectionalIterator last, Predicate pred );  
+- BidirectionalIterator stable_partition ( BidirectionalIterator first, BidirectionalIterator last, Predicate pred );
