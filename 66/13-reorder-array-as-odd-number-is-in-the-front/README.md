@@ -4,6 +4,7 @@
 
 ## 开辟新数组
 
+- 时间换空间  
 - 时间：O(N)，空间：O(N)  
 
 ```cpp
@@ -21,6 +22,48 @@ public:
                 result.push_back(array[eidx]);
         array = result;
         return;
+    }
+};
+```
+
+## 冒泡
+
+```cpp
+class Solution {
+public:
+    void reOrderArray(vector<int> &array) {
+        for (int loop_num = 0; loop_num<array.size(); loop_num++)
+        {
+            for (int i = array.size()-1; i>loop_num; i--)
+            {
+                // swap, if pre is even, latter is odd
+                if (array[i]%2!=0 && array[i-1]%2==0) 
+                    swap(array[i], array[i-1]);
+            }
+        }
+    }
+};        
+```
+
+```cpp
+class Solution {
+public:
+    void reOrderArray(vector<int> &array) {
+        for(int i = 0; i < (array.size())/2; i++)
+            for(int j = 0; j < (array.size()-i); j++)
+                if(((array[j]%2) == 0) && ((array[j+1]%2) == 1))
+                    swap(array[j] ,array[j+1]);
+    }
+};        
+```
+
+```cpp
+class Solution {
+public:
+    static bool isOk(int n){ return ((n & 1) == 1); }
+
+    void reOrderArray(vector<int> &array) {
+        stable_partition(array.begin(), array.end(), isOk);
     }
 };
 ```
