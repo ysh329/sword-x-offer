@@ -51,7 +51,7 @@ public:
     void reOrderArray(vector<int> &array) {
         for(int i = 0; i < (array.size())/2; i++)
             for(int j = 0; j < (array.size()-i); j++)
-                if(((array[j]%2) == 0) && ((array[j+1]%2) == 1))
+                if(((array[j]%2) == 0) && ((array[j+1]%2) != 0))
                     swap(array[j] ,array[j+1]);
     }
 };        
