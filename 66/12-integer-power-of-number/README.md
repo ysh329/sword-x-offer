@@ -8,6 +8,7 @@
 - exponent为0  
 - base为负数  
 - base为0  
+- base为0，exponent为负的错误处理  
 
 ## 累乘
 
