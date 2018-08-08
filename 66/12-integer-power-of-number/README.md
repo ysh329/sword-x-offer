@@ -68,3 +68,35 @@ public:
     }
 };
 ```
+
+## 递推式  
+
+- a^n = a^(n/2) * a^(n/2), n为偶数  
+- a^n = a^((n-1)/2) * a^((n-1)/2) * n, n为奇数  
+
+```cpp
+class Solution {
+public:
+    double Power(double base, int exponent) {
+        if(abs(base)<1e-5 && exponent<0)
+        {
+            printf("Error: invalid input\n");
+            exit(0);
+        }
+        double result = PowerWithUnsignedExponent(base, abs(exponent));
+        return exponent<0? 1.0/result: result;
+    }
+
+    double PowerWithUnsignedExponent(double base, unsigned int exponent) {
+        if(exponent==0)
+            return 1;
+        else if(exponent==1)
+            return base;
+        double result = Power(base, exponent>>1);
+        result *= result;
+        if(exponent & 0x1 == 1) //判断最低位的奇偶
+            result *= base;
+        return result;
+    }
+};
+```
