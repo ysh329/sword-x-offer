@@ -56,3 +56,42 @@ public:
     }
 };
 ```
+
+
+## 栈  
+
+```cpp
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* ReverseList(ListNode* pHead) {
+        if(pHead==NULL || pHead->next==NULL) return pHead;
+        stack<ListNode *> s;
+        ListNode *p = pHead;
+        ListNode *pHeadNew;
+        
+        while(p->next!=NULL)
+        {
+            s.push(p);
+            p = p->next;
+        }
+        
+        pHeadNew = p;
+        while(!s.empty())
+        {
+            p->next = s.top();
+            p = p->next;
+            s.pop();
+        }
+        p->next = NULL;
+        return pHeadNew;
+    }
+};
+```
