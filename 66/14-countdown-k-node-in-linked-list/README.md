@@ -1,0 +1,39 @@
+# 链表中倒数第k个结点
+
+输入一个链表，输出该链表中倒数第k个结点。
+
+# 栈
+
+```cpp
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* FindKthToTail(ListNode* pListHead, unsigned int k) {
+        ListNode *kNode = NULL;
+        if(pListHead==NULL || k<=0) return kNode;
+        
+        stack<ListNode *> s;
+        unsigned int count = 0;
+        
+        while(pListHead!=NULL)
+        {
+            ++count;
+            s.push(pListHead);
+            pListHead = pListHead->next;
+        }
+        if(k>count) return kNode;
+        
+        k -= 1;
+        while(k--) s.pop();
+        kNode = s.top();
+        return kNode;
+    }
+};
+```
