@@ -73,6 +73,56 @@ public:
 };
 ```
 
+## 递归
+
+代码不正确，还需要想想如何实现~！
+
+```cpp
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* FindKthToTail(ListNode* pListHead, unsigned int k) {
+        ListNode *kNode = NULL;
+        if(pListHead==NULL || k<=0) return kNode;
+        unsigned int tail_flag = 0;
+        unsigned int count = 0;
+        kNode = helper(pListHead, &count, k, &tail_flag);
+        return kNode;
+    }
+    
+    ListNode* helper(ListNode* pListHead, unsigned int *count, unsigned int k, unsigned int *tail_flag)
+    {
+        if(*tail_flag==0)
+        {
+            if(pListHead->next==NULL)
+            {
+                *tail_flag = 1;
+                *count += 1;
+                return pListHead;
+            }
+            else
+            {
+                return helper(pListHead->next, count, k, tail_flag);
+            }
+        }
+        if(*tail_flag==1)
+        {
+            if(*count==k)
+                return pListHead;
+            *count += 1;
+            return helper(pListHead->next, count, k, tail_flag);
+        }
+    }
+};
+```
+
 ## 双指针
 
 ```cpp
