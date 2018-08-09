@@ -72,3 +72,32 @@ public:
     }
 };
 ```
+
+## 双指针
+
+```cpp
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* FindKthToTail(ListNode* pListHead, unsigned int k) {
+        if(pListHead==NULL || k<=0) return NULL;
+        int count = 0;
+        ListNode *kNode = pListHead;
+        while(pListHead)
+        {
+            count++;
+            if(count>k)
+                kNode = kNode->next;
+            pListHead = pListHead->next;
+        }
+        return count>=k ? kNode : NULL;
+    }
+};
+```
