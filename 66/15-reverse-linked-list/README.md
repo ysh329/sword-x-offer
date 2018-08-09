@@ -73,6 +73,7 @@ class Solution {
 public:
     ListNode* ReverseList(ListNode* pHead) {
         if(pHead==NULL || pHead->next==NULL) return pHead;
+	
         stack<ListNode *> s;
         ListNode *p = pHead;
         ListNode *pHeadNew;
@@ -91,7 +92,33 @@ public:
             s.pop();
         }
         p->next = NULL;
+	
         return pHeadNew;
+    }
+};
+```
+
+## 递归
+
+```cpp
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* ReverseList(ListNode* pHead) {
+        if(pHead==NULL || pHead->next==NULL) return pHead;
+        
+        ListNode *reversedNode = ReverseList(pHead->next);
+        
+        pHead->next->next = pHead;
+        pHead->next = NULL;
+        return reversedNode;
     }
 };
 ```
