@@ -153,6 +153,39 @@ public:
 };
 ```
 
+- 下面代码基于第一个递归代码改的，也不正确  
+
+```cpp
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* FindKthToTail(ListNode* pListHead, unsigned int k)
+    {
+        if(pListHead==NULL || k<=0) return NULL;
+        unsigned int cnt = 0;
+        ListNode *kNode = FindKthToTail(pListHead, k, &cnt);
+        return kNode;
+    }
+    
+    ListNode* FindKthToTail(ListNode* pListHead, unsigned int k, unsigned int *cnt) {
+        if(pListHead==NULL)
+            return NULL;
+        FindKthToTail(pListHead->next, k, cnt);
+        *cnt++;
+        if(*cnt==k)
+            return pListHead;
+        return NULL;
+    }
+};
+```
+
 ## 双指针
 
 ```cpp
