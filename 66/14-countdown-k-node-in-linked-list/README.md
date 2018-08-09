@@ -75,7 +75,37 @@ public:
 
 ## 递归
 
-代码不正确，还需要想想如何实现~！
+- 链接：https://www.nowcoder.com/questionTerminal/529d3ae5a407492994ad2a246518148a  
+- 来源：牛客网  
+
+```cpp
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    unsigned int cnt = 0;
+    ListNode* FindKthToTail(ListNode* pListHead, unsigned int k) {
+        if(pListHead==NULL)
+            return NULL;
+        ListNode* node=FindKthToTail(pListHead->next, k);
+        if(node!=NULL)
+            return node;
+        cnt++;
+        if(cnt==k)
+            return pListHead;
+        else
+            return NULL;
+    }
+};
+```
+
+- 下面的递归代码不正确，还需要想想如何不需要全局变量情况下实现~！
 
 ```cpp
 /*
