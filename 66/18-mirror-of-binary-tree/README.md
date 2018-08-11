@@ -82,17 +82,16 @@ struct TreeNode {
 class Solution {
 public:
     void Mirror(TreeNode *pRoot) {
-        if (pRoot == NULL)return;
-        stack<TreeNode*> st;
-        TreeNode* p = NULL;
-        st.push(pRoot);
-        while (st.size())
+        if(pRoot==NULL) return;
+        stack<TreeNode *> s;
+        s.push(pRoot);
+        while(!s.empty())
         {
-            p = st.top();
-            st.pop();
+            TreeNode *p = s.top();
+            s.pop();
             swap(p->left, p->right);
-            if (p->left) st.push(p->left);
-            if (p->right) st.push(p->right);
+            if(p->left) s.push(p->left);
+            if(p->right) s.push(p->right);
         }
     }
 };
