@@ -111,20 +111,19 @@ struct TreeNode {
 };*/
 class Solution {
 public:
-    void Mirror(TreeNode *pRoot) {
-        if (pRoot == NULL)return;
-        queue<TreeNode*> qu;
-        TreeNode* p = NULL;
-        qu.push(pRoot);
-        while (qu.size())
-        {
-            p = qu.front();
-            qu.pop();
-            swap(p->left, p->right);
-            if (p->left)qu.push(p->left);
-            if (p->right)qu.push(p->right);
-        }
-    }
+    void Mirror(TreeNode *pRoot) {
+        if(!pRoot) return;
+        queue<TreeNode *> q;
+        q.push(pRoot);
+        while(!q.empty())
+        {
+            TreeNode *p = q.front();
+            q.pop();
+            swap(p->left, p->right);
+            if(p->left) q.push(p->left);
+            if(p->right) q.push(p->right);
+        }
+    }
 };
 ```
 
