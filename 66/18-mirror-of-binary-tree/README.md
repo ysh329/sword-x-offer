@@ -126,34 +126,3 @@ public:
     }
 };
 ```
-
-- 层遍历  
-
-```cpp
-/*
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};*/
-class Solution {
-public:
-    void Mirror(TreeNode *pRoot) {
-        if(!pRoot) return;
-        vector<TreeNode*> vv;
-        vv.push_back(pRoot);
-        while(!vv.empty()) {
-            vector<TreeNode*> t;
-            for (auto &i : vv) {
-                swap(i->left, i->right);
-                if (i->left) t.push_back(i->left);
-                if (i->right) t.push_back(i->right);
-            }
-            vv.swap(t);
-        }
-    }
-};
-```
