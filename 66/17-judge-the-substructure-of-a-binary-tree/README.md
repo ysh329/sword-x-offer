@@ -82,7 +82,60 @@ public:
 
 ## 非递归
 
-无
+```python
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def HasSubtree(self, pRoot1, pRoot2):
+        # write code here
+        if not pRoot1 or not pRoot2:
+            return False
+         
+        result1 = []
+        result2 = []
+        foundlst = []
+        found = True
+        result1.append(pRoot1)
+        while result1:
+            tmp = result1.pop(0)
+            if tmp.val == pRoot2.val:
+                foundlst.append(tmp)
+            if tmp.left:
+                result1.append(tmp.left)
+            if tmp.right:
+                result1.append(tmp.right)
+        while foundlst:
+            result1.append(foundlst.pop(0))
+            result2.append(pRoot2)
+            while result2:
+                tmp1 = result1.pop(0)
+                tmp2 = result2.pop(0)
+                if tmp1.val != tmp2.val:
+                    found = False
+                    result1 = []
+                    result2 = []
+                else:
+                    found = True
+                    if tmp1.left:
+                        result1.append(tmp1.left)
+                    if tmp1.right:
+                        result1.append(tmp1.right)
+                    if tmp2.left:
+                        result2.append(tmp2.left)
+                    if tmp2.right:
+                        result2.append(tmp2.right)             
+            if found == False:
+                continue
+            else:
+                return True
+        else:
+            return False
+```
 
 ## 转为字符串查找问题
 
