@@ -67,6 +67,8 @@ public:
 
 ## 非递归
 
+- 栈  
+
 ```cpp
 /*
 struct TreeNode {
@@ -80,23 +82,80 @@ struct TreeNode {
 class Solution {
 public:
     void Mirror(TreeNode *pRoot) {
-        if(pRoot==NULL)
-            return;
-        stack<TreeNode*> stackNode;
-        stackNode.push(pRoot);
-        while(stackNode.size()){
-            TreeNode* tree = stackNode.top();
-            stackNode.pop();
-            if(tree->left!=NULL || tree->right!=NULL){
-                TreeNode *ptemp = tree->left;
-                tree->left = tree->right;
-                tree->right = ptemp;
-            }
-            if(tree->left)
-                stackNode.push(tree->left);
-            if(tree->right)
-                stackNode.push(tree->right);
-        }
+        if (pRoot == NULL)return;
+        stack<TreeNode*> st;
+        TreeNode* p = NULL;
+        st.push(pRoot);
+        while (st.size())
+        {
+            p = st.top();
+            st.pop();
+            swap(p->left, p->right);
+            if (p->left) st.push(p->left);
+            if (p->right) st.push(p->right);
+        }
     }
+};
+```
+
+- 队列  
+
+```cpp
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    void Mirror(TreeNode *pRoot) {
+        if (pRoot == NULL)return;
+        queue<TreeNode*> qu;
+        TreeNode* p = NULL;
+        qu.push(pRoot);
+        while (qu.size())
+        {
+            p = qu.front();
+            qu.pop();
+            swap(p->left, p->right);
+            if (p->left)qu.push(p->left);
+            if (p->right)qu.push(p->right);
+        }
+    }
+};
+```
+
+- 层遍历  
+
+```cpp
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    void Mirror(TreeNode *pRoot) {
+        if(!pRoot) return;
+        vector<TreeNode*> vv;
+        vv.push_back(pRoot);
+        while(!vv.empty()) {
+            vector<TreeNode*> t;
+            for (auto &i : vv) {
+                swap(i->left, i->right);
+                if (i->left) t.push_back(i->left);
+                if (i->right) t.push_back(i->right);
+            }
+            vv.swap(t);
+        }
+    }
 };
 ```
