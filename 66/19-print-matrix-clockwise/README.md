@@ -27,3 +27,39 @@ public:
     }
 };
 ```
+
+## 
+
+```cpp
+class Solution {
+public:
+    int cols, rows;
+    vector<vector<int>> v;
+    
+    bool judgeForward(int i, int j)
+    {
+        return 0<=i && i<rows &&
+               0<=j && j<cols &&
+               !v[i][j];
+    }
+    
+    vector<int> printMatrix(vector<vector<int> > matrix) {
+        vector<int> result;
+        if(matrix.size()==0 || matrix[0].size()==0) return result;
+        
+        rows = matrix.size(); cols = matrix[0].size();
+        v = vector<vector <int>>(rows, vector<int>(cols, false));
+        const int D[4][2] = {{0,1}, {1,0}, {0,-1}, {-1,0}};
+        
+        int i=0, j=0, d=0, T=rows*cols;
+        while(T--) //T--，不是--T，考虑仅一个元素的矩阵
+        {
+            result.push_back(matrix[i][j]);
+            v[i][j] = true;
+            if(!judgeForward(i+D[d][0], j+D[d][1])) (++d)%=4;// 转弯
+            i += D[d][0]; j += D[d][1]; // 继续前进
+        }
+        return result;
+    }
+};
+```
