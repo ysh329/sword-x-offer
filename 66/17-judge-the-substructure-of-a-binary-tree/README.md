@@ -197,3 +197,78 @@ public:
 };
 ```
 
+```java
+链接：https://www.nowcoder.com/questionTerminal/6e196c44c7004d15b1610b9afca8bd88
+来源：牛客网
+
+/* 改进算法，时间复杂度O（m+n）
+ * 1.将root1和root2分别按先序遍历序列化。
+ * 2.运用KMP算法匹配序列化结果。
+ */
+public boolean HasSubtree(TreeNode root1,TreeNode root2) {
+    if(root2==null)
+        return false;// 空树本应是任意树的子结构，但从测试集来看，应视为false
+    if(root1==null)
+        return false;
+    char[] str = Serialize(root1).toCharArray();
+    char[] pattern = Serialize(root2).toCharArray();
+    int[] next = new int[pattern.length];
+    System.out.println(String.valueOf(str));
+    System.out.println(String.valueOf(pattern));
+    getNext(pattern,next);
+    return KMP(str,pattern,next);
+     
+}
+private boolean KMP(char[] str, char[] pattern, int[] next) {
+    if(str==null||pattern==null)
+        return false;
+    if(str.length<pattern.length)
+        return false;
+    int i=0,j=0,len = str.length;
+    while(i<len&&j<pattern.length){
+        if(j==-1||str[i]==pattern[j]){
+            i++;j++;
+        }else{
+            j = next[j];
+        }
+    }
+    if(j==pattern.length)// 表示最后一个字符也相等，匹配成功
+        return true;
+    return false;
+}
+ 
+private void getNext(char[] pattern, int[] next) {
+    if(pattern==null||pattern.length==0)
+        return;
+    int i=0,j=-1;
+    next[0] = -1;
+    while(i<pattern.length-1){
+        if(j==-1||pattern[i]==pattern[j]){
+            ++i;++j;               
+            if(pattern[i]==pattern[j]){
+                next[i] = next[j];
+            }else{
+                next[i] = j;
+            }
+        }else{
+            j = next[j];
+        }
+    }
+}
+public String Serialize(TreeNode root) {
+    if(root==null)
+        return "";
+    this.buffer = new StringBuffer();
+    SerializeF(root);
+    int i;
+    // 删除序列尾部的$
+    for(i = buffer.length()-1;i>=0;i--){
+        if(buffer.charAt(i)==','||buffer.charAt(i)=='$'){
+            continue;
+        }else
+            break;
+    }
+    buffer.delete(i+1,buffer.length());
+    return buffer.toString();
+}
+```
