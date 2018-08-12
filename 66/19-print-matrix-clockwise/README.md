@@ -160,32 +160,39 @@ public:
 
 ## 模拟魔方旋转
 
-```python
-链接：https://www.nowcoder.com/questionTerminal/9b4c81a02cd34f76be2659fa0d54342a
-来源：牛客网
-
-class Solution:
-    # matrix类型为二维列表，需要返回列表
-    def printMatrix(self, matrix):
-        # write code here
-        result = []
-        while(matrix):
-            result+=matrix.pop(0)
-            if not matrix or not matrix[0]:
-                break
-            matrix = self.turn(matrix)
-        return result
-    def turn(self,matrix):
-        num_r = len(matrix)
-        num_c = len(matrix[0])
-        newmat = []
-        for i in range(num_c):
-            newmat2 = []
-            for j in range(num_r):
-                newmat2.append(matrix[j][i])
-            newmat.append(newmat2)
-        newmat.reverse()
-        return newmat
+```cpp
+class Solution {
+public:
+    vector<vector<int> > turnMatrix(vector<vector<int> > &mat)
+    {
+        vector<vector<int> > new_mat;
+        int rows = mat.size();
+        int cols = mat[0].size();
+        for(int c = cols-1; c >= 0; c--)
+        {
+            vector<int> new_row;
+            for(int r = 0; r < rows; r++)
+                new_row.emplace_back(mat[r][c]);
+            new_mat.emplace_back(new_row);
+        }
+        return new_mat;
+    }
+    
+    vector<int> printMatrix(vector<vector<int> > matrix) {
+        vector<int> result;
+        while(!matrix.empty() || !matrix[0].empty())
+        {
+            result.insert(result.end(),
+                          matrix[0].begin(),
+                          matrix[0].end());
+            matrix.erase(matrix.begin());
+            if(matrix.empty() || matrix[0].empty())
+                break;
+            matrix = turnMatrix(matrix);
+        }
+        return result;
+    }
+};
 ```
 
 ## python
