@@ -39,5 +39,29 @@ public:
 - 辅助最小栈（s2）元素小于等于主栈（s1）元素  
 
 ```cpp
-
+#include <assert.h>
+class Solution {
+public:
+    stack<int> s1;
+    stack<int> s2;
+    void push(int value) {
+        s1.push(value);
+        if(s2.empty() || value<s2.top())
+            s2.push(value);
+    }
+    void pop() {
+        assert(!s1.empty() && !s2.empty());
+        if(s1.top()==s2.top())
+            s2.pop();
+        s1.pop();
+    }
+    int top() {
+        assert(!s1.empty());
+        return s1.top();
+    }
+    int min() {
+        assert(!s1.empty() && !s2.empty());
+        return s2.top();
+    }
+};
 ```
