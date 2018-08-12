@@ -5,7 +5,54 @@
 ## 常规解法
 
 ```cpp
-ddddd
+class Solution {
+public:
+    vector<int> printMatrix(vector<vector<int> > matrix) {
+        vector<int> r;
+        if(matrix.empty() || matrix[0].empty()) return r;
+        int rows = matrix.size();
+        int cols = matrix[0].size();
+        int circle_idx = 0;
+        while(circle_idx*2<rows && circle_idx*2<cols)
+        {
+            vector<int> circle_result = printMatClockWisely(matrix,
+                                                            rows,
+                                                            cols,
+                                                            circle_idx);
+            //for(int i=0; i<circle_result.size(); i++)
+            //    r.push_back(circle_result[i]);
+            r.insert(std::end(r),
+                     std::begin(circle_result),
+                     std::end(circle_result));
+            circle_idx++;
+        }
+        return r;
+    }
+    
+    vector<int> printMatClockWisely(vector<vector<int> > &mat, int rows, int cols, int circle_idx)
+    {
+        vector<int> circle_r;
+        if(mat.empty() || mat[0].empty()) return circle_r;
+        int endX = cols - circle_idx - 1;
+        int endY = rows - circle_idx - 1;
+        // left to right
+        for(int i=circle_idx; i<=endX; i++)
+            circle_r.emplace_back(mat[circle_idx][i]);
+        // top to bottom
+        if(circle_idx<endY)
+            for(int i=circle_idx+1; i<=endY; i++)
+                circle_r.emplace_back(mat[i][endX]);
+        // right to left
+        if(circle_idx<endX && circle_idx<endY)
+            for(int i=endX-1; i>=circle_idx; i--)
+                circle_r.emplace_back(mat[endY][i]);
+        // bottom to top
+        if(circle_idx<endX && circle_idx<endY-1)
+            for(int i=endY-1; i>circle_idx; i--)
+                circle_r.emplace_back(mat[i][circle_idx]);
+        return circle_r;
+    }
+};
 ```
 
 ## 先算圈数
