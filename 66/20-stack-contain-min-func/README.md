@@ -36,6 +36,33 @@ public:
 };
 ```
 
+```cpp
+#include <assert.h>
+class Solution {
+public:
+    typedef pair<int, int> pii;
+    stack<pii> s;
+    void push(int value) {
+        s.push(pii(value,
+                   ::min(value,s.empty() ? value : min())
+                  )
+              );
+    }
+    void pop() {
+        assert(!s.empty());
+        s.pop();
+    }
+    int top() {
+        assert(!s.empty());
+        return s.top().first;
+    }
+    int min() {
+        assert(!s.empty());
+        return s.top().second;
+    }
+};
+```
+
 - 辅助最小栈（s2）元素数目小于等于主栈（s1）  
 
 ```cpp
