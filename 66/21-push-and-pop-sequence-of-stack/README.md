@@ -39,6 +39,27 @@ public:
 };
 ```
 
+```cpp
+class Solution {
+public:
+    bool IsPopOrder(vector<int> pushV,vector<int> popV) {
+        if(pushV.empty() || popV.empty() || pushV.size()!=popV.size())
+            return false;
+        vector<int> stack;
+        for(int push_idx=0, pop_idx=0; push_idx<pushV.size(); )
+        {
+            stack.push_back(pushV[push_idx++]);
+            while(pop_idx<popV.size() && stack.back()==popV[pop_idx])
+            {
+                stack.pop_back();
+                pop_idx++;
+            }
+        }
+        return stack.empty();
+    }
+};
+```
+
 ## 递归  
 
 结果不正确
