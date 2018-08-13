@@ -32,3 +32,30 @@ public:
     }
 };
 ```
+
+## 递归
+
+```cpp
+
+//打印第level行的节点，有打印输出则返回true，否则返回false 
+bool printLevel(Tree tree, int level) {
+	if(!tree || level < 0) {
+		return false;
+	}
+	if(level == 0) {
+		cout << tree->val << " ";
+		return true;
+	}
+	return printLevel(tree->left, level - 1) + printLevel(tree->right, level - 1);
+}
+ 
+//层序遍历，当某一行没有打印时break掉循环 
+void levelOrder(Tree tree) {
+	for(int i = 0; ; i++) {
+		if(!printLevel(tree, i)) {
+			break;
+		}
+	}
+}
+
+```
