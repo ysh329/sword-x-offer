@@ -57,8 +57,8 @@ public:
         vector<int> popV_left(popV.begin(), popV.begin()+eidx-1);
         vector<int> pushV_right(pushV.begin()+eidx, pushV.end());
         vector<int> popV_right(popV.begin()+eidx, popV.end());
-        //Arrays.copyOfRange(pushA, 1, i+1),Arrays.copyOfRange(popA, 0, i)) &&
-        //Arrays.copyOfRange(pushA, i+1, length),Arrays.copyOfRange(popA, i+1, length));
+        //Arrays.copyOfRange(pushA, 1, eidx+1),Arrays.copyOfRange(popA, 0, eidx)) &&
+        //Arrays.copyOfRange(pushA, eidx+1, length),Arrays.copyOfRange(popA, eidx+1, length));
         return IsPopOrder(pushV_left, popV_left) &&
                IsPopOrder(pushV_right, popV_right);
     }
