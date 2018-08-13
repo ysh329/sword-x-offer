@@ -36,26 +36,38 @@ public:
 ## 递归
 
 ```cpp
-
-//打印第level行的节点，有打印输出则返回true，否则返回false 
-bool printLevel(Tree tree, int level) {
-	if(!tree || level < 0) {
-		return false;
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
 	}
-	if(level == 0) {
-		cout << tree->val << " ";
-		return true;
-	}
-	return printLevel(tree->left, level - 1) + printLevel(tree->right, level - 1);
-}
- 
-//层序遍历，当某一行没有打印时break掉循环 
-void levelOrder(Tree tree) {
-	for(int i = 0; ; i++) {
-		if(!printLevel(tree, i)) {
-			break;
-		}
-	}
-}
-
+};*/
+class Solution {
+public:
+    vector<int> PrintFromTopToBottom(TreeNode* root) {
+        vector<int> result;
+        deque<TreeNode*> current;
+        current.push_back(root);
+        helper(current, result);
+        return result;
+    }
+    void helper(deque<TreeNode*> &current, vector<int> &result)
+    {
+        if(current.empty())
+            return;
+        deque<TreeNode*> next;
+        while(current.size())
+        {
+            TreeNode *node = current.front();
+            if(node!=NULL) result.push_back(node->val);
+            if(node->left!=NULL) next.push_back(node->left);
+            if(node->right!=NULL) next.push_back(node->right);
+            current.pop_front();
+        }
+        helper(next, result);
+    }
+};
 ```
