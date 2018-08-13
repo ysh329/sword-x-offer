@@ -23,9 +23,8 @@ public:
             }
             else
             {
-                vector<int> r = s;
-                reverse(r.begin(), r.end());
-                result = popV==r ? true : false; // 直接比较vector
+                reverse(s.begin(), s.end());
+                result = popV==s ? true : false;
                 break;
             }
             // pop
@@ -33,8 +32,6 @@ public:
             {
                 s.pop_back();// 不能用erase删除最后一个元素
                 popV.erase(popV.begin());
-            } else {
-                continue;
             }
         }
         return result;
