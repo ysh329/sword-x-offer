@@ -13,7 +13,7 @@ public:
         if(sequence.empty()) return false;
         return helper(sequence);
     }
-    bool helper(vector<int> sequence) {
+    bool helper(vector<int> &sequence) {
         if(sequence.size()<=1) return true;
         int root = sequence.back(); sequence.pop_back();
         int eidx = 0;
