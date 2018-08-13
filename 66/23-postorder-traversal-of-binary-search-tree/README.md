@@ -50,3 +50,24 @@ public:
     }
 };
 ```
+
+## 非递归
+
+```cpp
+class Solution {
+public:
+    bool VerifySquenceOfBST(vector<int> sequence) {
+        if(sequence.empty()) return false;
+        int len = sequence.size();
+        int i = 0;
+        while(--len)
+        {
+            while(sequence[i++]<sequence[len]);
+            while(sequence[i++]>sequence[len]);
+            if(i<len) return false;
+            i = 0;
+        }
+        return true;
+    }
+};
+```
