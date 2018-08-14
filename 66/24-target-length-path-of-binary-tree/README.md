@@ -35,10 +35,7 @@ public:
         path.push_back(root->val);
         bool isRootLeaf = (root->left==NULL && root->right==NULL);
         if (expectSum==currentSum && isRootLeaf)
-        {
             paths.push_back(path);
-            path.empty();
-        }
         if (root->left) helper(root->left, expectSum, paths, path, currentSum);
         if (root->right) helper(root->right, expectSum, paths, path, currentSum);
         currentSum -= root->val;
