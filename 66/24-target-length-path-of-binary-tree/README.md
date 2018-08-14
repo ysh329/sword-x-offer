@@ -122,3 +122,39 @@ public:
     }
 };
 ```
+
+```cpp
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    vector<vector<int> > FindPath(TreeNode* root, int expectNumber) {
+        stack<TreeNode*> s;
+        vector<int> curPath;
+        vector<vector<int> > paths;
+        while(root || s.size()){
+            while(root) { //能左就左，否则向右
+                s.push(root); curPath.push_back(root->val); expectNumber -= root->val;
+                root = root->left ? root->left : root->right;
+            }
+            root = s.top();
+            if (expectNumber == 0 && !root->left && !root->right)
+                paths.push_back(curPath);
+            s.pop(); curPath.pop_back(); expectNumber += root->val;
+            //右子数没遍历就遍历，如果遍历就强迫出栈
+            if (!s.empty() && s.top()->left == root)
+                root = s.top()->right;
+            else //强迫出栈
+                root = NULL; 
+        }
+        return paths;
+    }
+};
+```
