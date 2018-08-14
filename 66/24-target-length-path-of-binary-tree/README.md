@@ -74,5 +74,51 @@ public:
 
 ## 非递归
 
+ 
+
 ```cpp
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    vector<vector<int> > FindPath(TreeNode *root, int expectNum){
+        vector<vector<int>> paths;
+        if(!root)
+            return paths;
+        vector<int> curPath;
+        int sum = 0;
+        stack<TreeNode *> s;
+        s.push(root);
+        TreeNode *cur = root; //当前节点
+        TreeNode *last = NULL; //保存上一个节点
+        while(s.size()) {
+            if(cur) { // 先序遍历
+                s.push(cur);
+                sum += cur->val;
+                curPath.push_back(cur->val);
+                if (!cur->left && !cur->right && sum==expectNum)
+                    paths.push_back(curPath);
+                cur = cur->left; // 左子树
+            }
+            else {
+                if (s.top()->right && s.top()->right!=last)
+                    cur = s.top()->right; // 右子树
+                else {// 回溯
+                    last = s.top();
+                    s.pop();
+                    curPath.pop_back();
+                    sum -= last->val;
+                }
+            }
+        }
+        return paths;
+    }
+};
 ```
