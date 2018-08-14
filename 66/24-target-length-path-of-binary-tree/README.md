@@ -44,6 +44,34 @@ public:
 };
 ```
 
+```cpp
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+    vector<vector<int>> paths;
+    vector<int> path;
+public:
+    vector<vector<int> > FindPath(TreeNode* root,int expectNumber) {
+        if(root) {
+            path.push_back(root->val);
+            if(expectNumber-root->val==0 && !root->left && !root->right)
+                paths.push_back(path);
+            if(root->left) FindPath(root->left, expectNumber-root->val);
+            if(root->right) FindPath(root->right, expectNumber-root->val);
+            path.pop_back();
+        }
+        return paths;
+    }
+};
+```
+
 ## 非递归
 
 ```cpp
