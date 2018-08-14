@@ -21,15 +21,15 @@ public:
         if(root) {
             vector<int> path;
             int currentSum = 0;
-            FindPath1d(root, expectNumber, paths, path, currentSum);
+            helper(root, expectNumber, paths, path, currentSum);
         }
         return paths;
     }
-    void FindPath1d(TreeNode* root,
-                    int expectSum,
-                    vector<vector<int>>& paths,
-                    vector<int>& path,
-                    int& currentSum)
+    void helper(TreeNode* root,
+                int expectSum,
+                vector<vector<int>>& paths,
+                vector<int>& path,
+                int& currentSum)
     {
         currentSum += root->val;
         path.push_back(root->val);
@@ -39,8 +39,8 @@ public:
             paths.push_back(path);
             path.empty();
         }
-        if (root->left) FindPath1d(root->left, expectSum, paths, path, currentSum);
-        if (root->right) FindPath1d(root->right, expectSum, paths, path, currentSum);
+        if (root->left) helper(root->left, expectSum, paths, path, currentSum);
+        if (root->right) helper(root->right, expectSum, paths, path, currentSum);
         currentSum -= root->val;
         path.pop_back();
     }
