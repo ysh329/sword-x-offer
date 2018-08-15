@@ -148,7 +148,60 @@ public:
 
 - 在原链表每个元素后接新赋值的元素节点，之后建立随机成员，再断链  
 
-输出结果为空，不正确
+```cpp
+/*
+struct RandomListNode {
+    int label;
+    struct RandomListNodenext, *random;
+    RandomListNode(int x) :
+            label(x), next(NULL), random(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    void CloneNodes(RandomListNode* pHead) {
+        RandomListNode* p = pHead;
+        while(p) {
+            RandomListNode* pCloned = new RandomListNode(p->label);
+            pCloned->next = p->next;
+            p->next = pCloned;
+            p = pCloned->next;
+        }
+    }
+    void ConnectRandomNodes(RandomListNode* pHead) {
+        RandomListNode* p = pHead;
+        while(p) {
+            if(p->random)
+                p->next->random = p->random->next;
+            p= p->next?p->next->next:NULL;
+        }
+    }
+    RandomListNode* ReConnectNodes(RandomListNode* pHead) {
+        RandomListNode* p = pHead;
+        RandomListNode* pClonedHead = NULL;
+        RandomListNode* pCloned = NULL;
+        if(p) {
+            pClonedHead = pCloned = p->next;
+            p->next = pCloned->next;
+            p = p->next;
+        }
+        while(p) {
+            pCloned->next = p->next;
+            pCloned = pCloned->next;
+            p->next = pCloned->next;
+            p = p->next;
+        } return pClonedHead;
+    }
+    RandomListNode* Clone(RandomListNode* pHead) {
+        CloneNodes(pHead);
+        ConnectRandomNodes(pHead);
+        return ReConnectNodes(pHead);
+    }
+};
+```
+
+下面代码输出结果为空，很奇怪
 
 ```cpp
 /*
