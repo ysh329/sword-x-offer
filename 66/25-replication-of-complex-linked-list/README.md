@@ -184,7 +184,7 @@ class Solution {
         while(pNew) {
             pNew->next = pNew->next ? pNew->next->next : NULL;
             pNew = pNew->next;
-        } return !pHead?NULL:pHead->next;
+        } return pHead ? pHead->next : NULL;
     }
 public:
     RandomListNode* Clone(RandomListNode* pHead) {
