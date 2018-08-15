@@ -154,23 +154,22 @@ public:
 /*
 struct RandomListNode {
     int label;
-    struct RandomListNode *next, *random;
+    struct RandomListNodenext, *random;
     RandomListNode(int x) :
             label(x), next(NULL), random(NULL) {
     }
 };
 */
 class Solution {
-    void CopyNode(RandomListNode* pHeadNew, RandomListNode* pHead) {
+    void CloneNodes(RandomListNode* pHead) {
         RandomListNode* p = pHead;
-        RandomListNode* pNew = pHeadNew;
         while(p) {
-            pNew->next = p->next;
-            p->next = pNew;
-            p = pNew->next;
+            RandomListNode* pCloned = new RandomListNode(p->label);
+            p->next = pCloned;
+            p = pCloned->next;
         } return;
     }
-    void ConnectRand(RandomListNode* pHead) {
+    void ConnectRandNodes(RandomListNode* pHead) {
         RandomListNode* p = pHead;
         while(p) {
             if(p->random)
@@ -178,26 +177,19 @@ class Solution {
             p = p->next ? p->next->next : NULL;
         } return;
     }
-    void Reconnect(RandomListNode* pHeadNew) {
-        RandomListNode* pNew = pHeadNew;
-        while(pNew) {
-            pNew->next = (pNew->next && pNew->next->next) ? pNew->next->next->next:NULL;
-            pNew = pNew->next;
-        } return;
+    RandomListNode* ReconnectNodes(RandomListNode* pHead) {
+        RandomListNode* p = pHead;
+        while(p) {
+            RandomListNode* pClonedHead = pCloned = p->next;
+            
+        }
+        return;
     }
 public:
     RandomListNode* Clone(RandomListNode* pHead) {
-        if(!pHead) return NULL;
-        RandomListNode* pHeadNew = new RandomListNode(pHead->label);
-        if(!pHead->next) return pHeadNew;
-        
-        // copy node
-        CopyNode(pHeadNew, pHead);
-        // connect rand
-        ConnectRand(pHead);
-        // reconnect
-        Reconnect(pHeadNew);
-        return pHeadNew;
+        CloneNodes(pHead);
+        ConnectRandNodes(pHead);
+        return ReconnectNodes(pHead);
     }
 };
 ```
