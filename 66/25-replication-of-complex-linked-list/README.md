@@ -148,8 +148,58 @@ public:
 
 - 在原链表每个元素后接新赋值的元素节点，之后建立随机成员，再断链  
 
-```cpp
+输出结果为空，不正确
 
+```cpp
+/*
+struct RandomListNode {
+    int label;
+    struct RandomListNode *next, *random;
+    RandomListNode(int x) :
+            label(x), next(NULL), random(NULL) {
+    }
+};
+*/
+class Solution {
+    void CopyNode(RandomListNode* pHeadNew, RandomListNode* pHead) {
+        RandomListNode* p = pHead;
+        RandomListNode* pNew = pHeadNew;
+        while(p) {
+            pNew->next = p->next;
+            p->next = pNew;
+            p = pNew->next;
+        } return;
+    }
+    void ConnectRand(RandomListNode* pHead) {
+        RandomListNode* p = pHead;
+        while(p) {
+            if(p->random)
+                p->next->random = p->random->next;
+            p = p->next ? p->next->next : NULL;
+        } return;
+    }
+    void Reconnect(RandomListNode* pHeadNew) {
+        RandomListNode* pNew = pHeadNew;
+        while(pNew) {
+            pNew->next = (pNew->next && pNew->next->next) ? pNew->next->next->next:NULL;
+            pNew = pNew->next;
+        } return;
+    }
+public:
+    RandomListNode* Clone(RandomListNode* pHead) {
+        if(!pHead) return NULL;
+        RandomListNode* pHeadNew = new RandomListNode(pHead->label);
+        if(!pHead->next) return pHeadNew;
+        
+        // copy node
+        CopyNode(pHeadNew, pHead);
+        // connect rand
+        ConnectRand(pHead);
+        // reconnect
+        Reconnect(pHeadNew);
+        return pHeadNew;
+    }
+};
 ```
 
 ## 递归
