@@ -231,36 +231,40 @@ class Solution:
 ## 图
 
 ```cpp
-链接：https://www.nowcoder.com/questionTerminal/f836b2c43afc4b35ad6adc41ec941dba
-来源：牛客网
-
+/*
+struct RandomListNode {
+    int label;
+    struct RandomListNode *next, *random;
+    RandomListNode(int x) :
+            label(x), next(NULL), random(NULL) {
+    }
+};
+*/
 class Solution {
-    map<RandomListNode*, RandomListNode*> mp;
-    set<RandomListNode*> vis;
-    void dfs1(RandomListNode* u){
-        if(u && mp.find(u) == mp.end()) {
-            mp[u] = new RandomListNode(u -> label);
-            dfs1(u -> next);
-            dfs1(u -> random);
-        }
-    }
-    void dfs2(RandomListNode* u){
-        if(u && vis.find(u) == vis.end()){
-            if(u -> next) mp[u] -> next = mp[u -> next];
-            if(u -> random) mp[u] -> random = mp[u -> random];
-            vis.insert(u);
-            dfs2(u -> next);
-            dfs2(u -> random);
-        }
-    }
+    map<RandomListNode*, RandomListNode*> mp;
+    set<RandomListNode*> vis;
+    void dfs1(RandomListNode* p) {
+        if(p && mp.find(p) == mp.end()) {
+            mp[p] = new RandomListNode(p->label);
+            dfs1(p->next);
+            dfs1(p->random);
+        }
+    }
+    void dfs2(RandomListNode* p) {
+        if(p && vis.find(p) == vis.end()) {
+            if(p->next) mp[p]->next = mp[p->next];
+            if(p->random) mp[p]->random = mp[p->random];
+            vis.insert(p);
+            dfs2(p->next);
+            dfs2(p->random);
+        }
+    }
 public:
-    RandomListNode* Clone(RandomListNode* pHead){
-        if(!pHead) return NULL;
-        mp.clear();
-        vis.clear();
-        dfs1(pHead);
-        dfs2(pHead);
-        return mp[pHead];
-    }
+    RandomListNode* Clone(RandomListNode* pHead){
+        if(!pHead) return NULL;
+        mp.clear(); vis.clear();
+        dfs1(pHead); dfs2(pHead);
+        return mp[pHead];
+    }
 };
 ```
