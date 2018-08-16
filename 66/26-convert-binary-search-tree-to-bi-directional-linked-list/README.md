@@ -5,6 +5,34 @@
 ## 递归 
 
 ```cpp
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    TreeNode* Convert(TreeNode* pRootOfTree) {
+        TreeNode *pLastNodeInList = NULL;
+        ConvertHelper(pRootOfTree, pLastNodeInList);
+        TreeNode *pHeadOfList = pLastNodeInList;
+        while(pHeadOfList->left)
+            pHeadOfList = pHeadOfList->left;
+        return pHeadOfList;
+    }
+    void ConvertHelper(TreeNode* p, TreeNode*& pre) {// 中序遍历
+        if(!p) return;
+        ConvertHelper(p->left, pre);// 左
+        p->left = pre;//中
+        if(pre) pre->right = p;
+        pre = p;
+        ConvertHelper(p->right, pre);// 右
+    }
+};
 ```
 
 ## 非递归
