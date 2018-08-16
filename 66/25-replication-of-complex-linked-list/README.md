@@ -250,41 +250,21 @@ public:
 
 ## 递归
 
-```cpp
-链接：https://www.nowcoder.com/questionTerminal/f836b2c43afc4b35ad6adc41ec941dba
-来源：牛客网
-
-/*
-struct RandomListNode {
-    int label;
-    struct RandomListNode *next, *random;
-    RandomListNode(int x) :
-            label(x), next(NULL), random(NULL) {
-    }
-};
-*/
- 
-/*递归思想：把大问题转化若干子问题
-  此题转化为一个头结点和除去头结点剩余部分，剩余部分操作和原问题一致
-*/
-class Solution {
-public:
-    RandomListNode* Clone(RandomListNode* pHead)
-    {
-        if(pHead==NULL)
-            return NULL;
-         
-        //开辟一个新节点
-        RandomListNode* pClonedHead=new RandomListNode(pHead->label);
-        pClonedHead->next = pHead->next;
-        pClonedHead->random = pHead->random;
-         
-        //递归其他节点
-        pClonedHead->next=Clone(pHead->next);
-         
-        return pClonedHead;
-    }
-};
+```python
+# -*- coding:utf-8 -*-
+# class RandomListNode:
+#     def __init__(self, x):
+#         self.label = x
+#         self.next = None
+#         self.random = None
+class Solution:
+    # 返回 RandomListNode
+    def Clone(self, head):
+        if not head: return
+        newNode = RandomListNode(head.label)
+        newNode.random = head.random
+        newNode.next = self.Clone(head.next)
+        return newNode
 ```
 
 ## 图
