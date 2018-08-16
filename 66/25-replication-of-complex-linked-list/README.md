@@ -250,6 +250,8 @@ public:
 
 ## 递归
 
+- 递归方法由于没有考虑random的复制，因而不对，但可通过OJ  
+
 ```python
 # -*- coding:utf-8 -*-
 # class RandomListNode:
