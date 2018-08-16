@@ -15,22 +15,21 @@ struct TreeNode {
 	}
 };*/
 class Solution {
-public:
-    TreeNode* Convert(TreeNode* pRootOfTree) {
-        TreeNode *pLastNodeInList = NULL;
-        ConvertHelper(pRootOfTree, pLastNodeInList);
-        TreeNode *pHeadOfList = pLastNodeInList;
-        while(pHeadOfList->left)
-            pHeadOfList = pHeadOfList->left;
-        return pHeadOfList;
-    }
     void ConvertHelper(TreeNode* p, TreeNode*& pre) {// 中序遍历
         if(!p) return;
-        ConvertHelper(p->left, pre);// 左
-        p->left = pre;//中
-        if(pre) pre->right = p;
+        ConvertHelper(p->left, pre);
+        p->left = pre; // 建立pre<---p
+        if(pre) pre->right = p; // 建立pre--->p
         pre = p;
-        ConvertHelper(p->right, pre);// 右
+        ConvertHelper(p->right, pre);
+    }
+public:
+    TreeNode* Convert(TreeNode* pRootOfTree) {
+        TreeNode* pLastInList = NULL;
+        ConvertHelper(pRootOfTree, pLastInList);
+        while(pRootOfTree->left)
+            pRootOfTree = pRootOfTree->left;
+        return pRootOfTree;
     }
 };
 ```
