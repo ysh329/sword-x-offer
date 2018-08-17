@@ -88,7 +88,7 @@ public:
             if(s.size()) {
                 p = s.top();
                 s.pop();
-                if (pre) {
+                if(pre) {
                     pre->right = p; // 建立 pre ===> p
                     p->left = pre;  // 建立 pre <=== p
                 }
