@@ -64,34 +64,41 @@ public:
 ## 非递归
 
 ```cpp
-链接：https://www.nowcoder.com/questionTerminal/947f6eb80d944a84850b0538bf0ec3a5
-来源：牛客网
-
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
 class Solution {
+    TreeNode* pre = NULL;
+    TreeNode* pResult = NULL;
 public:
-    TreeNode* Convert(TreeNode* pRootOfTree) {
-        TreeNode *head = NULL, *pre = NULL;//head 输出，pre记录上一次出栈值
-        stack<TreeNode*> s;
-        while(pRootOfTree || s.size()) {
-            while (pRootOfTree) {
-                s.push(pRootOfTree);
-                pRootOfTree = pRootOfTree->left;
-            }
-            if(s.size()) {
-                pRootOfTree = s.top();
-                s.pop();
-                if (pre) {
-                    pre->right = pRootOfTree;
-                    pRootOfTree->left = pre;
-                }
-                else//pre为空，表示s第一次出栈，第一次出栈值为最左值，即输出值
-                    head = pRootOfTree;
-                pre = pRootOfTree;
-                pRootOfTree = pRootOfTree->right;
-            }
-        }
-        return head;
-    }
+    TreeNode* Convert(TreeNode* p) {
+        TreeNode *head = NULL, *pre = NULL;//head 输出，pre记录上一次出栈值
+        stack<TreeNode*> s;
+        while(p || s.size()) {
+            while(p) {
+                s.push(p);
+                p = p->left;
+            }
+            if(s.size()) {
+                p = s.top();
+                s.pop();
+                if (pre) {
+                    pre->right = p; // 建立 pre ===> p
+                    p->left = pre;  // 建立 pre <=== p
+                }
+                head = !head ? p : head; // 第一次保留结果后，不再更新
+                pre = p;
+                p = p->right;
+            }
+        }
+        return head;
+    }
 };
 ```
 
