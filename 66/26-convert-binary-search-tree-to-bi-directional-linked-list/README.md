@@ -54,7 +54,7 @@ public:
         p->left = pre;// 建立 pre <=== p
         if(pre) pre->right = p;// 建立 pre ===> p
         pre = p;
-        lastLeft = !lastLeft ? p : lastLeft;
+        lastLeft = !lastLeft ? p : lastLeft;//第一次保留结果后，不再更新
         Convert(p->right);
         return lastLeft;
     }
