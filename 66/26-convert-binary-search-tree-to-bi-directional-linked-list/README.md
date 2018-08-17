@@ -46,7 +46,7 @@ struct TreeNode {
 };*/
 class Solution {
     TreeNode* pre = NULL;
-    TreeNode* lastLeft = NULL;
+    TreeNode* pResult = NULL;
 public:
     TreeNode* Convert(TreeNode* p) {
         if(!p) return NULL;
@@ -54,9 +54,9 @@ public:
         p->left = pre;// 建立 pre <=== p
         if(pre) pre->right = p;// 建立 pre ===> p
         pre = p;
-        lastLeft = !lastLeft ? p : lastLeft;//第一次保留结果后，不再更新
+        pResult = !pResult ? p : pResult;//第一次保留结果后，不再更新
         Convert(p->right);
-        return lastLeft;
+        return pResult;
     }
 };
 ```
