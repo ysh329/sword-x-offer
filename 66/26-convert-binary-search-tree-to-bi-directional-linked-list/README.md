@@ -74,8 +74,6 @@ struct TreeNode {
 	}
 };*/
 class Solution {
-    TreeNode* pre = NULL;
-    TreeNode* pResult = NULL;
 public:
     TreeNode* Convert(TreeNode* p) {
         TreeNode *head = NULL, *pre = NULL;//head 输出，pre记录上一次出栈值
