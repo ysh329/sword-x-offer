@@ -104,6 +104,7 @@ public:
 
 - Morris遍历:Morris Traversal，将二叉树重构为所有结点只有右子树的一条链  
 - 非递归、O(1)空间复杂度  
+- 注：题目要求不能创建任何新的结点，不符合题意
 
 ```cpp
 Morris Traversal方法遍历二叉树（非递归，不用栈，O(1)空间） - AnnieKim - 博客园
