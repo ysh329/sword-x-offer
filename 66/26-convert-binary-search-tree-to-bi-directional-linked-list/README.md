@@ -106,35 +106,40 @@ public:
 - 非递归、O(1)空间复杂度  
 
 ```cpp
-//链接：https://www.nowcoder.com/questionTerminal/947f6eb80d944a84850b0538bf0ec3a5
-//来源：牛客网
-//参考 Morris Traversal方法遍历二叉树（非递归，不用栈，O(1)空间） - AnnieKim - 博客园
-// https://www.cnblogs.com/AnnieKim/archive/2013/06/15/MorrisTraversal.html
-
-
-
-public class Solution {
-    public TreeNode* Convert(TreeNode* p) {
-        TreeNode* pre = NULL, res = NULL;
-        while(p) {
-            while(p->left) {
-                TreeNode q = p->left;
-                while (q->right != null) {
-                    q = q->right;
-                }
-                q->right = p;
-                TreeNode tmp = p->left;
-                p->left = null;
-                p = tmp;
-            }
-            p->left = pre;
-	    res = !pre ? p : res;
-            if(pre)
-                pre->right = p;
-            pre = p;
-            p = p->right;
-        }
-        return res;
-    }
-}
+Morris Traversal方法遍历二叉树（非递归，不用栈，O(1)空间） - AnnieKim - 博客园
+https://www.cnblogs.com/AnnieKim/archive/2013/06/15/MorrisTraversal.html
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    TreeNode* Convert(TreeNode* p) {
+        TreeNode* pre = NULL;
+        TreeNode* res = NULL;
+        while(p) {
+            while(p->left) {
+                TreeNode* q = p->left;
+                while(q->right)
+                    q = q->right;
+                q->right = p;
+                TreeNode* tmp = p->left;
+                p->left = NULL;
+                p = tmp;
+            }
+            p->left = pre;
+	        res = !pre ? p : res;
+            if(pre)
+                pre->right = p;
+            pre = p;
+            p = p->right;
+        }
+        return res;
+    }
+};
 ```
