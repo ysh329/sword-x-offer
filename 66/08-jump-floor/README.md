@@ -26,5 +26,5 @@ public:
 
 ## 推荐解法
 
-参考05-fibonacci-sequence，斐波那契数列。
+参考[07-fibonacci-sequence，斐波那契数列](../07-fibonacci-sequence/README.md)。
 
