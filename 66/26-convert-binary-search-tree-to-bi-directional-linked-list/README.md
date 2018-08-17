@@ -34,6 +34,33 @@ public:
 };
 ```
 
+```cpp
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+    TreeNode* pre = NULL;
+    TreeNode* lastLeft = NULL;
+public:
+    TreeNode* Convert(TreeNode* p) {
+        if(!p) return NULL;
+        Convert(p->left);
+        p->left = pre;// 建立 pre <=== p
+        if(pre) pre->right = p;// 建立 pre ===> p
+        pre = p;
+        lastLeft = !lastLeft ? p : lastLeft;
+        Convert(p->right);
+        return lastLeft;
+    }
+};
+```
+
 ## 非递归
 
 ```cpp
