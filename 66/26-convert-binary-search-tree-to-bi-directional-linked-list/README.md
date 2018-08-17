@@ -64,6 +64,35 @@ public:
 ## 非递归
 
 ```cpp
+链接：https://www.nowcoder.com/questionTerminal/947f6eb80d944a84850b0538bf0ec3a5
+来源：牛客网
+
+class Solution {
+public:
+    TreeNode* Convert(TreeNode* pRootOfTree) {
+        TreeNode *head = NULL, *pre = NULL;//head 输出，pre记录上一次出栈值
+        stack<TreeNode*> s;
+        while(pRootOfTree || s.size()) {
+            while (pRootOfTree) {
+                s.push(pRootOfTree);
+                pRootOfTree = pRootOfTree->left;
+            }
+            if(s.size()) {
+                pRootOfTree = s.top();
+                s.pop();
+                if (pre) {
+                    pre->right = pRootOfTree;
+                    pRootOfTree->left = pre;
+                }
+                else//pre为空，表示s第一次出栈，第一次出栈值为最左值，即输出值
+                    head = pRootOfTree;
+                pre = pRootOfTree;
+                pRootOfTree = pRootOfTree->right;
+            }
+        }
+        return head;
+    }
+};
 ```
 
 ## Morris遍历
