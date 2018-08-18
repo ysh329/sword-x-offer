@@ -10,6 +10,11 @@
 
 ## 常规解法
 
+- 类似DFS二叉树  
+- for循环从根节点DFS到叶子，得到一种排列  
+- 之后便回溯，即swap back退回一层，DFS另一种排列  
+- 以此类推，直到所有情形结束
+
 ```cpp
 class Solution {
 public:
