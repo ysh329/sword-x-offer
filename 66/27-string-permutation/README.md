@@ -8,6 +8,11 @@
 
 ![img](./permutationOfString.png)
 
+- 以下所有解法均为字典序生成算法的递归形式和非递归形式  
+- [字典序全排列算法研究 - pmars - 博客园](http://www.cnblogs.com/pmars/archive/2013/12/04/3458289.html)
+
+
+
 ## 常规解法:递归
 
 ### 递归1
