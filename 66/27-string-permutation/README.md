@@ -113,7 +113,9 @@ public:
 
 ## 非递归
 
-```cpp
+- 迭代：字典生成算法
+
+```
 链接：https://www.nowcoder.com/questionTerminal/fe6b651b66ae47d7acce78ffdd9a96c7
 来源：牛客网
 
