@@ -39,3 +39,31 @@ public:
     }
 };
 ```
+
+
+```cpp
+class Solution {
+public:
+    vector<string> Permutation(string str) {
+        vector<string> res;
+        Permutation(str, res, 0);
+        return res;
+    }
+    void Permutation(string s, vector<string>& res, int fixed_idx) {
+        if(fixed_idx==s.size()-1)
+                res.push_back(s);
+        else {
+            sort(s.begin()+fixed_idx, s.end());//字典序
+            unordered_set<char> us;//记录用过的字符
+            for(int i = fixed_idx; i < s.length(); i++) {
+                if(!count(us.begin(), us.end(), s[i])) {//仅和没交换的，做交换
+                    us.insert(s[i]);
+                    swap(s[i], s[fixed_idx]); // swap
+                    Permutation(s, res, fixed_idx+1);
+                    swap(s[i], s[fixed_idx]); // swap back
+                }
+            }
+        }
+    }
+};
+```
