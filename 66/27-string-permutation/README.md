@@ -68,6 +68,28 @@ public:
 };
 ```
 
+```cpp
+class Solution {
+    void dfs(string s, int fixed_idx) {
+        if(fixed_idx==s.size()) res.push_back(s);
+        else {
+            for(int i=fixed_idx; i<s.size(); i++) {
+                if(i!=fixed_idx && s[i]==s[fixed_idx]) continue;//字符一样，但索引不同，算一种情况，不做交换
+                swap(s[i], s[fixed_idx]);
+                dfs(s, fixed_idx+1);
+            }
+        } return;
+    }
+public:
+    vector<string> res;
+    vector<string> Permutation(string str) {
+        if(str.empty()) return res;
+        dfs(str, 0);
+        return res;
+    }
+};
+```
+
 ## STL
 
 ```cpp
