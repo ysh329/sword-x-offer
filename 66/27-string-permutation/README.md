@@ -6,7 +6,7 @@
 
 ## 分析
 
-![img](./permutationOfString.jpg)
+![img](./permutationOfString.png)
 
 ## 常规解法
 
