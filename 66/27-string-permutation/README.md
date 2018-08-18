@@ -67,3 +67,19 @@ public:
     }
 };
 ```
+
+## STL
+
+```cpp
+class Solution {
+public:
+    vector<string> Permutation(string str) {
+        vector<string> res;
+        if(str.empty()) return res;
+        do
+            res.push_back(str);
+        while(next_permutation(str.begin(), str.end()));
+        return res;
+    }
+};
+```
