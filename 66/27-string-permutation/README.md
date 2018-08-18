@@ -17,25 +17,25 @@
 
 ```cpp
 class Solution {
-public:
-    vector<string> Permutation(string str) {
-        vector<string> result;
-        if(str.empty()) return result;
-        Permutation(str, result, 0);
-        sort(result.begin(), result.end());
-        return result;
-    }
-    void Permutation(string s, vector<string>& result, int fixed_idx) {
+    void Permutation(string s, vector<string>& res, int fixed_idx) {
         if(fixed_idx==s.length()-1 &&
-           !count(result.begin(), result.end(), s))
-                result.push_back(s);
+           !count(res.begin(), res.end(), s))
+            res.push_back(s);
         else {
-            for(int i = fixed_idx; i < s.length(); i++) {
-                swap(s[i], s[fixed_idx]); // swap
-                Permutation(s, result, fixed_idx+1);
-                swap(s[i], s[fixed_idx]); // swap back
+            for(int i=fixed_idx; i<s.size(); i++) {
+                swap(s[i], s[fixed_idx]);
+                Permutation(s, res, fixed_idx+1);
+                swap(s[i], s[fixed_idx]);
             }
         }
+    }
+public:
+    vector<string> Permutation(string str) {
+        vector<string> res;
+        if(str.empty()) return res;
+        Permutation(str, res, 0);
+        sort(res.begin(), res.end());
+        return res;
     }
 };
 ```
