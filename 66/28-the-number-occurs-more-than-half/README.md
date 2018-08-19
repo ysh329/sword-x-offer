@@ -4,6 +4,8 @@
 
 ## 排序
 
+- 时间：O(nlogn)
+
 ```cpp
 class Solution {
 public:
@@ -22,9 +24,15 @@ public:
                 lastIdx = curIdx;
             }
         }
-        if(numbers.begin()==numbers.end())
+        if(numbers.begin()==numbers.end()) //所有元素相同
             res = numbers[0];
         return res;
     }
 };
+```
+
+# partition
+
+```cpp
+
 ```
