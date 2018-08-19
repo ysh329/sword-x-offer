@@ -222,13 +222,13 @@ public:
             int right = str.size()-1;
             int left;
             while(right>=1 && str[right-1]>=str[right]) 
-                right--; //从后向前找一个seq[p - 1] < seq[p]
-            if(right == 0) break;//已经是“最小”的排列，退出
-            left = right;//从p向后找最后一个比seq[p]大的数
+                right--; //从后向前找一个str[right - 1] < str[right]
+            if(right == 0) break; //已经是“最小”的排列，退出
+            left = right; //从p向后找最后一个比str[right]大的数
             while(left < str.size() && str[left]>str[right-1])
 	        left++;
-            swap(str[left-1], str[right-1]);//交换这两个位置上的值
-            reverse(str, right + 1);//将p之后的序列倒序排列
+            swap(str[left-1], str[right-1]); //交换这两个位置上的值
+            reverse(str, right + 1); //将right之后的序列倒序排列
             res.push_back(str);
         }
         return res;
