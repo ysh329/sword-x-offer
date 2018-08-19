@@ -62,8 +62,7 @@ public:
 ```cpp
 class Solution {
     int Partition(vector<int>& nums, int low, int high) {
-        int pivot = nums[low];//pivot:枢纽
-        //可以是[low,high]区间一个随机数，也可以是三数取中，九数取中，详情见<<大话数据结构>>
+        int pivot = nums[low];//随机选择一数字，调整为比该数小的，均在其左，反之其右
         while(low<high) {
             while(low<high && pivot<nums[high]) high--;
             swap(nums[low], nums[high]);
@@ -75,11 +74,11 @@ class Solution {
 public:
     int MoreThanHalfNum_Solution(vector<int> numbers) {
         if(numbers.empty()) return 0;
-        int midx = numbers.size()>>1;
+        int midx = numbers.size() >> 1;
         int idx = Partition(numbers, 0, numbers.size()-1);
         int start = 0, end = numbers.size()-1;
-        while(idx!=midx) {
-            if(idx > midx) {
+        while(idx!=midx) {//下标为n/2，即中位数
+            if(idx > midx) {//下标大于n/2，则中位数位于该数左边
                 end = idx - 1;
                 idx = Partition(numbers, start, end);
             }
@@ -88,9 +87,8 @@ public:
                 idx = Partition(numbers, start, end);
             } 
         }
-        int res = numbers[midx];
-        int times = count(numbers.begin(), numbers.end(), res);
-        res = times<=numbers.size()/2 ? 0 : res;
+        int times = count(numbers.begin(), numbers.end(), numbers[midx]);
+        res = times<=numbers.size()/2 ? 0 : numbers[midx];
         return res;
     }
 };
