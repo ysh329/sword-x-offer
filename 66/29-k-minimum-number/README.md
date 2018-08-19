@@ -15,3 +15,26 @@ public:
     }
 };
 ```
+
+## 常规解法
+
+```cpp
+class Solution {
+public:
+    vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
+        if(input.size()<k) return vector<int>();
+        vector<int> min_k(input.begin(), input.begin()+k);
+        sort(min_k.begin(), min_k.end());
+        for(int eidx = k; eidx < input.size(); eidx++) {
+            for(int m = min_k.size()-1; m >= 0; m--) {
+                if(input[eidx]<min_k[m]) {
+                    min_k[m] = input[eidx];
+                    sort(min_k.begin(), min_k.end());
+                    break;
+                }
+            }
+        }
+        return min_k;
+    }
+};
+```
