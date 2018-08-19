@@ -48,21 +48,21 @@ public:
 class Solution {
 public:
     int MoreThanHalfNum_Solution(vector<int> numbers) {
-        if (numbers.empty()) return 0;
-        int result = numbers[0], times = 1;
-        for (int idx=1; idx<numbers.size(); idx++) {
+        if(numbers.empty()) return 0;// 空数组
+        int res = numbers[0], times = 1;// 一个元素数组
+        for(int eidx = 1; eidx < numbers.size(); eidx++) {
             if(!times) {
-                result = numbers[idx];
+                res = numbers[eidx];
                 times = 1;
             }
-            else if(numbers[idx]==result) times++;
+            else if(numbers[eidx] == res) times++;
             else times--;
         }
-        if(result) {
-            times = count(numbers.begin(), numbers.end(), result);
-            result = times<=numbers.size()/2 ? 0 : result;
+        if(res) {
+            times = count(numbers.begin(), numbers.end(), res);
+            res = times<=numbers.size()/2 ? 0 : res;
         }
-        return result;
+        return res;
     }
 };
 ```
