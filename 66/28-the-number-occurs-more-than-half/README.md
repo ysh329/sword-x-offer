@@ -8,7 +8,7 @@
 - STL的sort函数在数据量大时采用快排，分段递归排序，一旦分段后的数据小于某个值，就改用插入排序。如果递归层次过深，还会改用堆排序。这样就结合了各类算法的所有优点  
 - [关于C++各类排序算法与std::sort性能的比较 - CSDN博客](https://blog.csdn.net/qq_24625045/article/details/49964173)
 
-
+### 排序1
 
 ```cpp
 class Solution {
@@ -30,6 +30,24 @@ public:
         }
         if(numbers.begin()==numbers.end()) //所有元素相同
             res = numbers[0];
+        return res;
+    }
+};
+```
+
+### 排序2
+
+- 数组排序后，如果符合条件的数存在，则一定是数组中间那个数
+
+```cpp
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers) {
+        if(numbers.empty()) return 0;
+        sort(numbers.begin(), numbers.end());
+        int middle = numbers[numbers.size()/2];
+        int middle_times = count(numbers.begin(), numbers.end(), middle);
+        int res = middle_times <= numbers.size()/2 ? 0 : middle;
         return res;
     }
 };
