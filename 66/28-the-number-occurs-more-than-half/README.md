@@ -35,8 +35,34 @@ public:
 };
 ```
 
-# partition
+##  partition
 
 ```cpp
 
+```
+
+
+## 数组特点
+
+```cpp
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers) {
+        if (numbers.empty()) return 0;
+        int result = numbers[0], times = 1;
+        for (int idx=1; idx<numbers.size(); idx++) {
+            if(!times) {
+                result = numbers[idx];
+                times = 1;
+            }
+            else if(numbers[idx]==result) times++;
+            else times--;
+        }
+        if(result) {
+            times = count(numbers.begin(), numbers.end(), result);
+            result = times<=numbers.size()/2 ? 0 : result;
+        }
+        return result;
+    }
+};
 ```
