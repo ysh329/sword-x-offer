@@ -78,3 +78,20 @@ public:
     }
 };
 ```
+
+## 哈希表
+
+```cpp
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers) {
+        map<int, int> mp;
+        for(int eidx = 0; eidx < numbers.size(); eidx++) {
+            ++mp[numbers[eidx]];
+            if(mp[numbers[eidx]] > numbers.size()/2)
+                return numbers[eidx];
+        }
+        return 0;
+    }
+};
+```
