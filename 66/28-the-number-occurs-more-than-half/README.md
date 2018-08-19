@@ -53,12 +53,48 @@ public:
 };
 ```
 
-##  partition
+## 快速排序思想  
+
+- 若数组排序，则位于数组中间的数字，为出现次数超过数组长度一半的数字，即第n/2大的数字，统计学上的中位数；  
+- 随机快速排序思想启发：随机选择一数字，调整数字次序，使比该数小的都在该数左侧，反之右侧；  
+- 若该数下标为n/2，则该数为数组中位数，若该数下标大于n/2，则中位数位于该数左边，反之右边。进而可递归查找。
 
 ```cpp
-
+class Solution {
+    int Partition(vector<int>& nums, int low, int high) {
+        int pivot = nums[low];//pivot:枢纽
+        //可以是[low,high]区间一个随机数，也可以是三数取中，九数取中，详情见<<大话数据结构>>
+        while(low<high) {
+            while(low<high && pivot<nums[high]) high--;
+            swap(nums[low], nums[high]);
+            while(low<high && pivot>=nums[low]) low++;
+            swap(nums[low], nums[high]);
+        } 
+        return low;
+    }
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers) {
+        if(numbers.empty()) return 0;
+        int midx = numbers.size()>>1;
+        int idx = Partition(numbers, 0, numbers.size()-1);
+        int start = 0, end = numbers.size()-1;
+        while(idx!=midx) {
+            if(idx > midx) {
+                end = idx - 1;
+                idx = Partition(numbers, start, end);
+            }
+            else {
+                start = idx + 1;
+                idx = Partition(numbers, start, end);
+            } 
+        }
+        int res = numbers[midx];
+        int times = count(numbers.begin(), numbers.end(), res);
+        res = times<=numbers.size()/2 ? 0 : res;
+        return res;
+    }
+};
 ```
-
 
 ## 数组特点/阵地攻守
 
