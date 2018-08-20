@@ -36,11 +36,10 @@ class Solution {
 public:
     int FindGreatestSumOfSubArray(vector<int> array) {
         if(array.empty()) return 0;
-        int cur_max_sum = array[0];
-        int max_sum = array[0];
-        for (int idx = 1; idx < array.size(); idx++) {
-            cur_max_sum = (cur_max_sum <= 0) ? array[idx] : cur_max_sum + array[idx];
-            max_sum = (cur_max_sum > max_sum) ? cur_max_sum : max_sum;
+        int max_sum = array[0], cur_sum = array[0];
+        for(int idx = 1; idx < array.size(); idx++) {
+            cur_sum = cur_sum < 0 ? array[idx] : cur_sum+array[idx];
+            max_sum = cur_sum > max_sum ? cur_sum : max_sum;
         }
         return max_sum;
     }
