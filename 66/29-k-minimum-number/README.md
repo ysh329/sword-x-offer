@@ -109,26 +109,18 @@ public:
 class Solution {
 public:
     vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
-        int len=input.size();
-        if(len<=0||k>len) return vector<int>();
-        //仿函数中的greater<T>模板，从大到小排序
-        multiset<int, greater<int> > leastNums;
-        vector<int>::iterator vec_it=input.begin();
-        for(;vec_it!=input.end();vec_it++) {
-            //将前k个元素插入集合
-            if(leastNums.size()<k)
-                leastNums.insert(*vec_it);
-            else {
-                //第一个元素是最大值
-                multiset<int, greater<int> >::iterator greatest_it=leastNums.begin();
-                //如果后续元素<第一个元素，删除第一个，加入当前元素
-                if(*vec_it<*(leastNums.begin())) {
-                    leastNums.erase(greatest_it);
-                    leastNums.insert(*vec_it);
-                }
+        if(input.empty() || input.size()<k || k<=0) return vector<int>();
+        multiset<int, greater<int> > min_k_set(input.begin(), input.begin()+k);// greater<T>模板
+        for(vector<int>::iterator vec_iter = input.begin()+k;
+            vec_iter != input.end();
+            vec_iter++) {
+            multiset<int>::iterator max_iter = min_k_set.begin();
+            if(*vec_iter < *(min_k_set.begin())) {
+                min_k_set.erase(max_iter);
+                min_k_set.insert(*vec_iter);
             }
         }
-        return vector<int>(leastNums.begin(),leastNums.end());
+        return vector<int>(min_k_set.begin(), min_k_set.end());
     }
 };
 ```
