@@ -32,9 +32,34 @@ public:
 ## 贪心
 
 ```cpp
+class Solution {
+public:
+    int FindGreatestSumOfSubArray(vector<int> array) {
+        if(array.empty()) return 0;
+        int cur_max_sum = array[0];
+        int max_sum = array[0];
+        for (int idx = 1; idx < array.size(); idx++) {
+            cur_max_sum = (cur_max_sum <= 0) ? array[idx] : cur_max_sum + array[idx];
+            max_sum = (cur_max_sum > max_sum) ? cur_max_sum : max_sum;
+        }
+        return max_sum;
+    }
+};
 ```
 
 ## 动态规划
 
 ```cpp
+class Solution {
+public:
+    int FindGreatestSumOfSubArray(vector<int> array) {
+        int result = array[0];
+        int max_result = array[0];
+        for (int eidx = 1; eidx < array.size(); eidx++) {
+            max_result = max(max_result + array[eidx], array[eidx]); // 计算当前到第i个元素的最大
+            result = max(result, max_result); // 更新max
+        }
+        return result;
+    }
+};
 ```
