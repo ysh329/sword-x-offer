@@ -73,10 +73,10 @@ public:
         if(input.empty() || low>high) return -1;
         int temp = input[high];
         int j = low - 1;
-        for(int i = low; i<high; ++i) {
+        for(int i = low; i < high; ++i) {
             if(input[i] <= temp) {
                 ++j;
-                if(i!=j) swap(input[i],input[j]);
+                if(i != j) swap(input[i], input[j]);
             }
         }
         swap(input[j+1], input[high]);
