@@ -8,7 +8,7 @@
 class Solution {
 public:
     vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
-        if(input.size()<k) return vector<int>();
+        if(input.size()<k || input.empty() || k<=0) return vector<int>();
         sort(input.begin(), input.end());
         vector<int> res(input.begin(), input.begin()+k);
         return res;
@@ -22,7 +22,7 @@ public:
 class Solution {
 public:
     vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
-        if(input.size()<k) return vector<int>();
+        if(input.size()<k || input.empty() || k<=0) return vector<int>();
         vector<int> min_k(input.begin(), input.begin()+k);
         sort(min_k.begin(), min_k.end());
         for(int eidx = k; eidx < input.size(); eidx++) {
@@ -41,12 +41,14 @@ public:
 
 ## 最大堆
 
+- O(log2N)  
+
 ```cpp
 class Solution {
 public:
     vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
         // method3 O(log2N) 最大堆
-        if(input.empty() || k>input.size() || k<=0) return vector<int>();
+        if(input.size()<k || input.empty() || k<=0) return vector<int>();
         vector<int> min_k_vec(input.begin(), input.begin()+k);
         make_heap(min_k_vec.begin(), min_k_vec.end());
         for(int eidx = k; eidx < input.size(); eidx++) {
