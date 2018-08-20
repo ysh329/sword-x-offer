@@ -47,21 +47,19 @@ public:
 class Solution {
 public:
     vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
-        // method3 O(log2N) 最大堆
-        if(input.size()<k || input.empty() || k<=0) return vector<int>();
-        vector<int> min_k_vec(input.begin(), input.begin()+k);
-        make_heap(min_k_vec.begin(), min_k_vec.end());
-        for(int eidx = k; eidx < input.size(); eidx++) {
-            if(input[eidx]<min_k_vec[0]) {
-                pop_heap(min_k_vec.begin(), min_k_vec.end());
-                min_k_vec.pop_back();
-                
-                min_k_vec.push_back(input[eidx]);
-                push_heap(min_k_vec.begin(), min_k_vec.end());
+        if(input.empty() || input.size()<k || k<=0) return vector<int>();
+        vector<int> res(input.begin(), input.begin()+k);
+        make_heap(res.begin(), res.end());
+        for(int idx = k; idx < input.size(); idx++) {
+            if(input[idx] < res[0]) {
+                pop_heap(res.begin(), res.end());
+                res.pop_back();
+                res.push_back(input[idx]);
+                push_heap(res.begin(), res.end());
             }
         }
-        sort_heap(min_k_vec.begin(), min_k_vec.end());
-        return min_k_vec;
+        sort_heap(res.begin(), res.end());
+        return res;
     }
 };
 ```
