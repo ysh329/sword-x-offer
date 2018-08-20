@@ -72,6 +72,9 @@ i  =  4：
     res = max(F(4), res) = max(-7, 8) = 8
 以此类推，最终res的值为8
 ```
+- 因而得到递推式  
+- 初始状态：i=0, F(i) = array[i], res = array[i]  
+- 递推：i>01, F(i) = max(F(i-1)+array[i], array[i]), res = max(res, F(i))
 
 ```cpp
 class Solution {
