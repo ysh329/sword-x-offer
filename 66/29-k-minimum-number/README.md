@@ -40,3 +40,26 @@ public:
 ```
 
 ## 最大堆
+
+```cpp
+class Solution {
+public:
+    vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
+        // method3 O(log2N) 最大堆
+        if(input.empty() || k>input.size() || k<=0) return vector<int>();
+        vector<int> min_k_vec(input.begin(), input.begin()+k);
+        make_heap(min_k_vec.begin(), min_k_vec.end());
+        for(int eidx = k; eidx < input.size(); eidx++) {
+            if(input[eidx]<min_k_vec[0]) {
+                pop_heap(min_k_vec.begin(), min_k_vec.end());
+                min_k_vec.pop_back();
+                
+                min_k_vec.push_back(input[eidx]);
+                push_heap(min_k_vec.begin(), min_k_vec.end());
+            }
+        }
+        sort_heap(min_k_vec.begin(), min_k_vec.end());
+        return min_k_vec;
+    }
+};
+```
