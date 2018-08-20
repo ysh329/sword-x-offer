@@ -70,21 +70,21 @@ public:
 
 ```cpp
 class Solution {
-public:
-    int Partition(vector<int>& nums, int low, int high) {
-        int pivot = nums[low];//随机选择一数字，调整为比该数小的，均在其左，反之其右
+    int Partition(vector<int>& input, int low, int high) {
+        int pivot = input[low];
         while(low<high) {
-            while(low<high && pivot<nums[high]) high--;
-            swap(nums[low], nums[high]);
-            while(low<high && pivot>=nums[low]) low++;
-            swap(nums[low], nums[high]);
-        } 
+            while(low<high && pivot<input[high]) high--;
+            swap(input[low], input[high]);
+            while(low<high && input[low]<=pivot) low++;
+            swap(input[low], input[high]);
+        }
         return low;
     }
+public:
     vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
-        if(input.empty() || k>input.size() || k<=0) return vector<int>();
-        int idx = Partition(input, 0, input.size()-1);
+        if(input.empty() || input.size()<k || k<=0) return vector<int>();
         int start = 0, end = input.size()-1;
+        int idx = Partition(input, start, end);
         while(idx != (k-1)) {
             if(idx > (k-1)) {
                 end = idx - 1;
@@ -95,7 +95,7 @@ public:
                 idx = Partition(input, start, end);
             }
         }
-        vector<int> res(input.begin(), input.begin()+k);
+        vector<int>res(input.begin(), input.begin()+k);
         return res;
     }
 };
