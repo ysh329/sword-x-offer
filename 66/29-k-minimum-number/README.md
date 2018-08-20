@@ -64,23 +64,22 @@ public:
 };
 ```
 
-## Partiton
+## 快速排序思想
+
+- 随机快速排序思想启发：随机选择一数字，调整数字次序，使比该数小的都在该数左侧，反之右侧
 
 ```cpp
 class Solution {
 public:
-    int Partition(vector<int>& input, int low, int high) {
-        if(input.empty() || low>high) return -1;
-        int temp = input[high];
-        int j = low - 1;
-        for(int i = low; i < high; ++i) {
-            if(input[i] <= temp) {
-                ++j;
-                if(i != j) swap(input[i], input[j]);
-            }
-        }
-        swap(input[j+1], input[high]);
-        return (j+1);
+    int Partition(vector<int>& nums, int low, int high) {
+        int pivot = nums[low];//随机选择一数字，调整为比该数小的，均在其左，反之其右
+        while(low<high) {
+            while(low<high && pivot<nums[high]) high--;
+            swap(nums[low], nums[high]);
+            while(low<high && pivot>=nums[low]) low++;
+            swap(nums[low], nums[high]);
+        } 
+        return low;
     }
     vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
         if(input.empty() || k>input.size() || k<=0) return vector<int>();
