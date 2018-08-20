@@ -83,9 +83,8 @@ public:
     }
     vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
         if(input.empty() || k>input.size() || k<=0) return vector<int>();
-        int start = 0;
-        int end = input.size()-1;
         int idx = Partition(input, 0, input.size()-1);
+        int start = 0, end = input.size()-1;
         while(idx != (k-1)) {
             if(idx > (k-1)) {
                 end = idx - 1;
