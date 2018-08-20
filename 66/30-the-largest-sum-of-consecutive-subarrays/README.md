@@ -83,10 +83,37 @@ public:
         if(array.empty()) return 0;
         int max_sum = array[0], cur_sum = array[0];
         for(int idx = 1; idx < array.size(); idx++) {
-            cur_sum = cur_sum < 0 ? array[idx] : cur_sum+array[idx];
-            max_sum = cur_sum > max_sum ? cur_sum : max_sum;
+            cur_sum = max(array[idx] : cur_sum+array[idx]);
+            max_sum = max(cur_sum, max_sum);
         }
         return max_sum;
     }
 };
+```
+
+```cpp
+class Solution {
+public:
+    int FindGreatestSumOfSubArray(vector<int> array) {
+        if(array.empty()) return 0;
+        int max_sum = 0x80000000;
+        for(int idx = 1, cur_sum = array[0]; idx < array.size(); idx++) {
+            cur_sum = max(array[idx], cur_sum+array[idx]);
+            max_sum = max(cur_sum, max_sum);
+        }
+        return max_sum;
+    }
+};
+```
+
+```
+int是32位的，4个字节，一个字节8位
+0x80000000 的2进制是
+1000,0000,0000,0000,0000,0000,0000,0000
+第一位是符号位，表示负的
+后边是数值位，因为是负数，所以要取反计算，
+000,0000,0000,0000,0000,0000,0000,0000取反后
+111,1111,1111,1111,1111,1111,1111,1111，十进制是2147483648。
+所以，0x80000000是-2147483648，int的最小值。
+同样可以推算出0x7fffffff 是int的最大值。
 ```
