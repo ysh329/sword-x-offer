@@ -69,46 +69,36 @@ public:
 ```cpp
 class Solution {
 public:
-    void swap(int &fir,int &sec) {
-        int temp = fir;
-        fir = sec;
-        sec = temp;
-    }
-    int getPartition(vector<int> &input,int start,int end) {
-        if(input.empty() || start>end) return -1;
-        int temp = input[end];
-        int j = start - 1;
-        for(int i=start;i<end;++i) {
-            if(input[i]<=temp) {
+    int Partition(vector<int>& input, int low, int high) {
+        if(input.empty() || low>high) return -1;
+        int temp = input[high];
+        int j = low - 1;
+        for(int i = low; i<high; ++i) {
+            if(input[i] <= temp) {
                 ++j;
-                if(i!=j) swap(input[i],input[j]);                   
+                if(i!=j) swap(input[i],input[j]);
             }
         }
-        swap(input[j+1],input[end]);
+        swap(input[j+1], input[high]);
         return (j+1);
     }
     vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
-        vector<int> result;       
-        if(input.empty() || k>input.size() || k<=0) return result;
-         
+        if(input.empty() || k>input.size() || k<=0) return vector<int>();
         int start = 0;
         int end = input.size()-1;
-        int index = getPartition(input,start,end);
-         
-        while(index != (k-1)) {
-            if(index > (k-1)) {
-                end = index - 1;
-                index = getPartition(input,start,end);
+        int idx = Partition(input, 0, input.size()-1);
+        while(idx != (k-1)) {
+            if(idx > (k-1)) {
+                end = idx - 1;
+                idx = Partition(input, start, end);
             }
             else {
-                start = index + 1;
-                index = getPartition(input,start,end);
+                start = idx + 1;
+                idx = Partition(input, start, end);
             }
         }
-         
-        for(int i=0;i<k;++i)
-            result.push_back(input[i]);
-        return result;
+        vector<int> res(input.begin(), input.begin()+k);
+        return res;
     }
 };
 ```
