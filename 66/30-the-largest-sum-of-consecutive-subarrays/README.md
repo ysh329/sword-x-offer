@@ -73,20 +73,20 @@ i  =  4：
 以此类推，最终res的值为8
 ```
 - 因而得到递推式  
-- 初始状态：i=0, F(i) = array[i], res = array[i]  
-- 递推：i>01, F(i) = max(F(i-1)+array[i], array[i]), res = max(res, F(i))
+- i=0, F(i) = array[i], res = array[i]  
+- i>0, F(i) = max(F(i-1)+array[i], array[i]), res = max(res, F(i))
 
 ```cpp
 class Solution {
 public:
     int FindGreatestSumOfSubArray(vector<int> array) {
-        int result = array[0];
-        int max_result = array[0];
-        for (int eidx = 1; eidx < array.size(); eidx++) {
-            max_result = max(max_result + array[eidx], array[eidx]); // 计算当前到第i个元素的最大
-            result = max(result, max_result); // 更新max
+        if(array.empty()) return 0;
+        int max_sum = array[0], cur_sum = array[0];
+        for(int idx = 1; idx < array.size(); idx++) {
+            cur_sum = cur_sum < 0 ? array[idx] : cur_sum+array[idx];
+            max_sum = cur_sum > max_sum ? cur_sum : max_sum;
         }
-        return result;
+        return max_sum;
     }
 };
 ```
