@@ -18,7 +18,7 @@ public:
         int max_sum = array[0];
         for(int start = 0; start <= array.size(); start++) {
             for(int end = start; end <= array.size(); end++) {
-                if(start==end) continue;
+                if(start == end) continue;
                 int tmp_sum = accumulate(array.begin()+start,
                                          array.begin()+end, 0);//#include <numeric>
                 max_sum = tmp_sum>max_sum ? tmp_sum : max_sum;
