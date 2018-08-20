@@ -38,7 +38,7 @@ public:
         if(array.empty()) return 0;
         int max_sum = array[0], cur_sum = array[0];
         for(int idx = 1; idx < array.size(); idx++) {
-            cur_sum = cur_sum < 0 ? array[idx] : cur_sum+array[idx];
+            cur_sum = cur_sum < 0 ? array[idx] : cur_sum+array[idx];//以0作为分界线，因为负数会减少sum
             max_sum = cur_sum > max_sum ? cur_sum : max_sum;
         }
         return max_sum;
