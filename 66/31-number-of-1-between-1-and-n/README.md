@@ -213,3 +213,25 @@ public:
     }
 };
 ```
+
+```cpp
+class Solution {
+public:
+    int NumberOf1Between1AndN_Solution(int n)
+    {
+        //统计每一位上1出现的次数
+        int ret = 0, base = 1;
+        while (n/base) {
+            int bit = (n / base) - (n / base) / 10 * 10;
+            if (bit == 0)
+                ret += n / (base * 10)*base;
+            if (bit == 1)
+                ret += n / (base * 10)*base + (n - n/base*base ) + 1;
+            if (bit > 1)
+                ret += (n / (base * 10) + 1)*base;
+            base *= 10;
+        }
+        return ret;
+    }
+};
+```
