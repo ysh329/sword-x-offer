@@ -162,3 +162,54 @@ public:
     }
 };
 ```
+
+## 其它
+
+```cpp
+链接：https://www.nowcoder.com/questionTerminal/bd7f978302044eee894445e244c7eee6
+来源：牛客网
+
+class Solution {
+public:
+    /*
+      我们从低位到高位求每位1出现的次数，累加求和即可
+        例如：求0~abcde中1的个数，现在我们求c这一位中1出现的次数，其他位雷同
+        有两部分组成
+        第一部分：ab * 100，表示当ab这两位在0~ab-1范围内时，de可以从0~99取值
+          第二部分：如果c>1时，当ab为ab时1的个数为0~99
+                  如果c=1时，当ab为ab时1的个数为de + 1
+                如果c<0时，当ab为ab是1的个数为0
+    */
+    int NumberOf1Between1AndN_Solution(int n)
+    {
+        int exp = 1;
+        int ans = 0; 
+        while(n / exp)
+        {
+            ans += n / (exp * 10) * exp;
+            if(n % (exp * 10) / exp  > 1) ans += exp;
+            else if(n % (exp * 10) / exp == 1) ans += (n % exp + 1);
+            exp *= 10;
+        }
+        return ans;
+    }
+};
+```
+
+```cpp
+作者：践行者成
+链接：https://www.nowcoder.com/questionTerminal/bd7f978302044eee894445e244c7eee6
+来源：牛客网
+
+将原数字按10的倍数进行分割，求个、十、百....位上1的个数。以a=31415 and b=92为例，讨论百位上1的个数，由于5是大于1的，所以当百位上出现1时，个位、十位的范围是0—99，所以此时乘以100，而5的前面可以是0-3141，总共（3141+1）=3142个。然而当所求位上为0和1时，其后面的位上不一定能达到0-99，这时候就考虑减1操作。  我大概就是这样理解的。
+
+class Solution {
+public:
+    int NumberOf1Between1AndN_Solution(int n){ 
+        int ones = 0;
+        for (long long m = 1; m <= n; m *= 10)
+            ones += (n/m + 8) / 10 * m + (n/m % 10 == 1) * (n%m + 1);
+         return ones;
+    }
+};
+```
