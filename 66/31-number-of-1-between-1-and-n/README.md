@@ -6,26 +6,24 @@
 
 ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数（从1 到 n 中1出现的次数）。
 
+## 遍历所有
 
 ```cpp
 class Solution {
 public:
-    int NumberOf1Between1AndN_Solution(int n)
-    {
-        if(n<=0) return 0;
-        int sum_one_count = 0;
-        int N = n;
-        for (int idx = 1; idx <= n; idx++) {
-            int num = idx;
-            int one_count = 0;
-            while(num) {
-                if (num%10==1)
-                    one_count++;
-                num/=10;
+    int NumberOf1Between1AndN_Solution(int n) {
+        if(n <= 0) return 0;
+        int sum_count = 0;
+        for(int num = 1; num <= n; num++) {
+            int cur_num = num, count = 0;
+            while(cur_num) {
+                if(cur_num%10 == 1)
+                    count++;
+                cur_num /= 10;
             }
-            sum_one_count += one_count;
+            sum_count += count;
         }
-        return sum_one_count;
+        return sum_count;
     }
 };
 ```
