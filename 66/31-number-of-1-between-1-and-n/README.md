@@ -47,7 +47,7 @@ class Solution {
 public:
     int NumberOf1Between1AndN_Solution(int n) {
         int count = 0, bit = 1;
-        while((n/bit) != 0){
+        while((n/bit) != 0) {
             int cur = (n / bit) % 10; // 当前位数字
             int high = n / bit / 10;  // 高位数字
             int low = n - n / bit * bit; //低位数字
