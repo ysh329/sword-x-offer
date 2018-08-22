@@ -164,12 +164,12 @@ public:
 class Solution {
 public:
     int NumberOf1Between1AndN_Solution(int n) {
-        int num; char table[10];
-        for(int i = 0; i <= n; i++) {
-            sprintf(table, "%d", i);
-            num += count(begin(table), end(table), '1');
+        int ones = 0; char table[10];
+        for(int num = 1; num <= n; num++) {
+            sprintf(table, "%d", num);
+            ones += count(begin(table), end(table), '1');
         }
-        return num;
+        return ones;
     }
 };
 ```
