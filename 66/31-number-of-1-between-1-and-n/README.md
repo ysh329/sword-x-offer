@@ -8,6 +8,8 @@ ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任�
 
 ## 遍历所有
 
+- 时间O(N)
+
 ```cpp
 class Solution {
 public:
@@ -29,6 +31,8 @@ public:
 ```
 
 ## 数字特点
+
+- 时间O(log_{10} N)
 
 ### 数字特点1
 
@@ -66,19 +70,17 @@ public:
 
 ### 数字特点2  
 
-- 链接：https://www.nowcoder.com/questionTerminal/bd7f978302044eee894445e244c7eee6
-- 来源：牛客网  
+主要思路：设定整数点（如1、10、100等等）作为位置点bit（对应n的各位、十位、百位等等），分别对每个数位上有多少包含1的点进行分析。对 n 进行分割，分为两部分，高位 `left = n / bit` ，低位 `right = n % bit` 。 
 
-主要思路：设定整数点（如1、10、100等等）作为位置点bit（对应n的各位、十位、百位等等），分别对每个数位上有多少包含1的点进行分析。
+- 当 bit 表示百位，且百位对应的数 >= 2，如 `n = 31456, bit = 100`，则`left = 314, right = 56`，此时百位为 1 的次数有 `left / 10 + 1 = 32`（最高两位的计算是从0到31），此外，每个 1 对应低位的 100 ，都包含 100 个连续的点，即共有`(left / 10 + 1) * 100`个点的百位为 1，即`(left / 10 + 1) * bit`
+- 当 bit 表示百位，且百位对应的数为 1，计算包含两部分（高位，低位）。如 `n = 31156, bit = 100`，则`left = 311, right = 56`，此时百位对应的就是 1 ，则高位共有`left / 10`（最高两位的计算是从0到30）次，每个高位都包含低位 100 个连续点，当最高两位为 31 时 （即`left = 311`）；低位的计算只对应点`00~56`，共 `right+1` 次，所有点加起来共有 `(left / 10 * 100) + (right + 1)`，这些点百位对应为 1 ，即 `(left / 10 * bit) + (right + 1)`  
+- 当 bit 表示百位，且百位对应的数为 0，如 `n = 31056, bit = 100`，则 `left = 310, right = 56` ，此时百位为 1 的次数有 `left / 10 = 31`（最高两位的计算是从0到30，即`left/10*bit`    
 
-- 对 n 进行分割，分为两部分，高位`left = n / bit`，低位`right = n % bit`  
-- 当 bit 表示百位，且百位对应的数 >= 2，如 `n = 31456, bit = 100`，则`left = 314, right = 56`，此时百位为 1 的次数有 `left / 10 + 1 = 32`（最高两位的计算是从0到31），此外，每个 1 对应低位的 100 ，都包含 100 个连续的点，即共有`(left / 10 + 1) * 100`个点的百位为 1  
-- 当 bit 表示百位，且百位对应的数为 1，计算包含两部分（高位，低位）。如 `n = 31156, bit = 100`，则`left = 311, right = 56`，此时百位对应的就是 1 ，则高位共有`left % 10`（最高两位的计算是从0到30）次，每个高位都包含低位 100 个连续点，当最高两位为 31 时 （即`left = 311`）；低位的计算只对应点`00~56`，共 `right+1` 次，所有点加起来共有 `(left % 10 * 100) + (right + 1)`，这些点百位对应为1  
-- 当 bit 表示百位，且百位对应的数为 0，如 `n = 31056, bit = 100`，则 `left = 310, right = 56` ，此时百位为 1 的次数有 `left / 10 = 31`（最高两位的计算是从0到30    
+综合以上三种情况：
 
-综合以上三种情况，当百位对应 0 或 >=2 时，有`(left + 8) / 10`次包含所有 100 个点，还有当百位为1，即`right%10 == 1`，需要增加局部点 `left+1`  
-
-之所以补 8 ，是因为当百位为 0 ，则 `left/10==(left+8)/10`，当百位 `>=2`，补 8 会产生进位位，效果等同于`(left / 10 + 1)`  
+1. 当百位为 0 ，`left/10*bit`；  
+2. 当百位为 1 ，`left/10*bit + right+1`。用`right%10 == 1`来判断低位，区别开百位为0的情况；
+3. 当百位 >=2 ，`(left/10+1)*bit`，因 `(left + 8) / 10` 的进位不会影响百位为0和1的情况，因而写为 `(left+8)/10 * bit`。
 
 ```cpp
 class Solution {
@@ -154,79 +156,6 @@ public:
             num += count(begin(table), end(table), '1');
         }
         return num;
-    }
-};
-```
-
-## 其它
-
-```cpp
-链接：https://www.nowcoder.com/questionTerminal/bd7f978302044eee894445e244c7eee6
-来源：牛客网
-
-class Solution {
-public:
-    /*
-      我们从低位到高位求每位1出现的次数，累加求和即可
-        例如：求0~abcde中1的个数，现在我们求c这一位中1出现的次数，其他位雷同
-        有两部分组成
-        第一部分：ab * 100，表示当ab这两位在0~ab-1范围内时，de可以从0~99取值
-          第二部分：如果c>1时，当ab为ab时1的个数为0~99
-                  如果c=1时，当ab为ab时1的个数为de + 1
-                如果c<0时，当ab为ab是1的个数为0
-    */
-    int NumberOf1Between1AndN_Solution(int n)
-    {
-        int exp = 1;
-        int ans = 0; 
-        while(n / exp)
-        {
-            ans += n / (exp * 10) * exp;
-            if(n % (exp * 10) / exp  > 1) ans += exp;
-            else if(n % (exp * 10) / exp == 1) ans += (n % exp + 1);
-            exp *= 10;
-        }
-        return ans;
-    }
-};
-```
-
-```cpp
-作者：践行者成
-链接：https://www.nowcoder.com/questionTerminal/bd7f978302044eee894445e244c7eee6
-来源：牛客网
-
-将原数字按10的倍数进行分割，求个、十、百....位上1的个数。以a=31415 and b=92为例，讨论百位上1的个数，由于5是大于1的，所以当百位上出现1时，个位、十位的范围是0—99，所以此时乘以100，而5的前面可以是0-3141，总共（3141+1）=3142个。然而当所求位上为0和1时，其后面的位上不一定能达到0-99，这时候就考虑减1操作。  我大概就是这样理解的。
-
-class Solution {
-public:
-    int NumberOf1Between1AndN_Solution(int n){ 
-        int ones = 0;
-        for (long long m = 1; m <= n; m *= 10)
-            ones += (n/m + 8) / 10 * m + (n/m % 10 == 1) * (n%m + 1);
-         return ones;
-    }
-};
-```
-
-```cpp
-class Solution {
-public:
-    int NumberOf1Between1AndN_Solution(int n)
-    {
-        //统计每一位上1出现的次数
-        int ret = 0, base = 1;
-        while (n/base) {
-            int bit = (n / base) - (n / base) / 10 * 10;
-            if (bit == 0)
-                ret += n / (base * 10)*base;
-            if (bit == 1)
-                ret += n / (base * 10)*base + (n - n/base*base ) + 1;
-            if (bit > 1)
-                ret += (n / (base * 10) + 1)*base;
-            base *= 10;
-        }
-        return ret;
     }
 };
 ```
