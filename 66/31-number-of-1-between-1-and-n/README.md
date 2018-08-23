@@ -174,7 +174,20 @@ count += (n / (bit * 10)) * bit +
          );
 ```
 
-进而将两个if-else化为（这里特别难想，没想明白，佩服作者）：
+下面是简化两个if-else为min(max())的分析（这里特别难想，好不容易想明白了，记录如下，同时佩服作者）：
+
+第二个if-else可写为`(step_left-bit+1<1 ? 0 : step_left-bit+1)`，其含义就是`step_left-bit+1`比1小，就取0，否则`step_left-bit+1`大于1，则取自身，那么第二个if-else可写为`max(0, step_left-bit+1)`：
+
+```cpp
+(step_left-bit+1>bit) ? bit : max(0, step_left-bit+1)
+```
+
+现在就剩下第一个if-else，由于`max(0, step_left-bit+1)`的存在，无非两种情况：0或者step_left_bit+1，为0表示`step_left-bit+1 <=0`。
+
+1. 当`step_left-bit+1 <= 0`，则两个判断变为一个：`(step_left-bit+1>bit) ? bit : 0`  
+	因为bit=10^(log_{10} n)，所以bit>=1，又因为这种情况的前提是`step_left-bit+1 <= 0`，因而，结果为0，即外层if-else判断的是两个数取小，因而外层if-else可以写成min；  
+2. 当`step_left-bit+1 > 0`，即`step_left+1 > bit`，则两个判断变为一个：`(step_left-bit+1>bit) ? bit : step_left-bit+1`  
+	因为`step_left+1 > bit`，bit=10^n，n>=1，那么bit即使乘以2，也不会比step_left大，所以这种情况下的条件判断，结果为小的，即bit。因而外层if-else可以写成min。
 
 ```
 min( max(step_left−bit+1, 0),
