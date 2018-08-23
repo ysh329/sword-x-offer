@@ -7,21 +7,60 @@
 ```cpp
 class Solution {
     static bool cmp(int a, int b) { // sort函数第三个参数为传入的比较函数名，必须为static，否则报错
-        string A = "", B = "";
-        A += to_string(a);
-        A += to_string(b);
-        B += to_string(b);
-        B += to_string(a);
-        return A<B;
+        return to_string(a) + to_string(b) < to_string(b) + to_string(a);
+    }
+public:
+    string PrintMinNumber(vector<int> numbers) {
+        sort(numbers.begin(), numbers.end(), cmp);
+        string s = "";
+        for(int i = 0; i < int(numbers.size()); ++i)
+            s += to_string(numbers[i]);
+        return s;
+    }
+};
+```
+
+结果不对还需调整
+
+```c++
+class Solution {
+    int compare(int& a, int& b) {
+        string s1 = to_string(a) + to_string(b);
+        string s2 = to_string(b) + to_string(a);
+        return s1<s2;
     }
 public:
     string PrintMinNumber(vector<int> numbers) {
         if(numbers.empty()) return "";
-        sort(numbers.begin(), numbers.end(), cmp);
-        string res = "";
-        for(int idx = 0; idx < numbers.size(); idx++)
-            res += to_string(numbers[idx]);
-        return res;
+        int j;
+        for(int i = 0; i < numbers.size(); i++) {
+            for(j = i; j > 0 && compare(numbers[i], numbers[j-1]) < 0; j--)
+                numbers[j] = numbers[j-1];
+            numbers[j] = numbers[i];
+        }
+         
+        string result = "";
+        for(int e:numbers)
+            result += to_string(e);
+        return result;
+    }
+};
+```
+
+```cpp
+class Solution {
+    string itos(int x) {
+        return (x > 9 ? itos(x / 10) : "") + char(x % 10 + '0');
+    }
+    bool cmp(int a, int b) {
+        return itos(a) + itos(b) < itos(b) + itos(a);
+    }
+public:
+    string PrintMinNumber(vector<int> a) {
+        sort(a.begin(), a.end(), cmp);
+        string s = "";
+        for(int i = 0; i < int(a.size()); ++i) s += itos(a[i]);
+        return s;
     }
 };
 ```
