@@ -101,7 +101,7 @@ public:
 
 - 时间O(log_{10} N)
 - 链接：https://www.nowcoder.com/questionTerminal/bd7f978302044eee894445e244c7eee6
-- 来源：牛客网  
+- 来源：牛客网，在作者基础上做了大量修改    
 
 首先将位数分类：  
 
@@ -174,7 +174,7 @@ count += (n / (bit * 10)) * bit +
          );
 ```
 
-进而有（这里特别难想，跪了，佩服作者）：
+进而将两个if-else化为（这里特别难想，没想明白，佩服作者）：
 
 ```
 min( max(step_left−bit+1, 0),
