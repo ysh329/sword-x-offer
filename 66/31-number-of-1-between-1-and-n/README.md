@@ -137,13 +137,31 @@ public:
 各个位数的归纳式已规整。现在对位数进一步抽象出来，设 bit 为所在的位数，`bit = 1`表示个位的位数，`bit = 10`表示十位的位数，则最终的归纳式：  
 
 1. `step_left = n % (bit * 10)`  
-2. `count(bit) = (n / (bit * 10)) * bit + (step_left>bit*2-1) ? bit : (step_left<bit ? 0 : step_left-bit+1)`  
+2. `count(bit) = (n / (bit * 10)) * bit + (step_left>bit*2-1) ? bit : (step_left<bit ? 0 : step_left-bit+1)`   
+3. `res += count(bit), bit = Math.pow(10, bit_idx), 0<=bit_idx<=log10(n)`  
 
-好了，这样从10到10的n次方的归纳就完成了：  
+然后实现代码，通过：
 
-`sum1 = sum(count(bit)), bit = Math.pow(10, bit_idx), 0<=bit_idx<=log10(n)`
+```cpp
+class Solution {
+public:
+    int NumberOf1Between1AndN_Solution(int n) {
+        int count = 0; 
+        for(long long bit = 1; bit <= n; bit *= 10) {
+            // i 表示当前分析的是哪一个数位
+            int step_left = n % (bit * 10);
+            count += (n / (bit * 10)) * bit +
+                (
+                    (step_left>bit*2-1) ? bit :
+                                          (step_left<bit ? 0 : step_left-bit+1)
+                );
+        }
+        return count;
+    }
+};
+```
 
-进一步简化后半段的多个ifelse，进而不计算`bit * 2 - 1`，只需保证`step_left - bit + 1`在`[0, bit]`区间内，最后后半段：`min(  max( (n mod (bit*10))−bit+1, 0), bit  )`。  
+此外，还可进一步简化后半段的多个ifelse，进而不计算`bit * 2 - 1`，只需保证`step_left - bit + 1`在`[0, bit]`区间内，最后后半段：`min(  max( (n mod (bit*10))−bit+1, 0), bit  )`。  
 
 ```cpp
 class Solution {
