@@ -49,6 +49,57 @@ public:
 
 ```cpp
 class Solution {
+public:
+    //如果题目要求得出最大的数字，可以将比较器转换成从大到小排序即可
+   //其中，数字转化为字符串的使用方法，参考别人的代码%>_<%
+ static int compare(const string& st1,const string& st2)
+    {
+        string s1=st1+st2;
+        string s2=st2+st1;
+        return s1<s2;//降序排列，改为大于就是升序排列！！！
+    }
+    string PrintMinNumber(vector<int> numbers) {
+        string result;
+        if(numbers.size()<=0) return result;
+        vector<string> vec;
+        for(unsigned int i=0;i<numbers.size();i++)
+        {
+            stringstream ss;//使用输入输出流，头文件要包含#include<sstream>
+            ss<<numbers[i];//读入数字给流处理
+            string s = ss.str();//转换成字符串
+            vec.push_back(s);//将字符串s压入vec中
+        }
+        //排序，传入比较器，从小到大排序
+        sort(vec.begin(),vec.end(),compare);
+        for(unsigned int i=0;i<vec.size();i++)
+        {
+            result.append(vec[i]);//拼接字符串，这就是最小的数字
+        }
+        return result;
+    }
+};
+```
+
+```cpp
+链接：https://www.nowcoder.com/questionTerminal/8fecd3f8ba334add803bf2a06af1b993
+来源：牛客网
+
+//more about lambda,you can reference:http://blog.csdn.net/taoyanqi8932/article/details/52541312
+class Solution {
+public:
+    string PrintMinNumber(vector<int> numbers) { 
+        sort(numbers.begin(),numbers.end(),[](const int& a,const int& b){
+        return to_string(a)+to_string(b)<to_string(b)+to_string(a);});
+        string res;
+        for (auto c:numbers)   
+            res+=to_string(c);
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
     string itos(int x) {
         return (x > 9 ? itos(x / 10) : "") + char(x % 10 + '0');
     }
