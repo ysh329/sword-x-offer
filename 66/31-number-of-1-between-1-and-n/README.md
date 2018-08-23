@@ -161,15 +161,6 @@ public:
 };
 ```
 
-```cpp
-int step_left = n % (bit * 10);
-count += (n / (bit * 10)) * bit +
-	(
-		(step_left>bit*2-1) ? bit :
-							  (step_left<bit ? 0 : step_left-bit+1)
-	);
-```
-
 `step_left > bit*2-1 ? 0`，等同于 `step_left-bit+1 > bit ? 0`，即保证 `step_left-bit+1` 在区间 `(bit, +∞]` 则结果为0，
 否则`step_left-bit+1`不在区间(-∞, bit]，结果需要根据后面的if-else进一步计算，仔细观察，不难发现根据`step_left>bit*2-1`，
 即`step_left-bit+1` 是否在区间 `(bit, +∞]` 的判断，可以完美地将这两个if-else，进行合并，划分三段：
@@ -177,13 +168,13 @@ count += (n / (bit * 10)) * bit +
 ```cpp
 int step_left = n % (bit * 10);
 count += (n / (bit * 10)) * bit +
-	(
-		(step_left-bit+1>bit) ? bit :
-							    (step_left<bit ? 0 : step_left-bit+1)
-	);
+	 (
+             (step_left-bit+1>bit) ? bit :
+	                             (step_left<bit ? 0 : step_left-bit+1)
+         );
 ```
 
-进而有：
+进而有（这里特别难想，跪了，佩服作者）：
 
 ```
 min( max(step_left−bit+1, 0),
