@@ -161,7 +161,36 @@ public:
 };
 ```
 
-此外，还可进一步简化后半段的多个ifelse，进而不计算`bit * 2 - 1`，只需保证`step_left - bit + 1`在`[0, bit]`区间内，最后后半段：`min(  max( (n mod (bit*10))−bit+1, 0), bit  )`。  
+```cpp
+int step_left = n % (bit * 10);
+count += (n / (bit * 10)) * bit +
+	(
+		(step_left>bit*2-1) ? bit :
+							  (step_left<bit ? 0 : step_left-bit+1)
+	);
+```
+
+`step_left > bit*2-1 ? 0`，等同于 `step_left-bit+1 > bit ? 0`，即保证 `step_left-bit+1` 在区间 `(bit, +∞]` 则结果为0，
+否则`step_left-bit+1`不在区间(-∞, bit]，结果需要根据后面的if-else进一步计算，仔细观察，不难发现根据`step_left>bit*2-1`，
+即`step_left-bit+1` 是否在区间 `(bit, +∞]` 的判断，可以完美地将这两个if-else，进行合并，划分三段：
+
+```cpp
+int step_left = n % (bit * 10);
+count += (n / (bit * 10)) * bit +
+	(
+		(step_left-bit+1>bit) ? bit :
+							    (step_left<bit ? 0 : step_left-bit+1)
+	);
+```
+
+进而有：
+
+```
+min( max(step_left−bit+1, 0),
+     bit)
+```
+
+将step_left放到count的计算公式中，即为下面的代码：
 
 ```cpp
 class Solution {
