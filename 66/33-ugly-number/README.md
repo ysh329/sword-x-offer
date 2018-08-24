@@ -4,6 +4,29 @@
 
 ```cpp
 class Solution {
+    bool isUgly(int n) {
+        while(n%2==0) n/=2;
+        while(n%3==0) n/=3;
+        while(n%5==0) n/=5;
+        return n==1 ? true : false;
+    }
+public:
+    int GetUglyNumber_Solution(int index) {
+        int n = 0, count = 0;
+        while(count<=index) {
+            n++;
+            if(isUgly(n)) {
+                count++;
+            }
+        }
+        return n;
+    }
+};
+
+```
+
+```cpp
+class Solution {
 public:
     int GetUglyNumber_Solution(int index) {
         if(index<7) return index;
