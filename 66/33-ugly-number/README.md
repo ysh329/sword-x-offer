@@ -4,6 +4,25 @@
 
 ```cpp
 class Solution {
+    bool isUgly(int num) {
+        while(num%2==0) num/=2;
+        while(num%3==0) num/=3;
+        while(num%5==0) num/=5;
+        return num==1 ? true : false;
+    }
+public:
+    int GetUglyNumber_Solution(int index) {
+        if(index <= 0) return 0;
+        int uglyFound = 0, n = 0;
+        while(uglyFound < index)
+            if(isUgly(++n)) uglyFound++;
+        return n;
+    }
+};
+```
+
+```cpp
+class Solution {
     bool isUgly(int n) {
         while(n%2==0) n/=2;
         while(n%3==0) n/=3;
