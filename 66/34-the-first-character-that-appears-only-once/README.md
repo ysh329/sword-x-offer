@@ -14,9 +14,9 @@ public:
         char dict[256];
         for(int idx = 0; idx < str.length(); idx++)
             dict[str[idx]]++;
-        for(int idx = 0; idx < str.length(); idx++) {
-            if(dict[str[idx]]==1) {
-                res = idx;
+        for(int idx = 0; idx < 256; idx++) {
+            if(dict[idx]==1) {
+                res = str.find(dict[idx]);
                 break;
             }
         }
