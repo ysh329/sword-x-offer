@@ -4,26 +4,25 @@
 
 ## 哈希表
 
-未通过
+### 哈希表1
 
 ```cpp
 class Solution {
 public:
     int FirstNotRepeatingChar(string str) {
-        int res = -1;
-        char dict[256];
-        for(int idx = 0; idx < str.length(); idx++)
-            dict[str[idx]]++;
-        for(int idx = 0; idx < 256; idx++) {
-            if(dict[idx]==1) {
-                res = str.find(dict[idx]);
-                break;
-            }
-        }
-        return res;
+        int dict[256] = {0};
+        for(int cidx=0; cidx<str.size(); cidx++)
+            dict[str[cidx]]++;
+        for(int cidx=0; cidx<str.size(); cidx++)
+            if(dict[str[cidx]]==1)
+                return cidx;
+        return -1;
     }
 };
 ```
+
+### 哈希表2
+
 ```cpp
 class Solution {
 public:
