@@ -29,10 +29,10 @@ public:
 
     long long InversePairsCore(vector<int> &data,vector<int> &copy,int start,int end) {
        if(start==end) {
-            copy[start]=data[start];
+            copy[start] = data[start];
             return 0;
        }
-       int length=(end-start)/2;
+       int length = (end-start)/2;
        long long left = InversePairsCore(copy,data,start,start+length);
        long long right = InversePairsCore(copy,data,start+length+1,end); 
         
@@ -48,7 +48,7 @@ public:
              else
                   copy[indexcopy--] = data[j--];
        }
-       for(;i>=start;i--)
+       for(; i>=start; i--)
            copy[indexcopy--] = data[i];
        for(; j>=start+length+1; j--)
            copy[indexcopy--] = data[j];
