@@ -27,16 +27,13 @@ public:
 class Solution {
 public:
     int FirstNotRepeatingChar(string str) {
-        int res = -1;
-        map<char, int> str_times_map;
-        for (int cidx = 0; cidx < str.size(); cidx++)
-            str_times_map[str[cidx]]++;
-        for (int cidx = 0; cidx < str.size(); cidx++)
-            if (str_times_map[str[cidx]]==1) {
-                res = cidx;
-                break;
-            }
-        return res;
+        map<char, int> dict;
+        for(int cidx=0; cidx<str.size(); cidx++)
+            dict[str[cidx]]++;
+        for(int cidx=0; cidx<str.size(); cidx++)
+            if(dict[str[cidx]]==1)
+                return cidx;
+        return -1;
     }
 };
 ```
