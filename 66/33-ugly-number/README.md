@@ -27,6 +27,8 @@ public:
 
 ## 基于已有丑数计算下一个
 
+### 常规解法
+
 ```cpp
 class Solution {
 public:
@@ -42,6 +44,39 @@ public:
             if(res[i]==res[t5]*5) t5++;
         }
         return res[index-1];
+    }
+};
+```
+
+### 基于队列
+
+```cpp
+class Solution {
+public:
+    int GetUglyNumber_Solution(int index) {
+        if(index < 1) return 0;
+        int ugly = 0;
+        queue<int> q2, q3, q5;
+        q2.push(1);
+        for(int i = 0; i < index; i++) {
+            int v2 = q2.empty() ? INT_MAX : q2.front();
+            int v3 = q3.empty() ? INT_MAX : q3.front();
+            int v5 = q5.empty() ? INT_MAX : q5.front();
+            ugly = min(v2, min(v3, v5));
+            if(ugly == v2) {
+                q2.pop();
+                q2.push(2 * ugly);
+                q3.push(3 * ugly);
+            }
+            else if(ugly == v3) {
+                q3.pop();
+                q3.push(3 * ugly);
+            }
+            else
+                q5.pop();
+            q5.push(5 * ugly);
+        }
+        return ugly;
     }
 };
 ```
