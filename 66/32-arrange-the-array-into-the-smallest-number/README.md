@@ -4,7 +4,7 @@
 
 ## 字符串排序
 
-### 字符串排序1
+### 常规解法
 
 ```cpp
 class Solution {
@@ -22,7 +22,7 @@ public:
 };
 ```
 
-### 字符串排序2
+### 匿名函数
 
 ```cpp
 //more about lambda, reference: http://blog.csdn.net/taoyanqi8932/article/details/52541312
@@ -42,7 +42,7 @@ public:
 };
 ```
 
-### 字符串排序3
+### 输入输出流
 
 ```cpp
 class Solution {
@@ -68,7 +68,7 @@ public:
 };
 ```
 
-### 字符串排序4
+### 实现itos
 
 - 链接：https://www.nowcoder.com/questionTerminal/8fecd3f8ba334add803bf2a06af1b993
 - 来源：牛客网
@@ -93,7 +93,7 @@ public:
 };
 ```
 
-### 字符串排序5
+### 冒泡排序
 
 ```cpp
 class Solution {
