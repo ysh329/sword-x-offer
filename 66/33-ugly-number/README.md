@@ -2,6 +2,10 @@
 
 把只包含质因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含质因子7。 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。
 
+ ## 顺序遍历所有
+ 
+ 时间复杂度太大，不通过
+
 ```cpp
 class Solution {
     bool isUgly(int num) {
@@ -21,28 +25,7 @@ public:
 };
 ```
 
-```cpp
-class Solution {
-    bool isUgly(int n) {
-        while(n%2==0) n/=2;
-        while(n%3==0) n/=3;
-        while(n%5==0) n/=5;
-        return n==1 ? true : false;
-    }
-public:
-    int GetUglyNumber_Solution(int index) {
-        int n = 0, count = 0;
-        while(count<=index) {
-            n++;
-            if(isUgly(n)) {
-                count++;
-            }
-        }
-        return n;
-    }
-};
-
-```
+## 基于已有丑数计算下一个
 
 ```cpp
 class Solution {
