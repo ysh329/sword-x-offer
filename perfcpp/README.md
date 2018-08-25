@@ -31,6 +31,10 @@ Use pointers for implementing algorithms and data structures.
 
 ## 2.emplace_back与push_back的区别
 
+### Why emplace_back is faster than push_back?
+
+- `push_back` takes a container element and copies/moves it into the container.  
+- `emplace_back` takes arbitrary arguments and constructs from those a new container element. But if you pass a single argument that's already of element type to `emplace_back`, you'll just use the copy/move constructor anyway.
 
 - push_back: 在引入右值引用，转移构造函数，转移复制运算符之前，通常使用push_back()向容器中加入一个右值元素（临时对象）的时候，首先会调用构造函数构造这个临时对象，然后需要调用拷贝构造函数将这个临时对象放入容器中。原来的临时变量释放。这样造成的问题是临时变量申请的资源就浪费。引入了右值引用，转移构造函数（请看这里）后，push_back()右值时就会调用构造函数和转移构造函数。 
 
