@@ -12,6 +12,22 @@
 输入：1,2,3,4,5,6,7,0  
 输出：7
 ```
+
+## 超时的方法
+
+```cpp
+class Solution {
+public:
+    int InversePairs(vector<int> data) {
+        int res = 0;
+        for(int i=0; i<data.size()-1; i++)
+            for(int j=i+1; j<data.size(); j++)
+                if(data[i]>data[j]) res++;
+        return res%1000000007;
+    }
+};
+```
+
 ## 归并排序
 
 ```cpp
