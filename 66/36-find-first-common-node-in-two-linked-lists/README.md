@@ -2,6 +2,28 @@
 
 输入两个单向链表，找出它们的第一个公共结点。
 
+## 暴力破解
+
+```cpp
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* FindFirstCommonNode( ListNode* pHead1, ListNode* pHead2) {
+        for(ListNode* p1=pHead1; p1; p1=p1->next)
+            for(ListNode* p2=pHead2; p2; p2=p2->next)
+                if(p1==p2) return p1;
+        return NULL;
+    }
+};
+```
+
 ## 栈
 
 ```cpp
