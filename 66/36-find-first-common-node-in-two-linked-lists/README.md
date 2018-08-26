@@ -2,6 +2,40 @@
 
 输入两个单向链表，找出它们的第一个公共结点。
 
+## 栈
+
+```cpp
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+    stack<ListNode*> getListNodeStack(ListNode* p) {
+        stack<ListNode*> s;
+        while(p) {
+            s.push(p);
+            p = p->next;
+        }
+        return s;
+    }
+public:
+    ListNode* FindFirstCommonNode( ListNode* pHead1, ListNode* pHead2) {
+        stack<ListNode*> s1 = getListNodeStack(pHead1);
+        stack<ListNode*> s2 = getListNodeStack(pHead2);
+        ListNode* pCommon = NULL;
+        while(s1.size() && s2.size() && s1.top()==s2.top()) {
+            pCommon = s1.top();
+            s1.pop(); s2.pop();
+        }
+        return pCommon;
+    }
+};
+```
+
 ## 链表特点
 
 1. 先分别计算两个单项链表长度len1, len2   
