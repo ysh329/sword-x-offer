@@ -2,6 +2,24 @@
 
 统计一个数字在排序数组中出现的次数。
 
+## 暴力破解
+
+```cpp
+class Solution {
+public:
+    int GetNumberOfK(vector<int> data ,int k) {
+        int count = 0;
+        for(auto e:data){
+            if(e==k) count++;
+            else if(e>k) break;
+        }
+        return count;
+    }
+};
+```
+
+## 二分查找
+
 ```cpp
 class Solution {
     int GetFirstKIdx(vector<int> &data, int k, int start_idx, int end_idx) {
