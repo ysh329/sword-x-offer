@@ -147,6 +147,10 @@ private:
 
 ## 树状数组
 
+- [掌握树状数组~彻底入门 - 霜雪千年 - 博客园](https://www.cnblogs.com/acgoto/p/8583952.html#4046752)
+
+
+
 ```cpp
 #define lb(x) ((x) & -(x))
 typedef long long ll;
