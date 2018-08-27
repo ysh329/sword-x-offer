@@ -5,23 +5,29 @@
 ## 层序遍历
 
 ```cpp
-链接：https://www.nowcoder.com/questionTerminal/435fb86331474282a3499955f0a41e8b
-来源：牛客网
-
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
 class Solution {
 public:
     int TreeDepth(TreeNode* pRoot) {
-        if (!pRoot) return 0;
-        queue<TreeNode*> que;
-        que.push(pRoot);int depth=0;
-        while (!que.empty()) {
-            int size=que.size();
+        int depth = 0;
+        if(!pRoot) return depth;
+        queue<TreeNode*> que; que.push(pRoot);
+        while(que.size()) {
             depth++;
-            for (int i=0;i<size;i++) {      //一次处理一层的数据
-                TreeNode *node=que.front();
+            int current_layer_node_size = que.size();
+            for(int nidx=0; nidx<current_layer_node_size; nidx++) {
+                TreeNode* node = que.front();
                 que.pop();
-                if (node->left) que.push(node->left);
-                if (node->right) que.push(node->right);
+                if(node->left) que.push(node->left);
+                if(node->right) que.push(node->right);
             }
         }
         return depth;
