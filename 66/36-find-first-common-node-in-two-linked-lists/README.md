@@ -60,6 +60,8 @@ public:
 
 ## 链表特点
 
+### 链表特点1
+
 1. 先分别计算两个单项链表长度len1, len2   
 2. 让长的如pHead1先走abs(len1-len2)个结点  
 3. 验证pHead1与pHead2是否相同
@@ -102,7 +104,38 @@ public:
 };
 ```
 
+### 链表特点2 
+
+1. p1, p2同时后向遍历  
+2. 若p1, p2中某指针第一次为NULL，则其重新赋值为另一个链表头结点（如，若p1为NULL，则将pHead2赋值给它）  
+3. 重复1,2，p1与p2都完成第一次遍历，此时重复1，若存在共同结点，则第二次遍历，p1与p2将会共同遇到相同的结点  
+
+```cpp
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* FindFirstCommonNode( ListNode *pHead1, ListNode *pHead2) {
+        ListNode *p1 = pHead1;
+        ListNode *p2 = pHead2;
+        while(p1!=p2) {
+            p1 = !p1 ? pHead2 : p1->next;
+            p2 = !p2 ? pHead1 : p2->next;
+        }
+        return p1;
+    }
+};
+```
+
 ## set
+
+- O(n)
 
 ```cpp
 链接：https://www.nowcoder.com/questionTerminal/6ab1d9a29e88450685099d45c9e31e46
@@ -137,56 +170,26 @@ public:
 };
 ```
 
+## 哈希表
 
-## 其他
-
-```cpp
-链接：https://www.nowcoder.com/questionTerminal/6ab1d9a29e88450685099d45c9e31e46
-来源：牛客网
-
-public class Solution {
-    /**
-     * 思路：如果有公共节点，1）若两个链表长度相等，那么遍历一遍后，在某个时刻，p1 == p2
-     *                   2)若两个链表长度不相等，那么短的那个链表的指针pn（也就是p1或p2）
-     *                     必先为null，那么这时再另pn = 链表头节点。经过一段时间后，
-     *                     则一定会出现p1 == p2。
-     *      如果没有公共节点：这种情况可以看成是公共节点为null，顾不用再考虑。
-     */
-    public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
-        ListNode p1 = pHead1;
-        ListNode p2 = pHead2;
-        while(p1 != p2) {
-            if(p1 != null) p1 = p1.next;    //防止空指针异常
-            if(p2 != null) p2 = p2.next;
-            if(p1 != p2) {                  //当两个链表长度不想等
-                if(p1 == null) p1 = pHead1;
-                if(p2 == null) p2 = pHead2;
-            }
-        }
-        return p1;
-    }
-}
-```
+- O(n)
 
 ```cpp
 链接：https://www.nowcoder.com/questionTerminal/6ab1d9a29e88450685099d45c9e31e46
 来源：牛客网
 
-//用map做的，时间复杂度O(nlog(n))
 classSolution {
 public:
     ListNode* FindFirstCommonNode( ListNode *pHead1, ListNode *pHead2) {
         map<ListNode*, int> m;
         ListNode *p = pHead1;
-        while(p != NULL) {
+        while(p) {
             m[p] = 1;
             p = p->next;
         }
         p = pHead2;
-        while(p != NULL) {
-            if(m[p]) {
-                return p;
-            }
+        while(p) {
+            if(m[p]) return p;
             p = p->next;
         }
         return NULL;
@@ -194,50 +197,3 @@ public:
 };
 ```
 
-```cpp
-链接：https://www.nowcoder.com/questionTerminal/6ab1d9a29e88450685099d45c9e31e46
-来源：牛客网
-
-//原理其他方法一样，写法比较简单，同时代码有解释。
-class Solution {
-public:
-   ListNode* FindFirstCommonNode(ListNode* pHead1, ListNode* pHead2) {
-       /*
-        假定 List1长度: a+n  List2 长度:b+n, 且 a<b
-        那么 p1 会先到链表尾部, 这时p2 走到 a+n位置,将p1换成List2头部
-        接着p2 再走b+n-(n+a) =b-a 步到链表尾部,这时p1也走到List2的b-a位置，还差a步就到可能的第一个公共节点。
-        将p2 换成 List1头部，p2走a步也到可能的第一个公共节点。如果恰好p1==p2,那么p1就是第一个公共节点。  或者p1和p2一起走n步到达列表尾部，二者没有公共节点，退出循环。 同理a>=b.
-        时间复杂度O(n+a+b)
-         
-       */
-        ListNode* p1 = pHead1;
-        ListNode* p2 = pHead2;
-        while(p1 != p2) {
-            if(p1 != NULL) p1 = p1->next;   
-            if(p2 != NULL) p2 = p2->next;
-            if(p1 != p2) {                  
-                if(p1 == NULL) p1 = pHead2;
-                if(p2 == NULL) p2 = pHead1;
-            }
-        }
-        return p1;
-     
-}
-        
-};
-```
-
-```cpp
-class Solution {
-public:
-    ListNode* FindFirstCommonNode( ListNode *pHead1, ListNode *pHead2) {
-        ListNode *p1 = pHead1;
-        ListNode *p2 = pHead2;
-        while(p1!=p2){
-            p1 = (p1==NULL ? pHead2 : p1->next);
-            p2 = (p2==NULL ? pHead1 : p2->next);
-        }
-        return p1;
-    }
-};
-```
