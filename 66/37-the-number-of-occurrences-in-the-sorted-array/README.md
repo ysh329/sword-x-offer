@@ -124,10 +124,11 @@ public:
 
 ### 巧妙的二分
 
-```cpp
-链接：https://www.nowcoder.com/questionTerminal/70610bf967994b22bb1c26f9ae901fa2
-来源：牛客网
+- 链接：https://www.nowcoder.com/questionTerminal/70610bf967994b22bb1c26f9ae901fa2
+- 来源：牛客网
+- 因为data中都是整数，所以可以稍微变一下，不是搜索k的两个位置，而是搜索k-0.5和k+0.5。这两个数应该插入的位置，然后相减即可。
 
+```cpp
 class Solution {
 public:
     int GetNumberOfK(vector<int> data ,int k) {
@@ -150,6 +151,8 @@ private:
 
 ## 其它
 
+- 利用C++ stl的二分查找
+
 ```cpp
 class Solution {
 public:
@@ -160,8 +163,9 @@ public:
 };
 ```
 
+- 利用STL的multimap容器底层以红黑树为基础,构造成本O(n),查询成本O(log n)
+
 ```cpp
-//利用STL的multimap容器底层以红黑树为基础,构造成本O(n),查询成本O(log n)
 class Solution {
 public:
     int GetNumberOfK(vector<int> data, int k) {
@@ -171,8 +175,9 @@ public:
 };
 ```
 
+- 利用STL库函数lower_bound()和upperBound(),O(log n)
+
 ```cpp
-//利用STL库函数lower_bound()和upperBound(),O(log n)
 class Solution {
 public:
     int GetNumberOfK(vector<int>& A, int target) {
