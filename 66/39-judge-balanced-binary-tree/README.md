@@ -5,17 +5,17 @@
 ```cpp
 class Solution {
     int TreeDepth(TreeNode* pRoot) {
-        if (!pRoot) return 0;
+        if(!pRoot) return 0;
         int left = TreeDepth(pRoot->left);
         int right = TreeDepth(pRoot->right);
         return 1+(left>right?left:right);
     }
 public:
     bool IsBalanced_Solution(TreeNode* pRoot) {
-        if (!pRoot) return true;
+        if(!pRoot) return true;
         int left = TreeDepth(pRoot->left);
         int right = TreeDepth(pRoot->right);
-        if (left-right>1 || left-right<-1) return false;
+        if(left-right>1 || left-right<-1) return false;
         return (IsBalanced_Solution(pRoot->left) && IsBalanced_Solution(pRoot->right));
     }
 };
@@ -24,14 +24,12 @@ public:
 
 ```cpp
 class Solution {
-    bool IsBalanced(TreeNode* pRoot, int *depth)
-    {
+    bool IsBalanced(TreeNode* pRoot, int *depth) {
         if(!pRoot) {
             *depth = 0;
             return true;
         }
-        int left = 0;
-        int right = 0;
+        int left = 0, right = 0;
         if(IsBalanced(pRoot->left, &left) && IsBalanced(pRoot->right, &right)) {
             int diff = left - right;
             if (diff<=1 && diff>=-1) {
