@@ -22,51 +22,41 @@ public:
 
 ```cpp
 class Solution {
-    int GetFirstKIdx(vector<int> &data, int k, int start_idx, int end_idx) {
-        if (start_idx>end_idx) return -1;
-        int mid_idx = (start_idx+end_idx)/2;
-        if (data[mid_idx]==k) {
-            if(mid_idx==0 || (mid_idx>0 && data[mid_idx-1]!=k))
-                return mid_idx;
+    int GetFirstKIdx(vector<int>& data, int k, int start, int end) {
+        if(start>end) return -1;
+        int mid = (start+end)/2;
+        if(data[mid]==k) {
+            if(mid==0 || (mid>0 && data[mid-1]!=k))
+                return mid;
             else
-                end_idx = mid_idx - 1;
+                end = mid - 1;
         }
-        else {
-            if (data[mid_idx]>k)
-                end_idx = mid_idx - 1;
-            else // data[mid_idx]<k
-                start_idx = mid_idx + 1;
-        }
-        return GetFirstKIdx(data, k, start_idx, end_idx);
+        else if(data[mid]>k) end = mid - 1;
+        else start = mid + 1;//data[mid]<k 
+        return GetFirstKIdx(data, k, start, end);
     }
-    int GetLastKIdx(vector<int> &data, int k, int start_idx, int end_idx) {
-        if (start_idx>end_idx) return -1;
-        int mid_idx = (start_idx+end_idx)/2;
-        if (data[mid_idx]==k) {
-            if (mid_idx==data.size()-1 || (mid_idx+1<data.size() && data[mid_idx+1]!=k))
-                return mid_idx;
+    int GetLastKIdx(vector<int>& data, int k, int start, int end) {
+        if(start>end) return -1;
+        int mid = (start+end)/2;
+        if(data[mid]==k) {
+            if(mid==data.size()-1 || (mid+1<data.size() && data[mid+1]!=k))
+                return mid;
             else
-                start_idx = mid_idx + 1;
+                start = mid + 1;
         }
-        else {
-            if (data[mid_idx]>k)
-                end_idx = mid_idx - 1;
-            else // data[mid_idx]<k
-                start_idx = mid_idx + 1;
-        }
-        return GetLastKIdx(data, k, start_idx, end_idx);
+        else if(data[mid]>k) end = mid - 1;
+        else start = mid + 1;//data[mid]<k
+        return GetLastKIdx(data, k, start, end);
     }
 public:
-    int GetNumberOfK(vector<int> data ,int k) {
+    int GetNumberOfK(vector<int> data, int k) {
         int count = 0;
-        if (data.empty()) return count;
-        int firstKIdx = GetFirstKIdx(data, k, 0, data.size()-1);
-        int lastKIdx = GetLastKIdx(data, k, 0, data.size()-1);
-        if (firstKIdx!=-1 && lastKIdx!=-1)
-            count = lastKIdx - firstKIdx + 1;
+        if(data.empty()) return count;
+        int FirstKIdx = GetFirstKIdx(data, k, 0, data.size()-1);
+        int LastKIdx = GetLastKIdx(data, k, 0, data.size()-1);
+        if(FirstKIdx!=-1 && LastKIdx!=-1) count = LastKIdx-FirstKIdx+1;
         return count;
     }
-
 };
 ```
 
