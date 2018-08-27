@@ -20,6 +20,8 @@ public:
 
 ## 二分查找
 
+### 递归
+
 ```cpp
 class Solution {
     int GetFirstKIdx(vector<int>& data, int k, int start, int end) {
