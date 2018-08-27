@@ -44,11 +44,10 @@ struct TreeNode {
 class Solution {
 public:
     int TreeDepth(TreeNode* pRoot) {
-        if (pRoot==NULL)
-            return 0;
-        int left_depth = TreeDepth(pRoot->left);
-        int right_depth = TreeDepth(pRoot->right);
-        return 1 + (left_depth>right_depth?left_depth:right_depth);
+        if(!pRoot) return 0;
+        int left = TreeDepth(pRoot->left);
+        int right = TreeDepth(pRoot->right);
+        return (left>right?left:right) + 1;
     }
 };
 ```
