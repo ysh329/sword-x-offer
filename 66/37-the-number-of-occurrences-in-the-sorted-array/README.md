@@ -29,7 +29,7 @@ public:
 
 ## 二分查找
 
-### 递归
+### 递归1
 
 ```cpp
 class Solution {
@@ -71,30 +71,30 @@ public:
 };
 ```
 
+### 递归2 巧妙
+
 ```cpp
 class Solution {
 private:
-    int binaryFind(vector<int> &data, int begin, int end ,int k){
-        int ind = -1;
-        if(begin >= end) return -1;
+    int binaryFind(vector<int> &data, int begin, int end, int k){
+        int idx = -1;
+        if(begin>=end) return -1;
         int mid = (end + begin) / 2;
         if(k == data[mid]) return mid;
-        if((ind = binaryFind(data,begin,mid,k)) != -1) return ind;
-        if((ind = binaryFind(data,mid+1,end,k)) != -1) return ind;
+        if((idx = binaryFind(data,begin,mid,k)) != -1) return idx;
+        if((idx = binaryFind(data,mid+1,end,k)) != -1) return idx;
         return -1;
     }
 public:
-    int GetNumberOfK(vector<int> data ,int k) {
-        int ind = binaryFind(data,0,data.size(),k);
-        if(ind == -1) return 0;
-        int pos = ind;
-        int cnt = 1;
-        while(--pos >= 0 && k == data[pos]) ++cnt;
-        while(++ind < data.size() && k == data[ind]) ++cnt;
+    int GetNumberOfK(vector<int> data, int k) {
+        int res = binaryFind(data, 0, data.size(), k);//先找到有k的下标
+        if(res == -1) return 0;
+        int pos = res, cnt = 1;
+        while(--pos >= 0 && k == data[pos]) ++cnt;//对k左侧找
+        while(++res < data.size() && k == data[res]) ++cnt;//对k右侧找
         return cnt;
     }
 };
-
 ```
 
 ### 非递归
