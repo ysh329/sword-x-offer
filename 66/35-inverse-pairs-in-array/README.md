@@ -73,6 +73,42 @@ public:
 };
 ```
 
+下面代码没通过：
+```cpp
+class Solution {
+    long long mergeSort(vector<int>& copy, vector<int>& data, int start, int end) {
+        if(start==end) {
+            copy[start] = data[start];
+            return 0;
+        }
+        int mid = (start+end)/2;
+        int left = mergeSort(copy, data, start, mid);
+        int right = mergeSort(copy, data, mid+1, end);
+        int low = mid, high = end, idx_copy = end;
+        long long count = 0;
+        while(low>=start && high>=mid+1) {
+            if(data[low] > data[high]) {
+                count = count + (high-mid);
+                copy[idx_copy--] = data[low--];
+            }
+            else
+                copy[idx_copy--] = data[high--];
+        }
+        for(; low>=start; low--) copy[idx_copy--] = data[low];
+        for(; high>=mid+1; high--) copy[idx_copy--] = data[high];
+        return left+right+count;
+    }
+public:
+    int InversePairs(vector<int> data) {
+        long long count = 0;
+        if(data.size()<=1) return count;
+        vector<int> copy(data.begin(), data.end());
+        count = mergeSort(copy, data, 0, data.size()-1);
+        return count%1000000007;
+    }
+};
+```
+
 ```cpp
 class Solution {
     int cnt=0;
