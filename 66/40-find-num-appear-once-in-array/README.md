@@ -2,6 +2,8 @@
 
 一个整型数组里除了两个数字之外，其他的数字都出现了偶数次。请写程序找出这两个只出现一次的数字。
 
+## 哈希表
+
 ```cpp
 class Solution {
 public:
@@ -16,6 +18,44 @@ public:
                 else if(!*num2) { *num2 = iter->first; break;}
             }
         return;
+    }
+};
+```
+
+## set
+
+```cpp
+class Solution {
+public:
+    void FindNumsAppearOnce(vector<int> data,int* num1,int *num2) {
+        set<int> s;
+        for(int idx=0; idx<data.size(); idx++) {
+            if(s.find(data[idx]) == s.end()) s.insert(data[idx]);
+            else s.erase(data[idx]);
+        }
+        set<int>::iterator iter = s.begin();
+        *num1 = *iter; *num2 = *(++iter);
+        return;
+    }
+};
+```
+
+## 异或
+
+```cpp
+链接：https://www.nowcoder.com/questionTerminal/e02fdb54d7524710a7d664d082bb7811
+来源：牛客网
+
+class Solution {
+public:
+    void FindNumsAppearOnce(vector<int> data,int* num1,int *num2) {
+        int diff = accumulate(data.begin(), data.end(), 0, bit_xor<int>());
+        diff &= -diff;  //即找到最右边1-bit
+        *num1 = 0; *num2 = 0;
+        for(auto c:data) {
+            if((c&diff) == 0) *num1 ^= c;
+            else *num2 ^ =c;
+        }
     }
 };
 ```
