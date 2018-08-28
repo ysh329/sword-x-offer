@@ -76,47 +76,35 @@ public:
 下面代码没通过：
 ```cpp
 class Solution {
-    long long mergeSort(vector<int>& copy, vector<int>& data, int start, int end) {
+    long long InversePairsCore(vector<int> &data,vector<int> &copy,int start,int end) {
         if(start==end) {
             copy[start] = data[start];
             return 0;
         }
-        /*
-        int mid = (start+end)/2;
-        long long left = mergeSort(copy, data, start, mid);
-        long long right = mergeSort(copy, data, mid+1, end);
-        int low = mid, high = end, idx_copy = end;
-        long long count = 0;
-        */
-        
-        int half = (end-start)/2;
-        long long left = mergeSort(copy, data, start, start+half);
-        long long right = mergeSort(copy, data, start+half+1, end);
-        int low = half, high = end, idx_copy = end;
-        long long count = 0;
-        
 
-        //while(low>=start && high>=mid+1) {
-        while(low>=start && high>=half+1) {
-            if(data[low] > data[high]) {
-                copy[idx_copy--] = data[low--];
-                //count = count + (high-mid);
-                count = count + (high-start-half);
+        int mid = (end+start)/2;
+        long long left = InversePairsCore(copy,data,start,mid);
+        long long right = InversePairsCore(copy,data,mid+1,end);
+        int lo = mid; int hi = end; int indexcopy = end;
+        long long count = 0;
+
+        while(lo>=start && hi>=mid+1) {
+            if(data[lo] > data[hi]) {
+                copy[indexcopy--] = data[lo--];
+                count = count+hi-mid;
             }
-            else
-                copy[idx_copy--] = data[high--];
+            else copy[indexcopy--] = data[hi--];
         }
-        for(; low>=start; low--) copy[idx_copy--] = data[low];
-        //for(; high>=mid+1; high--) copy[idx_copy--] = data[high];
-        for(; high>=half+1; high--) copy[idx_copy--] = data[high];
+        for(; lo>=start; lo--) copy[indexcopy--] = data[lo];
+        for(; hi>=mid+1; hi--) copy[indexcopy--] = data[hi];
         return left+right+count;
     }
 public:
     int InversePairs(vector<int> data) {
         long long count = 0;
-        if(data.size()<=1) return count;
+        if(data.empty() || data.size()==1) return count;
         vector<int> copy(data.begin(), data.end());
-        count = mergeSort(copy, data, 0, data.size()-1);
+        count = InversePairsCore(data, copy, 0, data.size()-1);
         return count%1000000007;
     }
 };
