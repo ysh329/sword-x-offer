@@ -59,3 +59,20 @@ public:
     }
 };
 ```
+
+```cpp
+class Solution {
+public:
+    void FindNumsAppearOnce(vector<int> data, int* num1, int *num2) {
+        if(data.empty()) return;
+        int x = 0;
+        for(auto i : data) x ^= i;
+        int n1 = (~(~x + 1)) + 1; // 关键所在！n1是分组依据，x - (x & (x-1))估计还更易读点儿
+        *num1 = *num2 = 0;
+        for(auto i : data) {
+            if(i & n1) *num1 ^= i;
+            else *num2 ^= i;
+        }
+    }
+};
+```
