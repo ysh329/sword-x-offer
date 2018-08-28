@@ -81,21 +81,34 @@ class Solution {
             copy[start] = data[start];
             return 0;
         }
+        /*
         int mid = (start+end)/2;
-        int left = mergeSort(copy, data, start, mid);
-        int right = mergeSort(copy, data, mid+1, end);
+        long long left = mergeSort(copy, data, start, mid);
+        long long right = mergeSort(copy, data, mid+1, end);
         int low = mid, high = end, idx_copy = end;
         long long count = 0;
-        while(low>=start && high>=mid+1) {
+        */
+        
+        int half = (end-start)/2;
+        long long left = mergeSort(copy, data, start, start+half);
+        long long right = mergeSort(copy, data, start+half+1, end);
+        int low = half, high = end, idx_copy = end;
+        long long count = 0;
+        
+
+        //while(low>=start && high>=mid+1) {
+        while(low>=start && high>=half+1) {
             if(data[low] > data[high]) {
-                count = count + (high-mid);
                 copy[idx_copy--] = data[low--];
+                //count = count + (high-mid);
+                count = count + (high-start-half);
             }
             else
                 copy[idx_copy--] = data[high--];
         }
         for(; low>=start; low--) copy[idx_copy--] = data[low];
-        for(; high>=mid+1; high--) copy[idx_copy--] = data[high];
+        //for(; high>=mid+1; high--) copy[idx_copy--] = data[high];
+        for(; high>=half+1; high--) copy[idx_copy--] = data[high];
         return left+right+count;
     }
 public:
