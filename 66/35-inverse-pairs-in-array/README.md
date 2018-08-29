@@ -30,6 +30,8 @@ public:
 
 ## 归并排序
 
+### 归并排序1
+
 ```cpp
 class Solution {
     long long InversePairsCore(vector<int> &data,vector<int> &copy,int start,int end) {
@@ -66,6 +68,8 @@ public:
 };
 ```
 
+### 归并排序2
+
 ```cpp
 class Solution {
     int cnt = 0;
@@ -99,6 +103,8 @@ public:
 };
 ```
 
+### 归并排序3
+
 ```cpp
 class Solution {
 public:
@@ -106,34 +112,32 @@ public:
         return mergeSort(data, 0, data.size() - 1);
     }
 private:
-    long long mergeSort(vector<int> &data, int s, int e) {
-        if (s >= e) return 0;
-        int mid = (e - s) / 2 + s;
-        long long num = mergeSort(data, s, mid) +
-	                mergeSort(data, mid+1, e);
-        int i = s, j = mid + 1;
+    long long mergeSort(vector<int> &data, int s, int e) {//s:start, e:end
+        if(s >= e) return 0;
+        int mid = (e+s) >> 1;
+        long long num = mergeSort(data, s,   mid) +
+	                    mergeSort(data, mid+1, e);
+        int lo = s, hi = mid + 1;//从左往右
         int cnt = 0;
-        vector<int> tmp;
-        while (i <= mid || j <= e) {
-            if (i > mid) {
-                tmp.push_back(data[j++]);
-            }
-            else if (j > e) {
+        vector<int> sorted;
+        while(lo <= mid || hi <= e) {
+            if(lo > mid)//左边插完了，插右边剩下的
+                sorted.push_back(data[hi++]);
+            else if(hi > e) {//右边插完了，插左边剩下的
                 num += cnt;
-                tmp.push_back(data[i++]);
+                sorted.push_back(data[lo++]);
             }
-            else if (data[i] > data[j]) {
+            else if(data[lo] > data[hi]) {
                 cnt++;
-                tmp.push_back(data[j++]);
+                sorted.push_back(data[hi++]);
             }
             else {
                 num += cnt;
-                tmp.push_back(data[i++]);
+                sorted.push_back(data[lo++]);
             }
         }
-        for (int i = s; i <= e; ++i) {
-            data[i] = tmp[i - s];
-        }
+        for(int i = s; i <= e; ++i)
+            data[i] = sorted[i - s];
         return num%1000000007;
     }
 };
@@ -142,8 +146,6 @@ private:
 ## 树状数组
 
 - [掌握树状数组~彻底入门 - 霜雪千年 - 博客园](https://www.cnblogs.com/acgoto/p/8583952.html#4046752)
-
-
 
 ```cpp
 #define lb(x) ((x) & -(x))
