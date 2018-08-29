@@ -81,18 +81,18 @@ class Solution {
         merge(a, start, mid, end);
     }
     void merge(vector<int>& a, int start, int mid, int end){
-        vector<int> temp(end-start+1);
-        int i=start, j=mid+1, index=0;
-        while(i<=mid && j<=end){
-            if(a[i] > a[j]) {
-                temp[index++] = a[j++];
-                cnt += mid-i+1;
+        vector<int> sorted(end-start+1);
+        int lo=start, hi=mid+1, idx=0;//从左往右
+        while(lo<=mid && hi<=end){
+            if(a[lo] > a[hi]) {
+                sorted[idx++] = a[hi++];
+                cnt += mid-lo+1;
                 cnt = cnt>1000000007 ? cnt%1000000007 : cnt;
-            }else temp[index++] = a[i++];
+            }else sorted[idx++] = a[lo++];
         }
-        while(i<=mid) temp[index++]=a[i++];
-        while(j<=end) temp[index++]=a[j++];
-        for(int k=0;k<(int)temp.size();k++) a[start+k]=temp[k];
+        while(lo<=mid) sorted[idx++]=a[lo++];
+        while(hi<=end) sorted[idx++]=a[hi++];
+        for(int k=0; k<(int)sorted.size(); k++) a[start+k]=sorted[k];
     }
 public:
     int InversePairs(vector<int> array) {
