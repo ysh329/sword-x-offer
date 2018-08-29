@@ -16,7 +16,7 @@ public:
             int cur_sum = (start+end)*(end-start+1)/2;
             if(cur_sum==sum) {
                 vector<int> sub_res;
-                for (int e = start; e<=end; e++)
+                for(int e = start; e<=end; e++)
                     sub_res.push_back(e);
                 res.push_back(sub_res);
                 start++;
