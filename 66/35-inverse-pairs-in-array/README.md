@@ -38,9 +38,9 @@ class Solution {
             return 0;
         }
 
-        int mid = (end+start)/2;
-        long long left = InversePairsCore(copy,data,start,mid);
-        long long right = InversePairsCore(copy,data,mid+1,end);
+        int mid = (end+start) >> 1;
+        long long count = InversePairsCore(copy, data, start, mid) + 
+	                  InversePairsCore(copy, data, mid+1, end);
         int lo = mid; int hi = end; int indexcopy = end;
         long long count = 0;
 
@@ -68,7 +68,7 @@ public:
 
 ```cpp
 class Solution {
-    int cnt=0;
+    int cnt = 0;
     void mergeUp2Down(vector<int>& a, int start, int end) {
         if(start>=end) return;
         int mid = (end+start)>>1;
@@ -92,7 +92,7 @@ class Solution {
     }
 public:
     int InversePairs(vector<int> array) {
-        if(array.empty()) return 0;
+        if(array.size()<=1) return 0;
         mergeUp2Down(array, 0, array.size()-1);
         return cnt;
     }
@@ -109,7 +109,8 @@ private:
     long long mergeSort(vector<int> &data, int s, int e) {
         if (s >= e) return 0;
         int mid = (e - s) / 2 + s;
-        long long num = mergeSort(data, s, mid) + mergeSort(data, mid + 1, e);
+        long long num = mergeSort(data, s, mid) +
+	                mergeSort(data, mid+1, e);
         int i = s, j = mid + 1;
         int cnt = 0;
         vector<int> tmp;
