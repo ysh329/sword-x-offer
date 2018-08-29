@@ -32,50 +32,6 @@ public:
 
 ```cpp
 class Solution {
-public:
-    int InversePairs(vector<int> data) {
-        long long count = 0;
-        if(data.empty() || data.size()==1) return count;
-        vector<int> copy;
-        for (int eidx=0; eidx<data.size(); eidx++)
-            copy.push_back(data[eidx]);
-        count = InversePairsCore(data, copy, 0, data.size()-1);
-        return count%1000000007;
-    }
-
-    long long InversePairsCore(vector<int> &data,vector<int> &copy,int start,int end) {
-       if(start==end) {
-            copy[start] = data[start];
-            return 0;
-       }
-       int length = (end-start)/2;
-       long long left = InversePairsCore(copy,data,start,start+length);
-       long long right = InversePairsCore(copy,data,start+length+1,end); 
-        
-       int i = start+length;
-       int j = end;
-       int indexcopy = end;
-       long long count = 0;
-       while(i>=start && j>=start+length+1) {
-             if(data[i] > data[j]) {
-                  copy[indexcopy--] = data[i--];
-                  count = count+j-start-length;//count=count+j-(start+length+1)+1;
-             }
-             else
-                  copy[indexcopy--] = data[j--];
-       }
-       for(; i>=start; i--)
-           copy[indexcopy--] = data[i];
-       for(; j>=start+length+1; j--)
-           copy[indexcopy--] = data[j];
-       return left+right+count;
-    }
-};
-```
-
-下面代码没通过：
-```cpp
-class Solution {
     long long InversePairsCore(vector<int> &data,vector<int> &copy,int start,int end) {
         if(start==end) {
             copy[start] = data[start];
@@ -102,7 +58,7 @@ class Solution {
 public:
     int InversePairs(vector<int> data) {
         long long count = 0;
-        if(data.empty() || data.size()==1) return count;
+        if(data.size()<=1) return count;
         vector<int> copy(data.begin(), data.end());
         count = InversePairsCore(data, copy, 0, data.size()-1);
         return count%1000000007;
