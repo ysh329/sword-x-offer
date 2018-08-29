@@ -4,6 +4,8 @@
 
 输出所有和为S的连续正数序列。序列内按照从小至大的顺序，序列间按照开始数字从小到大的顺序
 
+## 双指针
+
 ```cpp
 class Solution {
 public:
@@ -27,4 +29,84 @@ public:
         return res;
     }
 };
+```
+
+## 等差数列
+
+```java
+链接：https://www.nowcoder.com/questionTerminal/c451a3fd84b64cb19485dad758a55ebe
+来源：牛客网
+
+import java.util.ArrayList;
+public class Solution {
+    public ArrayList<ArrayList<Integer> > FindContinuousSequence(int sum) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        for (int n = (int) Math.sqrt(2 * sum); n >= 2; n--) {
+            if ((n & 1) == 1 && sum % n == 0 || (sum % n) * 2 == n) {
+                ArrayList<Integer> list = new ArrayList<>();
+                for (int j = 0, k = (sum / n) - (n - 1) / 2; j < n; j++, k++) {
+                    list.add(k);
+                }
+                ans.add(list);
+            }
+        }
+        return ans;
+    }
+}
+
+```
+
+## 解方程
+
+- (a + b)(b - a + 1) = sum * 2  
+- 设x = a + b, y = b - a + 1, y >= 2  
+- 枚举y，得x，解出a,b  
+
+```cpp
+链接：https://www.nowcoder.com/questionTerminal/c451a3fd84b64cb19485dad758a55ebe
+来源：牛客网
+
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+class Solution {
+public:
+    vvi FindContinuousSequence(int sum) {
+        vvi res;
+        sum <<= 1;
+        for(int i = 2; i * i <= sum; ++i) if(sum % i == 0){
+            int j = sum / i, t = (j - i + 1);
+            if(!(t & 1)){
+                res.push_back(vi());
+                vi& v = res[res.size() - 1];
+                t >>= 1;
+                for(int a = t; a <= j - t; ++a) v.push_back(a);
+            }
+        }
+        for(int i = 0, j = int(res.size()) - 1; i < j; ++i, --j) swap(res[i], res[j]);
+        return res;
+    }
+};
+```
+
+## 其它
+
+```java
+链接：https://www.nowcoder.com/questionTerminal/c451a3fd84b64cb19485dad758a55ebe
+来源：牛客网
+
+public ArrayList<ArrayList<Integer> > FindContinuousSequence(int sum) {
+    ArrayList<ArrayList<Integer> > lists = new ArrayList<ArrayList<Integer> >();
+    for(int k = 2; k*k < 2*sum; k++){
+        double m = ((2.0*sum)/k-k+1)/2.0;
+        int temp = (int)m;
+        if(m == temp){
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            for(int i = 0; i < k; i++){
+                list.add(i+temp);
+            }
+            lists.add(0, list);
+        }
+    }
+    return lists;
+}
 ```
