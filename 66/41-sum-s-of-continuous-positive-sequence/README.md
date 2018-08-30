@@ -77,7 +77,7 @@ public:
             int x = sum / y, t = (x - y + 1);//t = x-y+1 = (a+b)-(b-a+1)+1=2a
             if(!(t & 1)){//判断t=2a是否为偶数
                 res.push_back(vi());
-                vi& v = res[res.size() - 1];
+                vi& v = res[res.size() - 1];//取出res最后一个元素，以引用的方式取出
                 t >>= 1;//a=t/2
                 for(int a = t; a <= x - t; ++a) v.push_back(a);// b=x-t
             }
