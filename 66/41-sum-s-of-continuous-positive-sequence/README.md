@@ -58,32 +58,30 @@ public class Solution {
 
 ## 解方程
 
-- (a + b)(b - a + 1) = sum * 2  
-- 设x = a + b, y = b - a + 1, y >= 2  
+- (a + b)(b - a + 1) = sum * 2, y\*y<=sum (a最小是1,则有y^2<=sum)  
+- 设x = a + b, y = b - a + 1, y >= 2  (至少2个数)  
 - 枚举y，得x，解出a,b  
 
 ```cpp
-链接：https://www.nowcoder.com/questionTerminal/c451a3fd84b64cb19485dad758a55ebe
-来源：牛客网
-
-typedef vector<int> vi;
-typedef vector<vi> vvi;
 class Solution {
+    inline static bool cmp(vector<int>& a, vector<int>& b) {
+        return a[0]<b[0];
+    }
 public:
-    vvi FindContinuousSequence(int sum) {
-        vvi res;
-        sum <<= 1;
-        for(int y = 2; y * y <= sum; ++y) if(sum % y == 0){
-            int x = sum / y, t = (x - y + 1);//t = x-y+1 = (a+b)-(b-a+1)+1=2a
-            if(!(t & 1)){//判断t=2a是否为偶数
-                res.push_back(vi());
-                vi& v = res[res.size() - 1];//取出res最后一个元素，以引用的方式取出
-                t >>= 1;//a=t/2
-                for(int a = t; a <= x - t; ++a) v.push_back(a);// b=x-t
+    vector<vector<int>> FindContinuousSequence(int sum) {
+        vector<vector<int>> res;
+		for(int y=2; y*y<=(sum<<1); y++) if((sum<<1)%y==0) {//优先级：！ > 算术运算符 > 关系运算符 > && > || > 赋值运算符
+			int x = (sum<<1)/y, bx2 = x+y-1;// x+y-1=(a+b)+(b-a+1)-1=2b
+            if(!(bx2&1)) {//判断奇偶
+                int b = bx2>>1;
+                int a = x - b;
+                res.emplace_back(vector<int>());
+                vector<int>& vi = res[res.size()-1];//引用方式取出最后一个元素
+                for(int n=a; n<=b; n++) vi.emplace_back(n);
             }
-        }
-        for(int i = 0, j = int(res.size()) - 1; i < j; ++i, --j) swap(res[i], res[j]);
-        return res;
+            sort(res.begin(), res.end(), cmp);
+		}
+		return res;
     }
 };
 ```
