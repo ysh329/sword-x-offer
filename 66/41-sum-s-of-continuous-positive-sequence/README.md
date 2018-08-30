@@ -58,6 +58,8 @@ public class Solution {
 
 ## 解方程
 
+### 解方程1
+
 - (a + b)(b - a + 1) = sum * 2, y\*y<=sum (a最小是1,则有y^2<=sum)  
 - 设x = a + b, y = b - a + 1, y >= 2  (至少2个数)  
 - 枚举y，得x，解出a,b  
@@ -70,8 +72,8 @@ class Solution {
 public:
     vector<vector<int>> FindContinuousSequence(int sum) {
         vector<vector<int>> res;
-		for(int y=2; y*y<=(sum<<1); y++) if((sum<<1)%y==0) {//优先级：！ > 算术运算符 > 关系运算符 > && > || > 赋值运算符
-			int x = (sum<<1)/y, bx2 = x+y-1;// x+y-1=(a+b)+(b-a+1)-1=2b
+        for(int y=2; y*y<=(sum<<1); y++) if((sum<<1)%y==0) {//优先级：！ > 算术运算符 > 关系运算符 > && > || > 赋值运算符
+            int x = (sum<<1)/y, bx2 = x+y-1;// x+y-1=(a+b)+(b-a+1)-1=2b
             if(!(bx2&1)) {//判断奇偶
                 int b = bx2>>1;
                 int a = x - b;
@@ -80,31 +82,33 @@ public:
                 for(int n=a; n<=b; n++) vi.emplace_back(n);
             }
             sort(res.begin(), res.end(), cmp);
-		}
-		return res;
+        }
+        return res;
     }
 };
 ```
 
-## 其它
+### 解方程2
 
-```java
-链接：https://www.nowcoder.com/questionTerminal/c451a3fd84b64cb19485dad758a55ebe
-来源：牛客网
-
-public ArrayList<ArrayList<Integer> > FindContinuousSequence(int sum) {
-    ArrayList<ArrayList<Integer> > lists = new ArrayList<ArrayList<Integer> >();
-    for(int k = 2; k*k < 2*sum; k++){
-        double m = ((2.0*sum)/k-k+1)/2.0;
-        int temp = (int)m;
-        if(m == temp){
-            ArrayList<Integer> list = new ArrayList<Integer>();
-            for(int i = 0; i < k; i++){
-                list.add(i+temp);
-            }
-            lists.add(0, list);
-        }
+```cpp
+class Solution {
+    static inline bool cmp(vector<int>& a, vector<int>& b) {
+        return a[0]<b[0];
     }
-    return lists;
-}
+public:
+    vector<vector<int> > FindContinuousSequence(int sum) {
+        vector<vector<int>> res;
+        for(int k = 2; k*k < 2*sum; k++) {
+            float m = ((2.0*sum)/k-k+1)/2.0;
+            int temp = (int)m;
+            if(m == temp) {
+                res.emplace_back(vector<int>());
+                vector<int>& vi = res[res.size()-1];
+                for(int i = 0; i < k; i++) vi.emplace_back(i+temp);
+            }
+        }
+        sort(res.begin(), res.end(), cmp);
+        return res;
+    }
+};
 ```
