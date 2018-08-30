@@ -73,13 +73,13 @@ public:
     vvi FindContinuousSequence(int sum) {
         vvi res;
         sum <<= 1;
-        for(int i = 2; i * i <= sum; ++i) if(sum % i == 0){
-            int j = sum / i, t = (j - i + 1);
-            if(!(t & 1)){
+        for(int y = 2; y * y <= sum; ++y) if(sum % y == 0){
+            int x = sum / y, t = (x - y + 1);//t = x-y+1 = (a+b)-(b-a+1)+1=2a
+            if(!(t & 1)){//判断t=2a是否为偶数
                 res.push_back(vi());
                 vi& v = res[res.size() - 1];
-                t >>= 1;
-                for(int a = t; a <= j - t; ++a) v.push_back(a);
+                t >>= 1;//a=t/2
+                for(int a = t; a <= x - t; ++a) v.push_back(a);// b=x-t
             }
         }
         for(int i = 0, j = int(res.size()) - 1; i < j; ++i, --j) swap(res[i], res[j]);
