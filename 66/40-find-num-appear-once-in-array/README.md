@@ -70,7 +70,7 @@ public:
 ### 异或2
 
 - 正数的反码与原码相同，负数的二进制形式为反码，即对该数的原码除符号位外各位取反后+1  
-- 数n与其负数-n做与运算，结果一定为1，
+- 这个做法：`diff &= -diff;`没看懂
 
 ```cpp
 链接：https://www.nowcoder.com/questionTerminal/e02fdb54d7524710a7d664d082bb7811
