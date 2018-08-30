@@ -59,7 +59,7 @@ public:
         } return;
     }
     int FindIdxOf1(int num) {
-        int idx = 0;
+        int idx = 0; // int有4字节，每字节占8位，共占32位，idx<32
         while((num&1)==0 && idx<8*sizeof(int)) {//注意(num&1)==0要带括号，==优先级高于&
             idx++; num >>= idx;
         } return idx;
