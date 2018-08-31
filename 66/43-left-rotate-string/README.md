@@ -8,6 +8,20 @@
 class Solution {
 public:
     string LeftRotateString(string str, int n) {
+        int len = str.length();
+        if(len<=0 || n<=0) return str;
+        n%=len;
+        str += str;
+        string res(str.begin()+n, str.begin()+n+str.size()/2);
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    string LeftRotateString(string str, int n) {
         string ret;
         int len = str.size();
         if(len <= 0) return "";
