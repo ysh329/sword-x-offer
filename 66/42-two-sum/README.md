@@ -28,8 +28,8 @@ public:
         vector<int> min_res;
         if(res.size()) {
             int min_prod = res[0][0]*res[0][1];
-            min_res.push_back(res[0][0]);
-            min_res.push_back(res[0][1]);
+            min_res.emplace_back(res[0][0]);
+            min_res.emplace_back(res[0][1]);
             for(int vidx = 1; vidx < res.size(); vidx++) {
                 int cur_prod = res[vidx][0] * res[vidx][1];
                 if(cur_prod<min_prod) {
