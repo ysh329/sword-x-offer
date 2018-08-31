@@ -6,6 +6,8 @@
 
 ## 双指针
 
+### 双指针1
+
 ```cpp
 class Solution {
 public:
@@ -42,4 +44,63 @@ public:
         return min_res;
     }
 };
+```
+
+### 双指针2
+
+- a + b = sum  
+- a与b差距越大，乘积越小  
+- 一头一尾两个指针往内靠近的过程中，找到的是乘积越来越小的情况
+
+```cpp
+class Solution {
+public:
+    vector<int> FindNumbersWithSum(vector<int> array,int sum) {
+        vector<int> res;
+        int start = 0;
+        int end = array.size() - 1;
+        while (start < end) {
+            if (array[start]+array[end] == sum) {
+                res.push_back(array[start]);
+                res.push_back(array[end]);
+                break;
+            }
+            else if(array[start]+array[end] < sum) start++;
+            else end--; //array[start]+array[end] > sum
+        }
+        return res;
+    }
+};
+```
+
+### 双指针3
+
+- 作者：马客
+- 链接：https://www.nowcoder.com/questionTerminal/390da4f7a00f44bea7c2f3d19491311b  
+- 数列满足递增，设两个头尾两个指针i和j，  
+    - 若ai + aj == sum，就是答案（相差越远乘积越小）  
+    - 若ai + aj > sum，aj肯定不是答案之一（前面已得出 i 前面的数已是不可能），j -= 1  
+    - 若ai + aj < sum，ai肯定不是答案之一（前面已得出 j 后面的数已是不可能），i += 1  
+- 时间复杂度：O(n)
+
+```cpp
+typedef vector<int> vi;
+class Solution {
+public:
+    vi FindNumbersWithSum(const vi& a, int sum) {
+        vi res;
+        int i = 0, j = a.size() - 1;
+        while(i < j) {
+            if(a[i] + a[j] == sum){
+                res.push_back(a[i]);
+                res.push_back(a[j]);
+                break;
+            }
+            while(i < j && a[i] + a[j] > sum) --j;
+            while(i < j && a[i] + a[j] < sum) ++i;
+        }
+        return res;
+    }
+};
+
 ```
