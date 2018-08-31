@@ -47,8 +47,7 @@ public:
     vector<vector<int> > FindContinuousSequence(int sum) {
         vector<vector<int>> res;
         for(int n=sqrt(sum*2); n>=2; n--) {
-            if((n&1)==1 && //case1 奇数长度，中位数即平均数
-               sum%n==0 || //      能被n整除
+            if((n&1)==1 && sum%n==0 || //case1 奇数长度，中位数即平均数，sum可被n整除
                (sum%n)*2==n) { //case2 偶数长度，中位数为中间两数平均值。sum%n得到中间两数多出来的部分，n个0.5
                 res.emplace_back(vector<int>());
                 vector<int>& vi = res[res.size()-1];
