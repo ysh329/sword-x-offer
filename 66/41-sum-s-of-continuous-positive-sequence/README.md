@@ -33,27 +33,33 @@ public:
 
 ## 等差数列
 
-```java
-链接：https://www.nowcoder.com/questionTerminal/c451a3fd84b64cb19485dad758a55ebe
-来源：牛客网
+- 数列长度n有两种情况：
+    - n为奇数，数列中间的数即平均值，条件为：`sum%n==0 && (n&1)==1`  
+    - n为偶数，数列中间的两个数的均值为平均值(小数部分为0.5)，条件为：`(sum%n)/2==n`  
+- n的下限，由于连续数列，因而长度至少为两个数，因而n>=2  
+- n的上限，公差为1的等差数列求1-N(假设起始为1)的和: `s = (1+n)*n/2`，则有n的上限：`n=sqrt(2*s)`  
+- 题目要求正数序列，因而第一个元素可以从1开始遍历  
 
-import java.util.ArrayList;
-public class Solution {
-    public ArrayList<ArrayList<Integer> > FindContinuousSequence(int sum) {
-        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
-        for (int n = (int) Math.sqrt(2 * sum); n >= 2; n--) {
-            if ((n & 1) == 1 && sum % n == 0 || (sum % n) * 2 == n) {
-                ArrayList<Integer> list = new ArrayList<>();
-                for (int j = 0, k = (sum / n) - (n - 1) / 2; j < n; j++, k++) {
-                    list.add(k);
-                }
-                ans.add(list);
+
+```cpp
+class Solution {
+public:
+    vector<vector<int> > FindContinuousSequence(int sum) {
+        vector<vector<int>> res;
+        for(int n=sqrt(sum*2); n>=2; n--) {
+            if((n&1)==1 && //case1 奇数长度，中位数即平均数
+               sum%n==0 || //      能被n整除
+               (sum%n)*2==n) { //case2 偶数长度，中位数为中间两数平均值。sum%n得到中间两数多出来的部分，n个0.5
+                res.emplace_back(vector<int>());
+                vector<int>& vi = res[res.size()-1];
+                for (int s=0, e=(sum/n)-(n-1)/2;
+                     s<n; s++, e++)
+                    vi.emplace_back(e);
             }
         }
-        return ans;
+        return res;
     }
-}
-
+};
 ```
 
 ## 解方程
