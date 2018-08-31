@@ -4,6 +4,8 @@
 
 ## 开辟新空间
 
+### 开辟新空间1
+
 ```cpp
 class Solution {
 public:
@@ -18,22 +20,7 @@ public:
 };
 ```
 
-```cpp
-class Solution {
-public:
-    string LeftRotateString(string str, int n) {
-        string ret;
-        int len = str.size();
-        if(len <= 0) return "";
-        n = n%len;
-        ret = str+str.substr(0,n);
-        ret = ret.substr(n,str.size());
-        return ret;
-    }
-};
-```
-
-## 复制剪切
+### 开辟新空间2
 
 ```cpp
 class Solution {
@@ -43,7 +30,7 @@ public:
         if(len==0) return "";
         n %= len;
         str += str;
-        return str.substr(n, len);
+        return str.substr(n, len);//取出str从第n位起始，长度为len的字符串
     }
 };
 ```
