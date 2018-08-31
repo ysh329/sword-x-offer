@@ -92,8 +92,8 @@ public:
         int i = 0, j = a.size() - 1;
         while(i < j) {
             if(a[i] + a[j] == sum){
-                res.push_back(a[i]);
-                res.push_back(a[j]);
+                res.emplace_back(a[i]);
+                res.emplace_back(a[j]);
                 break;
             }
             while(i < j && a[i] + a[j] > sum) --j;
