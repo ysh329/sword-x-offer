@@ -5,4 +5,23 @@
 ##
 
 ```cpp
+class Solution {
+public:
+    string ReverseSentence(string str) {
+        if(str.empty()) return str;
+        //单词内翻转
+        int start = 0;
+        int end = 0;
+        while(end<str.size()) {
+            while(str[end]!=" ") {
+                end++;
+            }
+            reverse(str.begin()+start, str.begin()+end);
+            start = end; end++;
+        }
+        //整体翻转
+        reverse(str.begin(), str.end());
+        return str;
+    }
+};
 ```
