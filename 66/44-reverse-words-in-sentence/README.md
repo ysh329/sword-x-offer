@@ -27,12 +27,12 @@ class Solution {
 public:
     string ReverseSentence(string str) {
         reverse(str.begin(), str.end());
-        string::size_type s = 0, e;       
-        while((e=str.find(' ', s)) != string::npos) {
+        string::size_type s = 0, e;//string::npos类型为string::size_type，由于后面有和该值的比较，因而类型均为string::size_type
+        while((e=str.find(' ', s)) != string::npos) {//find第二个参数表示从下标s开始查找
             reverse(str.begin()+s, str.begin()+e);
             s = e + 1;
         }
-        reverse(str.begin()+s, str.end());
+        reverse(str.begin()+s, str.end());//对str中最后一个词（或无空格时）做了反转
         return str;
     }
 };
