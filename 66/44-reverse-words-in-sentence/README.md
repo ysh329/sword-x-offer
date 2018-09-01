@@ -21,4 +21,28 @@ public:
     }
 };
 ```
+## 栈
 
+```cpp
+class Solution {
+public:
+    string ReverseSentence(string str) {
+        stack<string> Words;
+        int currBlankPos = 0;
+        int perBlankPos = 0;
+        string subString;
+        while(currBlankPos>=0) {
+            currBlankPos = str.find_first_of(' ', perBlankPos); // 找到空格分隔字符串（找到word压如栈里头）
+            subString = str.substr(perBlankPos, currBlankPos < 0 ? (str.length() - perBlankPos) : currBlankPos - perBlankPos); // 按长度截取单词
+            perBlankPos = currBlankPos + 1;
+            Words.push(subString); //把单词压如栈
+        }
+        subString.clear();
+        while (!Words.empty()) {
+            subString += Words.top(); Words.pop();
+            if(!Words.empty()) subString += " "; // 需不需要加空格
+        }
+        return subString;
+    }
+};
+```
