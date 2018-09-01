@@ -18,8 +18,10 @@ public:
         int repeat = 0;
         int split = 0;
         for(int eidx=0; eidx<numbers.size()-1; eidx++) {
+            // 1.统计0的个数
             if(numbers[eidx]==0)
                 count0++;
+            // 2.是否有除0外重复的数字
             else if(eidx>=1 && numbers[eidx]==numbers[eidx-1]) {
                 repeat = 1;
                 break;
@@ -28,14 +30,12 @@ public:
                     numbers[eidx]!=1 && 
                     numbers[eidx]-1==numbers[eidx])
                 continue;
+            // 3.不连续的空挡个数
             else if(numbers[eidx]!=0 && 
                     numbers[eidx]!=1 && 
                     numbers[eidx]-1!=numbers[eidx])
                 split++;
         }
-        // 统计0的个数
-        // 是否有除0外重复的数字
-        // 不连续的空挡个数
         return result;
     }
 };
