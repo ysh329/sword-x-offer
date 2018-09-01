@@ -11,14 +11,13 @@ class Solution {
 public:
     bool IsContinuous( vector<int> numbers ) {
         bool result = false;
-        if(numbers.empty() || numbers.size()!=5)
-            return result;
+        if(numbers.empty() || numbers.size()!=5) return result;
         // 先排序
         sort(numbers.begin(), numbers.end());
         int count0 = 0;
         int repeat = 0;
         int split = 0;
-        for (int eidx=0; eidx<numbers.size()-1; eidx++) {
+        for(int eidx=0; eidx<numbers.size()-1; eidx++) {
             if(numbers[eidx]==0)
                 count0++;
             else if(eidx>=1 && numbers[eidx]==numbers[eidx-1]) {
