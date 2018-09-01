@@ -21,6 +21,23 @@ public:
     }
 };
 ```
+
+```cpp
+class Solution {
+public:
+    string ReverseSentence(string str) {
+        reverse(str.begin(), str.end());
+        string::size_type s = 0, e;       
+        while((e=str.find(' ', s)) != string::npos) {
+            reverse(str.begin()+s, str.begin()+e);
+            s = e + 1;
+        }
+        reverse(str.begin()+s, str.end());
+        return str;
+    }
+};
+```
+
 ## 栈
 
 ```cpp
