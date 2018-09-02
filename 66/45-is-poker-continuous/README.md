@@ -6,6 +6,31 @@ LL今天心情特别好,因为他去买了一副扑克牌,发现里面居然有2
 
 LL决定去买体育彩票啦。 现在,要求你使用这幅牌模拟上面的过程,然后告诉我们LL的运气如何， 如果牌能组成顺子就输出true，否则就输出false。为了方便起见,你可以认为大小王是0。
 
+## 分析
+
+```cpp
+class Solution {
+public:
+    bool IsContinuous(vector<int>& num) {
+        bool res = false;
+        if(num.size()!=5) return res;
+        bool repeat = false;
+        int count0 = 0;
+        for(int i=0; i<num.size(); i++) {
+            if(num[i]==0) count0++; //大小王
+            else if() ; //牌面值异常
+            else if() ; //重复
+            else if() ; //不连续
+            else continue; // i=0,连续，num[i-1]=0
+        }
+        res = (!repeat && count0>=0) ? true : res;
+        return res;
+    }
+};
+```
+
+## 常规解法
+
 ```cpp
 class Solution {
 public:
@@ -31,43 +56,6 @@ public:
         }
         res = (!repeat && count0>=0) ? true : res;
         return res;
-    }
-};
-```
-
-下面没通过
-
-```cpp
-class Solution {
-public:
-    bool IsContinuous( vector<int> numbers ) {
-        bool result = false;
-        if(numbers.empty() || numbers.size()!=5) return result;
-        // 先排序
-        sort(numbers.begin(), numbers.end());
-        int count0 = 0;
-        int repeat = 0;
-        int split = 0;
-        for(int eidx=0; eidx<numbers.size()-1; eidx++) {
-            // 1.统计0的个数
-            if(numbers[eidx]==0)
-                count0++;
-            // 2.是否有除0外重复的数字
-            else if(eidx>=1 && numbers[eidx]==numbers[eidx-1]) {
-                repeat = 1;
-                break;
-            }
-            else if(numbers[eidx]!=0 && 
-                    numbers[eidx]!=1 && 
-                    numbers[eidx]-1==numbers[eidx])
-                continue;
-            // 3.不连续的空挡个数
-            else if(numbers[eidx]!=0 && 
-                    numbers[eidx]!=1 && 
-                    numbers[eidx]-1!=numbers[eidx])
-                split++;
-        }
-        return result;
     }
 };
 ```
