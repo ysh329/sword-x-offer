@@ -46,22 +46,21 @@ public:
 class Solution {
 public:
     string ReverseSentence(string str) {
-        stack<string> Words;
-        int currBlankPos = 0;
-        int perBlankPos = 0;
-        string subString;
-        while(currBlankPos>=0) {
-            currBlankPos = str.find_first_of(' ', perBlankPos); // 找到空格分隔字符串（找到word压如栈里头）
-            subString = str.substr(perBlankPos, currBlankPos < 0 ? (str.length() - perBlankPos) : currBlankPos - perBlankPos); // 按长度截取单词
-            perBlankPos = currBlankPos + 1;
-            Words.push(subString); //把单词压如栈
+        stack<string> words;
+        int spaceIdx = 0, next = 0;
+        while(spaceIdx>=0) {
+            spaceIdx = str.find_first_of(' ', next); // 找空格分隔字符串
+            string w = str.substr(next, 
+                                  spaceIdx<0 ? str.length()-next : spaceIdx - next); // 按长度截取单词
+            next = spaceIdx + 1;
+            words.push(w); //把单词压如栈
         }
-        subString.clear();
-        while (!Words.empty()) {
-            subString += Words.top(); Words.pop();
-            if(!Words.empty()) subString += " "; // 需不需要加空格
+		string res;
+        while(!words.empty()) {
+            res += words.top(); words.pop();
+            res += words.empty() ? "" : " ";
         }
-        return subString;
+        return res;
     }
 };
 ```
