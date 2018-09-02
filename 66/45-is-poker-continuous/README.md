@@ -14,6 +14,7 @@ public:
     bool IsContinuous(vector<int>& num) {
         bool res = false;
         if(num.size()!=5) return res;
+        sort(num.begin(), num.end());
         bool repeat = false;
         int count0 = 0;
         for(int i=0; i<num.size(); i++) {
@@ -34,25 +35,25 @@ public:
 ```cpp
 class Solution {
 public:
-    bool IsContinuous(vector<int>& numbers) {
+    bool IsContinuous(vector<int>& num) {
         bool res = false;
-        if(numbers.size()!=5) return res;
-        sort(numbers.begin(), numbers.end());
+        if(num.size()!=5) return res;
+        sort(num.begin(), num.end());
         bool repeat = false;
         int count0 = 0;
-        for(int i = 0; i < numbers.size(); i++) {
-            if(numbers[i]==0) count0++; // 大小王
-            else if(i>=1 && // 重复跳出
-                    numbers[i-1]!=0 && 
-                    numbers[i-1]==numbers[i]) {
-                repeat = true; break;
+        for(int i=0; i<num.size(); i++) {
+            if(num[i]<0 || 13<num[i]) {repeat=true; break;} //牌面值异常
+            else if(num[i]==0) count0++; //大小王
+            else if(i>0 && //重复
+                    num[i-1]!=0 &&
+                    num[i-1]==num[i]) {
+                repeat=true; break;
             }
-            else if(i>=1 && // 不连续
-                    numbers[i-1]!=0 &&
-                    numbers[i]-numbers[i-1] != 1)
-                count0 -= (numbers[i]-numbers[i-1]-1);
-            else if(numbers[i]<0 || numbers[i]>13) { repeat = true; break;}//牌面值异常
-            else continue; // 连续,i=0,上一个为0
+            else if(i>0 && //不连续
+                    num[i-1]!=0 &&
+                    num[i-1]!=num[i]-1)
+                count0 -= (num[i]-num[i-1]-1);
+            else continue; // i=0,连续，num[i-1]=0
         }
         res = (!repeat && count0>=0) ? true : res;
         return res;
