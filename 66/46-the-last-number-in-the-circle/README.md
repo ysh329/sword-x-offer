@@ -6,3 +6,32 @@
 然后可以在礼品箱中任意的挑选礼物,并且不再回到圈中,从他的下一个小朋友开始,继续0...m-1报数....这样下去....直到剩下最后一个小朋友,可以不用表演,并且拿到牛客名贵的“名侦探柯南”典藏版(名额有限哦!!^_^)。
 
 请你试着想下,哪个小朋友会得到这份礼品呢？(注：小朋友的编号是从0到n-1)
+
+## 常规解法
+
+```cpp
+class Solution {
+public:
+    int LastRemaining_Solution(int n, int m) {
+        if(n==1) return 0;
+        else if(m==1) return n-1;
+        else if(n<1 || m<1) return -1;
+        
+        vector<int> circle;
+        for(int cidx=0; cidx<n; cidx++)
+            circle.emplace_back(cidx);
+        
+        int m_cnt = 0, cidx = -1;
+        while(circle.size()>1) {
+            m_cnt++;
+            cidx = (cidx+1==circle.size()) ? 0 : cidx+1;
+            if(m_cnt==m) {
+                circle.erase(circle.begin()+cidx);
+                m_cnt = 0;
+                cidx = (cidx==0) ? circle.size()-1 : cidx-1;
+            }
+        }
+        return circle[0];
+    }
+};
+```
