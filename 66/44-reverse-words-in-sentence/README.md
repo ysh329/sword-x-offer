@@ -49,13 +49,14 @@ public:
         stack<string> words;
         int spaceIdx = 0, next = 0;
         while(spaceIdx>=0) {
-            spaceIdx = str.find_first_of(' ', next); // 找空格分隔字符串
+            spaceIdx = str.find_first_of(' ', next); // 找到空格分隔字符串
             string w = str.substr(next, 
-                                  spaceIdx<0 ? str.length()-next : spaceIdx - next); // 按长度截取单词
+                                  spaceIdx==string::npos ?
+                                  str.length()-next : spaceIdx-next); // 按长度截取单词
             next = spaceIdx + 1;
-            words.push(w); //把单词压如栈
+            words.push(w);
         }
-		string res;
+        string res;
         while(!words.empty()) {
             res += words.top(); words.pop();
             res += words.empty() ? "" : " ";
