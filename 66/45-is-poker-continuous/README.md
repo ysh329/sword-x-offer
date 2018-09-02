@@ -16,17 +16,19 @@ public:
         bool repeat = false;
         int count0 = 0, split = 0;
         for(int i = 0; i < numbers.size(); i++) {
-            if(i>=1 && 
-               numbers[i-1]!=0 && 
-               numbers[i-1]==numbers[i]) { // 重复跳出
-               repeat = true;
+            if(numbers[i]==0) count0++; // 大小王
+            else if(i>=1 && // 重复跳出
+                    numbers[i-1]!=0 && 
+                    numbers[i-1]==numbers[i]) {
+                repeat = true;
                 break;
             }
-            if(numbers[i]==0) count0++; // 大小王
-            else if(i>=1 && 
+            else if(i>=1 && // 不连续
                     numbers[i-1]!=0 &&
-                    numbers[i]-numbers[i-1] != 1)// 不连续
+                    numbers[i]-numbers[i-1] != 1)
                 split += numbers[i] - numbers[i-1] - 1;
+            else if(numbers[i]<0 || numbers[i]>13) { repeat=true; break;} //牌面值异常
+            else continue; // 连续
         }
         res = (!repeat && split<=count0) ? true : res;
         return res;
