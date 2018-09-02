@@ -61,6 +61,10 @@ public:
 };
 ```
 
+### 常规解法3
+
+不太理解 `(a[4]-a[count0])<5` 这句，我估计应该是判断count0和不连续牌个数是否相符的，但是想不明白！
+
 ```cpp
 class Solution {
 public:
