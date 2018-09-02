@@ -8,14 +8,15 @@
 class Solution {
 public:
     string ReverseSentence(string str) {
-        reverse(str.begin(), str.end());
-        int start = 0, end = 0;
-        while(start<str.size()) {
-            while(start<str.size() && str[start]==' ') start++;
-            end = start;
-            while(end<str.size() && str[end]!=' ') end++;
-            reverse(str.begin()+start, str.begin()+end);
-            start = end;
+        if(str.empty()) return str;
+        reverse(str.begin(), str.end());//也可放到单词翻转后
+        int s = 0, e = 0;//确定单词起始
+        while(s<str.size()) {
+            while(s<str.size() && str[s]==' ') s++;
+            e = s;
+            while(e<str.size() && str[e]!=' ') e++;
+            reverse(str.begin()+s, str.begin()+e);
+            s = e;
         }
         return str;
     }
