@@ -40,10 +40,10 @@ public:
         if(num.size()!=5) return res;
         sort(num.begin(), num.end());
         bool repeat = false;
-        int count0 = 0;
+        int count0 = 0, split = 0;
         for(int i=0; i<num.size(); i++) {
             if(num[i]<0 || 13<num[i]) {repeat=true; break;} //牌面值异常
-            else if(num[i]==0) count0++; //大小王
+            else if(num[i]==0) count0++; //大小王(结尾判断最多4个王)
             else if(i>0 && //重复
                     num[i-1]!=0 &&
                     num[i-1]==num[i]) {
@@ -52,10 +52,10 @@ public:
             else if(i>0 && //不连续
                     num[i-1]!=0 &&
                     num[i-1]!=num[i]-1)
-                count0 -= (num[i]-num[i-1]-1);
+                split += (num[i]-num[i-1]-1);
             else continue; // i=0,连续，num[i-1]=0
         }
-        res = (!repeat && count0>=0) ? true : res;
+        res = (!repeat && count0>=split && count0<5) ? true : res; //最多4个王
         return res;
     }
 };
