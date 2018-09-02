@@ -69,13 +69,13 @@ public:
 class Solution {
 public:
     bool IsContinuous(vector<int>& a) {
-		if(a.size()!=5) return false;
+        if(a.size()!=5) return false;
         sort(a.begin(), a.end());
         int cnt0 = 0, cntNeed = 0;
         for(int i = 0; i < 5; i++) {
-			if(a[i]<0 || 13<a[i]) return false; //牌面值异常
+            if(a[i]<0 || 13<a[i]) return false; //牌面值异常
             else if(a[i] == 0) ++cnt0; //大小王
-			else if(i + 1 < 5 ) {
+            else if(i + 1 < 5 ) {
                 if(a[i + 1] == a[i]) return false; //重复
                 cntNeed += a[i + 1] - a[i] - 1; //非0，不连续
             } else continue; //连续,i=4
