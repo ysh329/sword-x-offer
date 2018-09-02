@@ -163,13 +163,11 @@ public:
 ```cpp
 class Solution {
 public:
-    vector<vector<int> > turnMatrix(vector<vector<int> > &mat)
-    {
+    vector<vector<int> > turnMatrix(vector<vector<int> > &mat) {
         vector<vector<int> > new_mat;
         int rows = mat.size();
         int cols = mat[0].size();
-        for(int c = cols-1; c >= 0; c--)
-        {
+        for(int c = cols-1; c >= 0; c--) {
             vector<int> new_row;
             for(int r = 0; r < rows; r++)
                 new_row.emplace_back(mat[r][c]);
@@ -180,8 +178,7 @@ public:
     
     vector<int> printMatrix(vector<vector<int> > matrix) {
         vector<int> result;
-        while(!matrix.empty() || !matrix[0].empty())
-        {
+        while(!matrix.empty() || !matrix[0].empty()) {
             result.insert(result.end(),
                           matrix[0].begin(),
                           matrix[0].end());
