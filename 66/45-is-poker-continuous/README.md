@@ -60,3 +60,17 @@ public:
     }
 };
 ```
+
+```cpp
+class Solution {
+public:
+    bool IsContinuous(vector<int>& a) {
+        if(a.size() != 5) return false;
+        sort(a.begin(), a.end());
+        int count0 = 0;
+        while(count0<5 && a[count0]==0) ++count0;
+        for(int i=count0; i<5; ++i) if(i && a[i]==a[i - 1]) return false;//从第2张牌查重复
+        return count0<5 && (a[4]-a[count0])<5; //大小王张数最多4,第一个非王的牌面与最后一张牌面王差距在5以内
+    }
+};
+```
