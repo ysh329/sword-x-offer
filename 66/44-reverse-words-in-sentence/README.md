@@ -27,13 +27,14 @@ public:
 class Solution {
 public:
     string ReverseSentence(string str) {
+        if(str.empty()) return str;
         reverse(str.begin(), str.end());
-        string::size_type s = 0, e;//string::npos类型为string::size_type，由于后面有和该值的比较，因而类型均为string::size_type
-        while((e=str.find(' ', s)) != string::npos) {//find第二个参数表示从下标s开始查找
+        string::size_type s = 0, e = 0; //后面有和string::npose比较，因而类型均为string::size_type
+        while((e=str.find(' ', s))!=string::npos) { //find第二个参数表示从下标s开始查找
             reverse(str.begin()+s, str.begin()+e);
             s = e + 1;
         }
-        reverse(str.begin()+s, str.end());//对str中最后一个词（或无空格时）做了反转
+        reverse(str.begin()+s, str.end()); // 最后一个单词因找不到空格需要从s翻转
         return str;
     }
 };
