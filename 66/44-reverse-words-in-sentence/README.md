@@ -72,13 +72,13 @@ public:
 class Solution {
 public:
     string ReverseSentence(string str) {
-        string res = "", tmp = "";
-        for(unsigned int i = 0; i < str.size(); ++i){
-            if(str[i] == ' ') res = " " + tmp + res, tmp = "";
-            else tmp += str[i];
+        string res = "", nonSpace = "";
+        for(unsigned int i = 0; i < str.size(); i++) {
+            if(str[i]==' ') res = " " + nonSpace + res, nonSpace = "";
+            else nonSpace += str[i];
         }
-        if(tmp.size()) res = tmp + res;
+        if(nonSpace.size()) res = nonSpace + res;
         return res;
     }
-}; 
+};
 ```
