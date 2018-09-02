@@ -37,25 +37,25 @@ public:
 ```cpp
 class Solution {
 public:
-    bool IsContinuous(vector<int>& num) {
+    bool IsContinuous(vector<int>& a) {
         bool res = false;
-        if(num.size()!=5) return res;
-        sort(num.begin(), num.end());
+        if(a.size()!=5) return res;
+        sort(a.begin(), a.end());
         bool repeat = false;
         int count0 = 0, split = 0;
-        for(int i=0; i<num.size(); i++) {
-            if(num[i]<0 || 13<num[i]) {repeat=true; break;} //牌面值异常
-            else if(num[i]==0) count0++; //大小王(结尾判断最多4个王)
+        for(int i=0; i<a.size(); i++) {
+            if(a[i]<0 || 13<a[i]) {repeat=true; break;} //牌面值异常
+            else if(a[i]==0) count0++; //大小王(结尾判断最多4个王)
             else if(i>0 && //重复
-                    num[i-1]!=0 &&
-                    num[i-1]==num[i]) {
+                    a[i-1]!=0 &&
+                    a[i-1]==a[i]) {
                 repeat=true; break;
             }
             else if(i>0 && //不连续
-                    num[i-1]!=0 &&
-                    num[i-1]!=num[i]-1)
-                split += (num[i]-num[i-1]-1);
-            else continue; // i=0,连续，num[i-1]=0
+                    a[i-1]!=0 &&
+                    a[i-1]!=a[i]-1)
+                split += (a[i]-a[i-1]-1);
+            else continue; // i=0,连续，a[i-1]=0
         }
         res = (!repeat && count0>=split && count0<5) ? true : res; //最多4个王
         return res;
@@ -66,25 +66,23 @@ public:
 ### 常规解法2
 
 ```cpp
-public class Solution {
-    public boolean isContinuous(int [] numbers) {
-        if(numbers.length != 5) return false;
-        int min = 14;
-        int max = -1;
-        int flag = 0;
-        for(int i = 0; i < numbers.length; i++) {
-            int number = numbers[i];
-            if(number < 0 || number > 13) return false;
-            if(number == 0) continue;
-            if(((flag >> number) & 1) == 1) return false;
-            flag |= (1 << number);
-            if(number > max) max = number;
-            if(number < min) min = number;
-            if(max - min >= 5) return false;
+class Solution {
+public:
+    bool IsContinuous(vector<int>& a) {
+        if(a.size() != 5) return false;
+        int min = 14, max = -1, flag = 0;
+        for(int i = 0; i < a.size(); i++) {
+            if(a[i]<0 || a[i]>13) return false; //异常牌面值
+            if(a[i] == 0) continue; //大小王
+            if(((flag >> a[i]) & 1) == 1) return false; //检查重复
+            flag |= (1 << a[i]); //以异或的二进制形式存储
+            max = (a[i]>max) ? a[i] : max;
+            min = (a[i]<min) ? a[i] : min;
+            if(max-min >= 5) return false;
         }
         return true;
     }
-}
+};
 ```
 
 ### 常规解法3
