@@ -9,6 +9,34 @@ LL决定去买体育彩票啦。 现在,要求你使用这幅牌模拟上面的�
 ```cpp
 class Solution {
 public:
+    bool IsContinuous(vector<int>& numbers) {
+        bool res = false;
+        if(numbers.size()!=5) return res;
+        sort(numbers.begin(), numbers.end());
+        bool repeat = false;
+        int count0 = 0, split = 0;
+        for(int i = 0; i < numbers.size(); i++) {
+            if(i>=1 && 
+               numbers[i-1]!=0 && 
+               numbers[i-1]==numbers[i]) { // 重复跳出
+               repeat = true;
+                break;
+            }
+            if(numbers[i]==0) count0++; // 大小王
+            else if(i>=1 && 
+                    numbers[i-1]!=0 &&
+                    numbers[i]-numbers[i-1] != 1)// 不连续
+                split += numbers[i] - numbers[i-1] - 1;
+        }
+        res = (!repeat && split<=count0) ? true : res;
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
     bool IsContinuous( vector<int> numbers ) {
         bool result = false;
         if(numbers.empty() || numbers.size()!=5) return result;
