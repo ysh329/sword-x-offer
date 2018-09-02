@@ -27,7 +27,7 @@ public:
                     numbers[i]-numbers[i-1] != 1)
                 count0 -= (numbers[i]-numbers[i-1]-1);
             else if(numbers[i]<0 || numbers[i]>13) { repeat = true; break;}//牌面值异常
-            else continue; // 连续,i=0
+            else continue; // 连续,i=0,上一个为0
         }
         res = (!repeat && count0>=0) ? true : res;
         return res;
