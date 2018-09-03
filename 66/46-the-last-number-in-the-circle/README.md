@@ -7,7 +7,57 @@
 
 请你试着想下,哪个小朋友会得到这份礼品呢？(注：小朋友的编号是从0到n-1)
 
-## 常规解法
+## 模拟
+
+### 模拟1
+
+- 环状链表
+
+```cpp
+public class Solution {  
+    // 构造循环链表结构
+    public static class Node {
+        private int value;
+        private Node pre;
+        private Node next;
+        public Node(int value) {
+            this.value = value;
+            this.pre = null;
+            this.next = null;
+        }
+    }
+    public int LastRemaining_Solution(int n, int m) {
+        if (m == 0 && n == 0) {
+            return -1;
+        }
+        Node head = new Node(0);
+        Node cur = head;
+        Node last = null;
+        for(int i = 1; i < n; i++) {
+            last = new Node(i);
+            last.pre = cur;
+            cur.next = last;
+            cur = last;
+        }
+        cur = head;
+        last.next = head;
+        head.pre = last;
+        int count = n;
+        while (count != 1) {
+            for (int i = 0; i < m - 1; i++) {
+                cur = cur.next;
+            }
+            cur.pre.next = cur.next;
+            cur.next.pre = cur.pre;
+            cur = cur.next;
+            count--;
+        }
+        return cur.value;
+    }
+}
+```
+
+### 模拟2
 
 ```cpp
 class Solution {
@@ -32,6 +82,49 @@ public:
             }
         }
         return circle[0];
+    }
+};
+```
+
+### 模拟3
+
+- list容器+其迭代器实现圆形链表
+
+```cpp
+class Solution {
+public:
+    int LastRemaining_Solution(int n, int m) {//n为人数
+        if(n<1 || m<1) return -1;
+        list<int> circle;
+        for(int i=0; i<n; i++) circle.emplace_back(i);
+        list<int>::iterator current = circle.begin();
+        while(circle.size() > 1) {
+            for(int i=1; i<m; i++) {//走m-1步到达第m个数处 
+                ++current;
+                if(current==circle.end())
+                    current = circle.begin();
+            }
+            list<int>::iterator next = ++current;
+            if(next==circle.end())
+                next = circle.begin();
+            --current;
+            circle.erase(current);
+            current = next;
+        }
+        return *current;//对迭代器取值，等价于对指针取值
+    }
+};
+```
+
+## 递推式
+
+```cpp
+class Solution {
+public:
+    int LastRemaining_Solution(unsigned int n, unsigned int m) {
+        if(n==0) return -1; //学生数为0异常
+        if(n==1) return 0; //学生数为1返回第1个
+        else return (LastRemaining_Solution(n-1, m) + m) % n;
     }
 };
 ```
