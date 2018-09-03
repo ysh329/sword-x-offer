@@ -116,7 +116,9 @@ public:
 };
 ```
 
-## 递推式
+## 找规律
+
+### 递归
 
 ```cpp
 class Solution {
@@ -125,6 +127,23 @@ public:
         if(n==0) return -1; //学生数为0异常
         if(n==1) return 0; //学生数为1返回第1个
         else return (LastRemaining_Solution(n-1, m) + m) % n;
+    }
+};
+```
+
+### 非递归
+
+- 找出规律，通项为：`f(n,m) = {f(n-1,m)+m} % n`
+
+```cpp
+class Solution {
+public:
+    int LastRemaining_Solution(int n, int m) {
+        if(n<1 || m<1) return -1;
+        int last = 0;
+        for(int i=2; i<=n; i++)
+            last = (last+m)%i;
+        return last;
     }
 };
 ```
