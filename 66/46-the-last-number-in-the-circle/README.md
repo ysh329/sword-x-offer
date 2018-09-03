@@ -96,7 +96,9 @@ public:
 
 ### 非递归
 
-- 找出规律，通项为：`f(n,m) = {f(n-1,m)+m} % n`
+- 找出规律，通项为：  
+- `n>1, f(n,m) = {f(n-1,m) + m} % n`  
+- `n=1, f(n,m) = 0`  
 
 ```cpp
 class Solution {
