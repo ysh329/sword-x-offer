@@ -14,47 +14,7 @@
 - 环状链表
 
 ```cpp
-public class Solution {  
-    // 构造循环链表结构
-    public static class Node {
-        private int value;
-        private Node pre;
-        private Node next;
-        public Node(int value) {
-            this.value = value;
-            this.pre = null;
-            this.next = null;
-        }
-    }
-    public int LastRemaining_Solution(int n, int m) {
-        if (m == 0 && n == 0) {
-            return -1;
-        }
-        Node head = new Node(0);
-        Node cur = head;
-        Node last = null;
-        for(int i = 1; i < n; i++) {
-            last = new Node(i);
-            last.pre = cur;
-            cur.next = last;
-            cur = last;
-        }
-        cur = head;
-        last.next = head;
-        head.pre = last;
-        int count = n;
-        while (count != 1) {
-            for (int i = 0; i < m - 1; i++) {
-                cur = cur.next;
-            }
-            cur.pre.next = cur.next;
-            cur.next.pre = cur.pre;
-            cur = cur.next;
-            count--;
-        }
-        return cur.value;
-    }
-}
+略
 ```
 
 ### 模拟2
