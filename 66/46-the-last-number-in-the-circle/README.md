@@ -76,7 +76,10 @@ public:
 };
 ```
 
-## 找规律
+## 找规律/公式法
+
+参考：约瑟夫环——公式法（递推公式） - CSDN博客  
+https://blog.csdn.net/u011500062/article/details/72855826
 
 ### 递归
 
