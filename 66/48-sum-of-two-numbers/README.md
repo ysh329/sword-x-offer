@@ -83,3 +83,19 @@ public:
     }
 };
 ```
+
+## 自增自减
+
+按理说不符合题意
+
+```cpp
+public class Solution {
+    public int Add(int num1,int num2) {
+        if(num1>0)
+            while(num1--!=0) num2++;
+        else if(num1<0)
+            while(num1++!=0) num2--;
+        return num2;
+    }
+}
+```
