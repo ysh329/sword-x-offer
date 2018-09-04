@@ -14,3 +14,50 @@
 2147483647
 0
 ```
+
+## 常规解法
+
+```cpp
+class Solution {
+public:
+    int StrToInt(string str) {
+        int result = 0;
+        // 空串
+        if(str.empty()) return result;
+        // 长度为1，非数字(或者仅有正负号)
+        else if(str.size()==1 &&
+                (str[0]<'0' || str[0]>'9'))
+            return result;
+        
+        int sidx = 0;
+        //跳过空格
+        while(sidx<str.size() && str[sidx]==' ')  {
+            str[sidx] = '0';
+            sidx++;
+        }
+        // 正负号
+        bool positive = true;
+        if(sidx<str.size() && str[sidx]=='+') {
+            str[sidx] = '0';
+            sidx++;//positive
+        }
+        else if(sidx<str.size() && str[sidx]>='0' && str[sidx]<='9')
+            ;// positive
+        else if(sidx<str.size() && str[sidx]=='-') {
+            str[sidx] = '0';
+            positive = false;
+            sidx++;
+        }
+        else return result;
+        // 数字结果
+        for(sidx = 0; sidx < str.size(); sidx++) {
+            if(str[sidx]<'0' || str[sidx]>'9') {
+                result = 0;
+                break;
+            }
+            result = result*10 + str[sidx] - '0';
+        }
+        return positive ? result : -result;
+    }
+};
+```
