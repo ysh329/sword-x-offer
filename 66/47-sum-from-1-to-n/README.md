@@ -72,6 +72,32 @@ public:
 };
 ```
 
+## 函数指针
+
+C++类中的代码：
+
+```cpp
+typedef unsigned int (*fun) (unsigned int);
+class Solution {
+    static unsigned int helper(unsigned int n) {return 0;}
+public:
+    static unsigned int Sum_Solution(unsigned int n) {
+        static fun f[2] = {helper, Sum_Solution};
+        return n+f[!!n](n-1);
+    }
+};
+```
+
+因为C没有虚函数，可以使用函数指针实现类似功能：
+
+```c
+typedef unsigned int (*fun) (unsigned int);
+unsigned int helper(unsigned int n) {return 0;}
+unsigned int Sum_Solution(unsigned int n) {
+    static fun f[2] = {helper, Sum_Solution};
+    return n+f[!!n](n-1);
+}
+```
 
 ## 短路运算
 
