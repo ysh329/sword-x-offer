@@ -51,3 +51,19 @@ public:
     }
 };
 ```
+
+## 汇编
+
+未通过，未定义_asm
+
+```cpp
+int add(int a, int b)
+{
+    _asm
+    {
+        MOV EAX, a
+        MOV ECX, b
+        ADD EAX, ECX
+    }
+}
+```
