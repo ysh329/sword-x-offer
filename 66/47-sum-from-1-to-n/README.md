@@ -2,7 +2,11 @@
 
 求1+2+3+...+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
 
-## 位运算
+## 二位数组+sizeof
+
+[Using the GNU Compiler Collection (GCC): Variable Length](https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html)
+
+Variable-length automatic arrays are allowed in ISO C99, and as an extension GCC accepts them in C90 mode and in C++. These arrays are declared like any other automatic arrays, but with a length that is not a constant expression. The storage is allocated at the point of declaration and deallocated when the block scope containing the declaration exits.
 
 ```cpp
 class Solution {
@@ -12,4 +16,21 @@ public:
         return sizeof(a)>>1;
     }
 };
+```
+
+
+## 短路运算
+
+```cpp
+
+```
+
+## 
+
+```cpp
+ public static int Sum_Solution(int n) {
+        int sum = n;
+        boolean flag = (sum > 0) && ((sum += Sum_Solution(--n)) > 0);
+        return sum;
+    }
 ```
