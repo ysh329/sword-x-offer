@@ -34,7 +34,9 @@ public:
 };
 ```
 
-##
+## 类型转换
+
+没看懂
 
 ```cpp
 class Solution {
