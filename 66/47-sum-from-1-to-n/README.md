@@ -2,6 +2,72 @@
 
 求1+2+3+...+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
 
+## 静态构造函数
+
+```cpp
+class assist {
+public:
+    assist() {N++;sum += N;}
+    static void reset(){N=0;sum=0;}//在VS中不需要此调用函数也可以（不进行多加一次）
+    static unsigned int GetSum(){return sum;}
+private:
+    static int N;
+    static int sum;
+};
+int assist::N = 0;
+int assist::sum = 0;
+//设置一个静态变量N和sum，在构造函数中进行累加运算；
+//然后构造一个以辅助类为类型、大小为n的数组，重复调用此构造函数n次来实现n次的累加运算
+class Solution {
+public:
+    int Sum_Solution(int n) {
+        assist::reset();
+        assist * p = new assist[n];
+        delete []p;
+        p = nullptr;
+        return assist::GetSum();
+    }
+};
+```
+
+## 虚函数
+
+- 使用虚函数来构造递归：    
+- 基类定义虚函数Sum(n)返回0  
+- 派生类定义虚函数的实例Sum(n)返回n  
+- 将基类和派生类的两个实例，绑定到指针数组中
+- 基类的Sum()返回0来结束递归，派生类的Sum()返回n来累加  
+- !!n来构造true(1)，false(0)对指针数组进行控制访问
+
+```cpp
+class Base;
+Base* Array[2];
+
+class Base {
+public:
+    virtual unsigned int Sum(unsigned int n) { return 0;}
+};
+
+class Derived: public Base {
+public:
+    virtual unsigned int Sum(unsigned int n) {
+        return Array[!!n]->Sum(n-1) + n;//n=0时，!!n=false,  n>=1时，!!n=true
+    }
+};
+
+class Solution {
+public:
+    int Sum_Solution(int n) {
+        Base a;
+        Derived b;
+        Array[0] = &a;
+        Array[1] = &b;
+        return b.Sum(n);
+    }
+};
+```
+
+
 ## 短路运算
 
 在谈&&和||两个运算符的短路运算之前，先看一段程序：
@@ -47,43 +113,6 @@ public:
         int ret = n;
         n && (ret += Sum_Solution(n-1)); //后面这个使用了判断，因而不行：sum += sum>0 ? Sum_Solution(--n) : 0;
         return ret;
-    }
-};
-```
-
-## 虚函数
-
-- 使用虚函数来构造递归：    
-- 基类定义虚函数Sum(n)返回0  
-- 派生类定义虚函数的实例Sum(n)返回n  
-- 将基类和派生类的两个实例，绑定到指针数组中
-- 基类的Sum()返回0来结束递归，派生类的Sum()返回n来累加  
-- !!n来构造true(1)，false(0)对指针数组进行控制访问
-
-```cpp
-class Base;
-Base* Array[2];
-
-class Base {
-public:
-    virtual unsigned int Sum(unsigned int n) { return 0;}
-};
-
-class Derived: public Base {
-public:
-    virtual unsigned int Sum(unsigned int n) {
-        return Array[!!n]->Sum(n-1) + n;//n=0时，!!n=false,  n>=1时，!!n=true
-    }
-};
-
-class Solution {
-public:
-    int Sum_Solution(int n) {
-        Base a;
-        Derived b;
-        Array[0] = &a;
-        Array[1] = &b;
-        return b.Sum(n);
     }
 };
 ```
