@@ -11,8 +11,8 @@
 class assist {
 public:
     assist() {N++;sum += N;}
-    static void reset(){N=0;sum=0;}//在VS中不需要此调用函数也可以（不进行多加一次）
-    static unsigned int GetSum(){return sum;}
+    static void reset() {N=0;sum=0;}
+    static unsigned int GetSum() {return sum;}
 private:
     static int N;
     static int sum;
