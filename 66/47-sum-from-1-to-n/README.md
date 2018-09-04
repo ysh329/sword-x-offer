@@ -131,7 +131,7 @@ public:
 - a * b 可以这样算  
 ```cpp
 res = 0
-while(a){
+while(a) {
     if(a & 1) res += b;
     a >>= 1;
     b <<= 1; 
