@@ -18,6 +18,17 @@ public:
 };
 ```
 
+## pow
+
+```cpp
+class Solution {
+public:
+    int Sum_Solution(int n) {
+        return (int)(pow(n, 2) + n) >> 1;//计算n的2次幂
+    }
+};
+```
+
 
 ## 短路运算
 
