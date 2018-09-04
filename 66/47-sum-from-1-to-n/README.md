@@ -53,23 +53,29 @@ public:
 
 ## 虚函数
 
+- 使用虚函数来构造递归：    
+- 基类定义虚函数Sum(n)返回0  
+- 派生类定义虚函数的实例Sum(n)返回n  
+- 将基类和派生类的两个实例，绑定到指针数组中
+- 基类的Sum()返回0来结束递归，派生类的Sum()返回n来累加  
+- !!n来构造true(1)，false(0)对指针数组进行控制访问
+
 ```cpp
 class Base;
 Base* Array[2];
 
 class Base {
 public:
-    virtual int Sum(int n){return 0;}
+    virtual unsigned int Sum(unsigned int n) { return 0;}
 };
 
 class Derived: public Base {
 public:
-    virtual int Sum(int n) {
-        return Array[!!n]->Sum(n-1) + n;
+    virtual unsigned int Sum(unsigned int n) {
+        return Array[!!n]->Sum(n-1) + n;//n=0时，!!n=false,  n>=1时，!!n=true
     }
 };
-//使用虚函数来构造递归，在基类种定义虚函数Sum(n)返回0，通过将指针数组的两个元素分别绑定到基类和派生类，其中基类的Sum()
-//结束递归，!!n来构造true(1) false(0)来对指针数组进行访问
+
 class Solution {
 public:
     int Sum_Solution(int n) {
