@@ -27,12 +27,14 @@ public:
 
 ## 递归
 
+递归代替循环
+
 ```cpp
 class Solution {
 public:
     int Sum_Solution(int n) {
         int sum = n;
-        (sum > 0) && ((sum += Sum_Solution(--n)) > 0);
+        sum += sum>0 ? Sum_Solution(--n) : 0;
         return sum;
     }
 };
