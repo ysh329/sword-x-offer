@@ -117,6 +117,74 @@ public:
 };
 ```
 
+## 快速模乘
+
+作者：马客(Mark)
+
+- 复杂度 32的，可以说O(logM)吧，M是数值大小，对于int也可以说是O(1)吧虽然常数有点大  
+- 原理：类似快速幂，俗称快速模乘    
+- a * b 可以这样算  
+```cpp
+res = 0
+while(a){
+    if(a & 1) res += b;
+    a >>= 1;
+    b <<= 1; 
+}
+```
+
+原理是把a拆成2的幂的和，a = 2^e0 + 2^e1 + 2^e2....  
+那么 a * b = (2^e0 + 2^e1 + 2^e2+...) * b = b * 2^e0 + b * 2^e1 + b * 2^e2 + ...  
+= (b << e0) + (b << e1) + ....  
+
+```cpp
+//奇数返回0xffffffff，否则0
+#define f(x) ((((x) & 1) << 31) >> 31)
+class Solution {
+public:
+    int Sum_Solution(int n) {
+        int a = n, b = n + 1, s = 0;
+        //复制32次。。
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+         
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+         
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+         
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        s += b & f(a); a >>= 1; b <<= 1;
+        return s >> 1;
+    }
+};
+```
+
 ## 二位数组+sizeof
 
 [Using the GNU Compiler Collection (GCC): Variable Length](https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html)
