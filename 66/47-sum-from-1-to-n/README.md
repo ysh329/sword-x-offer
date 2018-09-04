@@ -246,3 +246,21 @@ public:
     }
 };
 ```
+
+## 模板
+
+下面代码不正确，没通过
+
+```cpp
+class Solution {    
+template <int m> inline int SumTo() { 
+    return m + SumTo<m-1>();
+}  
+template <> inline int SumTo<1>() { return 1; }
+
+public:
+    int Sum_Solution(int n) {
+        return SumTo(n);
+    }
+};
+```
