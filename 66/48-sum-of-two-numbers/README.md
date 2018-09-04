@@ -67,3 +67,19 @@ int add(int a, int b)
     }
 }
 ```
+
+```cpp
+class Solution {
+public:
+    int Add(int num1, int num2) {
+    int result=0;
+        __asm__( 
+            "add %1,%2\n\t"     //%1表示num2 %2表示num1,这个表示num2的值加到num1上
+            "mov %2,%0\n\t"     //%0表示目的寄存器,把num1复制到result上
+            :"=r"(result)       //%0,占用符号 
+            :"r"(num2),"r"(num1)//这一行是将C代码中的数据输入到汇编的代码中 
+        );  
+        return result;
+    }
+};
+```
