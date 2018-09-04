@@ -4,6 +4,9 @@
 
 ## 静态构造函数
 
+- 使用辅助类(assist)构造函数中的静态变量N和sum进行累加运算；
+- 通过实例化n个辅助类的实例，即通过构造一个以辅助类为类型、大小为n的数组，重复调用此构造函数n次来实现n次的累加运算  
+
 ```cpp
 class assist {
 public:
@@ -14,17 +17,19 @@ private:
     static int N;
     static int sum;
 };
-int assist::N = 0;
+
+int assist::N = 0;//非const的静态值初始化必须在类外
 int assist::sum = 0;
-//设置一个静态变量N和sum，在构造函数中进行累加运算；
-//然后构造一个以辅助类为类型、大小为n的数组，重复调用此构造函数n次来实现n次的累加运算
+
 class Solution {
 public:
     int Sum_Solution(int n) {
         assist::reset();
-        assist * p = new assist[n];
+        
+        assist *p = new assist[n];//new了n次，构造函数里的sum从1加到了n
         delete []p;
         p = nullptr;
+        
         return assist::GetSum();
     }
 };
