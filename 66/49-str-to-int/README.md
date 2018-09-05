@@ -15,7 +15,9 @@
 0
 ```
 
-## 常规解法
+## 索引遍历
+
+### 索引遍历1
 
 ```cpp
 class Solution {
@@ -62,7 +64,7 @@ public:
 };
 ```
 
-编译错误未通过
+### 索引遍历2
 
 ```cpp
 class Solution {
@@ -78,12 +80,9 @@ public:
         else if(str[i]=='+') {i++;}
         //数字
         for(; i<str.size(); i++) {
-            if('0'<=str[i] && str[i]<='9') {
-				int n = str[i] - '0';
-				int bit = 10**(str.size()-i-1);
-                res += n * bit;
-            }
-            else return res;
+            if('0'<=str[i] && str[i]<='9')
+                res = res*10 + (str[i]-'0');
+            else return 0;
         }
         return positive ? res : -res;
     }
