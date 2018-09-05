@@ -132,7 +132,7 @@ public:
             }
             if(str[index]!='\0') {
                 int length = str.size();
-                num = StrToIntCore(str.substr(index,length-index), minus);  
+                num = StrToIntCore(str.substr(index,length-index), minus);  //substr获得字符串s中,从第index位开始,长度为(length-index)的字符串,该值默认时的长度为从开始位置到字符串结尾
             }
         }
         return (int)num;
@@ -147,7 +147,8 @@ public:
                 int flag = minus ? -1 : 1;
                 num = num*10+ flag*(digit[i]-'0');
                 //越界情况
-                if((!minus&&num>0x7FFFFFFF) || (minus&&num<(signed int)0x80000000)) {
+                if( (minus>0 && num>0x7FFFFFFF) || //long int最大值0x7FFFFFFF
+                    (minus<0 && (signed int)num<0x80000000) ) { //int的最小值
                     num = 0;
                     break;
                 }
@@ -163,6 +164,8 @@ public:
     }
 };
 ```
+
+注意：在使用0X7FFFFFFF，0X80000000这两个的时候要赋值给一个 int 类型的变量，否则0X80000000并不代表int的最小值。
 
 ## 二进制位运算
 
