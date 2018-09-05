@@ -112,6 +112,58 @@ public:
 };
 ```
 
+更标准的写法：
+
+```cpp
+class Solution {
+public:
+    enum Status{kValid = 0, kInvalid};
+    int g_nStatus = kValid;
+    int StrToInt(string str) {
+        g_nStatus = kInvalid;
+        long long num = 0;
+        int index = 0;
+        if((!str.empty()) && str[index]!='\0') {
+            bool minus = false;
+            if(str[index]=='+') index++;
+            else if(str[index]=='-') {
+                index++;
+                minus = true;
+            }
+            if(str[index]!='\0') {
+                int length = str.size();
+                num = StrToIntCore(str.substr(index,length-index), minus);  
+            }
+        }
+        return (int)num;
+    }
+         
+    long long StrToIntCore(const string& digit, bool minus) {
+        long long num = 0;
+        int i = 0;
+        while(digit[i]!='\0') { //合法情况
+            //if(digit[i]=='+'||digit[i]=='-') i++;
+            if('0'<=digit[i] && digit[i]<='9') {
+                int flag = minus ? -1 : 1;
+                num = num*10+ flag*(digit[i]-'0');
+                //越界情况
+                if((!minus&&num>0x7FFFFFFF) || (minus&&num<(signed int)0x80000000)) {
+                    num = 0;
+                    break;
+                }
+                i++;
+            }
+            else {//非法情况
+                num = 0;
+                break;
+            }
+        }
+        g_nStatus = (digit[i]=='\0') ? kValid : g_nStatus;
+        return num;
+    }
+};
+```
+
 ## 二进制位运算
 
 - 字符'0'到'9'的ascii值的低4个二进制位刚好就是0到9  
