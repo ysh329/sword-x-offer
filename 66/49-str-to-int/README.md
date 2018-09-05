@@ -61,3 +61,31 @@ public:
     }
 };
 ```
+
+编译错误未通过
+
+```cpp
+class Solution {
+public:
+    int StrToInt(string str) {
+        int res = 0;
+        //空，0
+        if(str.empty()) return res;
+        int i = 0;
+        //正负号
+        int positive = 1;
+        if(str[i]=='-') {positive = 0; i++;}
+        else if(str[i]=='+') {i++;}
+        //数字
+        for(; i<str.size(); i++) {
+            if('0'<=str[i] && str[i]<='9') {
+				int n = str[i] - '0';
+				int bit = 10**(str.size()-i-1);
+                res += n * bit;
+            }
+            else return res;
+        }
+        return positive ? res : -res;
+    }
+};
+```
