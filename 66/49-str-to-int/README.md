@@ -19,6 +19,8 @@
 
 ### 索引遍历1
 
+第一次写的
+
 ```cpp
 class Solution {
 public:
@@ -66,6 +68,8 @@ public:
 
 ### 索引遍历2
 
+第二次写的
+
 ```cpp
 class Solution {
 public:
@@ -104,6 +108,30 @@ public:
             res = res*10 + (str[i]-'0');
         }
         return positive ? res : -res;
+    }
+};
+```
+
+## 二进制位运算
+
+- 字符'0'到'9'的ascii值的低4个二进制位刚好就是0到9  
+- 因而，str[i]-'0' 等同于 (str[i] & 0xf)，0xf 即二进制的 0b1111  
+- (res << 1) + (res << 3) = res * 2 + res * 8 = res * 10   
+- 位运算会比乘法运算效率高那么一点  
+
+```cpp
+class Solution {
+public:
+    int StrToInt(string str) {
+        int n = str.size(), s = 1;
+        long long res = 0;
+        if(!n) return 0;
+        if(str[0] == '-') s = -1;
+        for(int i = (str[0] ==  '-' || str[0] == '+') ? 1 : 0; i < n; ++i){
+            if(!('0' <= str[i] && str[i] <= '9')) return 0;
+            res = (res << 1) + (res << 3) + (str[i] & 0xf);
+        }
+        return res * s;
     }
 };
 ```
