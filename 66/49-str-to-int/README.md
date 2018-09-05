@@ -88,3 +88,22 @@ public:
     }
 };
 ```
+
+### 索引遍历3
+
+```cpp
+class Solution {
+public:
+    int StrToInt(string str) {
+        if(str.empty()) return 0;
+        int positive = str[0]=='-' ? 0 : 1;
+        int res = 0;
+        for(int i=0; i<str.size(); ++i){
+            if(!i && (str[i]=='+' || str[i]=='-')) continue;
+            if(str[i]<'0' || str[i]>'9') return 0;
+            res = res*10 + (str[i]-'0');
+        }
+        return positive ? res : -res;
+    }
+};
+```
