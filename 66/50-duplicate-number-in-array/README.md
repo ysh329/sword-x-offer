@@ -4,6 +4,8 @@
 
 ## 哈希表
 
+### 哈希表1
+
 ```cpp
 class Solution {
 public:
@@ -29,6 +31,25 @@ public:
             }
         }
         return found;
+    }
+};
+```
+
+### 哈希表2
+
+```cpp
+class Solution {
+public:
+    bool duplicate(int numbers[], int length, int* duplication) {
+        vector<bool> dict(length, false);
+        for(int nidx = 0; nidx < length; nidx++) {
+            if(dict[numbers[nidx]]==true) {
+                *duplication = numbers[nidx];
+                return true;
+            }
+            dict[numbers[nidx]] = true;
+        }
+        return false;
     }
 };
 ```
