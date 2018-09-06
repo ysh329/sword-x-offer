@@ -53,3 +53,30 @@ public:
     }
 };
 ```
+
+### 哈希表3
+
+- 考虑到数组有效元素的值均在`[0, length-1]`的这一特性  
+- 将数组下标和值作为哈希表的key-value  
+- 确保`nidx==numbers[nidx]`,否则交换`swap(numbers[nidx], numbers[numbers[nidx]])`  
+- 若当前遍历到的第nidx个元素的值与数组numbers[numbers[nidx]]相同，即`numbers[nidx]==numbers[numbers[nidx]]`,则说明有重复
+
+```cpp
+class Solution {
+public:
+    bool duplicate(int numbers[], int length, int* duplication) {
+        if(length<=0 || numbers==NULL) return false;
+        for(int nidx=0; nidx<length; nidx++) {
+            if(numbers[nidx]<0 || length-1<numbers[nidx]) return false;
+            while(numbers[nidx]!=nidx) {
+                if(numbers[nidx]==numbers[numbers[nidx]]) {
+                    *duplication = numbers[nidx];
+                    return true;
+                }
+                swap(numbers[nidx], numbers[numbers[nidx]]);
+            }
+        }
+        return false;
+    }
+};
+```
