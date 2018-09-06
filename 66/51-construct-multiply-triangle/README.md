@@ -36,14 +36,14 @@ public:
     vector<int> multiply(const vector<int>& A) {
         vector<int> B(A.size(), 1);
         // 计算下三角
-        for(int idx=0, cur_prod=1; idx<A.size(); idx++) {
-            cur_prod *= (idx>=1) ? A[idx-1] : 1;
-            B[idx] = cur_prod;
+        for(int idx=0, prod=1; idx<A.size(); idx++) {
+            prod *= (idx>0) ? A[idx-1] : 1;
+            B[idx] = prod;
         }
         // 计算上三角
-        for(int idx=A.size()-1, cur_prod=1; idx>=0; idx--) {
-            cur_prod *= (idx<A.size()-1) ? A[idx+1] : 1;
-            B[idx] *= cur_prod;
+        for(int idx=A.size()-1, prod=1; idx>=0; idx--) {
+            prod *= (idx<A.size()-1) ? A[idx+1] : 1;
+            B[idx] *= prod;
         }
         return B;
     }
