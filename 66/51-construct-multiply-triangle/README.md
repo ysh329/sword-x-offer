@@ -10,7 +10,9 @@ b3:  a0 a1 a2  1 a4
 b4:  a0 a1 a2 a3  1
 ```
 
-## O(n^2)
+## 计算每个元素
+
+- 时间复杂度：O(n^2)
 
 ```cpp
 class Solution {
@@ -28,7 +30,9 @@ public:
 };
 ```
 
-## O(N)
+## 分别计算上/下三角
+
+- 时间复杂度：O(N)
 
 ```cpp
 class Solution {
@@ -54,21 +58,15 @@ public:
 class Solution {
 public:
     vector<int> multiply(const vector<int>& A) {
-        int n = A.size();
-        if(n==0){
-            return vector<int>();
-        }
-        vector<int> B(A.size(),1);
-        int begin = 1;
-        int end = 1;
+        vector<int> B(A.size(), 1);
+        int begin = 1, end = 1, n = A.size();
         for(int i=0; i<n; i++){
-            B[i]*=begin;
-            B[n-1-i]*=end;
-            begin*=A[i];
-            end*=A[n-1-i];
-             
+            B[i] *= begin;
+            B[n-1-i] *= end;
+            begin *= A[i];
+            end *= A[n-1-i];
         }
-        return B;       
+        return B;
     }
 };
 ```
