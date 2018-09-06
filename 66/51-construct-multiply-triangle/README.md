@@ -34,6 +34,8 @@ public:
 
 - 时间复杂度：O(N)
 
+### 分别计算上/下三角1
+
 ```cpp
 class Solution {
 public:
@@ -54,17 +56,19 @@ public:
 };
 ```
 
+### 分别计算上/下三角2
+
 ```cpp
 class Solution {
 public:
     vector<int> multiply(const vector<int>& A) {
         vector<int> B(A.size(), 1);
         int begin = 1, end = 1, n = A.size();
-        for(int i=0; i<n; i++){
-            B[i] *= begin;
-            B[n-1-i] *= end;
-            begin *= A[i];
-            end *= A[n-1-i];
+        for(int i=0; i<n; i++) {
+            B[i] *= begin;   //第一次跳过0
+            B[n-1-i] *= end; //第一次跳过n-1
+            begin *= A[i];   //计算下三角连乘
+            end *= A[n-1-i]; //计算上三角连乘
         }
         return B;
     }
