@@ -35,12 +35,12 @@ class Solution {
 public:
     vector<int> multiply(const vector<int>& A) {
         vector<int> B(A.size(), 1);
-        // 计算上/下三角
+        // 计算下三角
         for(int idx=0, cur_prod=1; idx<A.size(); idx++) {
             cur_prod *= (idx>=1) ? A[idx-1] : 1;
             B[idx] = cur_prod;
         }
-        // 计算下/上三角
+        // 计算上三角
         for(int idx=A.size()-1, cur_prod=1; idx>=0; idx--) {
             cur_prod *= (idx<A.size()-1) ? A[idx+1] : 1;
             B[idx] *= cur_prod;
