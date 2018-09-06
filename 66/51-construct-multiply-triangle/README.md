@@ -77,54 +77,45 @@ public:
 
 ## 动态规划
 
-1. 计算前i - 1个元素的乘积，及后N - i个元素的乘积分别保存在两个数组中。这可以用动态规划实现。  
-2. 计算B[i]的值。
+### 动态规划1
+
+1. 计算前i - 1个元素的乘积(下三角)，及后N - i个元素的乘积(上三角)，可用动态规划实现   
+2. 计算B[i]的值 
 
 ```cpp
-链接：https://www.nowcoder.com/questionTerminal/94a4d381a68b47b7a8bed86f2975db46
-来源：牛客网
-
-import java.util.ArrayList;
-public class Solution {
-    int[] multiply(int[] A) {
-        int len = A.length;
-        int forword[] = new int[len];
-        int backword[] = new int[len];
-        int B[] = new int[len];
-        forword[0] = 1;
-        backword[0] = 1;
-        for(int i = 1;i < len; i++){
-            forword[i] = A[i - 1]*forword[i-1];
-            backword[i] = A[len - i]*backword[i - 1];
+class Solution {
+public:
+    vector<int> multiply(const vector<int>& A) {
+        vector<int> down(A.size(), 1);
+        vector<int> up(A.size(), 1);
+        vector<int> B(A.size(), 1);
+        for(int i=1; i<A.size(); i++) {     //分别跳过上三角的0，下三角的n-1
+            down[i] = A[i-1] * down[i-1];   //计算下三角
+            up[i] = A[A.size()-i] * up[i-1];//计算上三角
         }
-        for(int i = 0; i < len; i++){
-            B[i] = forword[i] * backword[len - i -1];
+        for(int i=0; i<A.size(); i++)
+            B[i] = down[i] * up[A.size()-i-1];
+        return B;
+    }
+};
+```
+
+### 动态规划2
+
+```cpp
+class Solution {
+public:
+    vector<int> multiply(const vector<int>& A) {
+        vector<int> B(A.size(), 1);
+        // 计算前i - 1个元素的乘积，相当于计算下三角
+        for(int i=1; i<A.size(); i++)
+            B[i] = A[i-1] * B[i-1];
+        // 计算后N - i个元素的乘积并连接，用up累乘得到上三角
+        for(int i=(int)A.size()-2, up=1; i>=0; i--) {
+            up *= A[i+1];
+            B[i] *= up;
         }
         return B;
     }
-}
-```
-
-```cpp
-作者：BugFree
-链接：https://www.nowcoder.com/questionTerminal/94a4d381a68b47b7a8bed86f2975db46
-来源：牛客网
-
-public static int [] multiply(int[] A) {
-  int len = A.length;
-  int[] B = new int[len];
-  if (A.length != 0) {
-   B[0] = 1;
-   // 计算前i - 1个元素的乘积
-   for (int i = 1; i < A.length; i++)
-    B[i] = A[i - 1] * B[i - 1];
-   int temp = 1;
-   // 计算后N - i个元素的乘积并连接
-   for (int i = len - 2; i >= 0; i--) {
-    temp *= A[i + 1];
-    B[i] *= temp;
-   }
-  }
-  return B;
-    }
+};
 ```
