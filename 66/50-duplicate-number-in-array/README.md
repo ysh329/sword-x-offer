@@ -6,6 +6,8 @@
 
 ### 哈希表1
 
+- 时间复杂度:O(n), 空间复杂度：O(n)
+
 ```cpp
 class Solution {
 public:
@@ -37,6 +39,8 @@ public:
 
 ### 哈希表2
 
+- 时间复杂度:O(n), 空间复杂度：O(n)
+
 ```cpp
 class Solution {
 public:
@@ -56,6 +60,7 @@ public:
 
 ### 哈希表3
 
+- 时间复杂度:O(n), 空间复杂度：O(1)  
 - 考虑到数组有效元素的值均在`[0, length-1]`的这一特性  
 - 将数组下标和值作为哈希表的key-value  
 - 确保`nidx==numbers[nidx]`,否则交换`swap(numbers[nidx], numbers[numbers[nidx]])`  
