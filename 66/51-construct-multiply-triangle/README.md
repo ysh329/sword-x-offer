@@ -16,14 +16,93 @@ b4:  a0 a1 a2 a3  1
 class Solution {
 public:
     vector<int> multiply(const vector<int>& A) {
-        vector<int> res(A.size());
+        vector<int> B(A.size());
         for(int idxB=0; idxB<A.size(); idxB++) {
             int prod = 1;
             for(int idxA=0; idxA<A.size(); idxA++)
                 prod *= idxA==idxB ? 1 : A[idxA];
-            res[idxB] = prod;
+            B[idxB] = prod;
         }
-        return res;
+        return B;
     }
 };
+```
+
+## O(N)
+
+```cpp
+class Solution {
+public:
+    vector<int> multiply(const vector<int>& A) {
+        int n = A.size();
+        if(n==0){
+            return vector<int>();
+        }
+        vector<int> B(A.size(),1);
+        int begin = 1;
+        int end = 1;
+        for(int i=0; i<n; i++){
+            B[i]*=begin;
+            B[n-1-i]*=end;
+            begin*=A[i];
+            end*=A[n-1-i];
+             
+        }
+        return B;       
+    }
+};
+```
+
+## 动态规划
+
+1. 计算前i - 1个元素的乘积，及后N - i个元素的乘积分别保存在两个数组中。这可以用动态规划实现。  
+2. 计算B[i]的值。
+
+```cpp
+链接：https://www.nowcoder.com/questionTerminal/94a4d381a68b47b7a8bed86f2975db46
+来源：牛客网
+
+import java.util.ArrayList;
+public class Solution {
+    int[] multiply(int[] A) {
+        int len = A.length;
+        int forword[] = new int[len];
+        int backword[] = new int[len];
+        int B[] = new int[len];
+        forword[0] = 1;
+        backword[0] = 1;
+        for(int i = 1;i < len; i++){
+            forword[i] = A[i - 1]*forword[i-1];
+            backword[i] = A[len - i]*backword[i - 1];
+        }
+        for(int i = 0; i < len; i++){
+            B[i] = forword[i] * backword[len - i -1];
+        }
+        return B;
+    }
+}
+```
+
+```cpp
+作者：BugFree
+链接：https://www.nowcoder.com/questionTerminal/94a4d381a68b47b7a8bed86f2975db46
+来源：牛客网
+
+public static int [] multiply(int[] A) {
+  int len = A.length;
+  int[] B = new int[len];
+  if (A.length != 0) {
+   B[0] = 1;
+   // 计算前i - 1个元素的乘积
+   for (int i = 1; i < A.length; i++)
+    B[i] = A[i - 1] * B[i - 1];
+   int temp = 1;
+   // 计算后N - i个元素的乘积并连接
+   for (int i = len - 2; i >= 0; i--) {
+    temp *= A[i + 1];
+    B[i] *= temp;
+   }
+  }
+  return B;
+    }
 ```
