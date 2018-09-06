@@ -35,9 +35,8 @@ class Solution {
 public:
     vector<int> multiply(const vector<int>& A) {
         vector<int> B(A.size(), 1);
-        int cur_prod = 1;
         // 计算上三角
-        for(int idx=0; idx<A.size(); idx++) {
+        for(int idx=0, cur_prod=1; idx<A.size(); idx++) {
             cur_prod *= (idx>=1) ? A[idx-1] : 1;
             B[idx] = cur_prod;
         }
