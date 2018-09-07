@@ -2,4 +2,4 @@
 
 - [27-string-permutation](./27-string-permutation/)
 - [35-inverse-pairs-in-array](./35-inverse-pairs-in-array/)
-- [52-regular-expression-match](./52-regular-expression-match)
+- [52-regular-expression-match](./52-regular-expression-match/)
