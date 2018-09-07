@@ -72,7 +72,7 @@ public:
 
 ## 动态规划
 
-```
+```cpp
 #include<regex>
 class Solution {
 public:
