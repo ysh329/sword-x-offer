@@ -9,17 +9,19 @@ public:
     bool match(char* str, char* pattern) {
         if(*str=='\0' && *pattern=='\0') return true;
         if(*str!='\0' && *pattern=='\0') return false;
-        // 下一个不是*
-        if(*(pattern+1)!='*') {
+        if(*(pattern+1)!='*')// 下一个不是*
+        {
             if(*str==*pattern || (*str!='\0' && *pattern=='.'))
                 return match(str+1, pattern+1);
-            else return false;
+            else
+            return false;
         }
-        else {// 下一个是*
-            if(*str==*pattern || (*str!='\0' && *pattern=='.'))
-                // 匹配0个 || 匹配1个
+        else // 下一个是*
+        {
+            if(*str==*pattern || (*str!='\0' && *pattern=='.')) // 匹配0个 || 匹配1个
                 return match(str, pattern+2) || match(str+1, pattern);
-            else return match(str, pattern+2);
+            else
+                return match(str, pattern+2);
         }
     }
 };
@@ -70,51 +72,11 @@ public:
 };
 ```
 
-```
-链接：https://www.nowcoder.com/questionTerminal/45327ae22b7b413ea21df13ee7d6429c
-来源：牛客网
-
-.* 是.的意义可以重复多次还是同一个字符重复多次（也就是.*能不能匹配abcdef），虽然我猜根本没有这种数据（hehe）
-f(a, b) 表示s[a..n]和p[b..m]的匹配结果，枚举一个可匹配的前缀进行转移，记忆化避免重复计算。O(n^2)
-
-class Solution {
-    char *s, *p;
-    int n, m;
-    char f[1000][1000];   //此处本应是动态申请f[n + 1][m + 1]，为了方便简洁就算了
-    char judge(int a, int b){
-        if(a > n || b > m) return 0;
-        if(~f[a][b]) return f[a][b];
-        char &ret = f[a][b];
-        if(a == n && b == m) return ret = 1;
-        if(p[b + 1] != '*'){
-            if(p[b] == '.' || s[a] == p[b]) return ret = judge(a + 1, b + 1);
-            else return ret = 0;
-        }
-        else{
-            for(int i = a; i <= n; ++i){
-                if(judge(i, b + 2)) return ret = 1;
-                if(s[i] != p[b] && p[b] != '.') return ret = 0;
-            }
-            return ret = 0;
-        }
-    }
-public:
-    bool match(char* str, char* pat){
-        s = str, n = strlen(s);
-        p = pat, m = strlen(p);
-        memset(f, 0xff, sizeof f);
-        return judge(0, 0);
-    }
-};
-
-```
-
-
 ```cpp
 链接：https://www.nowcoder.com/questionTerminal/45327ae22b7b413ea21df13ee7d6429c
 来源：牛客网
 
-看到一堆指数级的回答,,还有题目都没说 .* 是.的意义可以重复多次还是同一个字符重复多次（也就是.*能不能匹配abcdef），虽然我猜根本没有这种数据（hehe）
+.* 是.的意义可以重复多次还是同一个字符重复多次（也就是.*能不能匹配abcdef），虽然我猜根本没有这种数据（hehe）
 f(a, b) 表示s[a..n]和p[b..m]的匹配结果，枚举一个可匹配的前缀进行转移，记忆化避免重复计算。O(n^2)
 
 class Solution {
