@@ -9,12 +9,12 @@ public:
     bool match(char* str, char* pattern) {
         if(*str=='\0' && *pattern=='\0') return true;
         if(*str!='\0' && *pattern=='\0') return false;
-        if(*(pattern+1)!='*')// 下一个不是*
+        if(*(pattern+1)!='*') // 下一个不是*
         {
             if(*str==*pattern || (*str!='\0' && *pattern=='.'))
                 return match(str+1, pattern+1);
             else
-            return false;
+                return false;
         }
         else // 下一个是*
         {
