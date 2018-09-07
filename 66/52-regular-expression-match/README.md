@@ -5,6 +5,8 @@
 - 例如，字符串`"aaa"`与模式`"a.a"`和`"ab*ac*a"`匹配，但是与`"aa.a"`和`"ab*a"`均不匹配。
 
  ## 递归
+ 
+ ### 递归1
 
 ```cpp
 class Solution {
@@ -30,16 +32,40 @@ public:
 };
 ```
 
-## 标准库
+### 递归2
+
+- 时间复杂度：O(n^2)
+- .* 是.的意义可以重复多次，还是同一个字符重复多次（也就是`.*`能不能匹配`abcdef`），虽然我猜根本没有这种数据（hehe）  
+- `f(a, b)`表示`s[a..n]`和`p[b..m]`的匹配结果，枚举一个可匹配的前缀进行转移，记忆化避免重复计算  
 
 ```cpp
-#include<regex>
 class Solution {
+    char *s, *p;
+    int n, m;
+    char f[1000][1000];   //此处本应是动态申请f[n + 1][m + 1]，为了方便简洁就算了
+    char judge(int a, int b){
+        if(a > n || b > m) return 0;
+        if(~f[a][b]) return f[a][b];
+        char &ret = f[a][b];
+        if(a == n && b == m) return ret = 1;
+        if(p[b + 1] != '*'){
+            if(p[b] == '.' || s[a] == p[b]) return ret = judge(a + 1, b + 1);
+            else return ret = 0;
+        }
+        else{
+            for(int i = a; i <= n; ++i){
+                if(judge(i, b + 2)) return ret = 1;
+                if(s[i] != p[b] && p[b] != '.') return ret = 0;
+            }
+            return ret = 0;
+        }
+    }
 public:
-    bool match(char* str, char* pattern)
-    {
-        regex reg(pattern);
-        return regex_match(str,reg);
+    bool match(char* str, char* pat){
+        s = str, n = strlen(s);
+        p = pat, m = strlen(p);
+        memset(f, 0xff, sizeof f);
+        return judge(0, 0);
     }
 };
 ```
@@ -76,41 +102,16 @@ public:
 };
 ```
 
-### 递归2
-
-- 时间复杂度：O(n^2)
-- .* 是.的意义可以重复多次，还是同一个字符重复多次（也就是`.*`能不能匹配`abcdef`），虽然我猜根本没有这种数据（hehe）  
-- `f(a, b)`表示`s[a..n]`和`p[b..m]`的匹配结果，枚举一个可匹配的前缀进行转移，记忆化避免重复计算  
-
+## 标准库
 
 ```cpp
+#include<regex>
 class Solution {
-    char *s, *p;
-    int n, m;
-    char f[1000][1000];   //此处本应是动态申请f[n + 1][m + 1]，为了方便简洁就算了
-    char judge(int a, int b){
-        if(a > n || b > m) return 0;
-        if(~f[a][b]) return f[a][b];
-        char &ret = f[a][b];
-        if(a == n && b == m) return ret = 1;
-        if(p[b + 1] != '*'){
-            if(p[b] == '.' || s[a] == p[b]) return ret = judge(a + 1, b + 1);
-            else return ret = 0;
-        }
-        else{
-            for(int i = a; i <= n; ++i){
-                if(judge(i, b + 2)) return ret = 1;
-                if(s[i] != p[b] && p[b] != '.') return ret = 0;
-            }
-            return ret = 0;
-        }
-    }
 public:
-    bool match(char* str, char* pat){
-        s = str, n = strlen(s);
-        p = pat, m = strlen(p);
-        memset(f, 0xff, sizeof f);
-        return judge(0, 0);
+    bool match(char* str, char* pattern)
+    {
+        regex reg(pattern);
+        return regex_match(str,reg);
     }
 };
 ```
