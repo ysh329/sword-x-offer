@@ -15,16 +15,16 @@ public:
         if(*pattern=='\0' && *str=='\0') return true;
         if(*pattern=='\0' && *str!='\0') return false;
         if(*(pattern+1)!='*') {
-            if(*str==*pattern || (*str!='\0' && *pattern=='.'))
+            if(*str==*pattern || (*str!='\0' && *pattern=='.')) //pattern匹配str || str匹配pattern的.即任意
                 return match(str+1, pattern+1);
             else
                 return false;
         }
         else {
-            if(*str==*pattern || (*str!='\0' && *pattern=='.'))
-                return match(str, pattern+2) || match(str+1, pattern); //没匹配的情形 || 匹配上str，
-            else
-                return match(str, pattern+2); //没有匹配*
+            if(*str==*pattern || (*str!='\0' && *pattern=='.')) //pattern匹配str || str匹配pattern的.即任意
+                return match(str, pattern+2) || match(str+1, pattern);//当前匹配则继续下一种模式(pattern+2)，或者仍旧该模式，去匹配下一个str+1
+            else //pattern匹配到0个str
+                return match(str, pattern+2);
         }
     }
 };
