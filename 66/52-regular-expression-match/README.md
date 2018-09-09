@@ -41,17 +41,17 @@ class Solution {
     char *s, *p;
     int n, m;
     char f[1000][1000];   //此处本应是动态申请f[n + 1][m + 1]，为了方便简洁就算了
-    char judge(int a, int b){
+    char judge(int a, int b) {
         if(a > n || b > m) return 0;
         if(~f[a][b]) return f[a][b];
         char &ret = f[a][b];
         if(a == n && b == m) return ret = 1;
-        if(p[b + 1] != '*'){
+        if(p[b + 1] != '*') {
             if(p[b] == '.' || s[a] == p[b]) return ret = judge(a + 1, b + 1);
             else return ret = 0;
         }
         else{
-            for(int i = a; i <= n; ++i){
+            for(int i = a; i <= n; ++i) {
                 if(judge(i, b + 2)) return ret = 1;
                 if(s[i] != p[b] && p[b] != '.') return ret = 0;
             }
@@ -67,6 +67,11 @@ public:
     }
 };
 ```
+
+`void *memset(void *buffer, int c, int count)`用法：  
+- 将buff所指向的某一块内存中的每个字节的内容全部设置为c指定的ASCII值   
+- 块的大小由count指定  
+- 这个函数通常为新申请的内存做初始化工作
 
 ## 动态规划
 
