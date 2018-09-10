@@ -43,67 +43,47 @@ public:
 
 ### 逐字符遍历2
 
-先说一下思路吧：  
-1.整数开始部分遇到+、-号跳过  
-2.小数点只能出现一次  
-3.小数点之前不能存在e  
-4.e之前必须有整数  
-5.e只能出现一次  
-6.e之后可存在+、-号，但+-之后必须有整数  
+1. +,-  
+    1.1 整数开始部分遇到+、-号跳过  
+2. 小数点  
+    2.1 只能出现一次  
+    2.2 小数点之前不能存在e  
+3. e  
+    3.1 e之前必须有整数  
+    3.2 e只能出现一次  
+    3.3 e之后可存在+、-号，但+-之后必须有整数  
   
 ```cpp
 class Solution {
 public:
-    bool isNumeric(char* str)
-    {
-        if (str == NULL)
-        return false;
-    if (*str == '+' || *str == '-')
-        ++str;
-    if (*str == '\0')
-        return false;
-    int x = 0;    //标记整数部分
-    int digit = 0; //标记小数点
-    int e = 0;     //标记e的状态
-    while (*str != '\0')
-    {
-        //标记整数部分的状态
-        if (*str >= '0' && *str <= '9')
-        {
-            ++str;
-            x = 1;
-        }
-        //小数点
-        else if (*str == '.')
-        {
-            //前面已经出现过小数点或小数点之前存在e，则返回false
-            if (digit > 0 || e > 0)
-                return false;
-            ++str;
-            digit = 1;    //标记小数点已经出现过
-        }
- 
-        //e
-        else if (*str == 'e' || *str == 'E')
-        {
-            //e之前没有整数或e已经出现过，则返回false
-            if (x == 0 || e > 0)
-                return false;
-            ++str;
-            e = 1;     //标记e表示已经出现过
- 
-            //e之后可以出现+-号再加整数
-            if (*str == '+' || *str == '-')
+    bool isNumeric(char* str) {
+        if(str==NULL || *str=='\0') return false;
+        if(*str=='+' || *str=='-') ++str;
+        bool hasNum = false;
+        bool hasDot = false;
+        bool hasE = false;
+        while(*str != '\0') {
+            if(*str>='0' && *str<='9') { //标记整数部分的状态
                 ++str;
-            if (*str == '\0')
-                return false;
+                hasNum = true;
+            }
+            else if(*str == '.') { //小数点只能出现1次，e后无小数点
+                if(hasDot || hasE) return false;
+                ++str;
+                hasDot = true;
+            }
+            else if(*str=='e' || *str=='E') { //e前没有整数或e已经出现过，则返回false
+                if(!hasNum || hasE) return false;
+                ++str;
+                hasE = true;
+                //e之后可以出现+-号再加整数
+                if(*str=='+' || *str=='-') ++str;
+                if(*str=='\0') return false;
+            }
+            else return false;
         }
-        else
-            return false;
+        return true;
     }
-    return true;
-    }
- 
 };
 ```
 
