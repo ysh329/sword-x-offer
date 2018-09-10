@@ -41,19 +41,19 @@ class Solution {
     char *s, *p;
     int n, m;
     char f[1000][1000];   //此处本应是动态申请f[n + 1][m + 1]，为了方便简洁就算了
-    char judge(int a, int b) {
-        if(a > n || b > m) return 0;
-        if(~f[a][b]) return f[a][b];
-        char &ret = f[a][b];
-        if(a == n && b == m) return ret = 1;
-        if(p[b + 1] != '*') {
-            if(p[b] == '.' || s[a] == p[b]) return ret = judge(a + 1, b + 1);
+    char judge(int sidx, int pidx) {
+        if(sidx > n || pidx > m) return 0;
+        if(~f[sidx][pidx]) return f[sidx][pidx];
+        char &ret = f[sidx][pidx];
+        if(sidx == n && pidx == m) return ret = 1;
+        if(p[pidx + 1] != '*') {
+            if(p[pidx] == '.' || s[sidx] == p[pidx]) return ret = judge(sidx + 1, pidx + 1);
             else return ret = 0;
         }
         else{
-            for(int i = a; i <= n; ++i) {
-                if(judge(i, b + 2)) return ret = 1;
-                if(s[i] != p[b] && p[b] != '.') return ret = 0;
+            for(int i = sidx; i <= n; ++i) {
+                if(judge(i, pidx + 2)) return ret = 1;
+                if(s[i] != p[pidx] && p[pidx] != '.') return ret = 0;
             }
             return ret = 0;
         }
