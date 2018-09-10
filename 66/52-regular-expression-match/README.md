@@ -5,8 +5,6 @@
 - 例如，字符串`"aaa"`与模式`"a.a"`和`"ab*ac*a"`匹配，但是与`"aa.a"`和`"ab*a"`均不匹配。
 
  ## 递归
- 
- ### 递归1
 
 ```cpp
 class Solution {
@@ -30,23 +28,26 @@ public:
 };
 ```
 
-### 递归2
+## 动态规划
+
 
 - 时间复杂度：O(n^2)
 - .* 是.的意义可以重复多次，还是同一个字符重复多次（也就是`.*`能不能匹配`abcdef`），虽然我猜根本没有这种数据（hehe）  
-- `f(a, b)`表示`s[a..n]`和`p[b..m]`的匹配结果，枚举一个可匹配的前缀进行转移，记忆化避免重复计算  
+- `dp(a, b)`表示`s[a..n]`和`p[b..m]`的匹配结果，枚举一个可匹配的前缀进行转移，记忆化避免重复计算  
 
+注：下面有两版动态规划代码，实现只是第一个是C，第二个是C++，第二版的实现更好理解一些。
 
+### 动态规划1
 
 ```cpp
 class Solution {
     char *s, *p;
     int n, m;
-    char f[1000][1000]; //此处本应是动态申请f[n + 1][m + 1]，为了方便简洁就算了
+    char dp[1000][1000]; //此处本应是动态申请f[n + 1][m + 1]，为了方便简洁就算了
     char judge(int sidx, int pidx) {
         if(sidx > n || pidx > m) return 0;//越界退出
-        if(~f[sidx][pidx]) return f[sidx][pidx];//f初始化元素为0xff(即0b11111111),在执行该函数过程中某些元素值可能变为0，这句没太看懂（去掉这句也对）
-        char &ret = f[sidx][pidx];//引用，char类型，后面赋值1或者0，如若不匹配为0匹配为1
+        if(~dp[sidx][pidx]) return dp[sidx][pidx];//f初始化元素为0xff(即0b11111111),在执行该函数过程中某些元素值可能变为0，这句没太看懂（去掉这句也对）
+        char &ret = dp[sidx][pidx];//引用，char类型，后面赋值1或者0，如若不匹配为0匹配为1
         if(sidx == n && pidx == m) return ret = 1;//到字符结尾退出，完全匹配
         if(p[pidx + 1] != '*') {
             if(p[pidx] == '.' || s[sidx] == p[pidx]) return ret = judge(sidx + 1, pidx + 1);
@@ -64,7 +65,7 @@ public:
     bool match(char* str, char* pat){
         s = str, n = strlen(s);
         p = pat, m = strlen(p);
-        memset(f, 0xff, sizeof f);
+        memset(dp, 0xff, sizeof dp);
         return judge(0, 0);
     }
 };
@@ -78,10 +79,9 @@ public:
 函数返回赋值语句
 - 函数返回一个赋值语句表示：把这个值作为函数的返回
 
-## 动态规划
+### 动态规划2
 
 ```cpp
-#include<regex>
 class Solution {
 public:
     bool match(char* str, char* pattern)
