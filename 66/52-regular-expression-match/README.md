@@ -113,7 +113,7 @@ public:
 ## 标准库
 
 ```cpp
-#include<regex>
+#include <regex>
 class Solution {
 public:
     bool match(char* str, char* pattern)
