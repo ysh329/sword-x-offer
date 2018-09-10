@@ -4,7 +4,6 @@
 - 例如，字符串`"+100"`,`"5e2"`,`"-123"`,`"3.1416"`和`"-1E-16"`都表示数值。  
 - 但是`"12e"`,`"1a3.14"`,`"1.2.3"`,`"+-5"`和`"12e+4.3"`都不是。
 
-
 结果不对 
 ```cpp
 class Solution {
@@ -54,6 +53,8 @@ public:
 
 ## 逐字符遍历
 
+### 逐字符遍历1
+
 ```cpp
 class Solution {
 public:
@@ -82,6 +83,8 @@ public:
     }
 };
 ```
+
+### 逐字符遍历2
 
 先说一下思路吧：  
 1.整数开始部分遇到+、-号跳过  
@@ -262,9 +265,6 @@ public:
 ![auto](auto2.jpg)
 
 ```cpp
-链接：https://www.nowcoder.com/questionTerminal/6f8c901d091949a5837e24bb82a731f2
-来源：牛客网
-
 class Solution {
 private:
     enum STATUS{ END = 0, START, SIGNED1, INTEGER, POINT, FLOAT, EXPONENT, SIGNED2, SCIENCE };
