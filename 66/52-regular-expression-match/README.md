@@ -36,16 +36,18 @@ public:
 - .* 是.的意义可以重复多次，还是同一个字符重复多次（也就是`.*`能不能匹配`abcdef`），虽然我猜根本没有这种数据（hehe）  
 - `f(a, b)`表示`s[a..n]`和`p[b..m]`的匹配结果，枚举一个可匹配的前缀进行转移，记忆化避免重复计算  
 
+
+
 ```cpp
 class Solution {
     char *s, *p;
     int n, m;
-    char f[1000][1000];   //此处本应是动态申请f[n + 1][m + 1]，为了方便简洁就算了
+    char f[1000][1000]; //此处本应是动态申请f[n + 1][m + 1]，为了方便简洁就算了
     char judge(int sidx, int pidx) {
-        if(sidx > n || pidx > m) return 0;
-        if(~f[sidx][pidx]) return f[sidx][pidx];
-        char &ret = f[sidx][pidx];
-        if(sidx == n && pidx == m) return ret = 1;
+        if(sidx > n || pidx > m) return 0;//越界退出
+        if(~f[sidx][pidx]) return f[sidx][pidx];//f初始化元素为0xff(即0b11111111),在执行该函数过程中某些元素值可能变为0，这句没太看懂（去掉这句也对）
+        char &ret = f[sidx][pidx];//引用，char类型，后面赋值1或者0，如若不匹配为0匹配为1
+        if(sidx == n && pidx == m) return ret = 1;//到字符结尾退出，完全匹配
         if(p[pidx + 1] != '*') {
             if(p[pidx] == '.' || s[sidx] == p[pidx]) return ret = judge(sidx + 1, pidx + 1);
             else return ret = 0;
