@@ -51,3 +51,210 @@ public:
 
 };
 ```
+
+## 逐字符遍历
+
+```cpp
+class Solution {
+public:
+    bool isNumeric(char* str) {
+        // 标记符号、小数点、e是否出现过
+        bool sign = false, decimal = false, hasE = false;
+        for (int i = 0; i < strlen(str); i++) {
+            if (str[i] == 'e' || str[i] == 'E') {
+                if (i == strlen(str)-1) return false; // e后面一定要接数字
+                if (hasE) return false;  // 不能同时存在两个e
+                hasE = true;
+            } else if (str[i] == '+' || str[i] == '-') {
+                // 第二次出现+-符号，则必须紧接在e之后
+                if (sign && str[i-1] != 'e' && str[i-1] != 'E') return false;
+                // 第一次出现+-符号，且不是在字符串开头，则也必须紧接在e之后
+                if (!sign && i > 0 && str[i-1] != 'e' && str[i-1] != 'E') return false;
+                sign = true;
+            } else if (str[i] == '.') {
+              // e后面不能接小数点，小数点不能出现两次
+                if (hasE || decimal) return false;
+                decimal = true;
+            } else if (str[i] < '0' || str[i] > '9') // 不合法字符
+                return false;
+        }
+        return true;
+    }
+};
+```
+
+```cpp
+链接：https://www.nowcoder.com/questionTerminal/6f8c901d091949a5837e24bb82a731f2
+来源：牛客网
+
+先说一下思路吧：
+1.整数开始部分遇到+、-号跳过
+2.小数点只能出现一次
+3.小数点之前不能存在e
+4.e之前必须有整数
+5.e只能出现一次
+6.e之后可存在+、-号，但+-之后必须有整数
+ 
+class Solution {
+public:
+    bool isNumeric(char* str)
+    {
+        if (str == NULL)
+        return false;
+    if (*str == '+' || *str == '-')
+        ++str;
+    if (*str == '\0')
+        return false;
+    int x = 0;    //标记整数部分
+    int digit = 0; //标记小数点
+    int e = 0;     //标记e的状态
+    while (*str != '\0')
+    {
+        //标记整数部分的状态
+        if (*str >= '0' && *str <= '9')
+        {
+            ++str;
+            x = 1;
+        }
+        //小数点
+        else if (*str == '.')
+        {
+            //前面已经出现过小数点或小数点之前存在e，则返回false
+            if (digit > 0 || e > 0)
+                return false;
+            ++str;
+            digit = 1;    //标记小数点已经出现过
+        }
+ 
+        //e
+        else if (*str == 'e' || *str == 'E')
+        {
+            //e之前没有整数或e已经出现过，则返回false
+            if (x == 0 || e > 0)
+                return false;
+            ++str;
+            e = 1;     //标记e表示已经出现过
+ 
+            //e之后可以出现+-号再加整数
+            if (*str == '+' || *str == '-')
+                ++str;
+            if (*str == '\0')
+                return false;
+        }
+        else
+            return false;
+    }
+    return true;
+    }
+ 
+};
+```
+
+## 正则表达式
+
+```cpp
+//正则表达式解法
+public class Solution {
+    public boolean isNumeric(char[] str) {
+        String string = String.valueOf(str);
+        return string.matches("[\\+\\-]?\\d*(\\.\\d+)?([eE][\\+\\-]?\\d+)?");
+    }
+}
+/*
+以下对正则进行解释:
+[\\+\\-]?            -> 正或负符号出现与否
+\\d*                 -> 整数部分是否出现，如-.34 或 +3.34均符合
+(\\.\\d+)?           -> 如果出现小数点，那么小数点后面必须有数字；
+                        否则一起不出现
+([eE][\\+\\-]?\\d+)? -> 如果存在指数部分，那么e或E肯定出现，+或-可以不出现，
+                        紧接着必须跟着整数；或者整个部分都不出现
+*/
+ 
+```
+
+## 自动机
+
+### 自动机1
+
+```cpp
+class Solution {
+public:
+    bool isNumeric(char* string)
+    {
+        int i = 0;
+        if(string[i]=='+' || string[i]=='-' || IsNum(string[i])){
+            while(string[++i]!='\0' && IsNum(string[i]));
+            if(string[i]=='.'){
+                if(IsNum(string[++i])){
+                    while(string[++i]!='\0' && IsNum(string[i]));
+                    if(string[i]=='e'||string[i]=='E'){
+                        i++;
+                        if(string[i]=='+' || string[i]=='-' || IsNum(string[i])){
+                            while(string[++i]!='\0' && IsNum(string[i]));
+                            if(string[i]=='\0') return true;
+                            else return false;
+                        }else return false;
+                    }else if(string[i]=='\0') return true;
+                    else return false;
+                }else if(string[++i]=='\0') return true;
+                else return false;
+            }else if(string[i]=='e'||string[i]=='E'){
+                i++;
+                if(string[i]=='+' || string[i]=='-' || IsNum(string[i])){
+                    while(string[++i]!='\0' && IsNum(string[i]));
+                    if(string[i]=='\0') return true;
+                    else return false;
+                }else return false;
+            }else if(string[i]=='\0') return true;
+            else return false;           
+        }else return false;
+    }
+     
+    bool IsNum(char ch)
+    {
+        if(ch<'0'||ch>'9') return false;
+        else return true;
+    }
+};
+```
+
+### 自动机2
+
+```cpp
+class Solution {
+public:
+    char arr[10] = "+-n.ne+-n";
+    int turn[10][9] = {
+       //+  -  n  .  n  e  +  -  n
+        {1, 1, 1, 0, 0, 0, 0, 0, 0},    // # start
+        {0, 0, 1, 1, 0, 0, 0, 0, 0},    // +
+        {0, 0, 1, 1, 0, 0, 0, 0, 0},    // -
+        {0, 0, 1, 1, 0, 1, 0, 0, 0},    // n
+        {0, 0, 0, 0, 1, 0, 0, 0, 0},    // .
+        {0, 0, 0, 0, 1, 1, 0, 0, 0},    // n
+        {0, 0, 0, 0, 0, 0, 1, 1, 1},    // e
+        {0, 0, 0, 0, 0, 0, 0, 0, 1},    // +
+        {0, 0, 0, 0, 0, 0, 0, 0, 1},    // -
+        {0, 0, 0, 0, 0, 0, 0, 0, 1}     // n
+    };
+    bool isNumeric(char* string) {
+        int cur = 0;
+        for(int j, i = 0; string[i]; i++) {
+            for(j = 0; j < 9; j++) {
+                if(turn[cur][j]) {
+                    if(('0' <= string[i] && string[i] <= '9' && arr[j] == 'n') ||
+                        (string[i] == 'E' && arr[j] == 'e')||
+                        string[i] == arr[j]) {
+                        cur = j + 1;
+                        break;
+                    }
+                }
+            }
+            if(j == 9) return false;
+        }
+        if(cur == 3 || cur == 4 || cur == 5 || cur == 9)
+           return true;
+        return false;
+    }
+};
+```
