@@ -83,18 +83,15 @@ public:
 };
 ```
 
+先说一下思路吧：  
+1.整数开始部分遇到+、-号跳过  
+2.小数点只能出现一次  
+3.小数点之前不能存在e  
+4.e之前必须有整数  
+5.e只能出现一次  
+6.e之后可存在+、-号，但+-之后必须有整数  
+  
 ```cpp
-链接：https://www.nowcoder.com/questionTerminal/6f8c901d091949a5837e24bb82a731f2
-来源：牛客网
-
-先说一下思路吧：
-1.整数开始部分遇到+、-号跳过
-2.小数点只能出现一次
-3.小数点之前不能存在e
-4.e之前必须有整数
-5.e只能出现一次
-6.e之后可存在+、-号，但+-之后必须有整数
- 
 class Solution {
 public:
     bool isNumeric(char* str)
@@ -169,14 +166,13 @@ public class Solution {
 ([eE][\\+\\-]?\\d+)? -> 如果存在指数部分，那么e或E肯定出现，+或-可以不出现，
                         紧接着必须跟着整数；或者整个部分都不出现
 */
- 
 ```
 
 ## 自动机
 
 ### 自动机1
 
-![auto](自动机.jpg)
+![auto](auto1.jpg)
 
 ```cpp
 class Solution {
@@ -263,7 +259,7 @@ public:
 
 ### 自动机3
 
-![auto](./自动机2.jpg)
+![auto](auto2.jpg)
 
 ```cpp
 链接：https://www.nowcoder.com/questionTerminal/6f8c901d091949a5837e24bb82a731f2
