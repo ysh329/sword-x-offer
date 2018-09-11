@@ -8,21 +8,20 @@
 class Solution
 {
 public:
-    //Insert one char from stringstream
     string s;
-    char hash[256] = {0};
+    char hash[256]={0};
+  //Insert one char from stringstream
     void Insert(char ch)
     {
         s += ch;
         hash[ch]++;
     }
-    //return the first appearence once char in current stringstream
+  //return the first appearence once char in current stringstream
     char FirstAppearingOnce()
-    { 
-        for(int sidx=0; sidx<s.size(); sidx++)
-        {
-            if(hash[s[sidx]]==1)
-                return s[sidx];
+    {
+        for(int i = 0; i < s.size(); i++) {
+            if(hash[s[i]]==1)
+                return s[i];
         }
         return '#';
     }
