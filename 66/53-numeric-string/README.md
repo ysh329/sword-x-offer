@@ -90,15 +90,20 @@ public:
 ## 正则表达式
 
 ```cpp
-//正则表达式解法
-public class Solution {
-    public boolean isNumeric(char[] str) {
-        String string = String.valueOf(str);
-        return string.matches("[\\+\\-]?\\d*(\\.\\d+)?([eE][\\+\\-]?\\d+)?");
+#include <regex>
+class Solution {
+public:
+    bool isNumeric(char* string)
+    {
+        regex reg("[\\+\\-]?\\d*(\\.\\d+)?([eE][\\+\\-]?\\d+)?");
+        return regex_match(string, reg);
     }
-}
-/*
+};
+```
+
 以下对正则进行解释:
+
+```
 [\\+\\-]?            -> 正或负符号出现与否
 \\d*                 -> 整数部分是否出现，如-.34 或 +3.34均符合
 (\\.\\d+)?           -> 如果出现小数点，那么小数点后面必须有数字；
