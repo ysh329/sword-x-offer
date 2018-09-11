@@ -10,13 +10,13 @@ class Solution
 public:
     string s;
     char hash[256]={0};
-  //Insert one char from stringstream
+    //Insert one char from stringstream
     void Insert(char ch)
     {
         s += ch;
         hash[ch]++;
     }
-  //return the first appearence once char in current stringstream
+    //return the first appearence once char in current stringstream
     char FirstAppearingOnce()
     {
         for(int i = 0; i < s.size(); i++) {
