@@ -179,6 +179,8 @@ public:
 
 ### 自动机2
 
+状态转移表
+
 ```cpp
 class Solution {
 public:
