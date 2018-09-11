@@ -129,6 +129,8 @@ http://www.runoob.com/regexp/regexp-syntax.html
 
 ## 自动机
 
+自动机有3种写法，第一种看懂了，第二种用状态转移表，没看明白，第三种没看懂。
+
 ### 自动机1
 
 ![auto](./auto.png)
