@@ -131,7 +131,9 @@ http://www.runoob.com/regexp/regexp-syntax.html
 
 ### 自动机1
 
-![auto](auto1.jpg)
+![auto](./auto.png)
+
+![auto](./auto.jpg)
 
 ```cpp
 class Solution {
