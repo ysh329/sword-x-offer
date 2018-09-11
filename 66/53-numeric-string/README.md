@@ -133,7 +133,7 @@ http://www.runoob.com/regexp/regexp-syntax.html
 
 ![auto](./auto.png)
 
-![auto](./auto.jpg)
+![auto](./auto1.jpg)
 
 ```cpp
 class Solution {
