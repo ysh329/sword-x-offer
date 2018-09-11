@@ -122,6 +122,9 @@ public:
 
 ^ 指的是匹配字符串开始的位置
 [^指定字符串] 指的是除指定字符串以外的其他字符串
+
+参考：正则表达式 – 语法 | 菜鸟教程
+http://www.runoob.com/regexp/regexp-syntax.html
 ```
 
 ## 自动机
