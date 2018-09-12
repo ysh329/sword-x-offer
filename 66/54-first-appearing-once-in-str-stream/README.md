@@ -41,13 +41,13 @@ public:
 class Solution
 {
 public:
-  //Insert one char from stringstream
+    //Insert one char from stringstream
     void Insert(char ch) {  
         ++cnt[ch - '\0'];
         if(cnt[ch - '\0'] == 1)
             data.push(ch);
     }
-  //return the first appearence once char in current stringstream
+    //return the first appearence once char in current stringstream
     char FirstAppearingOnce() {
         while(!data.empty() && cnt[data.front()] >= 2) 
             data.pop();
@@ -70,20 +70,23 @@ class Solution
 {
     int t, a[128];
     public:
-    Solution(){
+    Solution() {
         t = 0;
-        memset(a, 0, sizeof a);
-    }
-  //Insert one char from stringstream
+        memset(a, 0, sizeof a); 
+    }   
+    //Insert one char from stringstream
     void Insert(char ch) {
-       if(a[ch]) a[ch] = -1;
+       if(a[ch]) a[ch] = -1; //0值为假,非0值为真
        else a[ch] = ++t;
-    }
-  //return the first appearence once char in current stringstream
+    }   
+    //return the first appearence once char in current stringstream
     char FirstAppearingOnce() {
         char res = '#';
-        int mi = ~(1 << 31);
-        for(int i = 0; i < 128; ++i) if(a[i] > 0 && a[i] < mi) res = i, mi = a[i];
+        int upper = ~(1 << 31);//~(1<<31):2147483647, 1<<31:-2147483648
+        for(int i = 0; i < 128; ++i)
+            if(a[i] > 0 && a[i] < upper) {
+                res = i, upper = a[i];
+            }
         return res;
     }
 };
