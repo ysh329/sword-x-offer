@@ -6,6 +6,8 @@
 
 ## 哈希表
 
+### 哈希表1
+
 ```cpp
 class Solution
 {
@@ -30,8 +32,38 @@ public:
 };
 ```
 
+### 哈希表2
 
-## 其它
+1. insert的时候cnt统计字符出现个数，同时将出现过1次的字符插入队列    
+2. 查找的时候，若队列第一个出现次数大于1则pop出去，直到为空或者出现仅有一次的字符
+
+```cpp
+class Solution
+{
+public:
+  //Insert one char from stringstream
+    void Insert(char ch) {  
+        ++cnt[ch - '\0'];
+        if(cnt[ch - '\0'] == 1)
+            data.push(ch);
+    }
+  //return the first appearence once char in current stringstream
+    char FirstAppearingOnce() {
+        while(!data.empty() && cnt[data.front()] >= 2) 
+            data.pop();
+        if(data.empty()) return '#';
+        return data.front();
+    }
+    Solution() {
+      memset(cnt, 0, sizeof(cnt));    
+    }
+private:
+    queue<char> data;
+    unsigned cnt[128];
+};
+```
+
+### 哈希表3
 
 ```cpp
 class Solution
