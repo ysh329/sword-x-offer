@@ -4,6 +4,8 @@
 
 如果当前字符流没有存在出现一次的字符，返回#字符。
 
+## 哈希表
+
 ```cpp
 class Solution
 {
@@ -24,6 +26,33 @@ public:
                 return s[i];
         }
         return '#';
+    }
+};
+```
+
+
+## 其它
+
+```cpp
+class Solution
+{
+    int t, a[128];
+    public:
+    Solution(){
+        t = 0;
+        memset(a, 0, sizeof a);
+    }
+  //Insert one char from stringstream
+    void Insert(char ch) {
+       if(a[ch]) a[ch] = -1;
+       else a[ch] = ++t;
+    }
+  //return the first appearence once char in current stringstream
+    char FirstAppearingOnce() {
+        char res = '#';
+        int mi = ~(1 << 31);
+        for(int i = 0; i < 128; ++i) if(a[i] > 0 && a[i] < mi) res = i, mi = a[i];
+        return res;
     }
 };
 ```
