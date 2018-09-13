@@ -35,7 +35,7 @@ public:
     ListNode* EntryNodeOfLoop(ListNode* pHead) {
         if(!pHead || !pHead->next) return nullptr;
         ListNode *pSlow = pHead;
-        ListNode *pFast = pHead->next;
+        ListNode *pFast = pHead;
         while(pSlow!=pFast) {
             if(!pFast) return nullptr;
             pSlow = pSlow->next;
@@ -57,6 +57,40 @@ public:
             pSlow = pSlow->next;
         }
         return pSlow;
+    }
+};
+```
+
+
+```cpp
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    ListNode* EntryNodeOfLoop(ListNode* pHead) {
+        if(!pHead || !pHead->next) return nullptr;
+        ListNode *pFast = pHead;
+        ListNode *pSlow = pHead;
+        while(pFast->next && pSlow) {
+            pFast = pFast->next->next;
+            pSlow = pSlow->next;
+            if(pFast == pSlow) {
+                pFast = pHead;
+                while(pFast != pSlow) {
+                    pFast = pFast->next;
+                    pSlow = pSlow->next;
+                }
+                return pFast;
+            }
+        }
+        return nullptr;
     }
 };
 ```
