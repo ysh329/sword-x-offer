@@ -20,6 +20,8 @@
 2. pFast一次2步，pSlow一次1步，直到相遇且非nullptr；  
 3. 设pFast = pHead，pFast改为一次1步，与pSlow同时走，直到相遇，相遇点为环入口。
 
+下面代码是错误的
+
 ```cpp
 /*
 struct ListNode {
