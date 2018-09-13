@@ -2,7 +2,7 @@
 
 给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。
 
-## 分析
+## 常规解法
 
 1. 设定两个指针pFast(注：pHead->next!=nullptr), pSlow；  
 2. p1一次走一步，p2一次走两步。直到两个指针相等且非空时（相等为空则无环），设定计数器loop_length=0；  
@@ -19,8 +19,6 @@
 1. 设定两个指针: pFast = pHead, pSlow = pHead;  
 2. pFast一次2步，pSlow一次1步，直到相遇且非nullptr；  
 3. 设pFast = pHead，pFast和pSlow同时每次走1步，直到相遇，相遇点为环入口。
-
-## 常规解法
 
 ```cpp
 /*
