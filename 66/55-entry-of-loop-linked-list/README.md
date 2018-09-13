@@ -20,6 +20,8 @@
 2. pFast一次2步，pSlow一次1步，直到相遇且非nullptr；  
 3. 设pFast = pHead，pFast和pSlow同时每次走1步，直到相遇，相遇点为环入口。
 
+## 常规解法
+
 ```cpp
 /*
 struct ListNode {
@@ -49,6 +51,40 @@ public:
             }
         }
         return nullptr;
+    }
+};
+```
+
+## 断链法
+
+- 设定两个指针：pSlow = pHead, pFast = pHead->next；  
+- 每次先断开pSlow->next，用pFast来pSlow，pFast再向前走一步，：pSlow->next = nullptr, pSlow = pFast, pFast = pFast->next；
+- 若出现环，则在先前已经被断开：pSlow->next = nullptr，此节点也是pFast->next为nullptr的节点，则更新后的pFast为nullptr，pSlow则为环入口节点。  
+
+注：若链表无环，则返回的pSlow为倒数第一个节点。
+
+```cpp
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    ListNode* EntryNodeOfLoop(ListNode* pHead) {
+        if(!pHead || !pHead->next) return nullptr;
+        ListNode *pFast = pHead->next;
+        ListNode *pSlow = pHead;
+		while(pFast) {
+			pSlow->next = nullptr;
+			pSlow = pFast;
+			pFast = pFast->next;
+		}
+		return pSlow;
     }
 };
 ```
