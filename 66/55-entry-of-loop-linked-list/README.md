@@ -89,6 +89,8 @@ public:
 
 ## 哈希表
 
+下面代码不正确
+
 ```cpp
 /*
 struct ListNode {
@@ -113,5 +115,29 @@ public:
 
 ## set
 
+下面代码不正确
+
 ```cpp
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    ListNode* EntryNodeOfLoop(ListNode* pHead) {
+		if(!pHead || !pHead->next) return nullptr;
+		set<ListNode*> s;
+		while(pHead) {
+			if(!s.add(pHead))
+				return pHead;
+			pHead = pHead->next;
+		}
+		return nullptr;
+	}
+};
 ```
