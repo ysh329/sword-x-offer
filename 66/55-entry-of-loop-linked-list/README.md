@@ -16,9 +16,9 @@
 
 简化后的完整流程如下：
 
-1. pFast = pHead->next->next, pSlow = pHead;  
+1. 设定两个指针: pFast = pHead, pSlow = pHead;  
 2. pFast一次2步，pSlow一次1步，直到相遇且非nullptr；  
-3. 设pFast = pHead，pFast改为一次1步，与pSlow同时走，直到相遇，相遇点为环入口。
+3. 设pFast = pHead，pFast和pSlow同时每次走1步，直到相遇，相遇点为环入口。
 
 ```cpp
 /*
