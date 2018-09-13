@@ -90,6 +90,25 @@ public:
 ## 哈希表
 
 ```cpp
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    ListNode* EntryNodeOfLoop(ListNode* pHead) {
+        if(!pHead || !pHead->next) return nullptr;
+        map<ListNode*, int> mp;
+        for(ListNode *p = pHead; p; p=p->next) {
+            ;
+        }
+    }
+};
 ```
 
 ## set
