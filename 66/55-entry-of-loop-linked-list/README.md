@@ -20,50 +20,6 @@
 2. pFast一次2步，pSlow一次1步，直到相遇且非nullptr；  
 3. 设pFast = pHead，pFast改为一次1步，与pSlow同时走，直到相遇，相遇点为环入口。
 
-下面代码是错误的
-
-```cpp
-/*
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-        val(x), next(NULL) {
-    }
-};
-*/
-class Solution {
-public:
-    ListNode* EntryNodeOfLoop(ListNode* pHead) {
-        if(!pHead || !pHead->next) return nullptr;
-        ListNode *pSlow = pHead;
-        ListNode *pFast = pHead;
-        while(pSlow!=pFast) {
-            if(!pFast) return nullptr;
-            pSlow = pSlow->next;
-            pFast = pFast->next->next;
-        }
-        int loop_length = 1;
-        pSlow = pSlow->next;
-        pFast = pFast->next->next;
-        while(pSlow!=pFast) {
-            if(!pFast) return nullptr;
-            loop_length++;
-            pSlow = pSlow->next;
-            pFast = pFast->next->next;
-        }
-        pSlow = pFast = pHead;
-        while(loop_length--) pFast = pFast->next;
-        while(pFast==pSlow) {
-            pFast = pFast->next;
-            pSlow = pSlow->next;
-        }
-        return pSlow;
-    }
-};
-```
-
-
 ```cpp
 /*
 struct ListNode {
@@ -80,10 +36,10 @@ public:
         if(!pHead || !pHead->next) return nullptr;
         ListNode *pFast = pHead;
         ListNode *pSlow = pHead;
-        while(pFast->next && pSlow) {
-            pFast = pFast->next->next;
+        while(pSlow && pFast->next) {
             pSlow = pSlow->next;
-            if(pFast == pSlow) {
+            pFast = pFast->next->next;
+            if(pSlow == pFast) {
                 pFast = pHead;
                 while(pFast != pSlow) {
                     pFast = pFast->next;
