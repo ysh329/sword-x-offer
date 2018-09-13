@@ -79,12 +79,12 @@ public:
         if(!pHead || !pHead->next) return nullptr;
         ListNode *pFast = pHead->next;
         ListNode *pSlow = pHead;
-		while(pFast) {
-			pSlow->next = nullptr;
-			pSlow = pFast;
-			pFast = pFast->next;
-		}
-		return pSlow;
+        while(pFast) {
+            pSlow->next = nullptr;
+            pSlow = pFast;
+            pFast = pFast->next;
+        }
+        return pSlow;
     }
 };
 ```
