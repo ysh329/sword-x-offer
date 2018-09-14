@@ -107,8 +107,10 @@ public:
         if(!pHead || !pHead->next) return nullptr;
         map<ListNode*, int> mp;
         for(ListNode *p = pHead; p; p=p->next) {
-            ;
+            mp[p]++;
+            if(mp[p]==2) return p;
         }
+        return nullptr;
     }
 };
 ```
