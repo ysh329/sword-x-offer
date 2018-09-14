@@ -34,3 +34,37 @@ public:
     }
 };
 ```
+
+下面代码不正确：
+```cpp
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    ListNode* deleteDuplication(ListNode* pHead) {
+        if(!pHead) return pHead;
+        // 计算头结点
+        while(pHead) {
+            if(pHead->next && pHead->val==pHead->next->val)
+                pHead = pHead->next->next;
+        }
+        //计算后续结点的去重
+        ListNode *p = pHead;
+        while(p) {
+            if(p->next->next &&
+               p->next->val == p->next->next->val) {
+                p->next = p->next->next->next;
+                p = p->next;
+            }
+        }
+        return pHead;
+    }
+};
+```
