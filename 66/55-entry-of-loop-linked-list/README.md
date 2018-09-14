@@ -102,7 +102,6 @@ struct ListNode {
 class Solution {
 public:
     ListNode* EntryNodeOfLoop(ListNode* pHead) {
-        if(!pHead || !pHead->next) return nullptr;
         map<ListNode*, int> mp;
         for(ListNode *p = pHead; p; p=p->next) {
             mp[p]++;
