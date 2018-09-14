@@ -89,8 +89,6 @@ public:
 
 ## 哈希表
 
-下面代码不正确
-
 ```cpp
 /*
 struct ListNode {
@@ -117,8 +115,6 @@ public:
 
 ## set
 
-下面代码不正确
-
 ```cpp
 /*
 struct ListNode {
@@ -132,14 +128,18 @@ struct ListNode {
 class Solution {
 public:
     ListNode* EntryNodeOfLoop(ListNode* pHead) {
-		if(!pHead || !pHead->next) return nullptr;
-		set<ListNode*> s;
-		while(pHead) {
-			if(!s.add(pHead))
-				return pHead;
-			pHead = pHead->next;
-		}
-		return nullptr;
-	}
+        set<ListNode*> s;
+        while(pHead) {
+            if(!s.insert(pHead).second) return pHead;
+            pHead = pHead->next;
+        }
+        return nullptr;
+    }
 };
 ```
+
+
+- Return value of set::insert:
+The single element versions (1) return a pair, with its member pair::first set to an iterator pointing to either the newly inserted element or to the equivalent element already in the set. The pair::second element in the pair is set to true if a new element was inserted or false if an equivalent element already existed.
+- set::insert - C++ Reference http://www.cplusplus.com/reference/set/set/insert/
+
