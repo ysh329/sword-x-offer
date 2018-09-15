@@ -16,12 +16,12 @@ struct ListNode {
 class Solution {
 public:
     ListNode* deleteDuplication(ListNode* pHead) {
-        if(pHead==NULL || pHead->next==NULL) // 0或1个节点，直接返回
+        if(!pHead || !pHead->next) // 0或1个节点，直接返回
             return pHead;
-        if(pHead->val==pHead->next->val) // 第一个节点与第二个重复
+        if(pHead->val == pHead->next->val) // 第一个节点与第二个重复
         {
             ListNode *pNode = pHead->next;
-            while(pNode!=NULL && pNode->val==pHead->val)
+            while(pNode && pNode->val==pHead->val)
                 pNode = pNode->next;
             return deleteDuplication(pNode);
         }
