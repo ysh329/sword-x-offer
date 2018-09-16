@@ -101,7 +101,7 @@ public:
 - 按层数为列表的索引值存为子列表    
 - 将奇数层反转
 
-```python
+```cpp
 /*
 struct TreeNode {
     int val;
