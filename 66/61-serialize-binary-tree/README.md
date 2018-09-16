@@ -28,7 +28,7 @@ public:
         return result;
     }
 
-    void Serialize(TreeNode *root, string &str) {    
+    void Serialize(TreeNode *root, string& str) {    
         if(!root) {
             str += "#";
             return;
