@@ -69,14 +69,14 @@ struct TreeNode {
 };
 */
 class Solution {
-    bool Traversal(TreeNode* pRoot, unsigned int depth) {
-        if(!pRoot) return true;
+    void Traversal(TreeNode* pRoot, unsigned int depth) {
+        if(!pRoot) return;
         if(res.size() == depth)
             res.emplace_back(vector<int>{pRoot->val});
         else
             res[depth].emplace_back(pRoot->val);
-        return Traversal(pRoot->left, depth+1) &&
-               Traversal(pRoot->right, depth+1);
+        Traversal(pRoot->left,  depth+1);
+        Traversal(pRoot->right, depth+1);
     }
 public:
     vector<vector<int> > res;
