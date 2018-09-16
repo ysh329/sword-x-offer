@@ -47,6 +47,11 @@ public:
 
 ### 非递归2：两个栈
 
+1. 创建奇数栈s1与偶数栈s2，分别用来保存奇数层节点，偶数层节点。层数从第一层算起；
+2. 奇数栈的存储顺序从左往右，偶数栈的存储顺序从右往左。这样确保了top拿到结果的顺序为之字形；
+3. 当弹出奇数栈节点时，以从左到右的方式，保存节点的左右孩子到偶数栈，因栈先进后出，保证偶数栈出栈的顺序为先右后左；
+4. 当弹出偶数栈节点时，以从右到左的方式，保存节点的右左孩子到奇数栈，因栈先进后出，保证奇数栈出栈的顺序为先左后右。
+
 ```cpp
 /*
 struct TreeNode {
@@ -92,34 +97,41 @@ public:
 
 ## 递归
 
-```python
-链接：https://www.nowcoder.com/questionTerminal/91b69814117f4e8097390d107d2efbe0
-来源：牛客网
+- 递归每层节点保存为结果  
+- 按层数为列表的索引值存为子列表    
+- 将奇数层反转
 
-# Python 解法，用递归遍历每一层节点，并按层数为列表的索引值存为子列表
-# 然后把奇数索引的子列表倒序即可
- 
-# -*- coding:utf-8 -*-
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-class Solution:
-    def Print(self, pRoot):
-        # write code here
-        res = list()
-        def Traversal(node, depth=0):
-            if not node:
-                return True
-            if len(res) == depth:
-                res.append([node.val])
-            else:
-                res[depth].append(node.val)
-            return Traversal(node.left, depth+1) and Traversal(node.right, depth+1)
-        Traversal(pRoot)
-        for i, v in enumerate(res):
-            if i % 2 == 1:
-                v.reverse()
-        return res
+```python
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+    bool Traversal(TreeNode* pRoot, unsigned int depth) {
+        if(!pRoot) return true;
+        if(res.size() == depth)
+            res.emplace_back(vector<int>{pRoot->val});
+        else
+            res[depth].emplace_back(pRoot->val);
+        return Traversal(pRoot->left, depth+1) &&
+               Traversal(pRoot->right, depth+1);
+    }
+public:
+    vector<vector<int> > res;
+    vector<vector<int> > Print(TreeNode* pRoot) {
+        Traversal(pRoot, 0);
+        for(int layer_idx = 0; layer_idx<res.size(); layer_idx++) {
+            vector<int>& layer_vals = res[layer_idx];
+            if(layer_idx&1 == 1) //奇数层反转
+                reverse(layer_vals.begin(), layer_vals.end());
+        }
+        return res;
+    }
+};
 ```
