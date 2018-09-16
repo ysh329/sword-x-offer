@@ -17,21 +17,17 @@ struct ListNode {
 class Solution {
 public:
     ListNode* deleteDuplication(ListNode* pHead) {
-        if(!pHead || !pHead->next) // 0或1个节点，直接返回
-            return pHead;
-        if(pHead->val == pHead->next->val) // 第一个节点与第二个重复
-        {
-            ListNode *pNode = pHead->next;
-            while(pNode && pNode->val==pHead->val)
-                pNode = pNode->next;
-            return deleteDuplication(pNode);
+        if(!pHead || !pHead->next) return pHead; //少于两个结点返回
+        if(pHead->val == pHead->next->val) { //相同，继续查重
+            ListNode *pNext = pHead->next;
+            while(pNext && pHead->val==pNext->val)
+                pNext = pNext->next;
+            return deleteDuplication(pNext);//直接返回或作为pHead->next的值返回
         }
-        else //从不重复的节点开始链接，最后返回
-        {
+        else { //不同，继续下一结点
             pHead->next = deleteDuplication(pHead->next);
             return pHead;
         }
-
     }
 };
 ```
