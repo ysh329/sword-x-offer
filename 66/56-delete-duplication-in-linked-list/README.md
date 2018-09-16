@@ -39,9 +39,9 @@ public:
 ## 非递归
 
 1. 找到头节点。找到后确保链表中所有数不是一样的（用last_val保留上一节点的值，判断得到的头节点pHead是否为最后一个节点，是否与上一个节点的值相同）；  
-2. 去重复。根据当前节点p，观察p->next与p->next->next的值是否相同；
-    2.1 若相同，则将p->next指向存在的p->next->next->next，且继续continue，后续去重；
-    2.2 若不同，则继续下一个节点p = p->next。
+2. 去重复。根据当前节点p，观察p->next与p->next->next的值是否相同；  
+    2.1 若相同，则将p->next指向存在的p->next->next->next，且继续continue，后续去重；  
+    2.2 若不同，则继续下一个节点p = p->next。  
 
 ```cpp
 /*
