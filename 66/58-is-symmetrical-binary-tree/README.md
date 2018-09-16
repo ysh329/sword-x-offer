@@ -32,6 +32,24 @@ public:
 };
 ```
 
+```cpp
+链接：https://www.nowcoder.com/questionTerminal/ff05d44dfdb04e1d83bdbdab320efbcb
+来源：牛客网
+
+class Solution {
+public:
+    bool isSymmetrical(TreeNode* pRoot)
+    {
+        return aux(pRoot,pRoot);
+    }
+    bool aux(TreeNode* l, TreeNode* r) {
+        if(l&&r&&l->val==r->val)
+            return aux(l->left,r->right)&&aux(l->right,r->left);
+        return !l&&!r;
+    }
+};
+```
+
 ## 非递归
 
 用栈或者队列
