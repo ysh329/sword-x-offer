@@ -5,7 +5,7 @@
 
 ## 非递归
 
-### 非递归1
+### 非递归1：先找头结点
 
 1. 找到头节点。找到后确保链表中所有数不是一样的（用last_val保留上一节点的值，判断得到的头节点pHead是否为最后一个节点，是否与上一个节点的值相同）；  
 2. 去重复。根据当前节点p，观察p->next与p->next->next的值是否相同；  
@@ -54,7 +54,7 @@ public:
 };
 ```
 
-### 非递归2
+### 非递归2：虚拟一个头结点
 
 ```cpp
 /*
@@ -83,6 +83,45 @@ public:
             }
             else {
                 pLast = p;
+                p = p->next;
+            }
+        }
+        return pStart->next;
+    }
+};
+```
+
+### 非递归3：虚拟一个头结点
+
+```cpp
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    ListNode* deleteDuplication(ListNode* pHead) {
+        if(!pHead || !pHead->next) return pHead;
+        ListNode* pStart = new ListNode(-1); //新建节点防止头结点被删除
+        pStart->next = pHead;
+        ListNode* pre = pStart;
+        ListNode* p = pHead;
+        ListNode* next = nullptr;
+        while(p && p->next) {
+            next=p->next;
+            if(p->val==next->val) {
+                while(next && p->val==next->val) //向后重复查找
+                    next = next->next;
+                pre->next = next; //用不重复的结点重新定义
+                p = next;
+            }
+            else { //如果当前节点和下一个节点值不等，则向后移动一位
+                pre = p;
                 p = p->next;
             }
         }
