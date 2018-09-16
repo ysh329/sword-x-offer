@@ -62,10 +62,44 @@ public:
 
 ### BFS
 
+用队列来保存，注意栈的先入先出的特点，注意取与存时候的顺序
+
 ```cpp
 ```
 
 ### DFS
 
+用栈来保存，注意栈的先入后出的特点，注意取与存时候的顺序
+
 ```cpp
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    bool isSymmetrical(TreeNode* pRoot) {
+        if(!pRoot) return true;
+        stack<TreeNode*> s;
+        s.push(pRoot->left);
+        s.push(pRoot->right);
+        while(s.size()) {
+            TreeNode *r = s.top(); s.pop();
+            TreeNode *l  = s.top(); s.pop();
+            if(!r && !l) continue;
+            else if(!r || !l || r->val!=l->val) return false;
+            s.push(l->left);
+            s.push(r->right);
+            s.push(l->right);
+            s.push(r->left);
+        }
+        return true;
+    }
+};
 ```
