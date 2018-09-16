@@ -48,6 +48,47 @@ public:
 ### 非递归2：两个栈
 
 ```cpp
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    vector<vector<int> > Print(TreeNode* pRoot) {
+        if(!pRoot) return vector<vector<int> >();
+        vector<vector<int> > res;
+        stack<TreeNode*> s1, s2; //s1: odd index stack, s2: even index stack
+        s1.push(pRoot);
+        while(s1.size() || s2.size()) {
+            vector<int> layer_vals;
+            if(s1.size()) {
+                while(s1.size()) {
+                    TreeNode *node = s1.top(); s1.pop();
+                    layer_vals.emplace_back(node->val);
+                    if(node->left)  s2.push(node->left);
+                    if(node->right) s2.push(node->right);
+                }
+                res.emplace_back(layer_vals);
+            }
+            else if(s2.size()) {
+                while(s2.size()) {
+                    TreeNode *node = s2.top(); s2.pop();
+                    layer_vals.emplace_back(node->val);
+                    if(node->right) s1.push(node->right);
+                    if(node->left)  s1.push(node->left);
+                }
+                res.emplace_back(layer_vals);
+            }
+        }
+        return res;
+    }
+};
 ```
 
 ## 递归
