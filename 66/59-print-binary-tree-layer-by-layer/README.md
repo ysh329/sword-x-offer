@@ -113,19 +113,19 @@ struct TreeNode {
 };
 */
 class Solution {
-    bool Traversal(TreeNode* pRoot, unsigned int depth) {
-        if(!pRoot) return true;
+    void Traversal(TreeNode* pRoot, unsigned int depth=0) {
+        if(!pRoot) return;
         if(res.size() == depth)
             res.emplace_back(vector<int>{pRoot->val});
         else
             res[depth].emplace_back(pRoot->val);
-        return Traversal(pRoot->left, depth+1) &&
-               Traversal(pRoot->right, depth+1);
+        Traversal(pRoot->left,  depth+1);
+        Traversal(pRoot->right, depth+1);
     }
 public:
     vector<vector<int> > res;
     vector<vector<int> > Print(TreeNode* pRoot) {
-        Traversal(pRoot, 0);
+        Traversal(pRoot);
         for(int layer_idx = 0; layer_idx<res.size(); layer_idx++) {
             vector<int>& layer_vals = res[layer_idx];
             if(layer_idx&1 == 1) //奇数层反转
