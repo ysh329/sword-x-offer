@@ -44,3 +44,42 @@ public:
     }
 };
 ```
+
+### 非递归2：两个栈
+
+```cpp
+```
+
+## 递归
+
+```python
+链接：https://www.nowcoder.com/questionTerminal/91b69814117f4e8097390d107d2efbe0
+来源：牛客网
+
+# Python 解法，用递归遍历每一层节点，并按层数为列表的索引值存为子列表
+# 然后把奇数索引的子列表倒序即可
+ 
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def Print(self, pRoot):
+        # write code here
+        res = list()
+        def Traversal(node, depth=0):
+            if not node:
+                return True
+            if len(res) == depth:
+                res.append([node.val])
+            else:
+                res[depth].append(node.val)
+            return Traversal(node.left, depth+1) and Traversal(node.right, depth+1)
+        Traversal(pRoot)
+        for i, v in enumerate(res):
+            if i % 2 == 1:
+                v.reverse()
+        return res
+```
