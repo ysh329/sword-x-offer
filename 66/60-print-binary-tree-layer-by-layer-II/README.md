@@ -54,6 +54,8 @@ public:
 
 ## 递归
 
+### 递归1
+
 - 递归每层节点保存为结果  
 - 按层数为列表的索引值存为子列表  
 
@@ -82,6 +84,38 @@ public:
     vector<vector<int> > res;
     vector<vector<int> > Print(TreeNode* pRoot) {
         Traversal(pRoot, 0);
+        return res;
+    }
+};
+```
+
+### 递归2
+
+```cpp
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    vector<vector<int> > res;
+    void dfs(TreeNode *pRoot, unsigned int depth=0){
+        if(!pRoot) return;
+        if(depth+1 > res.size())
+            res.resize(depth+1);
+        res[depth].push_back(pRoot->val);
+        dfs(pRoot->left,  depth+1);
+        dfs(pRoot->right, depth+1);
+    }
+    vector<vector<int> > Print(TreeNode* pRoot) {
+        res.clear();
+        dfs(pRoot);
         return res;
     }
 };
