@@ -1,38 +1,11 @@
 # 删除链表中重复的结点
 
-在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1->2->3->3->4->4->5 处理后为 1->2->5
-
-## 递归
-
-```cpp
-/*
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-        val(x), next(NULL) {
-    }
-};
-*/
-class Solution {
-public:
-    ListNode* deleteDuplication(ListNode* pHead) {
-        if(!pHead || !pHead->next) return pHead; //少于两个结点返回
-        if(pHead->val == pHead->next->val) { //相同，继续查重
-            ListNode *pNext = pHead->next;
-            while(pNext && pHead->val==pNext->val)
-                pNext = pNext->next;
-            return deleteDuplication(pNext);//直接返回或作为pHead->next的值返回
-        }
-        else { //不同，继续下一结点
-            pHead->next = deleteDuplication(pHead->next);
-            return pHead;
-        }
-    }
-};
-```
+- 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。   
+- 例如，链表1->2->3->3->4->4->5 处理后为 1->2->5。  
 
 ## 非递归
+
+### 非递归1
 
 1. 找到头节点。找到后确保链表中所有数不是一样的（用last_val保留上一节点的值，判断得到的头节点pHead是否为最后一个节点，是否与上一个节点的值相同）；  
 2. 去重复。根据当前节点p，观察p->next与p->next->next的值是否相同；  
@@ -77,6 +50,73 @@ public:
             p = p->next;
         }
         return pHead;
+    }
+};
+```
+
+### 非递归2
+
+```cpp
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    ListNode* deleteDuplication(ListNode* pHead)
+    {
+        ListNode *pStart = new ListNode(-1); //临时头结点
+        pStart->next = pHead;                //起始结点(临时)
+        ListNode *pLast = pStart;            //上一结点
+        ListNode *p = pHead;                 //用于遍历的结点
+        while(p && p->next) {
+            if(p->val == p->next->val) {
+                int p_val = p->val;
+                while(p && p_val == p->val)
+                    p = p->next;
+                pLast->next = p;
+            }
+            else {
+                pLast = p;
+                p = p->next;
+            }
+        }
+        return pStart->next;
+    }
+};
+```
+
+## 递归
+
+```cpp
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    ListNode* deleteDuplication(ListNode* pHead) {
+        if(!pHead || !pHead->next) return pHead; //少于两个结点返回
+        if(pHead->val == pHead->next->val) { //相同，继续查重
+            ListNode *pNext = pHead->next;
+            while(pNext && pHead->val==pNext->val)
+                pNext = pNext->next;
+            return deleteDuplication(pNext);//直接返回或作为pHead->next的值返回
+        }
+        else { //不同，继续下一结点
+            pHead->next = deleteDuplication(pHead->next);
+            return pHead;
+        }
     }
 };
 ```
