@@ -33,14 +33,24 @@ public:
 ```
 
 ```cpp
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
 class Solution {
 public:
     bool isSymmetrical(TreeNode* pRoot) {
-        return aux(pRoot, pRoot);
+        return same(pRoot, pRoot);//注：这里是pRoot，pRoot，不是pRoot->left, pRoot->right
     }
-    bool aux(TreeNode* l, TreeNode* r) {
+    bool same(TreeNode* l, TreeNode* r) {
         if(l && r && l->val==r->val)
-            return aux(l->left, r->right) && aux(l->right, r->left);
+            return same(l->left, r->right) && same(l->right, r->left);
         return !l && !r;
     }
 };
