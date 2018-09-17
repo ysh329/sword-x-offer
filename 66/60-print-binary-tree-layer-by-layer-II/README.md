@@ -109,7 +109,7 @@ public:
         if(!pRoot) return;
         if(depth+1 > res.size())
             res.resize(depth+1);
-        res[depth].push_back(pRoot->val);
+        res[depth].emplace_back(pRoot->val);
         dfs(pRoot->left,  depth+1);
         dfs(pRoot->right, depth+1);
     }
