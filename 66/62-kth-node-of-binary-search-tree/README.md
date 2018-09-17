@@ -10,7 +10,38 @@
 - 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值；
 - 它的左、右子树也分别为二叉排序树。
 
-## 
+## 递归：中序遍历
+
+### 中序遍历1
+
+```cpp
+
+```
+
+### 中序遍历2
+
+```cpp
+typedef TreeNode* pnode;
+class Solution {
+    int m;
+    pnode ans;
+    void dfs(pnode p){
+        if(!p || m < 1) return;
+        dfs(p -> left);
+        if(m == 1) ans = p;
+        --m;
+        if(m > 0) dfs(p -> right);
+    }
+public:
+    TreeNode* KthNode(TreeNode* p, unsigned int k){
+        ans = nullptr; m = k;
+        dfs(p);
+        return ans; 
+    }
+};
+```
+
+## 非递归：中序遍历
 
 ```cpp
 /*
