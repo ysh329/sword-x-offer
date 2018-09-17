@@ -75,8 +75,8 @@ public:
             while(q2.size()){
                 TreeNode *p = q2.front(); q2.pop();
                 v2.push_back(p->val);
-                if(p->left)   q1.push(p->left);
-                if(p->right)  q1.push(p->right);
+                if(p->left)  q1.push(p->left);
+                if(p->right) q1.push(p->right);
             }
             if(v2.size())
                 res.push_back(v2);
