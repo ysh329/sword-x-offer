@@ -2,10 +2,6 @@
 
 从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。
 
-# 按之字形顺序打印二叉树
-
-请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。
-
 做法与上一题类似，只是不需要反转层中结果。
 
 ## 非递归
@@ -49,7 +45,45 @@ public:
 ### 非递归2：两个队列
 
 ```cpp
-
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    vector<vector<int> > Print(TreeNode* pRoot) {
+        vector<vector<int> > res;
+        if(!pRoot) return res;
+        queue<TreeNode*> q1, q2;
+        q1.push(pRoot);
+        while(q1.size() || q2.size()){
+            vector<int> v1, v2;
+            while(q1.size()){
+                TreeNode *p = q1.front(); q1.pop();
+                v1.push_back(p->val);
+                if(p->left)  q2.push(p->left);
+                if(p->right) q2.push(p->right);
+            }
+            if(v1.size())
+                res.push_back(v1);
+            while(q2.size()){
+                TreeNode *p = q2.front(); q2.pop();
+                v2.push_back(p->val);
+                if(p->left)   q1.push(p->left);
+                if(p->right)  q1.push(p->right);
+            }
+            if(v2.size())
+                res.push_back(v2);
+        }
+        return res;
+    }
+};
 ```
 
 ## 递归
