@@ -3,20 +3,13 @@
 请实现两个函数，分别用来序列化和反序列化二叉树
 
 
+## 常见解法
+
+- 对于序列化：使用前序遍历，递归的将二叉树的值转化为字符，并且在每次二叉树的结点不为空时，在转化val所得的字符之后添加一个','作为分割。对于空节点则以 '#' 代替；
+- 对于反序列化：按照前序顺序，递归的使用字符串中的字符创建一个二叉树(特别注意：在递归时，递归函数的参数一定要是`char **`，这样才能保证每次递归后指向字符串的指针会随着递归的进行而移动)；
+3. `*str`是指向字符串中 str这个字符的指针，因为指针要往后移，要指向下一个字符嘛，也就是说过程中我们要改变指针，所以应该传这个指针的地址，所以二级指针。
+
 ```cpp
-
-链接：https://www.nowcoder.com/questionTerminal/cf7e25aa97c04cc1a68c8f040e71fb84
-来源：牛客网
-
-/*
- 1. 对于序列化：使用前序遍历，递归的将二叉树的值转化为字符，并且在每次二叉树的结点
-不为空时，在转化val所得的字符之后添加一个' ， '作为分割。对于空节点则以 '#' 代替。
- 2. 对于反序列化：按照前序顺序，递归的使用字符串中的字符创建一个二叉树(特别注意：
-在递归时，递归函数的参数一定要是char ** ，这样才能保证每次递归后指向字符串的指针会
-随着递归的进行而移动！！！)
-3. *str是指向字符串中 str这个字符 的指针，因为指针要往后移，要指向下一个字符嘛，也就是说过程中我们要改变指针，所以应该传这个指针的地址，所以二级指针
-*/
-
 /*
 struct TreeNode {
     int val;
@@ -80,11 +73,17 @@ public:
 };
 ```
 
-Leetcode做法
-```cpp
-链接：https://www.nowcoder.com/questionTerminal/cf7e25aa97c04cc1a68c8f040e71fb84
-来源：牛客网
+## 前序遍历
 
+### 前序遍历1
+
+- 根据前序遍历规则完成序列化与反序列化；
+- 序列化指的是遍历二叉树为字符串；
+- 反序列化指的是依据字符串重新构造成二叉树；
+- 依据前序遍历序列来序列化二叉树，因为前序遍历序列是从根结点开始的。当在遍历二叉树时碰到Null指针时，这些Null指针被序列化为一个特殊的字符“#”；
+- 结点之间的数值用逗号隔开。
+    
+```java
 /*
 public class TreeNode {
     int val = 0;
@@ -97,11 +96,6 @@ public class TreeNode {
     }
  
 }
-*/
-/*
-    算法思想：根据前序遍历规则完成序列化与反序列化。所谓序列化指的是遍历二叉树为字符串；所谓反序列化指的是依据字符串重新构造成二叉树。
-    依据前序遍历序列来序列化二叉树，因为前序遍历序列是从根结点开始的。当在遍历二叉树时碰到Null指针时，这些Null指针被序列化为一个特殊的字符“#”。
-    另外，结点之间的数值用逗号隔开。
 */
 public class Solution {
     int index = -1;   //计数变量
@@ -135,43 +129,50 @@ public class Solution {
 }
 ```
 
-O(N)
+### 前序遍历2
+
+- 时间复杂度：O(N)  
+- 缺点：与大小端有关
 
 ```cpp
-链接：https://www.nowcoder.com/questionTerminal/cf7e25aa97c04cc1a68c8f040e71fb84
-来源：牛客网
-
-typedef TreeNode node;
-typedef TreeNode* pnode;
-typedef int* pint;
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
 class Solution {
     vector<int> buf;
-    void dfs(pnode p){
-        if(!p) buf.push_back(0x23333);
-        else{
-            buf.push_back(p -> val);
-            dfs(p -> left);
-            dfs(p -> right);
-        }
-    }
-    pnode dfs2(pint& p){
-        if(*p == 0x23333){
-            ++p;
-            return NULL;
-        }
-        pnode res = new node(*p);
-        ++p;
-        res -> left = dfs2(p);
-        res -> right = dfs2(p);
-        return res;
-    }
 public:
+    void dfs(TreeNode *p) {
+        if(!p) buf.emplace_back(0x233);
+        else {
+            buf.emplace_back(p->val);
+            dfs(p->left);
+            dfs(p->right);
+        }
+    }
     char* Serialize(TreeNode *p) {
         buf.clear();
         dfs(p);
         int *res = new int[buf.size()];
-        for(unsigned int i = 0; i < buf.size(); ++i) res[i] = buf[i];
-        return (char*)res;
+        for(unsigned int i=0; i<buf.size(); i++) res[i] = buf[i];
+        return (char *)res;
+    }
+    TreeNode* dfs2(int*& p) {//注这里是指针的引用，以代替二级指针
+        if(*p==0x233) {
+            ++p;
+            return nullptr;
+        }
+        TreeNode *res = new TreeNode(*p);
+        ++p;
+        res->left = dfs2(p);
+        res->right = dfs2(p);
+        return res;
     }
     TreeNode* Deserialize(char *str) {
         int *p = (int*)str;
