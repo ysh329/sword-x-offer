@@ -9,3 +9,42 @@
 - 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值；
 - 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值；
 - 它的左、右子树也分别为二叉排序树。
+
+## 
+
+```cpp
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    TreeNode* KthNode(TreeNode* pRoot, int k) {
+        if(!pRoot) return nullptr;
+        int count = 0;
+        stack<TreeNode*> s;
+        TreeNode *p = pRoot;
+        while(p || s.size()) {
+            while(p) {
+                s.push(p);
+                p = p->left;
+            }
+            if(s.size()) {
+                ++count;
+                p = s.top();
+                if(count==k)
+                    return p;
+                s.pop();
+                p = p->right;
+            }
+        }
+        return nullptr;
+    }
+};
+```
