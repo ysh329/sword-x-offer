@@ -84,19 +84,8 @@ public:
     
 ```java
 /*
-public class TreeNode {
-    int val = 0;
-    TreeNode left = null;
-    TreeNode right = null;
- 
-    public TreeNode(int val) {
-        this.val = val;
-    }
-}
-*/
 public class Solution {
     int index = -1;   //计数变量
-  
     String Serialize(TreeNode root) {
         StringBuilder sb = new StringBuilder();
         if(root == null){
@@ -107,7 +96,7 @@ public class Solution {
         sb.append(Serialize(root.left));
         sb.append(Serialize(root.right));
         return sb.toString();
-  }
+    }
     TreeNode Deserialize(String str) {
         index++;
         String[] strr = str.split(",");
@@ -118,7 +107,7 @@ public class Solution {
             node.right = Deserialize(str);
         }
         return node;
-  }
+    }
 }
 ```
 
