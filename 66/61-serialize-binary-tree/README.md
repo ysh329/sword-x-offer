@@ -111,6 +111,43 @@ public class Solution {
 }
 ```
 
+cpp代码，未通过：
+```cpp
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+    stringstream ss;
+public:
+    void tree2str(TreeNode *p) {
+        if(!p) {
+            ss << "#,";
+            return;
+        }
+        ss << p->val;
+        Serialize(p->left);
+        Serialize(p->right);
+        return;
+    }
+    char* Serialize(TreeNode *root) {    
+        ss.str("");
+        tree2str(root);
+        string res = ss.str();
+        return const_cast<char*>(res.c_str());
+    }
+    TreeNode* Deserialize(char *str) {
+        return nullptr;
+    }
+};
+```
+
 ### 前序遍历3
 
 - 时间复杂度：O(N)  
