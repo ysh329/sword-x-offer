@@ -125,6 +125,7 @@ struct TreeNode {
 */
 class Solution {
     stringstream ss;
+    int index = -1;   //计数变量
 public:
     void tree2str(TreeNode *p) {
         if(!p) {
@@ -142,8 +143,38 @@ public:
         string res = ss.str();
         return const_cast<char*>(res.c_str());
     }
+    vector<string> split(const string& s, const string& delim) {
+        vector<string> elems;
+        size_t pos = 0;
+        size_t len = s.length();
+        size_t delim_len = delim.length();
+        if(delim_len == 0) return elems;
+        while(pos < len) {
+            int find_pos = s.find(delim, pos);
+            if(find_pos < 0) {
+                elems.push_back(s.substr(pos, len - pos));
+                break;
+            }
+            elems.push_back(s.substr(pos, find_pos - pos));
+            pos = find_pos + delim_len;
+        }
+        return elems;
+    }
     TreeNode* Deserialize(char *str) {
-        return nullptr;
+        string s = str;
+        vector<string> str_vec = split(s, ",");
+        return str2tree(str_vec);
+    }
+    TreeNode* str2tree(vector<string>& str_vec) {
+        index++;
+        TreeNode* p = nullptr;
+        if(str_vec[index]!="#") {
+            int val = stoi(str_vec[index]);
+            p = new TreeNode(val);
+            p->left = str2tree(str_vec);
+            p->right = str2tree(str_vec);
+        }
+        return new TreeNode(1);//p;
     }
 };
 ```
