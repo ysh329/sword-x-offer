@@ -82,8 +82,9 @@ public:
 - 依据前序遍历序列来序列化二叉树，因为前序遍历序列是从根结点开始的。当在遍历二叉树时碰到Null指针时，这些Null指针被序列化为一个特殊的字符“#”；
 - 结点之间的数值用逗号隔开。
     
+下面是Java代码：
+
 ```java
-/*
 public class Solution {
     int index = -1;   //计数变量
     String Serialize(TreeNode root) {
@@ -111,7 +112,7 @@ public class Solution {
 }
 ```
 
-cpp代码，未通过：
+根据Java改写的cpp代码，本地测试通过，OJ未通过：
 ```cpp
 /*
 struct TreeNode {
@@ -125,8 +126,9 @@ struct TreeNode {
 */
 class Solution {
     stringstream ss;
-    int index = -1;   //计数变量
+    int index = -1;
 public:
+    // 序列化
     void tree2str(TreeNode *p) {
         if(!p) {
             ss << "#,";
@@ -143,6 +145,7 @@ public:
         string res = ss.str();
         return const_cast<char*>(res.c_str());
     }
+    // 反序列化
     vector<string> split(const string& s, const string& delim) {
         vector<string> elems;
         size_t pos = 0;
@@ -160,21 +163,22 @@ public:
         }
         return elems;
     }
-    TreeNode* Deserialize(char *str) {
-        string s = str;
-        vector<string> str_vec = split(s, ",");
-        return str2tree(str_vec);
-    }
     TreeNode* str2tree(vector<string>& str_vec) {
         index++;
         TreeNode* p = nullptr;
-        if(str_vec[index]!="#") {
+        if(index<int(str_vec.size()) && str_vec[index]!="#") {
             int val = stoi(str_vec[index]);
             p = new TreeNode(val);
             p->left = str2tree(str_vec);
             p->right = str2tree(str_vec);
         }
-        return new TreeNode(1);//p;
+        return p;
+    }
+    TreeNode* Deserialize(char *str) {
+        string s = str;
+        vector<string> str_vec = split(s, ",");
+        TreeNode *root = str2tree(str_vec);
+        return root;
     }
 };
 ```
