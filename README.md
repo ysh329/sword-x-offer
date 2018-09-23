@@ -5,17 +5,17 @@ sword-x-offer contains 66 common && classic interview programming questions. Eac
 ## Content
 
 1. [Problem Set](#1)  
-  1.1 Ordered List  
+  1.1 [Ordered List](#1.1)  
   1.2 [Topic List](./sword-x-offer/README.md)   
-2. Data Structure   
-3. Language CPP   
-4. Project Based Learning   
-5. License   
-6. Acknowledge   
+2. [Data Structure](#2)   
+3. [Language CPP](#3)   
+4. [Project Based Learning](./project-based-learning/)   
+5. [License](#5)   
+6. [Acknowledge](#6)   
 
 ## <h2 id="1">1.Problem Set</h2>
 
-### Ordered List
+### <h3 id="1.1">Ordered List</h3>
 
 | num |              name               |    topic   |   difficult    | method(s) |   OJ link   |
 |:---:|:--------------------------------|:---------:|:--------------:|:---------:|:-----------:|
@@ -219,21 +219,18 @@ sword-x-offer contains 66 common && classic interview programming questions. Eac
 [nowcoder63]: https://www.nowcoder.com/practice/9be0172896bd43948f8a32fb954e1be1?tpId=13&tqId=11216&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 [nowcoder64]: https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=13&tqId=11217&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 [nowcoder65]: https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&tqId=11218&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
-[nowcoder66]: https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&tqId=11219&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+[nowcoder66]: https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&tqId=11219&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking 
 
-## Topic List
 
-## Data Structure
+## <h2 id="2">Data Structure</h2>  
 
-## Language CPP
+## <h2 id="3">Language CPP</h2>  
 
-## Project Based Learning
-
-## License
+## <h2 id="5">License</h2>
 
 Apache License 2.0.
 
-## Acknowledgement
+## <h2 id="6">Acknowledgement</h2>  
 
 Solutions in sword-x-offer are mainly from forum of [nowcoder](https://www.nowcoder.com) and book [《剑指offer》](https://www.amazon.cn/dp/B00FF1Y0FU). Particularly, I learned a lot from the nowcoder's forum.
 
