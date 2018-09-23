@@ -71,72 +71,73 @@ sword-x-offer contains 66 common && classic interview programming questions. Eac
 | 65  | [path-in-matrix][name65]         |           |                |           | [nowcoder][nowcoder65] |
 | 66  | [range-of-robot][name66]         |           |                |           | [nowcoder][nowcoder66] |
 
-[name01]: ./sword-x-offer/01-find-value-in-matrix 
-[name02]: ./sword-x-offer/02-replace-space 
-[name03]: ./sword-x-offer/03-print-linked-list-from-tail 
-[name04]: ./sword-x-offer/04-reconstruct-binary-tree 
-[name05]: ./sword-x-offer/05-stack-operation-based-two-queues 
-[name06]: ./sword-x-offer/06-min-num-in-reverse-array 
-[name07]: ./sword-x-offer/07-fibonacci-sequence 
-[name08]: ./sword-x-offer/08-jump-floor 
-[name09]: ./sword-x-offer/09-jump-floor-II 
-[name10]: ./sword-x-offer/10-rectangle-cover 
-[name11]: ./sword-x-offer/11-number-of-one-in-binary 
-[name12]: ./sword-x-offer/12-integer-power-of-number 
-[name13]: ./sword-x-offer/13-reorder-array-as-odd-number-is-in-the-front 
-[name14]: ./sword-x-offer/14-countdown-k-node-in-linked-list 
-[name15]: ./sword-x-offer/15-reverse-linked-list 
-[name16]: ./sword-x-offer/16-merge-two-sorted-linked-list 
-[name17]: ./sword-x-offer/17-judge-the-substructure-of-a-binary-tree 
-[name18]: ./sword-x-offer/18-mirror-of-binary-tree 
-[name19]: ./sword-x-offer/19-print-matrix-clockwise 
-[name20]: ./sword-x-offer/20-stack-contain-min-func 
-[name21]: ./sword-x-offer/21-push-and-pop-sequence-of-stack 
-[name22]: ./sword-x-offer/22-print-binary-tree-from-top-to-bottom 
-[name23]: ./sword-x-offer/23-postorder-traversal-of-binary-search-tree 
-[name24]: ./sword-x-offer/24-target-length-path-of-binary-tree 
-[name25]: ./sword-x-offer/25-replication-of-complex-linked-list 
-[name26]: ./sword-x-offer/26-convert-binary-search-tree-to-bi-directional-linked-list 
-[name27]: ./sword-x-offer/27-string-permutation 
-[name28]: ./sword-x-offer/28-the-number-occurs-more-than-half 
-[name29]: ./sword-x-offer/29-k-minimum-number 
-[name30]: ./sword-x-offer/30-the-largest-sum-of-consecutive-subarrays 
-[name31]: ./sword-x-offer/31-number-of-1-between-1-and-n 
-[name32]: ./sword-x-offer/32-arrange-the-array-into-the-smallest-number 
-[name33]: ./sword-x-offer/33-ugly-number 
-[name34]: ./sword-x-offer/34-the-first-character-that-appears-only-once 
-[name35]: ./sword-x-offer/35-inverse-pairs-in-array 
-[name36]: ./sword-x-offer/36-find-first-common-node-in-two-linked-lists 
-[name37]: ./sword-x-offer/37-the-number-of-occurrences-in-the-sorted-array 
-[name38]: ./sword-x-offer/38-the-depth-of-binary-tree 
-[name39]: ./sword-x-offer/39-judge-balanced-binary-tree 
-[name40]: ./sword-x-offer/40-find-num-appear-once-in-array 
-[name41]: ./sword-x-offer/41-sum-s-of-continuous-positive-sequence 
-[name42]: ./sword-x-offer/42-two-sum 
-[name43]: ./sword-x-offer/43-left-rotate-string 
-[name44]: ./sword-x-offer/44-reverse-words-in-sentence 
-[name45]: ./sword-x-offer/45-is-poker-continuous 
-[name46]: ./sword-x-offer/46-the-last-number-in-the-circle 
-[name47]: ./sword-x-offer/47-sum-from-1-to-n 
-[name48]: ./sword-x-offer/48-sum-of-two-numbers 
-[name49]: ./sword-x-offer/49-str-to-int 
-[name50]: ./sword-x-offer/50-duplicate-number-in-array 
-[name51]: ./sword-x-offer/51-construct-multiply-triangle 
-[name52]: ./sword-x-offer/52-regular-expression-match 
-[name53]: ./sword-x-offer/53-numeric-string 
-[name54]: ./sword-x-offer/54-first-appearing-once-in-str-stream 
-[name55]: ./sword-x-offer/55-entry-of-loop-linked-list 
-[name56]: ./sword-x-offer/56-delete-duplication-in-linked-list 
-[name57]: ./sword-x-offer/57-next-node-of-binary-tree 
-[name58]: ./sword-x-offer/58-is-symmetrical-binary-tree 
-[name59]: ./sword-x-offer/59-print-binary-tree-layer-by-layer 
-[name60]: ./sword-x-offer/60-print-binary-tree-layer-by-layer-II 
-[name61]: ./sword-x-offer/61-serialize-binary-tree 
-[name62]: ./sword-x-offer/62-kth-node-of-binary-search-tree 
-[name63]: ./sword-x-offer/63-get-median-of-num-stream 
-[name64]: ./sword-x-offer/64-max-in-sliding-window 
-[name65]: ./sword-x-offer/65-path-in-matrix 
-[name66]: ./sword-x-offer/66-range-of-robot 
+[name01]: ./sword-x-offer/01-find-value-in-matrix "二维数组中的查找 " 
+[name02]: ./sword-x-offer/02-replace-space  "替换空格 " 
+[name03]: ./sword-x-offer/03-print-linked-list-from-tail  "从尾到头打印链表 " 
+[name04]: ./sword-x-offer/04-reconstruct-binary-tree  "重建二叉树 " 
+[name05]: ./sword-x-offer/05-stack-operation-based-two-queues  "用两个栈实现队列 " 
+[name06]: ./sword-x-offer/06-min-num-in-reverse-array  "旋转数组的最小数字 " 
+[name07]: ./sword-x-offer/07-fibonacci-sequence  "斐波那契数列 " 
+[name08]: ./sword-x-offer/08-jump-floor  "跳台阶 " 
+[name09]: ./sword-x-offer/09-jump-floor-II  "变态跳台阶 " 
+[name10]: ./sword-x-offer/10-rectangle-cover  "矩形覆盖 " 
+[name11]: ./sword-x-offer/11-number-of-one-in-binary  "二进制中1的个数 " 
+[name12]: ./sword-x-offer/12-integer-power-of-number  "数值的整数次方 " 
+[name13]: ./sword-x-offer/13-reorder-array-as-odd-number-is-in-the-front  "调整数组顺序使奇数位于偶数前面 " 
+[name14]: ./sword-x-offer/14-countdown-k-node-in-linked-list  "链表中倒数第k个结点 " 
+[name15]: ./sword-x-offer/15-reverse-linked-list  "反转链表 " 
+[name16]: ./sword-x-offer/16-merge-two-sorted-linked-list  "合并两个排序的链表 " 
+[name17]: ./sword-x-offer/17-judge-the-substructure-of-a-binary-tree  "树的子结构 " 
+[name18]: ./sword-x-offer/18-mirror-of-binary-tree  "二叉树的镜像 " 
+[name19]: ./sword-x-offer/19-print-matrix-clockwise  "顺时针打印矩阵 " 
+[name20]: ./sword-x-offer/20-stack-contain-min-func  "包含min函数的栈 " 
+[name21]: ./sword-x-offer/21-push-and-pop-sequence-of-stack  "栈的压入、弹出序列 " 
+[name22]: ./sword-x-offer/22-print-binary-tree-from-top-to-bottom  "从上往下打印二叉树 " 
+[name23]: ./sword-x-offer/23-postorder-traversal-of-binary-search-tree  "二叉搜索树的后序遍历序列 " 
+[name24]: ./sword-x-offer/24-target-length-path-of-binary-tree  "二叉树中和为某一值的路径 " 
+[name25]: ./sword-x-offer/25-replication-of-complex-linked-list  "复杂链表的复制 " 
+[name26]: ./sword-x-offer/26-convert-binary-search-tree-to-bi-directional-linked-list  "二叉搜索树与双向链表 " 
+[name27]: ./sword-x-offer/27-string-permutation  "字符串的排列 " 
+[name28]: ./sword-x-offer/28-the-number-occurs-more-than-half  "数组中出现次数超过一半的数字 " 
+[name29]: ./sword-x-offer/29-k-minimum-number  "最小的K个数 " 
+[name30]: ./sword-x-offer/30-the-largest-sum-of-consecutive-subarrays  "连续子数组的最大和 " 
+[name31]: ./sword-x-offer/31-number-of-1-between-1-and-n  "整数中1出现的次数（从1到n整数中1出现的次数） " 
+[name32]: ./sword-x-offer/32-arrange-the-array-into-the-smallest-number  "把数组排成最小的数 " 
+[name33]: ./sword-x-offer/33-ugly-number  "丑数 " 
+[name34]: ./sword-x-offer/34-the-first-character-that-appears-only-once  "第一个只出现一次的字符位置 " 
+[name35]: ./sword-x-offer/35-inverse-pairs-in-array  "数组中的逆序对 " 
+[name36]: ./sword-x-offer/36-find-first-common-node-in-two-linked-lists  "两个链表的第一个公共结点 " 
+[name37]: ./sword-x-offer/37-the-number-of-occurrences-in-the-sorted-array  "数字在排序数组中出现的次数 " 
+[name38]: ./sword-x-offer/38-the-depth-of-binary-tree  "二叉树的深度 " 
+[name39]: ./sword-x-offer/39-judge-balanced-binary-tree  "平衡二叉树 " 
+[name40]: ./sword-x-offer/40-find-num-appear-once-in-array  "数组中只出现一次的数字 " 
+[name41]: ./sword-x-offer/41-sum-s-of-continuous-positive-sequence  "和为S的连续正数序列 " 
+[name42]: ./sword-x-offer/42-two-sum  "和为S的两个数字 " 
+[name43]: ./sword-x-offer/43-left-rotate-string  "左旋转字符串 " 
+[name44]: ./sword-x-offer/44-reverse-words-in-sentence  "翻转单词顺序列 " 
+[name45]: ./sword-x-offer/45-is-poker-continuous  "扑克牌顺子 " 
+[name46]: ./sword-x-offer/46-the-last-number-in-the-circle  "孩子们的游戏(圆圈中最后剩下的数) " 
+[name47]: ./sword-x-offer/47-sum-from-1-to-n  "求1+2+3+...+n " 
+[name48]: ./sword-x-offer/48-sum-of-two-numbers  "不用加减乘除做加法 " 
+[name49]: ./sword-x-offer/49-str-to-int  "把字符串转换成整数 " 
+[name50]: ./sword-x-offer/50-duplicate-number-in-array  "数组中重复的数字 " 
+[name51]: ./sword-x-offer/51-construct-multiply-triangle  "构建乘积数组 " 
+[name52]: ./sword-x-offer/52-regular-expression-match  "正则表达式匹配 " 
+[name53]: ./sword-x-offer/53-numeric-string  "表示数值的字符串 " 
+[name54]: ./sword-x-offer/54-first-appearing-once-in-str-stream  "字符流中第一个不重复的字符 " 
+[name55]: ./sword-x-offer/55-entry-of-loop-linked-list  "链表中环的入口结点 " 
+[name56]: ./sword-x-offer/56-delete-duplication-in-linked-list  "删除链表中重复的结点 " 
+[name57]: ./sword-x-offer/57-next-node-of-binary-tree  "二叉树的下一个结点 " 
+[name58]: ./sword-x-offer/58-is-symmetrical-binary-tree  "对称的二叉树 " 
+[name59]: ./sword-x-offer/59-print-binary-tree-layer-by-layer  "按之字形顺序打印二叉树 " 
+[name60]: ./sword-x-offer/60-print-binary-tree-layer-by-layer-II  "把二叉树打印成多行 " 
+[name61]: ./sword-x-offer/61-serialize-binary-tree  "序列化二叉树 " 
+[name62]: ./sword-x-offer/62-kth-node-of-binary-search-tree  "二叉搜索树的第k个结点 " 
+[name63]: ./sword-x-offer/63-get-median-of-num-stream  "数据流中的中位数 " 
+[name64]: ./sword-x-offer/64-max-in-sliding-window  "滑动窗口的最大值 " 
+[name65]: ./sword-x-offer/65-path-in-matrix  "矩阵中的路径 " 
+[name66]: ./sword-x-offer/66-range-of-robot  "机器人的运动范围 " 
+
 
 [nowcoder01]: https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 [nowcoder02]: https://www.nowcoder.com/practice/4060ac7e3e404ad1a894ef3e17650423?tpId=13&tqId=11155&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
