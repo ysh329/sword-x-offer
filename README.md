@@ -67,7 +67,7 @@ sword-x-offer contains 66 common && classic interview programming questions. Eac
 | 46  | [the-last-number-in-the-circle][name46]  |math      |                |           | [nowcoder][nowcoder46] |
 | 47  | [sum-from-1-to-n][name47]       |           |                |           | [nowcoder][nowcoder47] |
 | 48  | [sum-of-two-numbers][name48]    |           |                |           | [nowcoder][nowcoder48] |
-| 49  | [str-to-int][name49]            |           |                |           | [nowcoder][nowcoder49] |
+| 49  | [str-to-int][name49]            |string,array    |                |           | [nowcoder][nowcoder49] |
 | 50  | [duplicate-number-in-array][name50]  |array,hash-table       |                |           | [nowcoder][nowcoder50] |
 | 51  | [construct-multiply-triangle][name51]  |array      |                |           | [nowcoder][nowcoder51] |
 | 52  | [regular-expression-match][name52]  |string       |★★★           |           | [nowcoder][nowcoder52] |
@@ -81,10 +81,10 @@ sword-x-offer contains 66 common && classic interview programming questions. Eac
 | 60  | [print-binary-tree-layer-by-layer-II][name60]  |tree      |                |           | [nowcoder][nowcoder60] |
 | 61  | [serialize-binary-tree][name61]  |tree     |★★★      |           |[nowcoder][nowcoder61] |
 | 62  | [kth-node-of-binary-search-tree][name62]  |tree      |                |           |[nowcoder][nowcoder62] |
-| 63  | [get-median-of-num-stream][name63]  |math       |                |           |[nowcoder][nowcoder63] |
-| 64  | [max-in-sliding-window][name64]  |math       |                |           | [nowcoder][nowcoder64] |
-| 65  | [path-in-matrix][name65]         |           |                |           | [nowcoder][nowcoder65] |
-| 66  | [range-of-robot][name66]         |           |                |           | [nowcoder][nowcoder66] |
+| 63  | [get-median-of-num-stream][name63]  |tree       |                |           |[nowcoder][nowcoder63] |
+| 64  | [max-in-sliding-window][name64]  |stack/queue   |                |           | [nowcoder][nowcoder64] |
+| 65  | [path-in-matrix][name65]         |backtracking |                |           | [nowcoder][nowcoder65] |
+| 66  | [range-of-robot][name66]         |backtracking  |                |           | [nowcoder][nowcoder66] |
 
 [name01]: ./sword-x-offer/01-find-value-in-matrix "二维数组中的查找 " 
 [name02]: ./sword-x-offer/02-replace-space  "替换空格 " 
