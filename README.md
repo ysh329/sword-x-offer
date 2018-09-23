@@ -3,7 +3,7 @@
 sword-x-offer contains 66 common && classic interview programming questions. Each question has multiple solutions:
 
 | num |              name               |    type   |   difficult    | method(s) |   OJ link   |
-|:---:|:-------------------------------:|:---------:|:--------------:|:---------:|:-----------:|
+|:---:|:--------------------------------|:---------:|:--------------:|:---------:|:-----------:|
 | 01  | find-value-in-matrix            |           |                |           |             |
 | 02  | replace-space                   |           |                |           |             |
 | 03  | print-linked-list-from-tail     |           |                |           |             |
