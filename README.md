@@ -13,9 +13,9 @@ sword-x-offer contains 66 common && classic interview programming questions. Eac
 5. [License](#5)   
 6. [Acknowledge](#6)   
 
-## <h2 id="1">1.Problem Set</h2>
+<h2 id="1">1.Problem Set</h2>
 
-### <h3 id="1.1">Ordered List</h3>
+<h3 id="1.1">Ordered List</h3>
 
 | num |              name               |    topic   |   difficult    | method(s) |   OJ link   |
 |:---:|:--------------------------------|:---------:|:--------------:|:---------:|:-----------:|
@@ -221,16 +221,15 @@ sword-x-offer contains 66 common && classic interview programming questions. Eac
 [nowcoder65]: https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&tqId=11218&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 [nowcoder66]: https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&tqId=11219&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking 
 
+<h2 id="2">Data Structure</h2>  
 
-## <h2 id="2">Data Structure</h2>  
+<h2 id="3">Language CPP</h2>  
 
-## <h2 id="3">Language CPP</h2>  
-
-## <h2 id="5">License</h2>
+<h2 id="5">License</h2>
 
 Apache License 2.0.
 
-## <h2 id="6">Acknowledgement</h2>  
+<h2 id="6">Acknowledgement</h2>  
 
 Solutions in sword-x-offer are mainly from forum of [nowcoder](https://www.nowcoder.com) and book [《剑指offer》](https://www.amazon.cn/dp/B00FF1Y0FU). Particularly, I learned a lot from the nowcoder's forum.
 
