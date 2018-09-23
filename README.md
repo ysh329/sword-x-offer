@@ -71,8 +71,8 @@ sword-x-offer contains 66 common && classic interview programming questions. Eac
 | 65  | [path-in-matrix][name65]         |           |                |           | [nowcoder][nowcoder65] |
 | 66  | [range-of-robot][name66]         |           |                |           | [nowcoder][nowcoder66] |
 
-[name01]: ./sword-x-offer/01-find-value-in-matrix 
-[name02]: ./sword-x-offer/02-replace-space 
+[name01]: ./sword-x-offer/01-find-value-in-matrix abc
+[name02]: ./sword-x-offer/02-replace-space "bbb"
 [name03]: ./sword-x-offer/03-print-linked-list-from-tail 
 [name04]: ./sword-x-offer/04-reconstruct-binary-tree 
 [name05]: ./sword-x-offer/05-stack-operation-based-two-queues 
