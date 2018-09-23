@@ -138,7 +138,13 @@ sword-x-offer contains 66 common && classic interview programming questions. Eac
 [name65]: ./sword-x-offer/65-path-in-matrix 
 [name66]: ./sword-x-offer/66-range-of-robot 
 
+## License
 
+Apache License 2.0.
+
+## Acknowledgement
+
+Solutions in sword-x-offer are mainly from forum of [nowcoder](https://www.nowcoder.com) and book [《剑指offer》](https://www.amazon.cn/dp/B00FF1Y0FU). Particularly, I learned a lot from the nowcoder's forum.
 
 ## Judge Script
 
