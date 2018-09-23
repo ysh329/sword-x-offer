@@ -5,7 +5,7 @@ sword-x-offer contains 66 common && classic interview programming questions. Eac
 | num |              name               |    topic   |   difficult    | method(s) |   OJ link   |
 |:---:|:--------------------------------|:---------:|:--------------:|:---------:|:-----------:|
 | 01  | [find-value-in-matrix][name01]            |binary-search |                |           | [nowcoder][nowcoder01] |
-| 02  | [replace-space][name02]                   |string     |           |  [nowcoder][nowcoder02] |
+| 02  | [replace-space][name02]                   |string     |                 |            |[nowcoder][nowcoder02] |
 | 03  | [print-linked-list-from-tail][name03]      |linked-list |                |           |  [nowcoder][nowcoder03] |
 | 04  | [reconstruct-binary-tree][name04]          |tree       |                |           | [nowcoder][nowcoder04] |
 | 05  | [stack-operation-based-two-queues][name05] |queue      |                |           | [nowcoder][nowcoder05] |
