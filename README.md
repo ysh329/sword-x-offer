@@ -18,7 +18,7 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 <h3 id="1.1">Ordered List</h3>
 
 | num |              name               |    topic   |   difficult    | method(s) |   OJ link   |
-|:---:|:--------------------------------|:---------:|:--------------:|:---------:|:-----------:|
+|:---:|:--------------------------------|:---------:|:----------------|:---------:|:-----------:|
 | 01  | [find-value-in-matrix][name01]            |binary-search | ★★★   |           | [nowcoder][nowcoder01] |
 | 02  | [replace-space][name02]                   |string     | ★★★      |            |[nowcoder][nowcoder02] |
 | 03  | [print-linked-list-from-tail][name03]      |linked-list | ★★★    |           |  [nowcoder][nowcoder03] |
@@ -39,17 +39,17 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 | 18  | [mirror-of-binary-tree][name18]            |tree       | ★★★★|           | [nowcoder][nowcoder18] |
 | 19  | [print-matrix-clockwise][name19]           |array      |★★★★|           | [nowcoder][nowcoder19] |
 | 20  | [stack-contain-min-func][name20]           |stack      |★★★|           | [nowcoder][nowcoder20] |
-| 21  | [push-and-pop-sequence-of-stack][name21]   |stack      |                |           | [nowcoder][nowcoder21] |
-| 22  | [print-binary-tree-from-top-to-bottom][name22]  |tree     |                |           |  [nowcoder][nowcoder22] |
-| 23  | [postorder-traversal-of-binary-search-tree][name23]  |tree       |                |           | [nowcoder][nowcoder23] |
-| 24  | [target-length-path-of-binary-tree][name24]  |tree       |                |           | [nowcoder][nowcoder24] |
-| 25  | [replication-of-complex-linked-list][name25] |linked-list   |                |           | [nowcoder][nowcoder25] |
-| 26  | [convert-binary-search-tree-to-bi-directional-linked-list][name26]  |tree,linked-list|                |           | [nowcoder][nowcoder26] |
-| 27  | [string-permutation][name27]    |string,math |★★★    |           | [nowcoder][nowcoder27] |
-| 28  | [the-number-occurs-more-than-half][name28]  |array           |                |           | [nowcoder][nowcoder28] |
-| 29  | [k-minimum-number][name29]      |array           |                |           | [nowcoder][nowcoder29] |
-| 30  | [the-largest-sum-of-consecutive-subarrays][name30]  |greedy,dp    |                |           | [nowcoder][nowcoder30] |
-| 31  | [number-of-1-between-1-and-n][name31]  |math     |                |           | [nowcoder][nowcoder31] |
+| 21  | [push-and-pop-sequence-of-stack][name21]   |stack      |★★★★|           | [nowcoder][nowcoder21] |
+| 22  | [print-binary-tree-from-top-to-bottom][name22]  |tree  |★★★ |           |  [nowcoder][nowcoder22] |
+| 23  | [postorder-traversal-of-binary-search-tree][name23]  |tree |★★★★|           | [nowcoder][nowcoder23] |
+| 24  | [target-length-path-of-binary-tree][name24]  |tree       |★★★★|           | [nowcoder][nowcoder24] |
+| 25  | [replication-of-complex-linked-list][name25] |linked-list |★★★★|           | [nowcoder][nowcoder25] |
+| 26  | [convert-binary-search-tree-to-bi-directional-linked-list][name26] |tree,linked-list|★★★★|           | [nowcoder][nowcoder26] |
+| 27  | [string-permutation][name27]    |string,math |★★★★|           | [nowcoder][nowcoder27] |
+| 28  | [the-number-occurs-more-than-half][name28]  |array  | ★★★ |           | [nowcoder][nowcoder28] |
+| 29  | [k-minimum-number][name29]      |array,heap |★★★★ |           | [nowcoder][nowcoder29] |
+| 30  | [the-largest-sum-of-consecutive-subarrays][name30]  |greedy,dp | ★★★★|           | [nowcoder][nowcoder30] |
+| 31  | [number-of-1-between-1-and-n][name31]  |math | ★★★★|           | [nowcoder][nowcoder31] |
 | 32  | [arrange-the-array-into-the-smallest-number][name32]  |           |                |           | [nowcoder][nowcoder32] |
 | 33  | [ugly-number][name33]           |math     |                |           | [nowcoder][nowcoder33] |
 | 34  | [first-character-that-appears-only-once][name34]  |array,hash-table      |                |           | [nowcoder][nowcoder34] |
