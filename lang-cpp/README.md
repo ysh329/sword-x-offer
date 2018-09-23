@@ -1,12 +1,26 @@
-# PerfCPP
+# lang-cpp
+
+## Code Style
+
+
+Google C++ Style Guide
+http://google.github.io/styleguide/cppguide.html
+
+## Feature
+
+c++11新特性--Lambda表达式 - CSDN博客
+https://blog.csdn.net/taoyanqi8932/article/details/52541312
+
+## Performance
 
 - [6 个技巧，提升 C++11 的 vector 性能 | 开源中国社区](https://www.oschina.net/translate/6-tips-supercharge-cpp-11-vector-performance?lang=chs&page=1#)
 - [c++ - Appending a vector to a vector | Stack Overflow](https://stackoverflow.com/questions/2551775/appending-a-vector-to-a-vector)
 - [fenbf/AwesomePerfCpp: A curated list of awesome C/C++ performance optimization resources: talks, articles, books, libraries, tools, sites, blogs. Inspired by awesome.](https://github.com/fenbf/AwesomePerfCpp)
 
 
+## common questions
 
-## 1.指针与引用的区别  
+### 1.指针与引用的区别  
 
 [What are the differences between a pointer variable and a reference variable in C++? | Stack Overflow](https://stackoverflow.com/questions/57483/what-are-the-differences-between-a-pointer-variable-and-a-reference-variable-in?rq=1)
 
@@ -29,14 +43,14 @@ As a general rule,
 Use references in function parameters and return types to provide useful and self-documenting interfaces.
 Use pointers for implementing algorithms and data structures.
 
-## 2.emplace_back与push_back的区别
+### 2.emplace_back与push_back的区别
 
-### 2.1 Why emplace_back is faster than push_back?
+#### 2.1 Why emplace_back is faster than push_back?
 
 - `push_back` takes a container element and copies/moves it into the container.  
 - `emplace_back` takes arbitrary arguments and constructs from those a new container element. But if you pass a single argument that's already of element type to `emplace_back`, you'll just use the copy/move constructor anyway.
 
-### 2.2 push_back vs emplace_back
+#### 2.2 push_back vs emplace_back
 
 I'm a bit confused regarding the difference between `push_back` and `emplace_back`.
 ```cpp
@@ -46,13 +60,13 @@ void push_back(Type&& _Val);
 ```
 As there is a `push_back` overload taking a rvalue reference I don't quite see what the purpose of `emplace_back` becomes?
 
-### 3.3 When would I use push_back instead of emplace_back?
+#### 3.3 When would I use push_back instead of emplace_back?
 
 C++11 vectors have the new function emplace_back. Unlike push_back, which relies on compiler optimizations to avoid copies, emplace_back uses perfect forwarding to send the arguments directly to the constructor to create an object in-place. It seems to me that emplace_back does everything push_back can do, but some of the time it will do it better (but never worse).
 
 What reason do I have to use push_back?
 
-#### A1
+##### A1
 
 `push_back` always allows the use of uniform initialization, which I'm very fond of. For instance:
 ```cpp
@@ -81,7 +95,7 @@ The actual difference between these two statements is that the more powerful emp
 
 We want to be cautious in our programming. We do not want to use powerful features because the more powerful the feature, the easier it is to accidentally do something incorrect or unexpected. If you intend to call explicit constructors, then you need the power of emplace_back. If you want to call only implicit constructors, stick with the safety of push_back.
 
-##### An example
+###### An example
 
 ```cpp
 std::vector<std::unique_ptr<T>> v;
