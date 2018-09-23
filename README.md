@@ -1,6 +1,6 @@
 # sword-x-offer
 
-sword-x-offer contains 66 common && classic interview programming questions. Each question has multiple solutions:
+sword-x-offer not only contains 66 common && classic interview programming questions but also others like common data structure summary based in language CPP etc. Particularly, each programming question has multiple solutions.
 
 ## Content
 
