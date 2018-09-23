@@ -19,26 +19,26 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 
 | num |              name               |    topic   |   difficult    | method(s) |   OJ link   |
 |:---:|:--------------------------------|:---------:|:--------------:|:---------:|:-----------:|
-| 01  | [find-value-in-matrix][name01]            |binary-search |                |           | [nowcoder][nowcoder01] |
-| 02  | [replace-space][name02]                   |string     |                 |            |[nowcoder][nowcoder02] |
-| 03  | [print-linked-list-from-tail][name03]      |linked-list |                |           |  [nowcoder][nowcoder03] |
-| 04  | [reconstruct-binary-tree][name04]          |tree       |                |           | [nowcoder][nowcoder04] |
-| 05  | [stack-operation-based-two-queues][name05] |queue      |                |           | [nowcoder][nowcoder05] |
-| 06  | [min-num-in-reverse-array][name06]         |array      |                |           | [nowcoder][nowcoder06] |
-| 07  | [fibonacci-sequence][name07]               |greedy,dp  |                |           | [nowcoder][nowcoder07] |
-| 08  | [jump-floor][name08]                       |greedy,dp  |                |           | [nowcoder][nowcoder08] |
-| 09  | [jump-floor-II][name09]                    |           |                |           | [nowcoder][nowcoder09] |
-| 10  | [rectangle-cover][name10]                  |           |                |           | [nowcoder][nowcoder10] |
-| 11  | [number-of-one-in-binary][name11]          |bit-manipulation |                |           | [nowcoder][nowcoder11] |
-| 12  | [integer-power-of-number][name12]          |           |                |           | [nowcoder][nowcoder12] |
-| 13  | [reorder-array-as-odd-number-is-in-the-front][name13]  |array           |                |           | [nowcoder][nowcoder13] |
-| 14  | [countdown-k-node-in-linked-list][name14]  |linked-list  |                |           | [nowcoder][nowcoder14] |
-| 15  | [reverse-linked-list][name15]              |linked-list |                |           | [nowcoder][nowcoder15] |
-| 16  | [meerge-two-sorted-linked-list][name16]    |linked-list |                |           | [nowcoder][nowcoder16] |
-| 17  | [judge-the-substructure-of-a-binary-tree][name17]  |tree      |                |           | [nowcoder][nowcoder17] |
-| 18  | [mirror-of-binary-tree][name18]            |tree           |                |           | [nowcoder][nowcoder18] |
-| 19  | [print-matrix-clockwise][name19]           |array      |                |           | [nowcoder][nowcoder19] |
-| 20  | [stack-contain-min-func][name20]           |stack      |                |           | [nowcoder][nowcoder20] |
+| 01  | [find-value-in-matrix][name01]            |binary-search | ★★★   |           | [nowcoder][nowcoder01] |
+| 02  | [replace-space][name02]                   |string     | ★★★      |            |[nowcoder][nowcoder02] |
+| 03  | [print-linked-list-from-tail][name03]      |linked-list | ★★★    |           |  [nowcoder][nowcoder03] |
+| 04  | [reconstruct-binary-tree][name04]          |tree       | ★★★★   |           | [nowcoder][nowcoder04] |
+| 05  | [stack-operation-based-two-queues][name05] |queue      | ★★       |           | [nowcoder][nowcoder05] |
+| 06  | [min-num-in-reverse-array][name06]         |array      | ★★       |           | [nowcoder][nowcoder06] |
+| 07  | [fibonacci-sequence][name07]               |greedy,dp  | ★★       |           | [nowcoder][nowcoder07] |
+| 08  | [jump-floor][name08]                       |greedy,dp  | ★★       |           | [nowcoder][nowcoder08] |
+| 09  | [jump-floor-II][name09]                    |           | ★★       |           | [nowcoder][nowcoder09] |
+| 10  | [rectangle-cover][name10]                  |           | ★★★     |           | [nowcoder][nowcoder10] |
+| 11  | [number-of-one-in-binary][name11]          |bit-manipulation |★★★|           | [nowcoder][nowcoder11] |
+| 12  | [integer-power-of-number][name12]          |           |★★★|           | [nowcoder][nowcoder12] |
+| 13  | [reorder-array-as-odd-number-is-in-the-front][name13]  |array |★★★|           | [nowcoder][nowcoder13] |
+| 14  | [countdown-k-node-in-linked-list][name14]  |linked-list  |★★|           | [nowcoder][nowcoder14] |
+| 15  | [reverse-linked-list][name15]              |linked-list |★★★|           | [nowcoder][nowcoder15] |
+| 16  | [meerge-two-sorted-linked-list][name16]    |linked-list |★★★ |           | [nowcoder][nowcoder16] |
+| 17  | [judge-the-substructure-of-a-binary-tree][name17]  |tree |★★★★|           | [nowcoder][nowcoder17] |
+| 18  | [mirror-of-binary-tree][name18]            |tree       | ★★★★|           | [nowcoder][nowcoder18] |
+| 19  | [print-matrix-clockwise][name19]           |array      |★★★★|           | [nowcoder][nowcoder19] |
+| 20  | [stack-contain-min-func][name20]           |stack      |★★★|           | [nowcoder][nowcoder20] |
 | 21  | [push-and-pop-sequence-of-stack][name21]   |stack      |                |           | [nowcoder][nowcoder21] |
 | 22  | [print-binary-tree-from-top-to-bottom][name22]  |tree     |                |           |  [nowcoder][nowcoder22] |
 | 23  | [postorder-traversal-of-binary-search-tree][name23]  |tree       |                |           | [nowcoder][nowcoder23] |
