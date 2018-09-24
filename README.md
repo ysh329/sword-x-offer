@@ -29,7 +29,7 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 
 <h3 id="1.1">1.1 Ordered List</h3>
 
-| id |              problem             |    topic   |   difficult    |   OJ link   |     related leetcode     |
+| id |              problem             |    topic   |   difficulty   |   OJ link   |     related leetcode     |
 |:---:|:--------------------------------|:----------:|:---------------|:-----------:|:-------------------------|
 | 01  | [find-value-in-matrix][problem01]            |binary-search | ★★★   | [nowcoder][nowcoder01] |     |
 | 02  | [replace-space][problem02]                   |string     | ★★★      |[nowcoder][nowcoder02] |     |
