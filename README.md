@@ -2,7 +2,7 @@
 
 # sword-x-offer
 
-sword-x-offer not only contains 66 common && classic interview programming questions but also others like common data structure summary based in language CPP etc. Particularly, each programming question has multiple solutions.
+sword-x-offer not only contains 66 common && classic interview programming problems but also others like common data structure summary based in language CPP etc. Particularly, each problem has multiple solutions.
 
 ## Content
 
@@ -29,7 +29,7 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 
 <h3 id="1.1">1.1 Ordered List</h3>
 
-| id |              problem             |    topic   |   difficulty   |   OJ link   |     related leetcode     |
+| id |              problem             |    topic   |   difficulty   |   OJ link   |        similarity        |
 |:---:|:--------------------------------|:----------:|:---------------|:-----------:|:-------------------------|
 | 01  | [find-value-in-matrix][problem01]            |binary-search | ★★★   | [nowcoder][nowcoder01] |     |
 | 02  | [replace-space][problem02]                   |string     | ★★★      |[nowcoder][nowcoder02] |     |
