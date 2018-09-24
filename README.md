@@ -50,41 +50,41 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 | 29  | [k-minimum-number][name29]      |array,heap |★★★★ |           | [nowcoder][nowcoder29] |
 | 30  | [the-largest-sum-of-consecutive-subarrays][name30]  |greedy,dp | ★★★★|           | [nowcoder][nowcoder30] |
 | 31  | [number-of-1-between-1-and-n][name31]  |math | ★★★★|           | [nowcoder][nowcoder31] |
-| 32  | [arrange-the-array-into-the-smallest-number][name32]  |           |                |           | [nowcoder][nowcoder32] |
-| 33  | [ugly-number][name33]           |math     |                |           | [nowcoder][nowcoder33] |
-| 34  | [first-character-that-appears-only-once][name34]  |array,hash-table      |                |           | [nowcoder][nowcoder34] |
-| 35  | [inverse-pairs-in-array][name35]  |array,math     |★★★     |           | [nowcoder][nowcoder35] |
-| 36  | [find-first-common-node-in-two-linked-lists][name36]  |linked-list           |                |           | [nowcoder][nowcoder36] |
-| 37  | [number-of-occurrences-in-the-sorted-array][name37]  |array,hash-table           |                |           | [nowcoder][nowcoder37] |
-| 38  | [depth-of-binary-tree][name38]  |tree      |                |           | [nowcoder][nowcoder38] |
-| 39  | [judge-balanced-binary-tree][name39]  |tree     |                |           | [nowcoder][nowcoder39] |
-| 40  | [find-num-appear-once-in-array][name40]  |array,hash-table |                |           |[nowcoder][nowcoder40] |
-| 41  | [sum-s-of-continuous-positive-sequence][name41]  |           |                |           | [nowcoder][nowcoder41] |
-| 42  | [two-sum][name42]               |dp         |                |           | [nowcoder][nowcoder42] |
-| 43  | [left-rotate-string][name43]    |string      |                |           | [nowcoder][nowcoder43] |
-| 44  | [reverse-words-in-sentence][name44]  |string      |                |           | [nowcoder][nowcoder44] |
-| 45  | [is-poker-continuous][name45]   |           |                |           | [nowcoder][nowcoder45] |
-| 46  | [the-last-number-in-the-circle][name46]  |math      |                |           | [nowcoder][nowcoder46] |
-| 47  | [sum-from-1-to-n][name47]       |           |                |           | [nowcoder][nowcoder47] |
-| 48  | [sum-of-two-numbers][name48]    |           |                |           | [nowcoder][nowcoder48] |
-| 49  | [str-to-int][name49]            |string,array    |                |           | [nowcoder][nowcoder49] |
-| 50  | [duplicate-number-in-array][name50]  |array,hash-table       |                |           | [nowcoder][nowcoder50] |
-| 51  | [construct-multiply-triangle][name51]  |array      |                |           | [nowcoder][nowcoder51] |
-| 52  | [regular-expression-match][name52]  |string       |★★★           |           | [nowcoder][nowcoder52] |
-| 53  | [numeric-string][name53]            |string       |                |           | [nowcoder][nowcoder53] |
-| 54  | [first-appearing-once-in-str-stream][name54]  |string      |                |           | [nowcoder][nowcoder54] |
-| 55  | [entry-of-loop-linked-list][name55]  |linked-list      |                |           | [nowcoder][nowcoder55] |
-| 56  | [delete-duplication-in-linked-list][name56]  |linked-list   |                |           | [nowcoder][nowcoder56] |
-| 57  | [next-node-of-binary-tree][name57]  |tree       |                |           | [nowcoder][nowcoder57] |
-| 58  | [is-symmetrical-binary-tree][name58] |tree      |                |           | [nowcoder][nowcoder58] |
-| 59  | [print-binary-tree-layer-by-layer][name59]  |tree      |                |           | [nowcoder][nowcoder59] |
-| 60  | [print-binary-tree-layer-by-layer-II][name60]  |tree      |                |           | [nowcoder][nowcoder60] |
-| 61  | [serialize-binary-tree][name61]  |tree     |★★★      |           |[nowcoder][nowcoder61] |
-| 62  | [kth-node-of-binary-search-tree][name62]  |tree      |                |           |[nowcoder][nowcoder62] |
-| 63  | [get-median-of-num-stream][name63]  |tree       |                |           |[nowcoder][nowcoder63] |
-| 64  | [max-in-sliding-window][name64]  |stack/queue   |                |           | [nowcoder][nowcoder64] |
-| 65  | [path-in-matrix][name65]         |backtracking |                |           | [nowcoder][nowcoder65] |
-| 66  | [range-of-robot][name66]         |backtracking  |                |           | [nowcoder][nowcoder66] |
+| 32  | [arrange-the-array-into-the-smallest-number][name32]  |★★★|                |           | [nowcoder][nowcoder32] |
+| 33  | [ugly-number][name33]           |math     |★★|           | [nowcoder][nowcoder33] |
+| 34  | [first-character-that-appears-only-once][name34]  |array,hash-table |★★|           | [nowcoder][nowcoder34] |
+| 35  | [inverse-pairs-in-array][name35]  |array,math     |★★★★★|           | [nowcoder][nowcoder35] |
+| 36  | [find-first-common-node-in-two-linked-lists][name36]  |linked-list   |★★★ |           | [nowcoder][nowcoder36] |
+| 37  | [number-of-occurrences-in-the-sorted-array][name37]  |array,hash-table  | ★★|           | [nowcoder][nowcoder37] |
+| 38  | [depth-of-binary-tree][name38]  |tree      | ★★ |           | [nowcoder][nowcoder38] |
+| 39  | [judge-balanced-binary-tree][name39]  |tree     |★★★★|           | [nowcoder][nowcoder39] |
+| 40  | [find-num-appear-once-in-array][name40]  |array,hash-table |★★★★|           |[nowcoder][nowcoder40] |
+| 41  | [sum-s-of-continuous-positive-sequence][name41]  |★★|                |           | [nowcoder][nowcoder41] |
+| 42  | [two-sum][name42]               |dp         | ★★|           | [nowcoder][nowcoder42] |
+| 43  | [left-rotate-string][name43]    |string      | ★★★|           | [nowcoder][nowcoder43] |
+| 44  | [reverse-words-in-sentence][name44]  |string      |★★★★ |           | [nowcoder][nowcoder44] |
+| 45  | [is-poker-continuous][name45]   |           |★★★|           | [nowcoder][nowcoder45] |
+| 46  | [the-last-number-in-the-circle][name46]  |math      |★★★★|           | [nowcoder][nowcoder46] |
+| 47  | [sum-from-1-to-n][name47]       |           |★★ |           | [nowcoder][nowcoder47] |
+| 48  | [sum-of-two-numbers][name48]    |bit-manipulation|★★★|           | [nowcoder][nowcoder48] |
+| 49  | [str-to-int][name49]            |string,array    |★★★★ |           | [nowcoder][nowcoder49] |
+| 50  | [duplicate-number-in-array][name50]  |array,hash-table  |★★★|           | [nowcoder][nowcoder50] |
+| 51  | [construct-multiply-triangle][name51]  |array      |★★|           | [nowcoder][nowcoder51] |
+| 52  | [regular-expression-match][name52]  |string       |★★★★ |           | [nowcoder][nowcoder52] |
+| 53  | [numeric-string][name53]            |string       |★★★★|           | [nowcoder][nowcoder53] |
+| 54  | [first-appearing-once-in-str-stream][name54]  |string      |★★|           | [nowcoder][nowcoder54] |
+| 55  | [entry-of-loop-linked-list][name55]  |linked-list      |★★★|           | [nowcoder][nowcoder55] |
+| 56  | [delete-duplication-in-linked-list][name56]  |linked-list   |★★★★|           | [nowcoder][nowcoder56] |
+| 57  | [next-node-of-binary-tree][name57]  |tree       |★★★★|           | [nowcoder][nowcoder57] |
+| 58  | [is-symmetrical-binary-tree][name58] |tree      |★★★|           | [nowcoder][nowcoder58] |
+| 59  | [print-binary-tree-layer-by-layer][name59]  |tree      |★★★|           | [nowcoder][nowcoder59] |
+| 60  | [print-binary-tree-layer-by-layer-II][name60]  |tree      |★★★|           | [nowcoder][nowcoder60] |
+| 61  | [serialize-binary-tree][name61]  |tree     |★★★  |           |[nowcoder][nowcoder61] |
+| 62  | [kth-node-of-binary-search-tree][name62]  |tree      | ★★★★|           |[nowcoder][nowcoder62] |
+| 63  | [get-median-of-num-stream][name63]  |tree       |★★★|           |[nowcoder][nowcoder63] |
+| 64  | [max-in-sliding-window][name64]  |stack/queue   |★★★|           | [nowcoder][nowcoder64] |
+| 65  | [path-in-matrix][name65]         |backtracking |★★★★|           | [nowcoder][nowcoder65] |
+| 66  | [range-of-robot][name66]         |backtracking  |★★★★|           | [nowcoder][nowcoder66] |
 
 [name01]: ./sword-x-offer/01-find-value-in-matrix "二维数组中的查找 " 
 [name02]: ./sword-x-offer/02-replace-space  "替换空格 " 
