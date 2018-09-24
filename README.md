@@ -162,6 +162,8 @@ Apache License 2.0.
 
 Solutions in sword-x-offer are mainly from forum of [nowcoder](https://www.nowcoder.com) and book [《剑指offer》](https://www.amazon.cn/dp/B00FF1Y0FU). Particularly, I learned a lot from the nowcoder's forum.
 
+Project-based-learning is from [this repo.](https://github.com/tuvtran/project-based-learning), which is under MIT License.
+
 ## Judge Script
 
 ```shell
