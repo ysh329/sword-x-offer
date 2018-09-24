@@ -6,7 +6,7 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 
 1. [Problem Set](#1)  
   1.1 [Ordered List](#1.1)  
-  1.2 [Topic List](./sword-x-offer/README.md)   
+  1.2 [Topic List](#1.2)   
 2. [Data Structure](#2)   
 3. [Language CPP](#3)   
 4. [Project Based Learning](./project-based-learning/)   
@@ -19,72 +19,72 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 
 | id |              problem             |    topic   |   difficult    |   OJ link   |     related leetcode     |
 |:---:|:--------------------------------|:----------:|:---------------|:-----------:|:-------------------------|
-| 01  | [find-value-in-matrix][name01]            |binary-search | ★★★   | [nowcoder][nowcoder01] |     |
-| 02  | [replace-space][name02]                   |string     | ★★★      |[nowcoder][nowcoder02] |     |
-| 03  | [print-linked-list-from-tail][name03]      |linked-list | ★★★    |  [nowcoder][nowcoder03] |     |
-| 04  | [reconstruct-binary-tree][name04]          |tree       | ★★★★   | [nowcoder][nowcoder04] |     |
-| 05  | [stack-operation-based-two-queues][name05] |queue      | ★★       | [nowcoder][nowcoder05] |     |
-| 06  | [min-num-in-reverse-array][name06]         |array      | ★★       | [nowcoder][nowcoder06] |     |
-| 07  | [fibonacci-sequence][name07]               |loop/recursion,dp  | ★★       | [nowcoder][nowcoder07] |     |
-| 08  | [jump-floor][name08]                       |loop/recursion,dp  | ★★       | [nowcoder][nowcoder08] |     |
-| 09  | [jump-floor-II][name09]                    |loop/recursion| ★★       | [nowcoder][nowcoder09] |     |
-| 10  | [rectangle-cover][name10]                  |loop/recursion| ★★★     | [nowcoder][nowcoder10] |     |
-| 11  | [number-of-one-in-binary][name11]          |bit-manipulation |★★★ | [nowcoder][nowcoder11] |     |
-| 12  | [integer-power-of-number][name12]          |           |★★★       |   [nowcoder][nowcoder12] |     |
-| 13  | [reorder-array-as-odd-number-is-in-the-front][name13]  |array |★★★|  [nowcoder][nowcoder13] |     |
-| 14  | [countdown-k-node-in-linked-list][name14]  |linked-list  |★★       | [nowcoder][nowcoder14] |     |
-| 15  | [reverse-linked-list][name15]              |linked-list |★★★      |  [nowcoder][nowcoder15] |     |
-| 16  | [meerge-two-sorted-linked-list][name16]    |linked-list |★★★      |   [nowcoder][nowcoder16] |     |
-| 17  | [judge-the-substructure-of-a-binary-tree][name17]  |tree |★★★★   |  [nowcoder][nowcoder17] |     |
-| 18  | [mirror-of-binary-tree][name18]            |tree       | ★★★★    | [nowcoder][nowcoder18] |     |
-| 19  | [print-matrix-clockwise][name19]           |array      |★★★★     | [nowcoder][nowcoder19] |     |
-| 20  | [stack-contain-min-func][name20]           |stack      |★★★       | [nowcoder][nowcoder20] |     |
-| 21  | [push-and-pop-sequence-of-stack][name21]   |stack      |★★★★     | [nowcoder][nowcoder21] |     |
-| 22  | [print-binary-tree-from-top-to-bottom][name22]  |tree  |★★★       |  [nowcoder][nowcoder22] |     |
-| 23  | [postorder-traversal-of-binary-search-tree][name23]  |tree |★★★★ | [nowcoder][nowcoder23] |     |
-| 24  | [target-length-path-of-binary-tree][name24]  |tree       |★★★★   | [nowcoder][nowcoder24] |     |
-| 25  | [replication-of-complex-linked-list][name25] |linked-list |★★★★  | [nowcoder][nowcoder25] |     |
-| 26  | [convert-binary-search-tree-to-bi-directional-linked-list][name26] |tree,linked-list|★★★★ | [nowcoder][nowcoder26] |     |
-| 27  | [string-permutation][name27]    |string,math |★★★★    | [nowcoder][nowcoder27] |     |
-| 28  | [the-number-occurs-more-than-half][name28]  |array  | ★★★  | [nowcoder][nowcoder28] |     |
-| 29  | [k-minimum-number][name29]      |array,heap |★★★★ | [nowcoder][nowcoder29] |     |
-| 30  | [the-largest-sum-of-consecutive-subarrays][name30]  |greedy,dp | ★★★★  | [nowcoder][nowcoder30] |     |
-| 31  | [number-of-1-between-1-and-n][name31]  |math | ★★★★ | [nowcoder][nowcoder31] |     |
-| 32  | [arrange-the-array-into-the-smallest-number][name32]  |            |★★★  | [nowcoder][nowcoder32] |     |
-| 33  | [ugly-number][name33]           |math     |★★|      [nowcoder][nowcoder33] |     |
-| 34  | [first-character-that-appears-only-once][name34]  |array,hash-table |★★|  [nowcoder][nowcoder34] |     |
-| 35  | [inverse-pairs-in-array][name35]  |array,math     |★★★★★| [nowcoder][nowcoder35] |     |
-| 36  | [find-first-common-node-in-two-linked-lists][name36]  |linked-list   |★★★  | [nowcoder][nowcoder36] |     |
-| 37  | [number-of-occurrences-in-the-sorted-array][name37]  |array,hash-table  | ★★ | [nowcoder][nowcoder37] |     |
-| 38  | [depth-of-binary-tree][name38]  |tree      | ★★ | [nowcoder][nowcoder38] |     |
-| 39  | [judge-balanced-binary-tree][name39]  |tree     |★★★★ | [nowcoder][nowcoder39] |     |
-| 40  | [find-num-appear-once-in-array][name40]  |array,hash-table |★★★★ |[nowcoder][nowcoder40] |     |
-| 41  | [sum-s-of-continuous-positive-sequence][name41]  |          |★★ | [nowcoder][nowcoder41] |     |
-| 42  | [two-sum][name42]               |          | ★★ | [nowcoder][nowcoder42] |     |
-| 43  | [left-rotate-string][name43]    |string      | ★★★ | [nowcoder][nowcoder43] |     |
-| 44  | [reverse-words-in-sentence][name44]  |string      |★★★★ | [nowcoder][nowcoder44] |     |
-| 45  | [is-poker-continuous][name45]   |           |★★★ | [nowcoder][nowcoder45] |     |
-| 46  | [the-last-number-in-the-circle][name46]  |math      |★★★★ | [nowcoder][nowcoder46] |     |
-| 47  | [sum-from-1-to-n][name47]       |           |★★ | [nowcoder][nowcoder47] |     |
-| 48  | [sum-of-two-numbers][name48]    |bit-manipulation|★★★ | [nowcoder][nowcoder48] |     |
-| 49  | [str-to-int][name49]            |string,array    |★★★★ | [nowcoder][nowcoder49] |     |
-| 50  | [duplicate-number-in-array][name50]  |array,hash-table  |★★★ | [nowcoder][nowcoder50] |     |
-| 51  | [construct-multiply-triangle][name51]  |array      |★★ | [nowcoder][nowcoder51] |     |
-| 52  | [regular-expression-match][name52]  |string       |★★★★  | [nowcoder][nowcoder52] |     |
-| 53  | [numeric-string][name53]            |string       |★★★★ | [nowcoder][nowcoder53] |     |
-| 54  | [first-appearing-once-in-str-stream][name54]  |string      |★★ | [nowcoder][nowcoder54] |     |
-| 55  | [entry-of-loop-linked-list][name55]  |linked-list      |★★★  | [nowcoder][nowcoder55] |     |
-| 56  | [delete-duplication-in-linked-list][name56]  |linked-list   |★★★★  | [nowcoder][nowcoder56] |     |
-| 57  | [next-node-of-binary-tree][name57]  |tree       |★★★★  | [nowcoder][nowcoder57] |     |
-| 58  | [is-symmetrical-binary-tree][name58] |tree      |★★★ | [nowcoder][nowcoder58] |     |
-| 59  | [print-binary-tree-layer-by-layer][name59]  |tree      |★★★ | [nowcoder][nowcoder59] |     |
-| 60  | [print-binary-tree-layer-by-layer-II][name60]  |tree      |★★★ | [nowcoder][nowcoder60] |     |
-| 61  | [serialize-binary-tree][name61]  |tree     |★★★★  |[nowcoder][nowcoder61] |     |
-| 62  | [kth-node-of-binary-search-tree][name62]  |tree      | ★★★★ |[nowcoder][nowcoder62] |     |
-| 63  | [get-median-of-num-stream][name63]  |tree       |★★★ |[nowcoder][nowcoder63] |     |
-| 64  | [max-in-sliding-window][name64]  |stack/queue   |★★★ | [nowcoder][nowcoder64] |     |
-| 65  | [path-in-matrix][name65]         |backtracking |★★★★| [nowcoder][nowcoder65] |     |
-| 66  | [range-of-robot][name66]         |backtracking  |★★★★| [nowcoder][nowcoder66] |     |
+| 01  | [find-value-in-matrix][problem01]            |binary-search | ★★★   | [nowcoder][nowcoder01] |     |
+| 02  | [replace-space][problem02]                   |string     | ★★★      |[nowcoder][nowcoder02] |     |
+| 03  | [print-linked-list-from-tail][problem03]      |linked-list | ★★★    |  [nowcoder][nowcoder03] |     |
+| 04  | [reconstruct-binary-tree][problem04]          |tree       | ★★★★   | [nowcoder][nowcoder04] |     |
+| 05  | [stack-operation-based-two-queues][problem05] |queue      | ★★       | [nowcoder][nowcoder05] |     |
+| 06  | [min-num-in-reverse-array][problem06]         |array      | ★★       | [nowcoder][nowcoder06] |     |
+| 07  | [fibonacci-sequence][problem07]               |loop/recursion,dp  | ★★       | [nowcoder][nowcoder07] |     |
+| 08  | [jump-floor][problem08]                       |loop/recursion,dp  | ★★       | [nowcoder][nowcoder08] |     |
+| 09  | [jump-floor-II][problem09]                    |loop/recursion| ★★       | [nowcoder][nowcoder09] |     |
+| 10  | [rectangle-cover][problem10]                  |loop/recursion| ★★★     | [nowcoder][nowcoder10] |     |
+| 11  | [number-of-one-in-binary][problem11]          |bit-manipulation |★★★ | [nowcoder][nowcoder11] |     |
+| 12  | [integer-power-of-number][problem12]          |           |★★★       |   [nowcoder][nowcoder12] |     |
+| 13  | [reorder-array-as-odd-number-is-in-the-front][problem13]  |array |★★★|  [nowcoder][nowcoder13] |     |
+| 14  | [countdown-k-node-in-linked-list][problem14]  |linked-list  |★★       | [nowcoder][nowcoder14] |     |
+| 15  | [reverse-linked-list][problem15]              |linked-list |★★★      |  [nowcoder][nowcoder15] |     |
+| 16  | [meerge-two-sorted-linked-list][problem16]    |linked-list |★★★      |   [nowcoder][nowcoder16] |     |
+| 17  | [judge-the-substructure-of-a-binary-tree][problem17]  |tree |★★★★   |  [nowcoder][nowcoder17] |     |
+| 18  | [mirror-of-binary-tree][problem18]            |tree       | ★★★★    | [nowcoder][nowcoder18] |     |
+| 19  | [print-matrix-clockwise][problem19]           |array      |★★★★     | [nowcoder][nowcoder19] |     |
+| 20  | [stack-contain-min-func][problem20]           |stack      |★★★       | [nowcoder][nowcoder20] |     |
+| 21  | [push-and-pop-sequence-of-stack][problem21]   |stack      |★★★★     | [nowcoder][nowcoder21] |     |
+| 22  | [print-binary-tree-from-top-to-bottom][problem22]  |tree  |★★★       |  [nowcoder][nowcoder22] |     |
+| 23  | [postorder-traversal-of-binary-search-tree][problem23]  |tree |★★★★ | [nowcoder][nowcoder23] |     |
+| 24  | [target-length-path-of-binary-tree][problem24]  |tree       |★★★★   | [nowcoder][nowcoder24] |     |
+| 25  | [replication-of-complex-linked-list][problem25] |linked-list |★★★★  | [nowcoder][nowcoder25] |     |
+| 26  | [convert-binary-search-tree-to-bi-directional-linked-list][problem26] |tree,linked-list|★★★★ | [nowcoder][nowcoder26] |     |
+| 27  | [string-permutation][problem27]    |string,math |★★★★    | [nowcoder][nowcoder27] |     |
+| 28  | [the-number-occurs-more-than-half][problem28]  |array  | ★★★  | [nowcoder][nowcoder28] |     |
+| 29  | [k-minimum-number][problem29]      |array,heap |★★★★ | [nowcoder][nowcoder29] |     |
+| 30  | [the-largest-sum-of-consecutive-subarrays][problem30]  |greedy,dp | ★★★★  | [nowcoder][nowcoder30] |     |
+| 31  | [number-of-1-between-1-and-n][problem31]  |math | ★★★★ | [nowcoder][nowcoder31] |     |
+| 32  | [arrange-the-array-into-the-smallest-number][problem32]  |            |★★★  | [nowcoder][nowcoder32] |     |
+| 33  | [ugly-number][problem33]           |math     |★★|      [nowcoder][nowcoder33] |     |
+| 34  | [first-character-that-appears-only-once][problem34]  |array,hash-table |★★|  [nowcoder][nowcoder34] |     |
+| 35  | [inverse-pairs-in-array][problem35]  |array,math     |★★★★★| [nowcoder][nowcoder35] |     |
+| 36  | [find-first-common-node-in-two-linked-lists][problem36]  |linked-list   |★★★  | [nowcoder][nowcoder36] |     |
+| 37  | [number-of-occurrences-in-the-sorted-array][problem37]  |array,hash-table  | ★★ | [nowcoder][nowcoder37] |     |
+| 38  | [depth-of-binary-tree][problem38]  |tree      | ★★ | [nowcoder][nowcoder38] |     |
+| 39  | [judge-balanced-binary-tree][problem39]  |tree     |★★★★ | [nowcoder][nowcoder39] |     |
+| 40  | [find-num-appear-once-in-array][problem40]  |array,hash-table |★★★★ |[nowcoder][nowcoder40] |     |
+| 41  | [sum-s-of-continuous-positive-sequence][problem41]  |          |★★ | [nowcoder][nowcoder41] |     |
+| 42  | [two-sum][problem42]               |          | ★★ | [nowcoder][nowcoder42] |     |
+| 43  | [left-rotate-string][problem43]    |string      | ★★★ | [nowcoder][nowcoder43] |     |
+| 44  | [reverse-words-in-sentence][problem44]  |string      |★★★★ | [nowcoder][nowcoder44] |     |
+| 45  | [is-poker-continuous][problem45]   |           |★★★ | [nowcoder][nowcoder45] |     |
+| 46  | [the-last-number-in-the-circle][problem46]  |math      |★★★★ | [nowcoder][nowcoder46] |     |
+| 47  | [sum-from-1-to-n][problem47]       |           |★★ | [nowcoder][nowcoder47] |     |
+| 48  | [sum-of-two-numbers][problem48]    |bit-manipulation|★★★ | [nowcoder][nowcoder48] |     |
+| 49  | [str-to-int][problem49]            |string,array    |★★★★ | [nowcoder][nowcoder49] |     |
+| 50  | [duplicate-number-in-array][problem50]  |array,hash-table  |★★★ | [nowcoder][nowcoder50] |     |
+| 51  | [construct-multiply-triangle][problem51]  |array      |★★ | [nowcoder][nowcoder51] |     |
+| 52  | [regular-expression-match][problem52]  |string       |★★★★  | [nowcoder][nowcoder52] |     |
+| 53  | [numeric-string][problem53]            |string       |★★★★ | [nowcoder][nowcoder53] |     |
+| 54  | [first-appearing-once-in-str-stream][problem54]  |string      |★★ | [nowcoder][nowcoder54] |     |
+| 55  | [entry-of-loop-linked-list][problem55]  |linked-list      |★★★  | [nowcoder][nowcoder55] |     |
+| 56  | [delete-duplication-in-linked-list][problem56]  |linked-list   |★★★★  | [nowcoder][nowcoder56] |     |
+| 57  | [next-node-of-binary-tree][problem57]  |tree       |★★★★  | [nowcoder][nowcoder57] |     |
+| 58  | [is-symmetrical-binary-tree][problem58] |tree      |★★★ | [nowcoder][nowcoder58] |     |
+| 59  | [print-binary-tree-layer-by-layer][problem59]  |tree      |★★★ | [nowcoder][nowcoder59] |     |
+| 60  | [print-binary-tree-layer-by-layer-II][problem60]  |tree      |★★★ | [nowcoder][nowcoder60] |     |
+| 61  | [serialize-binary-tree][problem61]  |tree     |★★★★  |[nowcoder][nowcoder61] |     |
+| 62  | [kth-node-of-binary-search-tree][problem62]  |tree      | ★★★★ |[nowcoder][nowcoder62] |     |
+| 63  | [get-median-of-num-stream][problem63]  |tree       |★★★ |[nowcoder][nowcoder63] |     |
+| 64  | [max-in-sliding-window][problem64]  |stack/queue   |★★★ | [nowcoder][nowcoder64] |     |
+| 65  | [path-in-matrix][problem65]         |backtracking |★★★★| [nowcoder][nowcoder65] |     |
+| 66  | [range-of-robot][problem66]         |backtracking  |★★★★| [nowcoder][nowcoder66] |     |
 
 <h3 id="1.2">1.2 Topic List</h3>  
 
