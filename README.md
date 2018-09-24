@@ -15,20 +15,20 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 
 <h2 id="1">1.Problem Set</h2>
 
-<h3 id="1.1">Ordered List</h3>
+<h3 id="1.1">1.1 Ordered List</h3>
 
-| num |              name               |    topic   |   difficult    |   OJ link   |     related      |
-|:---:|:--------------------------------|:---------:|:----------------|:-----------:|:-----------------|
+| id |              problem             |    topic   |   difficult    |   OJ link   |     related leetcode     |
+|:---:|:--------------------------------|:----------:|:---------------|:-----------:|:-------------------------|
 | 01  | [find-value-in-matrix][name01]            |binary-search | ★★★   | [nowcoder][nowcoder01] |     |
 | 02  | [replace-space][name02]                   |string     | ★★★      |[nowcoder][nowcoder02] |     |
 | 03  | [print-linked-list-from-tail][name03]      |linked-list | ★★★    |  [nowcoder][nowcoder03] |     |
 | 04  | [reconstruct-binary-tree][name04]          |tree       | ★★★★   | [nowcoder][nowcoder04] |     |
 | 05  | [stack-operation-based-two-queues][name05] |queue      | ★★       | [nowcoder][nowcoder05] |     |
 | 06  | [min-num-in-reverse-array][name06]         |array      | ★★       | [nowcoder][nowcoder06] |     |
-| 07  | [fibonacci-sequence][name07]               |greedy,dp  | ★★       | [nowcoder][nowcoder07] |     |
-| 08  | [jump-floor][name08]                       |greedy,dp  | ★★       | [nowcoder][nowcoder08] |     |
-| 09  | [jump-floor-II][name09]                    |           | ★★       | [nowcoder][nowcoder09] |     |
-| 10  | [rectangle-cover][name10]                  |           | ★★★     | [nowcoder][nowcoder10] |     |
+| 07  | [fibonacci-sequence][name07]               |loop/recursion,dp  | ★★       | [nowcoder][nowcoder07] |     |
+| 08  | [jump-floor][name08]                       |loop/recursion,dp  | ★★       | [nowcoder][nowcoder08] |     |
+| 09  | [jump-floor-II][name09]                    |loop/recursion| ★★       | [nowcoder][nowcoder09] |     |
+| 10  | [rectangle-cover][name10]                  |loop/recursion| ★★★     | [nowcoder][nowcoder10] |     |
 | 11  | [number-of-one-in-binary][name11]          |bit-manipulation |★★★ | [nowcoder][nowcoder11] |     |
 | 12  | [integer-power-of-number][name12]          |           |★★★       |   [nowcoder][nowcoder12] |     |
 | 13  | [reorder-array-as-odd-number-is-in-the-front][name13]  |array |★★★|  [nowcoder][nowcoder13] |     |
@@ -51,7 +51,7 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 | 30  | [the-largest-sum-of-consecutive-subarrays][name30]  |greedy,dp | ★★★★  | [nowcoder][nowcoder30] |     |
 | 31  | [number-of-1-between-1-and-n][name31]  |math | ★★★★ | [nowcoder][nowcoder31] |     |
 | 32  | [arrange-the-array-into-the-smallest-number][name32]  |            |★★★  | [nowcoder][nowcoder32] |     |
-| 33  | [ugly-number][name33]           |math     |★★|           | [nowcoder][nowcoder33] |     |
+| 33  | [ugly-number][name33]           |math     |★★|      [nowcoder][nowcoder33] |     |
 | 34  | [first-character-that-appears-only-once][name34]  |array,hash-table |★★|  [nowcoder][nowcoder34] |     |
 | 35  | [inverse-pairs-in-array][name35]  |array,math     |★★★★★| [nowcoder][nowcoder35] |     |
 | 36  | [find-first-common-node-in-two-linked-lists][name36]  |linked-list   |★★★  | [nowcoder][nowcoder36] |     |
@@ -60,7 +60,7 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 | 39  | [judge-balanced-binary-tree][name39]  |tree     |★★★★ | [nowcoder][nowcoder39] |     |
 | 40  | [find-num-appear-once-in-array][name40]  |array,hash-table |★★★★ |[nowcoder][nowcoder40] |     |
 | 41  | [sum-s-of-continuous-positive-sequence][name41]  |          |★★ | [nowcoder][nowcoder41] |     |
-| 42  | [two-sum][name42]               |dp         | ★★ | [nowcoder][nowcoder42] |     |
+| 42  | [two-sum][name42]               |          | ★★ | [nowcoder][nowcoder42] |     |
 | 43  | [left-rotate-string][name43]    |string      | ★★★ | [nowcoder][nowcoder43] |     |
 | 44  | [reverse-words-in-sentence][name44]  |string      |★★★★ | [nowcoder][nowcoder44] |     |
 | 45  | [is-poker-continuous][name45]   |           |★★★ | [nowcoder][nowcoder45] |     |
@@ -79,7 +79,7 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 | 58  | [is-symmetrical-binary-tree][name58] |tree      |★★★ | [nowcoder][nowcoder58] |     |
 | 59  | [print-binary-tree-layer-by-layer][name59]  |tree      |★★★ | [nowcoder][nowcoder59] |     |
 | 60  | [print-binary-tree-layer-by-layer-II][name60]  |tree      |★★★ | [nowcoder][nowcoder60] |     |
-| 61  | [serialize-binary-tree][name61]  |tree     |★★★  |[nowcoder][nowcoder61] |     |
+| 61  | [serialize-binary-tree][name61]  |tree     |★★★★  |[nowcoder][nowcoder61] |     |
 | 62  | [kth-node-of-binary-search-tree][name62]  |tree      | ★★★★ |[nowcoder][nowcoder62] |     |
 | 63  | [get-median-of-num-stream][name63]  |tree       |★★★ |[nowcoder][nowcoder63] |     |
 | 64  | [max-in-sliding-window][name64]  |stack/queue   |★★★ | [nowcoder][nowcoder64] |     |
@@ -220,6 +220,21 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 [nowcoder64]: https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=13&tqId=11217&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 [nowcoder65]: https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&tqId=11218&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 [nowcoder66]: https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&tqId=11219&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking 
+
+<h3 id="1.2">1.2 Topic List</h3>  
+
+#### Binary Search
+
+#### Linked List
+
+#### Binary Tree
+
+#### Dynamic Programming
+
+- [07-fibonacci-sequence](./sword-x-offer/07-fibonacci-sequence/)
+- [30-the-largest-sum-of-consecutive-subarrays](./sword-x-offer/30-the-largest-sum-of-consecutive-subarrays/)
+- [51-construct-multiply-triangle](./sword-x-offer/51-construct-multiply-triangle/)
+- [52-regular-expression-match](./sword-x-offer/52-regular-expression-match/)
 
 <h2 id="2">2.Data Structure</h2>  
 
