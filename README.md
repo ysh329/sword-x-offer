@@ -162,7 +162,7 @@ Apache License 2.0.
 
 <h2 id="6">6.Acknowledgement</h2>  
 
-Solutions in sword-x-offer are mainly from forum of [nowcoder](https://www.nowcoder.com) and book [《剑指offer》](https://www.amazon.cn/dp/B00FF1Y0FU). Particularly, I learned a lot from the nowcoder's forum.
+Solutions in sword-x-offer are mainly from the forum of [nowcoder](https://www.nowcoder.com) and book [《剑指offer》](https://www.amazon.cn/dp/B00FF1Y0FU). Particularly, I learned a lot from the forum of nowcoder.
 
 Project-based-learning is from [this repo.](https://github.com/tuvtran/project-based-learning), which is under MIT License.
 
