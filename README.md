@@ -86,6 +86,68 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 | 65  | [path-in-matrix][name65]         |backtracking |★★★★| [nowcoder][nowcoder65] |     |
 | 66  | [range-of-robot][name66]         |backtracking  |★★★★| [nowcoder][nowcoder66] |     |
 
+<h3 id="1.2">1.2 Topic List</h3>  
+
+#### Binary Search
+
+#### Linked List
+
+- [01-print-linked-list-from-tail](./sword-x-offer/01-print-linked-list-from-tail)
+- [14-countdown-k-node-in-linked-list](./sword-x-offer/14-entry-of-loop-linked-list)
+- [15-reverse-linked-list](./sword-x-offer/15-entry-of-loop-linked-list)
+- [16-merge-two-sorted-linked-list](./sword-x-offer/16-entry-of-loop-linked-list)
+- [25-replication-of-complex-linked-list](./sword-x-offer/25-entry-of-loop-linked-list)
+- [26-convert-binary-search-tree-to-bi-directional-linked-list](./sword-x-offer/26-entry-of-loop-linked-list)
+- [36-find-first-common-node-in-two-linked-lists](./sword-x-offer/36-entry-of-loop-linked-list)
+- [55-entry-of-loop-linked-list](./sword-x-offer/55-entry-of-loop-linked-list)
+- [56-delete-duplication-in-linked-list](./sword-x-offer/56-delete-duplication-in-linked-list)
+
+#### Binary Tree
+
+#### Dynamic Programming
+
+- [07-fibonacci-sequence](./sword-x-offer/07-fibonacci-sequence/)
+- [30-the-largest-sum-of-consecutive-subarrays](./sword-x-offer/30-the-largest-sum-of-consecutive-subarrays/)
+- [51-construct-multiply-triangle](./sword-x-offer/51-construct-multiply-triangle/)
+- [52-regular-expression-match](./sword-x-offer/52-regular-expression-match/)
+
+<h2 id="2">2.Data Structure</h2>  
+
+- [binary-search](./data-structure/binary-search.md)  
+- [linked-list](./data-structure/linked-list.md)  
+- [string](./data-structure/string.md)    
+- [tree](./data-structure/tree.md)  
+- [sort](./data-structure/sort.md)  
+- [graph](./data-structure/graph.md)  
+
+<h2 id="3">3.Language CPP</h2>  
+
+<h2 id="5">5.License</h2>
+
+Apache License 2.0.
+
+<h2 id="6">6.Acknowledgement</h2>  
+
+Solutions in sword-x-offer are mainly from forum of [nowcoder](https://www.nowcoder.com) and book [《剑指offer》](https://www.amazon.cn/dp/B00FF1Y0FU). Particularly, I learned a lot from the nowcoder's forum.
+
+## Judge Script
+
+```shell
+#!bin/bash
+while true;
+do
+./data
+./std
+./test
+if diff std.out test.out;then
+echo AC
+else
+echo WA
+exit 0
+fi
+done
+```
+
 [name01]: ./sword-x-offer/01-find-value-in-matrix "二维数组中的查找 " 
 [name02]: ./sword-x-offer/02-replace-space  "替换空格 " 
 [name03]: ./sword-x-offer/03-print-linked-list-from-tail  "从尾到头打印链表 " 
@@ -220,55 +282,3 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 [nowcoder64]: https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=13&tqId=11217&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 [nowcoder65]: https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&tqId=11218&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 [nowcoder66]: https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&tqId=11219&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking 
-
-<h3 id="1.2">1.2 Topic List</h3>  
-
-#### Binary Search
-
-#### Linked List
-
-#### Binary Tree
-
-#### Dynamic Programming
-
-- [07-fibonacci-sequence](./sword-x-offer/07-fibonacci-sequence/)
-- [30-the-largest-sum-of-consecutive-subarrays](./sword-x-offer/30-the-largest-sum-of-consecutive-subarrays/)
-- [51-construct-multiply-triangle](./sword-x-offer/51-construct-multiply-triangle/)
-- [52-regular-expression-match](./sword-x-offer/52-regular-expression-match/)
-
-<h2 id="2">2.Data Structure</h2>  
-
-- [binary-search](./data-structure/binary-search.md)  
-- [linked-list](./data-structure/linked-list.md)  
-- [string](./data-structure/string.md)    
-- [tree](./data-structure/tree.md)  
-- [sort](./data-structure/sort.md)  
-- [graph](./data-structure/graph.md)  
-
-<h2 id="3">3.Language CPP</h2>  
-
-<h2 id="5">5.License</h2>
-
-Apache License 2.0.
-
-<h2 id="6">6.Acknowledgement</h2>  
-
-Solutions in sword-x-offer are mainly from forum of [nowcoder](https://www.nowcoder.com) and book [《剑指offer》](https://www.amazon.cn/dp/B00FF1Y0FU). Particularly, I learned a lot from the nowcoder's forum.
-
-## Judge Script
-
-```shell
-#!bin/bash
-while true;
-do
-./data
-./std
-./test
-if diff std.out test.out;then
-echo AC
-else
-echo WA
-exit 0
-fi
-done
-```
