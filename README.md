@@ -7,7 +7,7 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 1. [Problem Set](#1)  
   1.1 [Ordered List](#1.1)  
   1.2 [Topic List](#1.2)   
-2. [Data Structure](#2)   
+2. [Data Structure(TODO)](#2)   
 3. [Language CPP](#3)   
 4. [Project Based Learning](./project-based-learning/)   
 5. [License](#5)   
@@ -140,6 +140,9 @@ sword-x-offer not only contains 66 common && classic interview programming quest
 - [graph](./data-structure/graph.md)  
 
 <h2 id="3">3.Language CPP</h2>  
+
+- Style: [Google C++ Style Guide](http://google.github.io/styleguide/cppguide.html)
+- Others: [lang-cpp](./lang-cpp)
 
 <h2 id="5">5.License</h2>
 
