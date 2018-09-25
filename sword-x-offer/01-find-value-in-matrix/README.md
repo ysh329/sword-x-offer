@@ -10,28 +10,24 @@
 class Solution {
 public:  
     bool Find(int target, vector<vector<int> > array) {
-        
         bool result = false;
-        if(array.size()==0 || array[0].size()==0)
+        if(array.empty() || array[0].empty())
             return result;
         int rows = array.size();
         int cols = array[0].size();
         int r = 0;
         int c = cols - 1;
-        while(0<=r&&r<rows && 0<=c&&c<cols)
-        {
-            if(array[r][c]==target)
-            {
+        while(0<=r&&r<rows && 0<=c&&c<cols) {
+            if(array[r][c] == target) {
                 result = true;
                 break;
             }
-            else if(array[r][c]>target)
+            else if(array[r][c] > target)
                 c--;
             else
                 r++;
         }
         return result;
-        
     }
 ```   
 
@@ -44,21 +40,18 @@ class Solution {
 public:
     bool Find(int target, vector<vector<int> > array) {
         bool result = false;
-        if(array.empty() || array[0].size()==0)
+        if(array.empty() || array[0].empty())
             return result;
-        for(int row_idx = 0; row_idx < array.size() && !result; row_idx++)
-        {
+        for(int row_idx = 0; row_idx < array.size() && !result; row_idx++) {
             int low = 0;
             int high = array[row_idx].size() - 1;
-            while(low<=high)
-            {
-                int midx = (low+high)/2;
-                if(array[row_idx][midx]==target)
-                {
+            while(low <= high) {
+                int midx = (low + high) / 2;
+                if(array[row_idx][midx] == target) {
                     result = true;
                     break;
                 }
-                else if(array[row_idx][midx]>target)
+                else if(array[row_idx][midx] > target)
                     high = midx - 1;
                 else
                     low = midx + 1;
