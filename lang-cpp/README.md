@@ -17,8 +17,13 @@ https://blog.csdn.net/taoyanqi8932/article/details/52541312
 - [c++ - Appending a vector to a vector | Stack Overflow](https://stackoverflow.com/questions/2551775/appending-a-vector-to-a-vector)
 - [fenbf/AwesomePerfCpp: A curated list of awesome C/C++ performance optimization resources: talks, articles, books, libraries, tools, sites, blogs. Inspired by awesome.](https://github.com/fenbf/AwesomePerfCpp)
 
-
 ## common questions
+
+### C++与C的空指针
+
+- NULL，C中定义：((void*)0)  
+- NULL，C++中定义：0  
+- nullptr，在C++中表示空指针  
 
 ### 1.指针与引用的区别  
 
