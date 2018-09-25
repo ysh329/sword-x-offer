@@ -70,28 +70,23 @@ java三个思路
 ## 每次排序
 
 ```cpp
-链接：https://www.nowcoder.com/questionTerminal/9be0172896bd43948f8a32fb954e1be1
-来源：牛客网
-
 class Solution {
 public:
+    vector<int> data;
     void Insert(int num) {
         data.push_back(num);
-        std::sort(data.begin(), data.end());
+        sort(data.begin(), data.end());
     }
- 
     double GetMedian() {
         unsigned int size = data.size();
-        if (size & 1) {
+        if(size & 1)
             return data[size >> 1];
-        } else {
+        else {
             int left = data[(size >> 1) - 1];
             int right = data[size >> 1];
             return (static_cast<double>(left) + right) / 2;
         }
     }
-private:
-    vector<int> data;
 };
 ```
 
@@ -152,17 +147,14 @@ public:
 
 ## 两个堆实现
 
-```cpp
-链接：https://www.nowcoder.com/questionTerminal/9be0172896bd43948f8a32fb954e1be1
-来源：牛客网
+### 两个堆实现1：优先队列
 
+```cpp
 class Solution {
 public:
-    void Insert(int num)
-    {
-        count+=1;
-        // 元素个数是偶数时,将小顶堆堆顶放入大顶堆
-        if(count%2==0){
+    void Insert(int num) {
+        count++;
+        if((count & 1) != 1){// 元素个数是偶数时,将小顶堆堆顶放入大顶堆
             big_heap.push(num);
             small_heap.push(big_heap.top());
             big_heap.pop();
@@ -174,29 +166,22 @@ public:
         }
     }
  
-    double GetMedian()
-    {
-        if(count&0x1){
+    double GetMedian() {
+        if(count & 0x1)
             return big_heap.top();
-        }
-        else{
+        else
             return double((small_heap.top()+big_heap.top())/2.0);
-        }
     }
-private:
+private: // 大顶堆所有元素均小于等于小顶堆的所有元素.
     int count=0;
     priority_queue<int, vector<int>, less<int>> big_heap;        // 左边一个大顶堆
     priority_queue<int, vector<int>, greater<int>> small_heap;   // 右边一个小顶堆
-    // 大顶堆所有元素均小于等于小顶堆的所有元素.
 };
 ```
 
-## 两个堆实现：vector
+### 两个堆实现2：动态数组
 
 ```cpp
-链接：https://www.nowcoder.com/questionTerminal/9be0172896bd43948f8a32fb954e1be1
-来源：牛客网
-
 class Solution {
 private:
         vector<int> min;
