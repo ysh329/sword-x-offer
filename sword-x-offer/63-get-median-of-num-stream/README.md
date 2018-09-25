@@ -95,28 +95,38 @@ private:
 };
 ```
 
-## 简洁cpp
+## multiset
+
+**结构**
+
+set和multiset会根据特定的排序原则将元素排序。两者不同之处在于，multisets允许元素重复，而set不允许重复。
+
+和所有的标准关联容器类似，sets和multisets通常以平衡二叉树完成。
+
+**能力**
+
+自动排序的主要优点在于使二叉树搜寻元素具有良好的性能，在其搜索函数算法具有对数复杂度。但是自动排序也造成了一个限制，不能直接改变元素值，因为这样会打乱原有的顺序，要改变元素的值，必须先删除旧元素，再插入新元素。所以sets和multisets具有以下特点：
+
+- 不提供直接用来存取元素的任何操作元素；  
+- 通过迭代器进行元素的存取。
 
 ```cpp
-链接：https://www.nowcoder.com/questionTerminal/9be0172896bd43948f8a32fb954e1be1
-来源：牛客网
-
 class Solution {
 public:
     multiset<int> rec;
-    void Insert(int num)
-    {
+    void Insert(int num) {
         rec.insert(num);
     }
-    double GetMedian()
-    { 
-    auto it1=rec.begin(), it2=it1;
+    double GetMedian() { 
+        auto it1 = rec.begin(), it2 = it1;
         advance(it1, rec.size()/2);
         advance(it2, rec.size()/2-!(rec.size()%2));
         return (*it1+*it2)/2.0;
     }
 };
 ```
+
+参考：[【C++ STL】Set和Multiset - Memset - 博客园](https://www.cnblogs.com/ChinaHook/p/6985444.html)
 
 ## 最小堆
 
