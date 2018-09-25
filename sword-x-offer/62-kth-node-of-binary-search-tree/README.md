@@ -92,22 +92,22 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode* KthNode(TreeNode* pRoot, int k) {
-        if(!pRoot) return nullptr;
-        int count = 0;
+        if(!pRoot || k < 1) return nullptr;
+        TreeNode* p = pRoot;
         stack<TreeNode*> s;
-        TreeNode *p = pRoot;
+        unsigned int count = 0;
         while(p || s.size()) {
             while(p) {
                 s.push(p);
                 p = p->left;
             }
-            if(s.size()) {
-                ++count;
+            if(s.size()) { // 注意这里是if，不是while
+                count++;
                 p = s.top();
-                if(count==k)
+                if(count == k)
                     return p;
                 s.pop();
-                p = p->right;
+                p = p->right; // 取出当前节点的右孩子，用于下一轮while找左孩子
             }
         }
         return nullptr;
