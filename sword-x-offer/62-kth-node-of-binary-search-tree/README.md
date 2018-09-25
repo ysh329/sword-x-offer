@@ -34,22 +34,32 @@ public:
 ### 中序遍历2
 
 ```cpp
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
 typedef TreeNode* pnode;
 class Solution {
-    int m;
+    unsigned int m;
     pnode ans;
-    void dfs(pnode p){
-        if(!p || m < 1) return;
-        dfs(p -> left);
-        if(m == 1) ans = p;
-        --m;
-        if(m > 0) dfs(p -> right);
-    }
 public:
-    TreeNode* KthNode(TreeNode* p, unsigned int k){
+    void dfs(pnode p) {
+        if(!p || m == 0) return;
+        dfs(p->left);
+        if(m == 1) ans = p; // m--在后，因而与1比较
+        m--;
+        if(m > 0) dfs(p->right); //if判断是否小于等于0，没必要算下去了，判断可有可无
+    }
+    TreeNode* KthNode(TreeNode* pRoot, int k) {
         ans = nullptr; m = k;
-        dfs(p);
-        return ans; 
+        dfs(pRoot);
+        return ans;
     }
 };
 ```
