@@ -18,10 +18,8 @@ class Solution {
 public:
     vector<int> printListFromTailToHead(ListNode* head) {
         vector<int> result;
-        if(head==NULL)
-            return result;
-        while(head)
-        {
+        if(!head) return result;
+        while(head) {
             result.push_back(head->val);
             head = head->next;
         }
@@ -46,17 +44,14 @@ public:
 class Solution {
 public:
     vector<int> printListFromTailToHead(ListNode* head) {
-        if(!head)
-            return vector<int>();
+        if(!head) return vector<int>();
         vector<int> result;
         helper(head, result);
         reverse(result.begin(), result.end());
         return result;
     }
-    void helper(ListNode* head, vector<int> &result)
-    {
-        if(head==NULL)
-            return;
+    void helper(ListNode* head, vector<int> &result) {
+        if(!head) return;
         result.push_back(head->val);
         helper(head->next, result);
         return;
