@@ -10,13 +10,10 @@
 ```cpp
 class Solution {
 public:
-	void replaceSpace(char *str,int length) {
-        if(str==NULL || length<=0)
-            return;
-        for(int sidx = 0; sidx < length; sidx++)
-        {
-            if(str[sidx] == ' ')
-            {
+    void replaceSpace(char *str,int length) {
+        if(!str || length<=0) return;
+        for(int sidx = 0; sidx < length; sidx++) {
+            if(str[sidx] == ' ') {
                 //后移
                 length += 2;
                 for(int sub_sidx = length-1; sub_sidx >= sidx+1; sub_sidx--)
@@ -28,7 +25,7 @@ public:
                 sidx += 2;
             }
         }
-	}
+    }
 };
 ```
 
@@ -41,20 +38,16 @@ public:
 class Solution {
 public:
     void replaceSpace(char *str,int length) {
-        if(str==NULL || length<=0)
-            return;
-        
+        if(!str || length<=0) return;
         int space_count = 0;
+	
         for(int sidx = 0; sidx < length; sidx++)
-            if(str[sidx]==' ')
-                space_count++;
+            if(str[sidx]==' ') space_count++;
         
         str[space_count*2+length] = '\0';
-        for(int sidx = space_count*2+length-1; sidx >= 0; sidx--)
-        {
+        for(int sidx = space_count*2+length-1; sidx >= 0; sidx--) {
             length--;
-            if(str[length]==' ')
-            {
+            if(str[length]==' ') {
                 str[sidx] = '0';
                 str[sidx-1] = '2';
                 str[sidx-2] = '%';
