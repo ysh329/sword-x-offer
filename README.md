@@ -46,7 +46,7 @@ sword-x-offer not only contains 66 common && classic interview programming probl
 | 13  | [reorder-array-as-odd-number-is-in-the-front][problem13]  |array |★★★|  [nowcoder][nowcoder13] |     |
 | 14  | [countdown-k-node-in-linked-list][problem14]  |linked-list  |★★       | [nowcoder][nowcoder14] |     |
 | 15  | [reverse-linked-list][problem15]              |linked-list |★★★      |  [nowcoder][nowcoder15] |     |
-| 16  | [meerge-two-sorted-linked-list][problem16]    |linked-list |★★★      |   [nowcoder][nowcoder16] |     |
+| 16  | [merge-two-sorted-linked-list][problem16]    |linked-list |★★★      |   [nowcoder][nowcoder16] |     |
 | 17  | [judge-the-substructure-of-a-binary-tree][problem17]  |tree |★★★★   |  [nowcoder][nowcoder17] |     |
 | 18  | [mirror-of-binary-tree][problem18]            |tree       | ★★★★    | [nowcoder][nowcoder18] |     |
 | 19  | [print-matrix-clockwise][problem19]           |array      |★★★★     | [nowcoder][nowcoder19] |     |
