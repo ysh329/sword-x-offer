@@ -21,6 +21,9 @@ sword-x-offer not only contains 66 common && classic interview programming probl
   2.5 sort  
   2.6 graph  
 3. [Language CPP(TODO)](#3)   
+  3.1 Style: Google C++ Style Guide  
+  3.2 gcc five minute  
+  3.3 basic cpp language  
 4. [Project Based Learning](./project-based-learning/)   
 5. [License](#5)   
 6. [Acknowledge](#6)   
