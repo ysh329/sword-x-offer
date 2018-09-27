@@ -64,7 +64,9 @@ public:
 };
 ```
 
-## multiset
+## 基于内部排序的堆结构 multiset
+
+使用基于内部排序的堆结构，在需要计算中位数时，偶数长度直接返回中间两数平均值，奇数长度返回中间的数。这里说一下set和multiset的结构与能力区别。
 
 **结构**
 
@@ -89,13 +91,19 @@ public:
     double GetMedian() { 
         auto it1 = rec.begin(), it2 = it1;
         advance(it1, rec.size()/2);
-        advance(it2, rec.size()/2-!(rec.size()%2));
+        advance(it2, rec.size()/2-!(rec.size()%2)); // 偶数长度返回it前一个，奇数长度it1与it2一样
         return (*it1+*it2)/2.0;
     }
 };
 ```
+补充：std::advance函数  
+- template< class InputIt, class Distance >  
+- constexpr void advance( InputIt& it, Distance n );  
+增加给定的迭代器 it 以 n 个元素的步长。若 n 为负，则迭代器自减。该情况下， InputIt 必须满足双向迭代器 (BidirectionalIterator) 的要求，否则行为未定义。  
 
-参考：[【C++ STL】Set和Multiset - Memset - 博客园](https://www.cnblogs.com/ChinaHook/p/6985444.html)
+参考：  
+- [std::advance - cppreference.com](https://zh.cppreference.com/w/cpp/iterator/advance)  
+- [【C++ STL】Set和Multiset - Memset - 博客园](https://www.cnblogs.com/ChinaHook/p/6985444.html)
 
 ## 最小堆
 
