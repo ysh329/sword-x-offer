@@ -107,16 +107,21 @@ public:
 
 ## 最小堆
 
+- 新元素小于最小堆里最小的，放入最大堆，保证给最大堆的元素均小于最小堆的最小元素；
+- 总元素个数为偶数，中位数为最大堆和最小堆顶部元素的平均值；
+- 总元素个数为奇数，中位数为最小堆顶部元素。
+
 ```cpp
 class Solution {
+private:
+    priority_queue<int, vector<int>, less<int>> p;    //排序右半边，让其多一个
+    priority_queue<int, vector<int>, greater<int>> q; //排序左半边
 public:
-    priority_queue<int, vector<int>, less<int>> p;//排序右半边，让其多一个
-    priority_queue<int, vector<int>, greater<int>> q;//排序左半边
     void Insert(int num) {
-        //小于最小堆里最小的，那么放入最大堆
-        //保证了给最大堆的元素，均小于最小堆的最小元素
+        // 小于最小堆里最小的，那么放入最大堆。保证了给最大堆的元素，均小于最小堆的最小元素
         if(p.empty() || num<=p.top()) p.push(num);
         else q.push(num);
+        // 平衡两个堆的元素个数
         if(p.size() == q.size()+2) {q.push(p.top()); p.pop();}
         if(p.size()+1 == q.size()) {p.push(q.top()); q.pop();}
     }
@@ -133,31 +138,29 @@ public:
 
 ```cpp
 class Solution {
+private: // 大顶堆所有元素均小于等于小顶堆的所有元素.
+    int count = 0;
+    priority_queue<int, vector<int>, less<int>> big_heap;        // 左边一个大顶堆
+    priority_queue<int, vector<int>, greater<int>> small_heap;   // 右边一个小顶堆
 public:
     void Insert(int num) {
         count++;
-        if((count & 1) != 1){// 元素个数是偶数时,将小顶堆堆顶放入大顶堆
+        if((count & 1) != 1) { // 总元素个数为偶数，将小顶堆堆顶放入大顶堆
             big_heap.push(num);
             small_heap.push(big_heap.top());
             big_heap.pop();
         }
-        else{
+        else {
             small_heap.push(num);
             big_heap.push(small_heap.top());
             small_heap.pop();
         }
     }
- 
     double GetMedian() {
-        if(count & 0x1)
-            return big_heap.top();
-        else
-            return double((small_heap.top()+big_heap.top())/2.0);
+        return (count & 0x1) ?
+               big_heap.top() :
+               double((small_heap.top()+big_heap.top())/2.0);
     }
-private: // 大顶堆所有元素均小于等于小顶堆的所有元素.
-    int count=0;
-    priority_queue<int, vector<int>, less<int>> big_heap;        // 左边一个大顶堆
-    priority_queue<int, vector<int>, greater<int>> small_heap;   // 右边一个小顶堆
 };
 ```
 
@@ -213,6 +216,45 @@ public:
             else//奇数，去最小堆，因为最小堆数据保持和最大堆一样多，或者比最大堆多1个
                 return min[0];
         }
+};
+```
+
+```cpp
+class Solution {
+private:
+    vector<int> min;
+    vector<int> max;
+public:
+    void Insert(int num) {
+        if(((min.size()+max.size())&1) == 0) { //总长为偶数，放入最小堆
+            if(max.size() && num<max[0]) {
+                max.push_back(num);
+                push_heap(max.begin(), max.end(), less<int>());
+                num = max[0];
+                pop_heap(max.begin(), max.end(), less<int>());
+                max.pop_back();
+            }
+            min.push_back(num);
+            push_heap(min.begin(), min.end(), greater<int>());
+        }
+        else {
+            if(min.size() && num>min[0]) { //奇数，放入最大堆
+                min.push_back(num);
+                push_heap(min.begin(), min.end(), greater<int>());
+                num = min[0];
+                pop_heap(min.begin(), min.end(), greater<int>());
+                min.pop_back();
+            }
+            max.push_back(num);
+            push_heap(max.begin(), max.end(), less<int>());
+        }
+    }
+    double GetMedian() {
+        int size = min.size() + max.size();
+        if(size <= 0) return 0;
+        if((size&1) == 0) return ((double)(max[0]+min[0]) / 2);
+        return min[0];
+    }
 };
 ```
 
