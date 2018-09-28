@@ -26,7 +26,8 @@
         d.继续传入一个数为4，先存到小顶堆中，小顶堆此时为3,4，5,弹出最小值为3，给大顶堆。此时大顶堆为3,2,小顶堆为4,5，(第四次塞入到小顶堆中，是从大顶堆中找到最大的给他的)。此时若要输出中位数，因为是偶数，那么取两个头的平均值,即(3+4)/2=3.5  
         e.依次类推。。。  
      
-    /***************方式三、插入排序，插入到对应的位置***********************
+方式三、插入排序，插入到对应的位置
+```java
     LinkedList<Integer> data = new LinkedList<Integer>();
     public void Insert(Integer num) {
         for (int i = data.size() - 1; i >= 0 ; i--) {
@@ -37,9 +38,11 @@
         }
         data.addFirst(num);
     }
-    ****************************************/
+```
     
 ## 排序
+
+### 排序1：显式排序  
 
 通过每次插入数据后进行排序，最终取数组中位数
 
@@ -64,7 +67,7 @@ public:
 };
 ```
 
-## 基于内部排序的堆结构 multiset
+## 排序2：隐式排序，基于内部排序的堆结构 multiset
 
 使用基于内部排序的堆结构，在需要计算中位数时，偶数长度直接返回中间两数平均值，奇数长度返回中间的数。这里说一下set和multiset的结构与能力区别。
 
@@ -105,7 +108,9 @@ public:
 - [std::advance - cppreference.com](https://zh.cppreference.com/w/cpp/iterator/advance)  
 - [【C++ STL】Set和Multiset - Memset - 博客园](https://www.cnblogs.com/ChinaHook/p/6985444.html)
 
-## 最小堆
+## 两个堆实现
+
+### 两个堆实现1
 
 - 新元素小于最小堆里最小的，放入最大堆，保证给最大堆的元素均小于最小堆的最小元素；
 - 总元素个数为偶数，中位数为最大堆和最小堆顶部元素的平均值；
@@ -132,9 +137,7 @@ public:
 };
 ```
 
-## 两个堆实现
-
-### 两个堆实现1：优先队列
+### 两个堆实现2
 
 ```cpp
 class Solution {
@@ -164,7 +167,7 @@ public:
 };
 ```
 
-### 两个堆实现2：动态数组
+### 两个堆实现3：动态数组
 
 ```cpp
 class Solution {
@@ -258,89 +261,73 @@ public:
 };
 ```
 
-## 动手实现堆
+### 两个堆实现4：动手实现堆
 
-链接：https://www.nowcoder.com/questionTerminal/9be0172896bd43948f8a32fb954e1be1
-来源：牛客网
-
-思路：构建一棵"平衡二叉搜索树 "。
-每个结点左子树均是小于等于其value的值，右子树均大于等于value值。每个子树均按其 “结点数” 调节平衡。 这样根节点一定是中间值中的一个。若结点数为奇数，则返回根节点的值；若结点个数为偶数，则再从根结点左子数或右子数中个数较多的子树中选出最大或最小值既可。
+- 构建一棵平衡二叉搜索树：每个节点大于等于其左孩子，小于等于其右孩子。每个子树按其 “结点数” 调节平衡  
+- 因此，根节点一定是中间值中的一个：若总结点数为奇数个，则返回根节点的值；若为偶数个，则再从根结点左子树或右子树中个数较多的子树中选出最大或最小值既可，与根节点加和后平均  
 
 ```cpp
 
 struct myTreeNode
 {
     int val;
-    int count;//以此节点为根的树高
+    int count; //以此节点为根的树高
     struct myTreeNode* left;
     struct myTreeNode* right;
     myTreeNode(int v) :
         val(v),
-        count(1), left(NULL), right(NULL) {}
+        count(1), left(nullptr), right(nullptr) {}
  
 };
- 
+
 myTreeNode *root = NULL;
  
 class Solution
 {
 public:
  
-    /*计算以节点为根的树的高度
-    */
-    int totalCount(myTreeNode* node)
-    {
-        if (node == NULL)
-            return 0;
-        else
-            return node->count;
+    /*计算以节点为根的树的高度*/
+    int totalCount(myTreeNode* node) {
+        if(!node) return 0;
+        else return node->count;
     }
  
     //左左
-    void rotateLL(myTreeNode* &t)
-    {
+    void rotateLL(myTreeNode* &t) {
         myTreeNode* k = t->left;
-        myTreeNode* tm = NULL;
-        while (k->right != NULL)
-        {
+        myTreeNode* tm = nullptr;
+        while(k->right) {
             k->count--;
             tm = k;
-            k = k->right;
-             
+            k = k->right;             
         }
-        if (k != t->left)
-        {
+        if(k != t->left) {
             k->left = t->left;
-            tm->right = NULL;
+            tm->right = nullptr;
         }
-        t->left = NULL;
+        t->left = nullptr;
         k->right = t;
- 
- 
+        
         t->count = totalCount(t->left) + totalCount(t->right) + 1;
         k->count = totalCount(k->left) + t->count + 1;
  
         t = k;
     }
- 
     //右右
-    void rotateRR(myTreeNode* &t)
-    {
+    void rotateRR(myTreeNode* &t) {
         myTreeNode* k = t->right;
         myTreeNode* tm = NULL;
-        while (k->left != NULL) {
+        while(k->left) {
             k->count--;
             tm = k;
             k = k->left;
-             
         }
-        if (k != t->right)
-        {
+        if (k != t->right) {
             k->right = t->right;
             tm->left = NULL;
         }
              
-        t->right = NULL;
+        t->right = nullptr;
         k->left = t;
  
         t->count = totalCount(t->left) + 1;
@@ -349,103 +336,77 @@ public:
     }
  
     //左右
-    void rotateLR(myTreeNode* &t)
-    {
+    void rotateLR(myTreeNode* &t) {
         rotateRR(t->left);
         rotateLL(t);
     }
  
     //右左
-    void rotateRL(myTreeNode* &t)
-    {
+    void rotateRL(myTreeNode* &t) {
         rotateLL(t->right);
         rotateRR(t);
     }
  
     //插入
-    void insert(myTreeNode* &root, int x)
-    {
-        if (root == NULL)
-        {
+    void insert(myTreeNode* &root, int x) {
+        if(!root) {
             root = new myTreeNode(x);
             return;
         }
          
-        if (root->val >= x)
-        {
+        if(root->val >= x) {
             insert(root->left, x);
-            root->count = totalCount(root->left)+ totalCount(root->right) + 1;
-            if (2 == totalCount(root->left) - totalCount(root->right))
-            {
+            root->count = totalCount(root->left) + totalCount(root->right) + 1;
+            if(2 == totalCount(root->left)-totalCount(root->right)) {
                 if (x < root->left->val)
-                {
                     rotateLL(root);
-                }
                 else
-                {
                     rotateLR(root);
-                }
             }
         }
-        else
-        {
+        else {
             insert(root->right, x);
             root->count = totalCount(root->left)+ totalCount(root->right) + 1;
-            if (2 == totalCount(root->right) - totalCount(root->left))
-            {
-                if (x > root->right->val)
-                {
+            if(2 == totalCount(root->right) - totalCount(root->left)) {
+                if (x > root->right->val) 
                     rotateRR(root);
-                }
-                else {
+                else
                     rotateRL(root);
-                }
             }
         }
- 
     }
  
-    void deleteTree(myTreeNode* root)
-    {
-        if (root == NULL)return;
+    void deleteTree(myTreeNode* root) {
+        if(!root) return;
         deleteTree(root->left);
         deleteTree(root->right);
         delete root;
-        root = NULL;
+        root = nullptr;
     }
-     
-    void Insert(int num)
-    {
+    
+    void Insert(int num) {
         insert(root, num);
     }
  
-    double GetMedian()
-    {
+    double GetMedian() {
         int lc = totalCount(root->left), rc = totalCount(root->right);
-        if ( lc == rc)
+        if(lc == rc)
             return root->val;
-        else
-        {
+        else {
             bool isLeft = lc > rc ;
             myTreeNode* tmp ;
-            if (isLeft)
-            {
+            if(isLeft) {
                 tmp = root->left;
-                while (tmp->right != NULL)
-                {
+                while (tmp->right)
                     tmp = tmp->right;
-                }
             }
             else {
                 tmp = root->right;
-                while (tmp->left != NULL)
-                {
+                while (tmp->left)
                     tmp = tmp->left;
-                }
             }
             return (double)(root->val + tmp->val) / 2.0;
         }
     }
- 
 };
 ```
