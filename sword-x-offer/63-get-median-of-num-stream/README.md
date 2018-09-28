@@ -4,45 +4,38 @@
 - 如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。  
 - 如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。  
 - 我们使用Insert()方法读取数据流，使用GetMedian()方法获取当前读取数据的中位数。
-
-## 分析
-
-- 方式一：用两个优先队列来模拟两个堆
-   - 用PriorityQueue来构建一个小顶堆和大顶堆  
-   - 要求中位数，因而让大顶堆用来存较小的数，从大到小排列；小顶堆存较大的数，从小到大的顺序排序  
-   - 显然中位数就是大顶堆的根节点与小顶堆的根节点和的平均数  
-   - 插入过程中保证：小顶堆中的元素都大于等于大顶堆中的元素，所以每次塞值，并不是直接塞进去，而是从另一个堆中poll出一个最大（最小）的塞值  
-   - 当数据流长度为偶数时，将这个值插入大顶堆中，再将大顶堆中根节点（即最大值）插入到小顶堆中；当数目为奇数的时候，将这个值插入小顶堆中，再讲小顶堆中根节点（即最小值）插入到大顶堆中。这样就可以保证，每次插入新值时，都保证小顶堆中值大于大顶堆中的值，并且都是有序的  
-   - 由于第一个数是插入到小顶堆中的，所以在最后取中位数的时候，若是奇数，就从小顶堆中取即可  
-   - 当长度为奇数时，中位数就是小顶堆的根节点；为偶数时，中位数为大顶堆和小顶堆两个根节点之和的平均数  
-     
-如传入的数据为：[5,2,3,4,1,6,7,0,8]，则输出是"5.00 3.50 3.00 3.50 3.00 3.50 4.00 3.50 4.00 "  
-        a.那么，第一个数为5，count=0,那么存到小顶堆中，
-            步骤是：先存到大顶堆；然后弹出大顶堆root，就是最大值给小顶堆，第一次执行完，就是小顶堆为5，count+1=1；    
-            此时若要输出中位数，那么就是5.0，因为直接返回的是小顶堆最小值(第一次塞入到小顶堆中，是从大顶堆中找到最大的给他的)
-        b.继续传入一个数为2，那么先存到小顶堆中，将小顶堆最小值弹出给大顶堆，即2，那么这次执行完，小顶堆为5，大顶堆为2，count+1=2
-            此时若要输出中位数，因为是偶数，那么取两个头的平均值，即(5+2)/2=3.5(第二次塞入到大顶堆中，是从小顶堆中找到最小的给他的)
-        c.继续传入一个数为3，那么此时count为偶数，那么执行第一个if，先存到大顶堆中，大顶堆弹出最大值，那么3>2，就是弹出3，3存到小顶堆中，那么此时小顶堆为3,5，大顶堆为2，count+1=3(第三次塞入到小顶堆中，是从大顶堆中找到最大的给他的)，此时若要输出中位数，因为是奇数，那么取小顶堆的最小值，即3.0  
-        d.继续传入一个数为4，先存到小顶堆中，小顶堆此时为3,4，5,弹出最小值为3，给大顶堆。此时大顶堆为3,2,小顶堆为4,5，(第四次塞入到小顶堆中，是从大顶堆中找到最大的给他的)。此时若要输出中位数，因为是偶数，那么取两个头的平均值,即(3+4)/2=3.5  
-        e.依次类推。。。  
-     
-方式三、插入排序，插入到对应的位置
-```java
-    LinkedList<Integer> data = new LinkedList<Integer>();
-    public void Insert(Integer num) {
-        for (int i = data.size() - 1; i >= 0 ; i--) {
-            if (num >= data.get(i)){
-                data.add(i+1,num);
-                return;
-            }
-        }
-        data.addFirst(num);
-    }
-```
     
 ## 排序
 
-### 排序1：显式排序  
+### 排序1：插入排序
+
+插入时比较
+
+```cpp
+class Solution {
+private:
+    vector<int> a;
+public:
+    void Insert(int num) {
+        for(auto i=a.begin(); i!=a.end(); i++) {
+            if(num>*i) {
+                a.insert(i, num);
+                return;
+            }
+        }
+        a.emplace_back(num);
+    }
+
+    double GetMedian() {
+        if(a.empty()) return 0.0;
+        return (a.size()&1==1)?
+            a[a.size()/2]:
+            (a[a.size()/2]+a[a.size()/2-1]) / 2.0;
+    }
+};
+```
+
+### 排序2：显式排序  
 
 通过每次插入数据后进行排序，最终取数组中位数
 
@@ -67,17 +60,17 @@ public:
 };
 ```
 
-## 排序2：隐式排序，基于内部排序的堆结构 multiset
+## 排序3：隐式排序，基于内部排序的堆结构 multiset
 
 使用基于内部排序的堆结构，在需要计算中位数时，偶数长度直接返回中间两数平均值，奇数长度返回中间的数。这里说一下set和multiset的结构与能力区别。
 
-**结构**
+**set与multiset的结构**
 
 set和multiset会根据特定的排序原则将元素排序。两者不同之处在于，multisets允许元素重复，而set不允许重复。
 
 和所有的标准关联容器类似，sets和multisets通常以平衡二叉树完成。
 
-**能力**
+**set与multiset的能力**
 
 自动排序的主要优点在于使二叉树搜寻元素具有良好的性能，在其搜索函数算法具有对数复杂度。但是自动排序也造成了一个限制，不能直接改变元素值，因为这样会打乱原有的顺序，要改变元素的值，必须先删除旧元素，再插入新元素。所以sets和multisets具有以下特点：
 
@@ -168,59 +161,6 @@ public:
 ```
 
 ### 两个堆实现3：动态数组
-
-```cpp
-class Solution {
-private:
-        vector<int> min;
-        vector<int> max;
-public:
-        void Insert(int num)
-        {
-           if(((min.size()+max.size())&1)==0)//偶数时 ，放入最小堆
-           {
-              if(max.size()>0 && num<max[0])
-              {
-                // push_heap (_First, _Last),要先在容器中加入数据，再调用push_heap ()
-                 max.push_back(num);//先将元素压入容器
-                 push_heap(max.begin(),max.end(),less<int>());//调整最大堆
-                 num=max[0];//取出最大堆的最大值
-                 //pop_heap(_First, _Last)，要先调用pop_heap()再在容器中删除数据
-                 pop_heap(max.begin(),max.end(),less<int>());//删除最大堆的最大值
-                 max.pop_back(); //在容器中删除
-              }
-              min.push_back(num);//压入最小堆
-              push_heap(min.begin(),min.end(),greater<int>());//调整最小堆
-           }
-           else//奇数时候，放入最大堆
-           {
-              if(min.size()>0 && num>min[0])
-              {
-                // push_heap (_First, _Last),要先在容器中加入数据，再调用push_heap ()
-                 min.push_back(num);//先压入最小堆
-                 push_heap(min.begin(),min.end(),greater<int>());//调整最小堆
-                 num=min[0];//得到最小堆的最小值（堆顶）
-                 //pop_heap(_First, _Last)，要先调用pop_heap()再在容器中删除数据
-                 pop_heap(min.begin(),min.end(),greater<int>());//删除最小堆的最大值
-                 min.pop_back(); //在容器中删除
-              }
-              max.push_back(num);//压入数字
-              push_heap(max.begin(),max.end(),less<int>());//调整最大堆
-           }   
-        }
-        /*获取中位数*/      
-        double GetMedian()
-        {
-            int si敏感词.size()+max.size();
-            if(size<=0) //没有元素，抛出异常
-                return 0;//throw exception("No numbers are available");
-            if((size&1)==0)//偶数时，去平均
-                return ((double)(max[0]+min[0])/2);
-            else//奇数，去最小堆，因为最小堆数据保持和最大堆一样多，或者比最大堆多1个
-                return min[0];
-        }
-};
-```
 
 ```cpp
 class Solution {
