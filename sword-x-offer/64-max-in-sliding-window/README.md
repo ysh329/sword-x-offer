@@ -8,26 +8,14 @@
 class Solution {
 public:
     vector<int> maxInWindows(const vector<int>& num, unsigned int size) {
-        vector<int> res;
-        if(num.size()<size || size<=0)
-            return res;
-        //1. 初始化找到当前size最大
-        /*
-        res.push_back(num[0]);
-        for(int eidx = 0; eidx < size; eidx++)
-            if(num[eidx]>res[0])
-                res[0] = num[eidx];
-        */
-        //2. 开始cur_num的[size+1, num.size()]的遍历
-        for(int cur_eidx = size; cur_eidx <= num.size(); cur_eidx++) {
-            //2.1 内层遍历size次，[cur_num, cur_num+size]内的最大，存入res中
-            int cur_size_max = num[cur_eidx-size];
-            for(int in_eidx = cur_eidx-size; in_eidx < cur_eidx; in_eidx++)
-                if(num[in_eidx] > cur_size_max)
-                    cur_size_max = num[in_eidx];
-            res.push_back(cur_size_max);
+        if(size<=0 || num.empty() || num.size()<size) return vector<int>();
+        vector<int> res(int(num.size())-size+1, 0);
+        for(int start = 0;  start <= int(num.size())-size; start++) {
+            int max = num[start];
+            for(int idx = 1; idx < size; idx++)
+                max = (max < num[start+idx]) ? num[start+idx] : max;
+            res[start] = max;
         }
-        //3. 返回res
         return res;
     }
 };
