@@ -220,7 +220,7 @@ struct myTreeNode
  
 };
 
-myTreeNode *root = NULL;
+myTreeNode *root = nullptr;
  
 class Solution
 {
@@ -262,7 +262,7 @@ public:
             tm = k;
             k = k->left;
         }
-        if (k != t->right) {
+        if(k != t->right) {
             k->right = t->right;
             tm->left = NULL;
         }
@@ -337,12 +337,12 @@ public:
             myTreeNode* tmp ;
             if(isLeft) {
                 tmp = root->left;
-                while (tmp->right)
+                while(tmp->right)
                     tmp = tmp->right;
             }
             else {
                 tmp = root->right;
-                while (tmp->left)
+                while(tmp->left)
                     tmp = tmp->left;
             }
             return (double)(root->val + tmp->val) / 2.0;
