@@ -33,13 +33,13 @@ n    方法数           方法
 ```cpp
 class Solution {
 public:
-    int rectCover(int number) {
-        if(0<=number && number<=2)
-            return number;
-        else if(number<0)
-            return 0;
-        else
-            return rectCover(number-1)+rectCover(number-2);
+    int rectCover(int n) {
+        // f(0) = 0;
+        // f(1) = 1;
+        // f(n) = f(n-1) + f(n-2), n>=3
+        if(n<0) return 0;
+        else if(0<=n && n<4) return n;
+        else return rectCover(n-1)+rectCover(n-2);
     }
 };
 ```
