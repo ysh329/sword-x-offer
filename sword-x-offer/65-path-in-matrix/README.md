@@ -10,7 +10,7 @@ class Solution {
 public:
     char mat2d[100][100];
     int vis[100][100] = {0};
-    int dr[4]={-1, 1, 0, 0}, dc[4]={0, 0, -1, 1};
+    int dr[4] = {-1, 1, 0, 0}, dc[4] = {0, 0, -1, 1};
     int col_2d, row_2d;
     
     void build(char* matrix, int rows, int cols) {
@@ -37,13 +37,13 @@ public:
     }
     
     bool dfs(int r, int c, int cur_len, char* str) {
-        if(cur_len>=strlen(str))
+        if(cur_len >= strlen(str))
             return true;
         vis[r][c] = 1;
         for(int i = 0; i < 4; i++) {
             int new_r = r + dr[i];
             int new_c = c + dc[i];
-            if(0<=new_c&&new_c<col_2d && 0<=new_r&&new_r<row_2d &&
+            if(0<=new_c && new_c<col_2d && 0<=new_r && new_r<row_2d &&
                vis[new_r][new_c]==0 && str[cur_len]==mat2d[new_r][new_c])
                 if(dfs(new_r, new_c, cur_len+1, str))
                     return true;
