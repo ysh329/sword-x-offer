@@ -125,3 +125,39 @@ char * strcpy( char *strDest, const char *strSrc )
     return address;
 }
 ```
+
+## 5.代码分析
+
+检查下面代码有什么问题？
+
+```cpp
+void GetMemory( char *p )
+{
+    p = (char *) malloc( 100 );
+}
+void Test( void ) 
+{
+    char *str = NULL;
+    GetMemory( str ); 
+    strcpy( str, "hello world" );
+    printf( str );
+}
+```
+
+- 要改变一个变量的值，要传地址，例如你改变`int a`的值，你传`&a`，改变`int *a` 你就指针的地址，也就是二级指针；
+- 如若成功申请内存，最后在主函数中需要`free`掉。
+
+解决：
+
+```cpp
+//传值调用
+void GetMemory( char **p )
+{
+    *p = (char *) malloc( 100 );
+}
+//引用调用
+void GetMemory_1(char *&p)
+{
+    p = (char *) malloc (100);
+}
+```
