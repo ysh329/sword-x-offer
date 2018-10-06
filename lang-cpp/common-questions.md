@@ -91,7 +91,7 @@ void test3(char* str1)
 ```cpp
 void strcpy( char *strDest, char *strSrc )
 {
-    while( (*strDest++ = * strSrc++) != ‘\0’ );
+    while( (*strDest++ = * strSrc++) != '\0' );
 }
 ```
 
@@ -100,7 +100,7 @@ void strcpy( char *strDest, char *strSrc )
 void strcpy( char *strDest, const char *strSrc ) 
 //将源字符串加const，表明其为输入参数，加2分
 {
-    while( (*strDest++ = * strSrc++) != ‘\0’ );
+    while( (*strDest++ = * strSrc++) != '\0' );
 }
 ```
 
@@ -110,7 +110,7 @@ void strcpy(char *strDest, const char *strSrc)
 {
     //对源地址和目的地址加非0断言，加3分
     assert( (strDest != NULL) && (strSrc != NULL) );
-    while( (*strDest++ = * strSrc++) != ‘\0’ );
+    while( (*strDest++ = * strSrc++) != '\0' );
 }
 ```
 
@@ -121,7 +121,7 @@ char * strcpy( char *strDest, const char *strSrc )
 {
     assert( (strDest != NULL) && (strSrc != NULL) );
     char *address = strDest; 
-    while( (*strDest++ = * strSrc++) != ‘\0’ ); 
+    while( (*strDest++ = * strSrc++) != '\0' ); 
     return address;
 }
 ```
