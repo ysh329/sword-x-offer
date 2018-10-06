@@ -188,3 +188,21 @@ void Test( void )
 - 可以这样修改: 
 - 方法1：`char* p= " hello world" ; return p;`，这里 `p` 直接指向文字存储区的 `" hello world"` ，函数按值返回`p`存储的地址，所以有效；   
 - 方法2：`static char p[]= " hello world" ; return p;`，`static` 指出数组 `p` 为静态数组存储在内存的data区，函数结束也不会释放，所以有效。
+
+## 7.代码分析
+
+检查下面代码有什么问题？
+
+```cpp
+void GetMemory( char **p, int num )
+{
+    *p = (char *) malloc( num );
+}
+void Test( void )
+{
+    char *str = NULL;
+    GetMemory( &str, 100 );
+    strcpy( str, "hello" ); 
+    printf( str ); 
+}
+```
