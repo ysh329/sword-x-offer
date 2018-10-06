@@ -78,7 +78,7 @@ void test3(char* str1)
 - sizeof和strlen的区别，前者是包含换行符后者不包括换行符，所以要小于10，就一个字节的余量。  
 
 问题：  
-将str1拷贝到string，string的长度为10，str1长度最多为10，而strlen不计\0，所以str1长度最多为9，不能等于10。
+- 将str1拷贝到string，string的长度为10，str1长度最多为10，而strlen不计\0，所以str1长度最多为9，不能等于10。
 
 解决：  
-`if( strlen( str1 ) <= 10 )` 改为 `<10`。
+- `if( strlen( str1 ) <= 10 )` 改为 `<10`。
