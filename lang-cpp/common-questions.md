@@ -82,3 +82,46 @@ void test3(char* str1)
 
 解决：  
 - `if( strlen( str1 ) <= 10 )` 改为 `<10`。
+
+## 4.写出完整版的strcpy函数
+
+如果编写一个标准strcpy函数的总分值为10，下面给出几个不同得分的答案： 
+
+2分 
+```cpp
+void strcpy( char *strDest, char *strSrc )
+{
+    while( (*strDest++ = * strSrc++) != ‘\0’ );
+}
+```
+
+4分 
+```cpp
+void strcpy( char *strDest, const char *strSrc ) 
+//将源字符串加const，表明其为输入参数，加2分
+{
+    while( (*strDest++ = * strSrc++) != ‘\0’ );
+}
+```
+
+7分 
+```cpp
+void strcpy(char *strDest, const char *strSrc) 
+{
+    //对源地址和目的地址加非0断言，加3分
+    assert( (strDest != NULL) && (strSrc != NULL) );
+    while( (*strDest++ = * strSrc++) != ‘\0’ );
+}
+```
+
+10分 
+```cpp
+//为了实现链式操作，将目的地址返回，加3分！ 
+char * strcpy( char *strDest, const char *strSrc ) 
+{
+    assert( (strDest != NULL) && (strSrc != NULL) );
+    char *address = strDest; 
+    while( (*strDest++ = * strSrc++) != ‘\0’ ); 
+    return address;
+}
+```
