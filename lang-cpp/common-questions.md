@@ -237,3 +237,51 @@ void Test( void )
     str = NULL;
 }
 ```
+
+## 8.代码分析
+
+检查下面代码有什么问题？
+
+```cpp
+void Test( void )
+{
+    char *str = (char *) malloc( 100 );
+    strcpy( str, "hello" );
+    free( str ); 
+    //省略的其它语句
+}
+```
+
+1. `malloc`申请的空间，没有检查申请是否成功的判断；
+2. `free`之后没有重置为`NULL`，可能造成野指针。
+
+修改后代码：
+
+```cpp
+void Test( void )
+{
+    char *str = (char *) malloc( 100 );
+    if(str == NULL) {
+        printf("error: fail to malloc\n");
+        return;
+    }
+    strcpy( str, "hello" );
+    free( str ); 
+    str = NULL;
+    //省略的其它语句
+}
+```
+
+## 9.代码分析
+
+检查下面代码有什么问题？
+
+```cpp
+swap( int* p1, int* p2 )
+{
+    int *p;
+    *p = *p1;
+    *p1 = *p2;
+    *p2 = *p;
+}
+```
