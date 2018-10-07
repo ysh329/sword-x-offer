@@ -285,3 +285,45 @@ swap( int* p1, int* p2 )
     *p2 = *p;
 }
 ```
+
+1. 没有返回值类型；  
+2. `int *p`是一个野指针，其指向有可能是系统或者当前正在使用的内存，如若需要使用指针需要`malloc`重新开辟，最后不要忘记`free`释放并重置为`NULL`。
+
+修改后代码：
+
+```cpp
+// 使用指针
+void swap( int* p1, int* p2 )
+{
+    int *p = (int*)malloc(sizeof int);
+    if(p==NULL) {
+        printf("fail to malloc\n");
+        return;
+    }
+    *p = *p1;
+    *p1 = *p2;
+    *p2 = *p;
+    free(p);
+    p = NULL;
+}
+```
+
+```cpp
+// 使用临时变量
+void swap( int* p1, int* p2 )
+{
+    int tmp = *p1;
+    *p1 = *p2;
+    *p2 = tmp;
+}
+```
+
+```cpp
+// 使用引用
+void swap( int& v1, int& v2 )
+{
+    int tmp = v1;
+    v1 = v2;
+    v2 = tmp;
+}
+```
