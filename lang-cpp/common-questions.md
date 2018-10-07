@@ -182,11 +182,10 @@ void Test( void )
 
 - `char p[]="hello world";`相当于`char p[12]，strcpy(p," hello world" )`；
 - `p`是一个数组名，属于局部变量，存储在栈中；
-- `"hello world"` 存储在文字存储区，数组`p`中存储的是 `" hello world"` 的一个副本，当函数结束，`p`被回收，副本也消失了(确切的说`p`指向的栈存储区被取消标记，可能随时被系统修改)，而函数返回的p指向的内容也变得不确定，文字存储区的 `" hello world"` 未改变。
+- `"hello world"` 存储在内存四区的data区的ro段，但是指向这一地址的数组`p`存储的是位于栈区，当函数结束，包括`p`在内的栈区变量被回收，因而函数返回的`p`也被销毁，此时`p`的值不确定，其指向的内容也变得不确定。虽然我们知道data区ro段的 `" hello world"` 未改变，`p`也找不到了。
 
 解决：  
-- 可以这样修改: 
-- 方法1：`char* p= " hello world" ; return p;`，这里 `p` 直接指向文字存储区的 `" hello world"` ，函数按值返回`p`存储的地址，所以有效；   
+- 方法1：`char *p = "hello world"; return p;`，这里 `p` 直接指向文字存储区的 `" hello world"` ，函数按值返回`p`存储的地址，所以有效；   
 - 方法2：`static char p[]= " hello world" ; return p;`，`static` 指出数组 `p` 为静态数组存储在内存的data区，函数结束也不会释放，所以有效。
 
 ## 7.代码分析
@@ -204,5 +203,31 @@ void Test( void )
     GetMemory( &str, 100 );
     strcpy( str, "hello" ); 
     printf( str ); 
+}
+```
+
+改后：
+
+```cpp
+void GetMemory( char **p, int num )
+{
+    if(num <= 0) {
+        printf("error: num <= 0\n");
+        return;
+    }
+    *p = (char *) malloc( num );
+    if(*p == NULL) {
+        printf("error: p failed to malloc\n");
+        return;
+    }
+}
+void Test( void )
+{
+    char *str = NULL;
+    GetMemory( &str, 100 );
+    strcpy( str, "hello" ); 
+    printf( "%s\n", str );
+    free(str);
+    str = NULL;
 }
 ```
