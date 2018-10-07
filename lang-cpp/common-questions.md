@@ -330,3 +330,23 @@ void swap( int& v1, int& v2 )
 
 - 若使用指针的引用，注意符号的位置，声明的方法为：`int *& p1`；  
 - 更短参见：C++ Primer 第五版，2.3.2指针。  
+
+## 10.问答题
+
+分别给出BOOL，int，float，指针变量 与“零值”比较的 if 语句（假设变量名为var）
+
+```cpp
+// bool
+if(!var) printf("false\n");
+
+// int
+if(var == 0) printf("0\n");
+
+// float
+const float eps = 1e-5;
+if(abs(var) <= eps) printf("0.0\n");
+
+// pointer
+if(var==nullptr) printf("nullptr\n");
+if(!var) printf("nullptr\n");
+```
