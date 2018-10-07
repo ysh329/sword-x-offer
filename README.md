@@ -158,6 +158,7 @@ sword-x-offer not only contains 66 common && classic interview programming probl
 <h2 id="3">3.Language CPP</h2>  
 
 - Style: [Google C++ Style Guide](http://google.github.io/styleguide/cppguide.html)  
+- [Common C/C++ questions](./lang-cpp/common-questions.md)
 - [lexdene/gcc_five_minute: gcc五分钟系列](https://github.com/lexdene/gcc_five_minute)  
 - basic cpp language: [lang-cpp](./lang-cpp)  
 - [soulmachine/system-design: 系统设计面试题精选](https://github.com/soulmachine/system-design)
