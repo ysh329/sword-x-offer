@@ -206,6 +206,12 @@ void Test( void )
 }
 ```
 
+存在的问题：
+
+1. 没有`malloc`申请失败的判断；  
+2. `printf`的使用错误；  
+3. `malloc`的堆内存没有释放（`free`并重置为`NULL`）。
+
 改后：
 
 ```cpp
