@@ -365,5 +365,30 @@ void *p = malloc( 100 );
 sizeof ( p ) = ?
 ```
 
+## 18.编程题
 
+请写一个C函数，若处理器是Big_endian的，则返回0；若是Little_endian的，则返回1
+
+```cpp
+int Check() {
+    int a = 0x12345678;
+    if( *( (char*)&a ) == 0x12 ) {
+        return 0;  
+    }
+    else {
+        return 1;
+    }
+}
+```
+
+## 19.编程题
+
+写一个函数返回1+2+3+…+n的值（假定结果不会超过长整型变量的范围）
+
+```cpp
+int Sum(int n) {
+    return ( (long)1 + n) * n / 2; 
+    // 或 return (1l + n) * n / 2;
+}
+```
 
