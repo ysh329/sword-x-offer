@@ -350,3 +350,20 @@ if(abs(var) <= eps) printf("0.0\n");
 if(var==nullptr) printf("nullptr\n");
 if(!var) printf("nullptr\n");
 ```
+
+## 11.问答题
+
+以下为Windows NT下的32位C++程序，请计算sizeof的值
+
+```cpp
+void Func ( char str[100] )
+{
+    sizeof( str ) = ?
+}
+
+void *p = malloc( 100 );
+sizeof ( p ) = ?
+```
+
+
+
