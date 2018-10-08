@@ -401,7 +401,7 @@ int checkCPU()
 - 嵌入式系统开发者应该对大小端（Little-endian，Big-endian）模式非常了解；  
 - 采用Little-endian模式的CPU对操作数的存放方式是从低字节到高字节；  
 - Big-endian模式对操作数的存放方式是从高字节到低字节；  
-- 因为Int型4个字节，char型1个字节，联合体是公用内存，相当于a占ox1,ox2,ox3,ox4四字节，b与a共用ox1，对b赋值只会覆盖ox1；
+- union 联合体是共用内存区域，也就是说int 和 char一起公用4byte.并且union一定是从低地址开始存放，所以char b对应最低内存区域。如果是大端存储，int的1存在最高位，其他全为0，小端存储时1存在最低位，所以只要判断b是否为0即可；   
 - 例如，16bit宽的数0x1234在Little-endian模式CPU内存中的存放方式（假设从地址0x4000开始存放）为： 
 
 | 内存地址 | 存放内容 |
