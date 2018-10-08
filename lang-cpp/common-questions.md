@@ -382,6 +382,26 @@ private:
 };
 ```
 
+```cpp
+String::String(const char *str) {
+    if(str==nullptr) {
+        m_data = new char[1];
+        *m_data = '\0';
+    }
+    else {
+        int length = strlen(str);
+        m_data = new char[length+1];
+        strcpy(m_data, str);
+    }
+    return *this;
+}
+```
+
+### 剖析  
+
+- 能够准确无误地编写出`String`类的构造函数、拷贝构造函数、赋值函数和析构函数的面试者至少已经具备了C++基本功的60%以上！   
+- 在这个类中包括了指针类成员变量`m_data`，当类中包括指针类成员变量时，一定要重载其拷贝构造函数、赋值函数和析构函数，这既是对C++程序员的基本要求，也是《Effective　C++》中特别强调的条款。   
+- 仔细学习这个类，特别注意加注释的得分点和加分点的意义，这样就具备了60%以上的C++基本功！
 
 ## 17.问答题
 
