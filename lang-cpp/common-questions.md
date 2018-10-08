@@ -365,18 +365,38 @@ void *p = malloc( 100 );
 sizeof ( p ) = ?
 ```
 
+## 16.编程题
+
+编写类String的构造函数、析构函数和赋值函数，已知类String的原型为：
+
+```cpp
+class String
+{ 
+public: 
+    String(const char *str = NULL); // 普通构造函数 
+    String(const String &other); // 拷贝构造函数 
+    ~String(void); // 析构函数 
+    String & operator =(const String &other); // 赋值函数 
+private: 
+    char *m_data; // 用于保存字符串 
+};
+```
+
+
 ## 17.问答题
 
 请说出static和const关键字尽可能多的作用
 
-static关键字至少有下列n个作用：  
+### static关键字至少有下列n个作用：  
+
 1. 函数体内static变量的作用范围为该函数体，不同于auto变量，该变量的内存只被分配一次，因此其值在下次调用时仍维持上次的值；  
 2. 在模块内的static全局变量可以被模块内所用函数访问，但不能被模块外其它函数访问；   
 3. 在模块内的static函数只可被这一模块内的其它函数调用，这个函数的使用范围被限制在声明它的模块内；   
 4. 在类中的static成员变量属于整个类所拥有，对类的所有对象只有一份拷贝；   
 5. 在类中的static成员函数属于整个类所拥有，这个函数不接收this指针，因而只能访问类的static成员变量。    
 
-const关键字至少有下列n个作用：   
+### const关键字至少有下列n个作用：   
+
 1. 欲阻止一个变量被改变，可以使用const关键字。在定义该const变量时，通常需要对它进行初始化，因为以后就没有机会再去改变它了；   
 2. 对指针来说，可以指定指针本身为const，也可以指定指针所指的数据为const，或二者同时指定为const；   
 3. 在一个函数声明中，const可以修饰形参，表明它是一个输入参数，在函数内部不能改变其值；   
@@ -384,12 +404,11 @@ const关键字至少有下列n个作用：
 5. 对于类的成员函数，有时候必须指定其返回值为const类型，以使得其返回值不为“左值”。例如：   
 ```cpp
 const classA operator*(const classA& a1,const classA& a2);   
-operator*的返回结果必须是一个const对象。如果不是，这样的变态代码也不会编译出错：   
+// operator*的返回结果必须是一个const对象。如果不是，这样的变态代码也不会编译出错：   
 classA a, b, c;   
 (a * b) = c; // 对a*b的结果赋值   
 // 操作(a * b) = c显然不符合编程者的初衷，也没有任何意义。   
 ```
-
 
 ## 18.编程题
 
