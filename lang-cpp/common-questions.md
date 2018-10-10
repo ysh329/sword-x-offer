@@ -383,16 +383,31 @@ private:
 ```
 
 ```cpp
+// 构造函数
 String::String(const char *str) {
-    if(str==nullptr) {
+    if(str == nullptr) {
         m_data = new char[1];
-        *m_data = '\0';
+        m_data[0] = '\0';
     }
     else {
         int length = strlen(str);
         m_data = new char[length+1];
         strcpy(m_data, str);
     }
+}
+
+// 析构函数
+String::~String() {
+    if(m_data) delete[] m_data;
+    m_data = nullptr;
+}
+
+// 赋值运算符重载
+String& String::operator=(const String &other) {
+    if(this == &other) return *this;
+    delete[] m_data;
+    m_data = new char[strlen(other.m_data)+1];
+    strcpy(m_data, other.m_data);
     return *this;
 }
 ```
