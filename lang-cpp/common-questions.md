@@ -373,6 +373,51 @@ WAVE文件格式说明表：
 
 ![wav_intro](./assets/wav_intro.png)
 
+将WAV文件格式定义为结构体WAVEFORMAT：
+
+```cpp
+typedef struct tagWaveFormat { 
+    char cRiffFlag[4]; 
+    UINT32 nFileLen; 
+    char cWaveFlag[4]; 
+    char cFmtFlag[4]; 
+    char cTransition[4]; 
+    UINT16 nFormatTag; 
+    UINT16 nChannels; 
+    UINT16 nSamplesPerSec; 
+    UINT32 nAvgBytesperSec; 
+    UINT16 nBlockAlign; 
+    UINT16 nBitNumPerSample; 
+    char cDataFlag[4]; UIN32 nAudioLength;
+} WAVEFORMAT;
+```
+
+假设WAV文件内容读出后存放在指针buffer开始的内存单元内，则分析文件格式的代码为： 
+
+```cpp
+WAVEFORMAT waveFormat; 
+memcpy( &waveFormat, buffer, sizeof( WAVEFORMAT ) ); 
+```
+
+直接通过访问waveFormat的成员，就可以获得特定WAV文件的各项格式信息。 
+
+考查面试者组织数据结构的能力，有经验的程序设计者将属于一个整体的数据成员组织为一个结构体，利用指针类型转换，可以将memcpy、memset等函数直接用于结构体地址，进行结构体的整体操作。
+
+### 补充：memcpy()
+
+`memcpy()`是位于C 标准库 - `<string.h>`中的函数，`void *memcpy(void *str1, const void *str2, size_t n)`从存储区` str2 `复制` n `个字符到存储区` str1 `。下面是 memcpy() 函数的声明。
+
+```cpp
+void *memcpy(void *str1, const void *str2, size_t n)
+```
+
+- `str1` -- 指向用于存储复制内容的目标数组，类型强制转换为 void* 指针。
+- `str2` -- 指向要复制的数据源，类型强制转换为 void* 指针。
+- `n` -- 要被复制的字节数。
+
+该函数返回一个指向目标存储区 str1 的指针。  
+参考：[C 库函数 – memcpy() | 菜鸟教程](http://www.runoob.com/cprogramming/c-function-memcpy.html)
+
 ## 16.编程题
 
 编写类String的构造函数、析构函数和赋值函数，已知类String的原型为：
