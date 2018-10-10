@@ -371,7 +371,7 @@ sizeof ( p ) = ?
 
 WAVE文件格式说明表：  
 
-![wav_intro](./wav_intro.png)
+![wav_intro](./assets/wav_intro.png)
 
 ## 16.编程题
 
