@@ -22,7 +22,7 @@ sword-x-offer not only contains 66 common && classic interview programming probl
   2.6 graph  
 3. [Language CPP(TODO)](#3)   
   3.1 Style: Google C++ Style Guide  
-  3.2 Common C/C++ questions
+  3.2 Common C/C++ questions  
   3.3 gcc five minute  
   3.4 basic cpp language  
   3.5 system design
