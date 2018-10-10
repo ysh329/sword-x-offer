@@ -410,7 +410,19 @@ String& String::operator=(const String &other) {
     strcpy(m_data, other.m_data);
     return *this;
 }
+
+// 拷贝构造
+String::String(const String &other) {
+    m_data = new char[strlen(other.m_data)+1];
+    strcpy(m_data, other.m_data);
+}
 ```
+
+### 三/五法则
+
+- 一般情况下，这三个（拷贝构造函数，赋值运算符重载，析构函数）要么都自己定义，要么系统合成；  
+- 有**资源**时，都自己定义，没资源是时，不必自己定义。三个当中，只要有一个需要自己定义，意味着其它两个也需要自定义！
+- 默认构造函数、拷贝构造函数、赋值运算符重载、析构函数，系统可自动合成（自己没有定义的时候）。
 
 ### 剖析  
 
