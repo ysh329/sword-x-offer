@@ -402,12 +402,23 @@ String::~String() {
     m_data = nullptr;
 }
 
-// 赋值运算符重载
+// 赋值运算符重载：写法1
 String& String::operator=(const String &other) {
     if(this == &other) return *this;
     delete[] m_data;
     m_data = new char[strlen(other.m_data)+1];
     strcpy(m_data, other.m_data);
+    return *this;
+}
+
+// 赋值运算符重载：写法2，考虑new内存分配失败的情况
+String& String::operator=(const String& other) {
+    if(&other != this) {
+        String temp(other); //考虑异常安全的做法
+        char* pTemp = temp.m_data;
+        temp.m_data = this->m_data;//这句可以省略吧？？？？
+        this->m_data = pTemp;
+    }
     return *this;
 }
 
