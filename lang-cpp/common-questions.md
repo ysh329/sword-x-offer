@@ -440,7 +440,7 @@ String::String(const String &other) {
 - 能够准确无误地编写出`String`类的构造函数、拷贝构造函数、赋值函数和析构函数的面试者至少已经具备了一定的C++基本功！   
 - 在这个类中包括了指针类成员变量`m_data`，当类中包括指针类成员变量时，一定要重载其拷贝构造函数、赋值函数和析构函数，这既是对C++程序员的基本要求，也是《Effective　C++》中特别强调的条款。   
 
-### 补充
+### 补充：new内存分配失败  
 
 new 分配失败时，会抛出异常跳过后面的代码。如果要检查 new 是否成功执行，应该捕捉异常，有两种推荐做法：
 ```cpp
@@ -454,6 +454,7 @@ catch(bad_alloc &memExp) {
 }
 
 // 推荐2：使用set_new_handler
+
 // 用set_new_handler函数处理new失败。它在头文件<new>里大致是象下面这样定义的：
 // typedef void (*new_handler)();
 // new_handler set_new_handler(new_handler p) throw();
@@ -473,6 +474,9 @@ int main() {
     // ....
 }
 ```
+参考：new内存分配失败 - murongjianke001的专栏 - CSDN博客  
+https://blog.csdn.net/murongjianke001/article/details/51954164
+
 
 ## 17.问答题
 
