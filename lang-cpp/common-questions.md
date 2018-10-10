@@ -416,7 +416,7 @@ String& String::operator=(const String& other) {
     if(&other != this) {
         String temp(other); //考虑异常安全的做法
         char* pTemp = temp.m_data;
-        temp.m_data = this->m_data;//这句可以省略吧？？？？
+        temp.m_data = this->m_data; //不可省略，若temp析构，其对应的m_data的资源也会被释放
         this->m_data = pTemp;
     }
     return *this;
@@ -437,9 +437,42 @@ String::String(const String &other) {
 
 ### 剖析  
 
-- 能够准确无误地编写出`String`类的构造函数、拷贝构造函数、赋值函数和析构函数的面试者至少已经具备了C++基本功的60%以上！   
+- 能够准确无误地编写出`String`类的构造函数、拷贝构造函数、赋值函数和析构函数的面试者至少已经具备了一定的C++基本功！   
 - 在这个类中包括了指针类成员变量`m_data`，当类中包括指针类成员变量时，一定要重载其拷贝构造函数、赋值函数和析构函数，这既是对C++程序员的基本要求，也是《Effective　C++》中特别强调的条款。   
-- 仔细学习这个类，特别注意加注释的得分点和加分点的意义，这样就具备了60%以上的C++基本功！
+
+### 补充
+
+new 分配失败时，会抛出异常跳过后面的代码。如果要检查 new 是否成功执行，应该捕捉异常，有两种推荐做法：
+```cpp
+// 推荐1：使用try-catch
+try {
+    double *ptr=new double[1000000];
+}
+catch(bad_alloc &memExp) {
+    // 失败以后，要么abort要么重分配
+    cerr<<memExp.what()<<endl;
+}
+
+// 推荐2：使用set_new_handler
+// 用set_new_handler函数处理new失败。它在头文件<new>里大致是象下面这样定义的：
+// typedef void (*new_handler)();
+// new_handler set_new_handler(new_handler p) throw();
+// 可以看到，new_handler是一个自定义的函数指针类型，它指向一个没有输入参数也没有返回值的函数。set_new_handler则是一个输入并返回new_handler类型的函数。
+// set_new_handler的输入参数是operator new分配内存失败时要调用的出错处理函数的指针，返回值是set_new_handler没调用之前就已经在起作用的旧的出错处理函数的指针。
+// 可以象下面这样使用set_new_handler：
+
+// function to call if operator new can't allocate enough memory
+void nomorememory() {
+    cerr << "unable to satisfy request for memory\n";
+    abort();
+}
+
+int main() {
+    set_new_handler(nomorememory);
+    int *pbigdataarray = new int[100000000];
+    // ....
+}
+```
 
 ## 17.问答题
 
