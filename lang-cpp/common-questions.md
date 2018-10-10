@@ -365,6 +365,14 @@ void *p = malloc( 100 );
 sizeof ( p ) = ?
 ```
 
+## 15.问答题
+
+已知WAV文件格式如下表，打开一个WAV文件，以适当的数据结构组织WAV文件头并解析WAV格式的各项信息。
+
+WAVE文件格式说明表：  
+
+![wav_intro](./wav_intro.png)
+
 ## 16.编程题
 
 编写类String的构造函数、析构函数和赋值函数，已知类String的原型为：
