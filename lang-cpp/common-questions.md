@@ -407,6 +407,10 @@ memcpy( &waveFormat, buffer, sizeof( WAVEFORMAT ) );
 
 有人回答说应该加上一句`#pragma pack(2)`吧，否则（如果是32位机）采样率和波形音频速率之间会自动填充2个字节，可能导致后续处理出错。但实际题目中已经考虑到填充了，0x18是24, 0x1C是28。
 
+参考：  
+- [关于结构体内存对齐总结 - Suhw - CSDN博客](https://blog.csdn.net/sssssuuuuu666/article/details/75175108)  
+- [结构体深度剖析（内存对齐，对齐参数，偏移量） - dai_wen的博客 - CSDN博客](https://blog.csdn.net/dai_wen/article/details/78304568)
+
 ### 补充：memcpy()
 
 `memcpy()`是位于C 标准库 - `<string.h>`中的函数，`void *memcpy(void *str1, const void *str2, size_t n)`从存储区` str2 `复制` n `个字符到存储区` str1 `。下面是 memcpy() 函数的声明。
