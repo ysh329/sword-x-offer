@@ -403,6 +403,10 @@ memcpy( &waveFormat, buffer, sizeof( WAVEFORMAT ) );
 
 考查面试者组织数据结构的能力，有经验的程序设计者将属于一个整体的数据成员组织为一个结构体，利用指针类型转换，可以将memcpy、memset等函数直接用于结构体地址，进行结构体的整体操作。
 
+### 内存对齐
+
+有人回答说应该加上一句`#pragma pack(2)`吧，否则（如果是32位机）采样率和波形音频速率之间会自动填充2个字节，可能导致后续处理出错。但实际题目中已经考虑到填充了，0x18是24, 0x1C是28。
+
 ### 补充：memcpy()
 
 `memcpy()`是位于C 标准库 - `<string.h>`中的函数，`void *memcpy(void *str1, const void *str2, size_t n)`从存储区` str2 `复制` n `个字符到存储区` str1 `。下面是 memcpy() 函数的声明。
