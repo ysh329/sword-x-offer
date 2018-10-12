@@ -397,14 +397,20 @@ void LoopMove(char *pStr, int steps) {
     if(!pStr || steps<0) return;
     int len = strlen(pStr);
     int st = steps % len;
-    char *tmp = (char*)calloc((int)strlen(pStr) + 1, sizeof char);
+    char *tmp = (char*)calloc(len + 1, sizeof char);
+    if(!tmp) {
+        printf("fail to malloc\n");
+        return;
+    }
     
     memcpy(tmp, pStr+len-st, st);
     memcpy(tmp+n, pStr, len-st);
     memcpy(pStr, tmp, len);
+    // 需要 pStr[len] = '\0'; 这句嘛
+    // 或者，如果返回tmp为结果，有必要做 tmp[len] = '\0' 这句嘛
     
     if(tmp) free(tmp);
-    tmp = NULL; // C写法
+    tmp = NULL; // C指针写法
 }
 ```
 
@@ -415,15 +421,19 @@ void LoopMove(char *pStr, int steps) {
     if(!pStr || steps<0) return;
     int len = strlen(pStr);
     int st = steps % len;
-    char *tmp = (char*)calloc((int)strlen(pStr) + 1, sizeof char);
+    char *tmp = (char*)calloc(len+1, sizeof char);
+    if(!tmp) {
+        printf("fail to malloc\n");
+        return;
+    }
 
-    strcpy(tmp, str+len-steps);
-    strcpy(tmp+steps, str);
-    *(tmp+len)  = '/0';
+    strcpy(tmp, str+len-st);
+    strcpy(tmp+st, str);
+    *(tmp+len) = '/0';
     strcpy(str, tmp);
     
     if(tmp) free(tmp);
-    tmp = NULL;
+    tmp = NULL; // C指针写法
 }
 ```
 
