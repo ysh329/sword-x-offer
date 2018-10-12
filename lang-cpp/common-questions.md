@@ -398,9 +398,13 @@ void LoopMove(char *pStr, int steps) {
     int len = strlen(pStr);
     int st = steps % len;
     char *tmp = (char*)calloc((int)strlen(pStr) + 1, sizeof char);
+    
     memcpy(tmp, pStr+len-st, st);
     memcpy(tmp+n, pStr, len-st);
     memcpy(pStr, tmp, len);
+    
+    if(tmp) free(tmp);
+    tmp = NULL; // C写法
 }
 ```
 
@@ -412,9 +416,14 @@ void LoopMove(char *pStr, int steps) {
     int len = strlen(pStr);
     int st = steps % len;
     char *tmp = (char*)calloc((int)strlen(pStr) + 1, sizeof char);
-    memcpy(tmp, pStr+len-st, st);
-    memcpy(tmp+n, pStr, len-st);
-    memcpy(pStr, tmp, len);
+
+    strcpy(tmp, str+len-steps);
+    strcpy(tmp+steps, str);
+    *(tmp+len)  = '/0';
+    strcpy(str, tmp);
+    
+    if(tmp) free(tmp);
+    tmp = NULL;
 }
 ```
 
