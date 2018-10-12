@@ -365,6 +365,59 @@ void *p = malloc( 100 );
 sizeof ( p ) = ?
 ```
 
+## 14.编程题
+
+编写一个函数，作用是把一个`char`组成的字符串循环右移`n`个。比如原来是“abcdefghi”如果`n = 2`，移位后应该是“hiabcdefg” 函数头是这样的：  
+- `pStr`是指向以'\0'结尾的字符串的指针  
+- `steps` 是要求移动的`n`  
+
+```cpp
+void LoopMove ( char * pStr, int steps )
+{
+    //请填充...
+}
+```
+
+```cpp
+void LoopMove(char *pStr, int steps) {
+    if(!pStr || steps<0) return;
+    int len = strlen(pStr);
+    int n = steps % len;
+    char tmp[128];
+    memcpy(tmp, pStr+len-n, n);
+    memcpy(tmp+n, pStr, len-n);
+    memcpy(pStr, tmp, len);
+}
+```
+
+当然这种写法中的128不好看，可以改为这样：
+
+```cpp
+void LoopMove(char *pStr, int steps) {
+    if(!pStr || steps<0) return;
+    int len = strlen(pStr);
+    int st = steps % len;
+    char *tmp = (char*)calloc((int)strlen(pStr) + 1, sizeof char);
+    memcpy(tmp, pStr+len-st, st);
+    memcpy(tmp+n, pStr, len-st);
+    memcpy(pStr, tmp, len);
+}
+```
+
+或者用`strcpy`:
+
+```cpp
+void LoopMove(char *pStr, int steps) {
+    if(!pStr || steps<0) return;
+    int len = strlen(pStr);
+    int st = steps % len;
+    char *tmp = (char*)calloc((int)strlen(pStr) + 1, sizeof char);
+    memcpy(tmp, pStr+len-st, st);
+    memcpy(tmp+n, pStr, len-st);
+    memcpy(pStr, tmp, len);
+}
+```
+
 ## 15.问答题
 
 已知WAV文件格式如下表，打开一个WAV文件，以适当的数据结构组织WAV文件头并解析WAV格式的各项信息。
