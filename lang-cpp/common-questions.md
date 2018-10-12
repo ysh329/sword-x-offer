@@ -414,6 +414,10 @@ void LoopMove(char *pStr, int steps) {
 }
 ```
 
+- 参考：[C 库函数 – memcpy() | 菜鸟教程](http://www.runoob.com/cprogramming/c-function-memcpy.html)
+
+
+
 或者用`strcpy`:
 
 ```cpp
