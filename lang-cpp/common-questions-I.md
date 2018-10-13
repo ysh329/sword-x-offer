@@ -368,7 +368,8 @@ sizeof p = ? //是多少
 答案：  
 - sizeof(str) = 4   
 - sizeof(p) = 4   
-
+----
+- sizeof对数组，得到整个数组所占空间大小。sizeof对指针，得到指针本身所占空间大小；  
 - `Func(char str[100])`**函数中数组名作为函数形参时，在函数体内，数组名失去了本身的内涵，仅仅只是一个指针**；
 - 在失去其内涵的同时，它还失去了其常量特性，因而可以作自增、自减等操作，可以被修改。   
 
@@ -376,7 +377,7 @@ sizeof p = ? //是多少
 
 1. **数组名指代一种数据结构，这种数据结构就是数组**。如`char str[10]; cout << sizeof(str) << endl;`，其输出结果为10，str指代数据结构`char[10]`；   
 2. **数组名可以转换为指向其指代实体的指针，而且是一个指针常量，不能作自增、自减等操作，不能被修改。如`char str[10]; str++;`，编译出错，提示str不是左值**；    
-3. **数组名作为函数形参时，沦为普通指针**。
+3. **数组名作为函数形参时，退化为指向数组首元素的普通指针，const属性也没了**。
 
 Windows NT 32位平台下，指针的长度（占用内存的大小）为4字节，故`sizeof(str)` 、`sizeof(p)`都为4。  
 
@@ -490,8 +491,9 @@ void LoopMove(char *pStr, int steps) {
     memcpy(tmp, pStr+len-st, st);
     memcpy(tmp+n, pStr, len-st);
     memcpy(pStr, tmp, len);
-    // 需要 pStr[len] = '\0'; 这句嘛
-    // 或者，如果返回tmp为结果，有必要做 tmp[len] = '\0' 这句嘛
+    // 需要 pStr[len] = '\0'; 这句嘛，calloc申请的不需要加，因为calloc申请的内存都被初始化为0，字符'\0'的ascii码值是0，即已经被初始化
+    //                              但如若是malloc申请的空间需要加这句，因为malloc申请到的是之前未使用过的内存空间其值是0，但是若使用过就无法保证是0，仍然需要加上这句
+    // 或者，如果返回tmp为结果，有必要做 tmp[len] = '\0' 这句嘛，这个问题同上
     
     if(tmp) free(tmp);
     tmp = NULL; // C指针写法
@@ -499,8 +501,6 @@ void LoopMove(char *pStr, int steps) {
 ```
 
 - 参考：[C 库函数 – memcpy() | 菜鸟教程](http://www.runoob.com/cprogramming/c-function-memcpy.html)
-
-
 
 或者用`strcpy`:
 
