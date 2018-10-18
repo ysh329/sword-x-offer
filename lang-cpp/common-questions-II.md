@@ -176,6 +176,65 @@ http://hxraid.iteye.com/blog/662643
 - 抛弃file_0_1文件，继续对 file_0_0文件 根据 次次高位(第30位) 划分，假设此次划分的两个文件为：file_0_0_0中有5亿个数字，file_0_0_1中有25亿个数字，那么中位数就是 file_0_0_1文件中的所有数字排序之后的 第 5亿 个数。  
 - 按照上述思路，直到划分的文件可直接加载进内存时，就可以直接对数字进行快速排序，找出中位数了。
 
+### 6.问答题
+
+请简述智能指针原理，并实现一个简单的智能指针。
+
+智能指针是一种资源管理类，通过对原始指针进行封装，在资源管理对象进行析构时对指针指向的内存进行释放；通常使用引用计数方式进行管理，一个基本实现如下：
+
+```cpp
+class Object;
+class SmartPointer;
+ 
+class Counter
+{
+    friend class SmartPointer;
+public:
+    Counter() {
+        ptr = nullptr;
+        cnt = 0;
+    }
+    Counter(Object* p) {
+        ptr = p;
+        cnt = 1;
+    }
+    ~Counter() {
+        delete ptr;
+    }
+private:
+    Object* ptr;
+    int cnt;
+};
+ 
+class SmartPointer
+{
+public:
+    SmartPointer(Object* p) {
+        ptr_counter = new Counter(p);
+    }
+    SmartPointer(const SmartPointer &sp) {
+        ptr_counter = sp.ptr_counter;
+        ++ptr_count->cnt;
+    }
+    SmartPointer& operator=(const SmartPointer &sp) {
+        ++sp.ptr_counter->cnt;
+        --ptr_counter->cnt;
+        if (ptr_counter->cnt == 0) {
+            delete ptr_counter;
+        }
+        ptr_counter = sp.ptr_counter;
+    }
+    ~SmartPointer() {
+        --ptr_counter->cnt;
+        if (ptr_counter->cnt == 0) {
+            delete ptr_counter;
+        }
+    }
+private:
+    Counter* ptr_counter;
+};
+```
+
 ## 2.C/C++基础(上)
 
 ## 3.C/C++基础(下)
