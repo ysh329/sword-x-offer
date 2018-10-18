@@ -80,11 +80,11 @@ void RandomShuffle(int a[], int n){
 稍微想一下，可以采用一种 竞标赛排序(Tournament Sort)的思路。 见《选择排序》
  
 (1) 首先将25匹马分成5组，并分别进行5场比赛之后得到的名次排列如下：  
-              A组：  [A1  A2  A3   A4  A5]  
-              B组：  [B1  B2  B3   B4  B5]  
+              A组：  [A1  A2  A3  A4  A5]  
+              B组：  [B1  B2  B3  B4  B5]  
               C组：  [C1  C2  C3  C4  C5]  
               D组：  [D1  D2  D3  D4  D5]  
-              E组：  [E1  E2  E3   E4  E5]  
+              E组：  [E1  E2  E3  E4  E5]  
 其中，每个小组最快的马为[A1、B1、C1、D1、E1]。  
 (2) 将[A1、B1、C1、D1、E1]进行第6场，选出第1名的马，不妨设 A1>B1>C1>D1>E1. 此时第1名的马为A1。  
 (3) 将[A2、B1、C1、D1、E1]进行第7场，此时选择出来的必定是第2名的马，不妨假设为B1。因为这5匹马是除去A1之外每个小组当前最快的马。  
@@ -98,11 +98,11 @@ void RandomShuffle(int a[], int n){
  
 (1) 首先利用5场比赛角逐出每个小组的排名次序是绝对必要的。  
 (2) 第6场比赛选出第1名的马也是必不可少的。假如仍然是A1马(A1>B1>C1>D1>E1)。那么此时我们可以得到一个重要的结论：有一些马在前6场比赛之后就决定出局的命运了(下面绿色字体标志出局)。  
-       A组：  [A1  A2  A3   A4  A5]  
-       B组：  [B1  B2  B3   B4  B5 ]  
-       C组：  [C1  C2  C3  C4  C5 ]  
-       D组：  [D1  D2  D3  D4  D5 ]  
-       E组：  [E1  E2  E3   E4  E5 ]  
+       A组：  [A1  A2  A3  A4  A5]  
+       B组：  [B1  B2  B3  B4  B5]  
+       C组：  [C1  C2  C3  C4  C5]  
+       D组：  [D1  D2  D3  D4  D5]  
+       E组：  [E1  E2  E3  E4  E5]  
 (3) 第7场比赛是关键，能否同时决出第2，3名的马呢？我们首先做下分析：  
      在上面的方法中，第7场比赛[A2、B1、C1、D1、E1]是为了决定第2名的马。但是在第6场比赛中我们已经得到(B1>C1>D1>E1)，试问？有B1在的比赛，C1、D1、E1还有可能争夺第2名吗？ 当然不可能，也就是说第2名只能在A2、B1中出现。实际上只需要2条跑道就可以决出第2名，剩下C1、D1、E1的3条跑道都只能用来凑热闹的吗？  
      能够优化的关键出来了，我们是否能够通过剩下的3个跑道来决出第3名呢？当然可以，我们来进一步分析第3名的情况？  
@@ -232,6 +232,60 @@ public:
     }
 private:
     Counter* ptr_counter;
+};
+```
+
+
+智能指针：实际指行为类似于指针的类对象 ，它的一种通用实现方法是采用引用计数的方法。
+1.智能指针将一个计数器与类指向的对象相关联，引用计数跟踪共有多少个类对象共享同一指针。  
+2.每次创建类的新对象时，初始化指针并将引用计数置为1；  
+3.当对象作为另一对象的副本而创建时，拷贝构造函数拷贝指针并增加与之相应的引用计数；  
+4.对一个对象进行赋值时，赋值操作符减少左操作数所指对象的引用计数（如果引用计数为减至0，则删除对象），并增加右操作数所指对象的引用计数；这是因为左侧的指针指向了右侧指针所指向的对象，因此右指针所指向的对象的引用计数+1；  
+5.调用析构函数时，构造函数减少引用计数（如果引用计数减至0，则删除基础对象）。  
+6.实现智能指针有两种经典策略：一是引入辅助类，二是使用句柄类。这里主要讲一下引入辅助类的方法  
+
+```cpp
+//基础对象类，要做一个对Point类的智能指针  
+class Point  
+{  
+public:  
+    Point(int xVal = 0, int yVal = 0):x(xVal),y(yVal) { }  
+    int getX() const { return x; }  
+    int getY() const { return y; }  
+    void setX(int xVal) { x = xVal; }  
+    void setY(int yVal) { y = yVal; }  
+private:  
+    int x,y;
+};
+
+//辅助类，该类成员访问权限全部为private，因为不想让用户直接使用该类
+class RefPtr {
+    friend class SmartPtr;//定义智能指针类为友元，因为智能指针类需要直接操纵辅助类
+    RefPtr(Point *ptr):p(ptr), count(1) {}
+    ~RefPtr() { delete p; }
+
+    int count; //引用计数
+    Point *p;  //基础对象指针
+};
+
+//智能指针类
+class SmartPtr {
+public:
+    SmartPtr(Point *ptr):rp(new RefPtr(ptr)) { }            //构造函数
+    SmartPtr(const SmartPtr &sp):rp(sp.rp) { ++rp->count; } //复制构造函数
+    SmartPtr& operator=(const SmartPtr& rhs) {              //重载赋值操作符
+        ++rhs.rp->count;                                    //首先将右操作数引用计数加1，
+        if(--rp->count == 0)                                                                     //然后将引用计数减1，可以应对自赋值
+            delete rp;
+        rp = rhs.rp;
+        return *this;
+    }
+    ~SmartPtr() {                                           //析构函数
+        if(--rp->count == 0)                                //当引用计数减为0时，删除辅助类对象指针，从而删除基础对象
+            delete rp;
+    }
+private:
+    RefPtr *rp;                                             //辅助类对象指针
 };
 ```
 
