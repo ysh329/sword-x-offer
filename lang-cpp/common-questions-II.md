@@ -311,20 +311,20 @@ using namespace std;
 class A {
 private:
     A() {}; //构造和析构私有
-	~A() {};
+    ~A() {};
 public:
     static A *GetInstance() { // 公有静态方法，可以获取该唯一实例
-	    if(!m_pInstance) m_pInstance = new A; //（多线程需要加锁）
-		return m_pInstance;
-	}
-	static void DeleteInstance() { // 公有静态方法，可以删除该实例
-	    if(m_pInstance)
-			delete m_pInstance;
-		m_pInstance = nullptr;
-	}
+        if(!m_pInstance) m_pInstance = new A; //（多线程需要加锁）
+            return m_pInstance;
+        }
+    static void DeleteInstance() { // 公有静态方法，可以删除该实例
+        if(m_pInstance)
+            delete m_pInstance;
+        m_pInstance = nullptr;
+    }
 private:
     static A *m_pInstance; // 私有静态指针变量：指向类的唯一实例
-	int count; //其它成员变量
+    int count; //其它成员变量
 }
 
 A *A::m_pInstance = nullptr; // 懒汉式
@@ -332,12 +332,12 @@ A *A::m_pInstance = nullptr; // 懒汉式
 
 int main() {
     // A a; // 错误，外部无法创建该类对象
-	A *pa = A::GetInstance(); //通过调用，类静态成员函数，来获取该对象
-	A *pb = A::GetInstance(); //可多次调用
-	cout << pa << pb << endl; //地址相同，pa，pb指向同一个对象
-	// delete pa; //错误，外部无法直接销毁该类对象
-	A::DeleteInstance(); //通过调用，类静态成员函数，来析构类对象;
-	return 0;
+    A *pa = A::GetInstance(); //通过调用，类静态成员函数，来获取该对象
+    A *pb = A::GetInstance(); //可多次调用
+    cout << pa << pb << endl; //地址相同，pa，pb指向同一个对象
+    // delete pa; //错误，外部无法直接销毁该类对象
+    A::DeleteInstance(); //通过调用，类静态成员函数，来析构类对象;
+    return 0;
 }
 ```
 
@@ -451,7 +451,7 @@ char b;
 int a;
 short c;
 };
-```
+```  
 A：对齐值为：1 。大小为：3  
 B：对齐值为：4 。 大小为：4+4 = 8（第一个4为int，第二个4为char 和 short ，要空余1个）  
 C：对齐值为：4。大小为：4+4+4 = 12（第一个为char ，空余3个，第二个为int ，第三个为char 空余3个）   
@@ -471,7 +471,7 @@ cout<<&a<<endl;
 cout<<&b<<endl;    //汇编语言等价于cout<<&(*b)<<endl;
 ```
 
-![ptr_and_ref](ptr_and_ref.png)
+![ptr_and_ref](。/assets/ptr_and_ref.png)
 
 #### 理解2  
 
@@ -480,6 +480,82 @@ cout<<&b<<endl;    //汇编语言等价于cout<<&(*b)<<endl;
 2. 从内存上看，指针会分配内存区域，而引用不会，它仅仅是一个别名   
 3. 在参数传递时，引⽤用会做类型检查，而指针不会   
 4. 引用不能为空，指针可以为空  
+
+### 12.问答题
+
+const和define有什么区别？
+
+#### 理解1
+
+const定义的只读变量在程序运行过程中只有一份拷贝(因为它是全局的只读变量，存放在静态区)，而#define定义的宏常量在内存中有若干个拷贝。
+
+#define宏是在预编译阶段进行替换，而const修饰的只读变量是在编译的时候确定其值。    
+#define宏没有类型，而const修饰的只读变量具有特定的类型  
+```cpp
+const int *p;   //p可变，p指向的对象不可变
+int const*p;  //p可变，p指向的对象不可变
+int *const p;  //p不可变，p指向的对象可变
+const int *const p;  //指针p和p指向的对象都不可变
+```
+总的来说：
+- const：有数据类型，编译进行安全检查，可调试   
+- define:宏，不考虑数据类型，没有安检，不能调试   
+
+这里有一个记忆和理解的方法：  
+先忽略类型名(编译器解析的时候也是忽略类型名)，我们看const离哪个近。"近水楼台先得月"，离谁近就修饰谁。  
+判断时忽略括号中的类型   
+```cpp
+const (int) *p;   //const修饰*p，*p是指针指向的对象，不可变
+(int) const *p；  //const修饰*p，*p是指针指向的对象，不可变
+(int)*const p;   //const修饰p，p不可变，p指向的对象可变
+const (int) *const p;  //前一个const修饰*p，后一个const修饰p，指针p和p指向的对象都不可变
+```
+#### 理解2
+
+1）const对应编译器；#define对应预处理器  
+例如：#define WQQ 3.5；  
+编译器将永远看不到WQQ这个符号，因为在源码进入编译之前，这个符号会被预处理器处理掉，于是WQQ这个符号不会加入符号列表。如果涉及到这个常量的代码在编译时报错，就很令人费解。因为报错的是3.5而不是WQQ，再如果这个WQQ不是在自己的头文件中定义的，后果可想而知...  
+
+2)const有类型安全检查，而宏常量则没有  
+对后者只能进行字符串替换，替换过程可能会产生意想不到的错误；  
+
+3）某些集成化调试工具可以对const常量进行调试，但是不能对宏常量调试  
+
+4）存储方式不同  
+define定义的常量仅仅是展开，有多少地方使用就展开多少次，在替换后运行过程中会不断占用内存；而const定义的常量存储在数据段，只有一份拷贝
+
+# 13.问答题
+
+define和inline有什么区别？
+
+本质：define只是字符串替换，inline由编译器控制，具体的：   
+- define只是简单的宏替换，通常会产生二义性；而inline会真正地编译到代码中   
+- inline函数是否展开由编译器决定，有时候当函数太大时，编译器可能选择不展开相应的函数  
+
+### 14.问答题
+
+malloc和new有什么区别？
+
+new与malloc的10点区别  
+1. 申请的内存所在位置  
+2. 返回类型安全性  
+3. 内存分配失败时的返回值  
+4. 是否需要指定内存大小  
+5. 是否调用构造函数/析构函数  
+6. 对数组的处理  
+7. new与malloc是否可以相互调用  
+8. 是否可以被重载  
+9. 能够直观地重新分配内存  
+10. 客户处理内存分配不足  
+
+
+参考：[细说new与malloc的10点区别 - melonstreet - 博客园](http://www.cnblogs.com/QG-whz/p/5140930.html)
+
+### 15.问答题
+
+C++中static关键字作用有哪些？
+
+
 
 ## 3.C/C++基础(下)
 
