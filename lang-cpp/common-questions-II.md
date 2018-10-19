@@ -182,63 +182,9 @@ http://hxraid.iteye.com/blog/662643
 
 智能指针是一种资源管理类，通过对原始指针进行封装，在资源管理对象进行析构时对指针指向的内存进行释放；通常使用引用计数方式进行管理，一个基本实现如下：
 
-```cpp
-class Object;
-class SmartPointer;
- 
-class Counter
-{
-    friend class SmartPointer;
-public:
-    Counter() {
-        ptr = nullptr;
-        cnt = 0;
-    }
-    Counter(Object* p) {
-        ptr = p;
-        cnt = 1;
-    }
-    ~Counter() {
-        delete ptr;
-    }
-private:
-    Object* ptr;
-    int cnt;
-};
- 
-class SmartPointer
-{
-public:
-    SmartPointer(Object* p) {
-        ptr_counter = new Counter(p);
-    }
-    SmartPointer(const SmartPointer &sp) {
-        ptr_counter = sp.ptr_counter;
-        ++ptr_count->cnt;
-    }
-    SmartPointer& operator=(const SmartPointer &sp) {
-        ++sp.ptr_counter->cnt;
-        --ptr_counter->cnt;
-        if (ptr_counter->cnt == 0) {
-            delete ptr_counter;
-        }
-        ptr_counter = sp.ptr_counter;
-    }
-    ~SmartPointer() {
-        --ptr_counter->cnt;
-        if (ptr_counter->cnt == 0) {
-            delete ptr_counter;
-        }
-    }
-private:
-    Counter* ptr_counter;
-};
-```
-
-
-智能指针：实际指行为类似于指针的类对象 ，它的一种通用实现方法是采用引用计数的方法。
-1.智能指针将一个计数器与类指向的对象相关联，引用计数跟踪共有多少个类对象共享同一指针。  
-2.每次创建类的新对象时，初始化指针并将引用计数置为1；  
+智能指针：实际指行为类似于指针的类对象 ，它的一种通用实现方法是采用引用计数的方法。  
+1.智能指针将一个计数器与类指向的对象相关联，引用计数跟踪共有多少个类对象共享同一指针。    
+2.每次创建类的新对象时，初始化指针并将引用计数置为1；   
 3.当对象作为另一对象的副本而创建时，拷贝构造函数拷贝指针并增加与之相应的引用计数；  
 4.对一个对象进行赋值时，赋值操作符减少左操作数所指对象的引用计数（如果引用计数为减至0，则删除对象），并增加右操作数所指对象的引用计数；这是因为左侧的指针指向了右侧指针所指向的对象，因此右指针所指向的对象的引用计数+1；  
 5.调用析构函数时，构造函数减少引用计数（如果引用计数减至0，则删除基础对象）。  
@@ -260,7 +206,7 @@ private:
 
 //辅助类，该类成员访问权限全部为private，因为不想让用户直接使用该类
 class RefPtr {
-    friend class SmartPtr;//定义智能指针类为友元，因为智能指针类需要直接操纵辅助类
+    friend class SmartPtr; //定义智能指针类为友元，因为智能指针类需要直接操纵辅助类
     RefPtr(Point *ptr):p(ptr), count(1) {}
     ~RefPtr() { delete p; }
 
@@ -275,17 +221,17 @@ public:
     SmartPtr(const SmartPtr &sp):rp(sp.rp) { ++rp->count; } //复制构造函数
     SmartPtr& operator=(const SmartPtr& rhs) {              //重载赋值操作符
         ++rhs.rp->count;                                    //首先将右操作数引用计数加1，
-        if(--rp->count == 0)                                                                     //然后将引用计数减1，可以应对自赋值
+        if(--rp->count == 0)                                //然后将引用计数减1，可以应对自赋值
             delete rp;
         rp = rhs.rp;
         return *this;
     }
-    ~SmartPtr() {                                           //析构函数
-        if(--rp->count == 0)                                //当引用计数减为0时，删除辅助类对象指针，从而删除基础对象
+    ~SmartPtr() {             //析构函数
+        if(--rp->count == 0)  //当引用计数减为0时，删除辅助类对象指针，从而删除基础对象
             delete rp;
     }
 private:
-    RefPtr *rp;                                             //辅助类对象指针
+    RefPtr *rp;               //辅助类对象指针
 };
 ```
 
