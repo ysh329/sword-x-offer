@@ -471,7 +471,7 @@ cout<<&a<<endl;
 cout<<&b<<endl;    //汇编语言等价于cout<<&(*b)<<endl;
 ```
 
-![ptr_and_ref](。/assets/ptr_and_ref.png)
+![ptr_and_ref](./assets/ptr_and_ref.png)
 
 #### 理解2  
 
