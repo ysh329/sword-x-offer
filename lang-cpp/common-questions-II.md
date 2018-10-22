@@ -657,6 +657,119 @@ C++中const关键字作用有哪些？
     //aObj-> func1(); //×
     aObj-> func2(); //正确
     ```
+    
+# 17.问答题
+
+C++中成员函数能够同时用static和const进行修饰？
+
+不能。C++编译器在实现const的成员函数的时候为了确保该函数不能修改类的中参数的值，会在函数中添加一个隐式的参数const this\*。但当一个成员为static的时候，该函数是没有this指针的。也就是说此时const的用法和static是冲突的。
+
+详细来说，**在定义一个类对象的时候，实际上只给该对象的非静态的数据成员分配内存空间（假设没有虚函数），而该类的静态成员数据以及该类的函数都在编译的时候分配到一个公共的空间里，所以，在定义一个对象并调用类对象的函数的时候，函数根本不知道到底是哪个对象调用了他，怎么解决这个问题呢？ **
+
+C++利用传递this指针的方式来实现，调用一个类对象里的函数的时候，将把这个对象的指针传递给他，以便函数对该对象的数据进行操作，对于一个定义为const的函数，传递的是const的this指针，说明不能更改对象的属性，而对static成员的函数不需传递this指针，所有就不需要用const来修饰static的成员函数了！
+
+const属性的作用就是对被传递的this指针加以限定，而对static成员函数的调用根本不传递this指针，因而不需const来修饰static的成员函数。 
+
+从对象模型上来说：  
+- 类的非static成员函数在编译的时候都会扩展加上一个this参数，const的成员函数被要求不能修改this所指向的这个对象；
+- 而static函数编译的时候并不扩充加上this参数，自然无所谓const。 
+
+### 18.问答题  
+
+下面三个变量分别代表什么含义？ 
+
+```cpp
+const int* ptr; 
+int const* ptr; 
+int* const ptr;
+```
+
+1. 指针指向的变量可以改变，但是值不可以改变。   
+2. 指针指向的变量可以改变，但是值不可以改变。   
+3. 表示指针不指向其他对象。  
+
+### 19.问答题
+
+C++中包含哪几种强制类型转换？他们有什么区别和联系？
+
+1. reinterpret_cast: 转换一个指针为其它类型的指针。它也允许从一个指针转换为整数类型，反之亦然。这个操作符能够在非相关的类型之间转换。操作结果只是简单的从一个指针到别的指针的值的二进制拷贝。在类型之间指向的内容**不做任何类型的检查和转换**。  
+```cpp
+class A{}; 
+class B{}; 
+A* a = new A;
+B* b = reinterpret_cast(a); 
+```
+2. static_cast: 允许执行任意的隐式转换和相反转换动作（即使它是不允许隐式的）。例如：应用到类的指针上，意思是说它允许子类类型的指针转换为父类类型的指针（这是一个有效的隐式转换），同时也能够执行相反动作: 转换父类为它的子类。   
+```cpp
+class Base {}; 
+class Derive:public Base{}; 
+Base* a = new Base; 
+Derive *b = static_cast(a); 
+```
+3. dynamic_cast: 只用于对象的指针和引用。当用于多态类型时，它允许任意的隐式类型转换以及相反过程. 不过，与static_cast不同，在后一种情况里（注：即隐式转换的相反过程）,dynamic_cast 会检查操作是否有效. 也就是说, 它会检查转换是否会返回一个被请求的有效的完整对象。检测在运行时进行. 如果被转换的指针不是一个被请求的有效完整的对象指针，返回值为NULL. 对于引用类型，会抛出bad_cast异常。   
+4. const_cast: 这个转换类型操纵传递对象的const属性，或者是设置或者是移除。例如：   
+```cpp
+class C{}; 
+const C* a = new C; 
+C *b = const_cast(a);
+```
+更详细：C++中四种强制类型转换的区别-梦醒潇湘love-ChinaUnix博客  
+http://blog.chinaunix.net/uid-26548237-id-3954104.html
+
+### 20.问答题
+
+下面两段代码的输出分别是什么（答案见代码注释）？
+考察对虚函数的基本理解 
+
+```cpp
+class Base{
+    public:
+        virtual void Print() const{
+            cout << "Print in Base" << endl;
+        }
+};
+class Derive::public base{
+    public:
+        void Print() const{
+            cout << "Print in Derive" << endl;
+        }
+};
+void Print(const Base* base){
+    base->Print();
+}
+int main(){
+    Base b;
+    Derive d;
+    print(&b); // Print in Base
+    print(&d); // Print in Derive
+    return 0;
+}
+```
+
+```cpp
+class Base {
+    public:
+        void Print() const{
+            cout << "Print in Base" << endl;
+        }
+};
+class Derive::public base {
+    public:
+        void Print() const{
+            cout << "Print in Derive" << endl;
+        }
+};
+void Print(const Base* base){
+    base->Print();
+}
+int main(){
+    Base b;
+    Derive d;
+    print(&b) // Print in Base;
+    print(&d) // Print in Base;
+    return 0;
+}
+```
 
 ## 3.C/C++基础(下)
 
