@@ -555,7 +555,108 @@ new与malloc的10点区别
 
 C++中static关键字作用有哪些？
 
+1. 隐藏。当同时编译多个文件时，所有未加static前缀的全局变量和函数都具有全局可见性。static可以用作函数和变量的前缀，对于函数来讲，static的作用仅限于隐藏；  
+2. 保持变量内容的持久。存储在静态数据区的变量会在程序刚开始运行时就完成初始化，也是唯一的一次初始化。共有两种变量存储在静态存储区：全局变量和static变量，只不过和全局变量比起来，static可以控制变量的可见范围，说到底static还是用来隐藏的。虽然这种用法不常见；  
+3. static的第三个作用是默认初始化为0（static变量）；  
+4. C++中的作用：    
+4.1 不能将静态（static）成员函数定义为虚函数；  
+4.2 静态（static）数据成员是静态存储的，所以必须对它进行初始化（程序员手动初始化，否则编译时一般不会报错，但是在Link时会报错误）；  
+4.3 静态（static）数据成员在<定义或说明>时前面加关键字static。
 
+### 16.问答题
+
+C++中const关键字作用有哪些？
+
+1. 定义常量  
+    1. const修饰变量，以下两种定义形式在本质上是一样的。它的含义是：const修饰的类型为TYPE的变量value是不可变的。       
+    ```cpp
+    TYPE const ValueName = value; 
+    const TYPE ValueName = value;
+    ```
+2. 将const改为外部连接，作用于扩大至全局，编译时会分配内存，并且可以不进行初始化，仅仅作为声明，编译器认为在程序其他方进行了定义：  
+    ```cpp
+    extend const int ValueName = value;
+    ```
+3. 指针使用const；  
+    3.1 指针本身是常量不可变  
+    ```cpp
+    (char*) const pContent; 
+    const (char*) pContent; 
+    ```
+    3.2 指针所指向的内容是常量不可变  
+    ```cpp
+    const (char) *pContent; 
+    (char) const *pContent;
+    ```
+    3.3 两者都不可变  
+    ```cpp
+    const char* const pContent; 
+    ```
+    3.4 还有其中区别方法：  
+    - 如果const位于\*的左侧，则const就是用来修饰指针所指向的变量，即指针指向为常量；  
+    - 如果const位于\*的右侧，const就是修饰指针本身，即指针本身是常量。  
+4. 函数中使用const  
+    4.1 const修饰函数参数  
+        a. 传递过来的参数在函数内不可以改变(无意义，因为Var本身就是形参)  
+        ```cpp
+        void function(const int Var);
+        ```
+        b. 参数指针所指内容为常量不可变  
+        ```cpp
+        void function(const char* Var);
+        ```
+        c. 参数指针本身为常量不可变(也无意义，因为char* Var也是形参)  
+        ```cpp
+        void function(char* const Var);
+        ```
+        d. 参数为引用，为了增加效率同时防止修改。修饰引用参数时：  
+        ```cpp
+        void function(const Class& Var); //引用参数在函数内不可以改变
+        void function(const TYPE& Var);  //引用参数在函数内为常量不可变
+        ```
+        这样的一个const引用传递和最普通的函数按值传递的效果是一模一样的，他禁止对引用的对象的一切修改，唯一不同的是按值传递会先建立一个类对象的副本，然后传递过去，而它直接传递地址，所以这种传递比按值传递更有效。另外只有引用的const传递可以传递一个临时对象，因为临时对象都是const属性，且是不可见的，他短时间存在一个局部域中，所以不能使用指针，只有引用的const传递能够捕捉到这个家伙。  
+    4.2 const修饰函数返回值  
+    const修饰函数返回值其实用的并不是很多，它的含义和const修饰普通变量以及指针的含义基本相同。  
+        a. `const int fun1();  //无意义，参数返回本身就是赋值`   
+        b. `const int *fun2(); //调用时 const int *pValue = fun2(); //我们可以把fun2()看作成一个变量，即指针内容不可变`  
+        c. `int* const fun3(); //调用时 int * const pValue = fun2();`，我们可以把fun2()看作成一个变量，即指针本身不可变  
+    一般情况下，**函数的返回值为某个对象时，如果将其声明为const时，多用于操作符的重载**。通常，不建议用const修饰函数的返回值类型为某个对象或对某个对象引用的情况。原因如下：如果返回值为某个对象为const（`const A test = A `实例）或某个对象的引用为const（`const A& test = A`实例） ，则返回值具有const属性，则返回实例只能访问类A中的公有（保护）数据成员和const成员函数，并且不允许对其进行赋值操作，这在一般情况下很少用到。  
+5. 类相关const  
+    5.1 const修饰成员变量  
+    const修饰类的成员函数，表示成员常量，不能被修改，同时它只能在初始化列表中赋值。  
+    ```cpp
+    class A { 
+        A(int x): nValue(x) { } ; //只能在初始化列表中赋值
+        const int nValue;         //成员常量不能被修改
+     } 
+    ```
+    5.2 const修饰成员函数  
+    const修饰类的成员函数，则该成员函数不能修改类中任何非const成员函数。一般写在函数的最后来修饰。  
+    ```cpp
+    class A { 
+       void function() const; //常成员函数, 它不改变对象的成员变量也不能调用非const成员函数.
+    }
+    ```
+    对于const类对象/指针/引用，只能调用类的const成员函数，因此，const修饰成员函数的最重要作用就是限制对于const对象的使用。  
+        a. const成员函数不被允许修改它所在对象的任何一个数据成员；  
+        b. const成员函数能够访问对象的const成员，而其他成员函数不可以。  
+    5.3 const修饰类对象/对象指针/对象引用  
+        a. const修饰类对象表示该对象为常量对象，其中的任何成员都不能被修改。对于对象指针和对象引用也是一样；  
+        b. const修饰的对象，该对象的任何非const成员函数都不能被调用，因为任何非const成员函数会有修改成员变量的企图。  
+    例如：  
+    ```cpp
+    class AAA { 
+        void func1(); 
+        void func2() const; 
+    } 
+    
+    const AAA aObj; 
+    // aObj.func1(); //×
+    aObj.func2(); //正确
+    const AAA* aObj = new AAA(); 
+    //aObj-> func1(); //×
+    aObj-> func2(); //正确
+    ```
 
 ## 3.C/C++基础(下)
 
