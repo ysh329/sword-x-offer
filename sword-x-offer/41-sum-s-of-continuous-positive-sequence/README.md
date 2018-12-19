@@ -70,7 +70,7 @@ public:
 
 ### 解方程1
 
-- (a + b)(b - a + 1) = sum * 2, y\*y<=sum (a最小是1,则有y^2<=sum)  
+- (a + b)(b - a + 1) = sum * 2, y\*y<=sum (a最小是1,则有y^2<=sum，下面有提到y = b - a + 1)  
 - 设x = a + b, y = b - a + 1, y >= 2  (至少2个数)  
 - 枚举y，得x，解出a,b  
 
