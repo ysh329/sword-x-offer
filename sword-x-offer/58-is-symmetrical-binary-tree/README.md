@@ -19,17 +19,19 @@ struct TreeNode {
 };
 */
 class Solution {
-    bool cmpRoot(TreeNode *pLeft, TreeNode *pRight) {
-        if(!pLeft) return pLeft==pRight;
-        if(!pRight) return false;
-        if(pLeft->val != pRight->val) return false;
-        return cmpRoot(pLeft->left, pRight->right) &&
-            cmpRoot(pLeft->right, pRight->left);
-    }
 public:
-    bool isSymmetrical(TreeNode* pRoot) {
+    bool cmp(TreeNode *l, TreeNode *r)
+    {
+        if(!l) return l==r;
+        if(!r) return false;
+        return l->val==r->val &&
+               cmp(l->left, r->right) &&
+               cmp(l->right, r->left);
+    }
+    bool isSymmetrical(TreeNode* pRoot)
+    {
         if(!pRoot) return true;
-        return cmpRoot(pRoot->left, pRoot->right);
+        return cmp(pRoot->left, pRoot->right);
     }
 };
 ```
