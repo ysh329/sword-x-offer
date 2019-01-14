@@ -2,7 +2,7 @@
 
 ## 1. reverse-linked-list
 
-```shell
+```cc
 #include <bits/stdc++.h>
 using namespace std;
 struct node {
