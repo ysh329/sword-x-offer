@@ -1,3 +1,5 @@
+真正的希望必定存在于甘心赴死的绝望中
+
 ![logo](./logo.png)</center>
 
 # sword-x-offer
