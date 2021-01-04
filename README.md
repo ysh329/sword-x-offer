@@ -166,7 +166,8 @@ sword-x-offer not only contains 66 common && classic interview programming probl
 - [Common C/C++ questions-II](./lang-cpp/common-questions-II.md)
 - [lexdene/gcc_five_minute: gcc五分钟系列](https://github.com/lexdene/gcc_five_minute)  
 - basic cpp language: [lang-cpp](./lang-cpp)  
-- [soulmachine/system-design: 系统设计面试题精选](https://github.com/soulmachine/system-design)
+- [soulmachine/system-design: 系统设计面试题精选](https://github.com/soulmachine/system-design)  
+- [donnemartin/system-design-primer](https://github.com/donnemartin/system-design-primer)
 
 <h2 id="5">5.License</h2>
 
