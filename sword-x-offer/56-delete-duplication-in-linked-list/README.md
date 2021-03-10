@@ -1,4 +1,4 @@
-# 删除链表中重复的结点
+# 删除链表中连续且重复的结点
 
 - 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。   
 - 例如，链表1->2->3->3->4->4->5 处理后为 1->2->5。  
@@ -156,6 +156,45 @@ public:
             pHead->next = deleteDuplication(pHead->next);
             return pHead;
         }
+    }
+};
+```
+
+
+## 删除链表中重复的节点
+
+- in: `1,2,3,3,4,4,5`
+- out: `1,2,3,4,5`
+
+```cpp
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    ListNode* deleteDuplication(ListNode* pHead) {
+        if (!pHead || !pHead->next) return pHead;
+        
+        ListNode* p1 = pHead;
+        ListNode* p2 = pHead->next;
+        
+        while(p1 && p2) {
+            if (p1->val == p2->val) {
+                p1->next = p2->next;
+                p1= p2->next;
+                p2 = p1 ? p1->next : nullptr;
+            } else {
+              p1 = p2;
+              p2 = p2->next;
+            }
+        }
+        return pHead;
     }
 };
 ```
